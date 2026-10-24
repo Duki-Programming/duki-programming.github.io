@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{ page.lang | default: 'ko' }}">
+{% assign copy = site.data.catalog[page.lang] %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title | escape }} — {% endif %}DukiProgramming</title>
+  <meta name="description" content="{{ page.description | default: copy.description | escape }}">
+  <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+  <meta property="og:description" content="{{ page.description | default: copy.description | escape }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="alternate" hreflang="ko" href="{{ page.ko_url | absolute_url }}">
+  <link rel="alternate" hreflang="en" href="{{ page.en_url | absolute_url }}">
+  <link rel="icon" href="{{ '/assets/brand.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="preload" href="{{ '/assets/fonts/PretendardVariable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ '/assets/css/catalog.css' | relative_url }}">
+  <script defer src="{{ '/assets/js/card-tilt.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/hover-sparkles.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/program-banners.js' | relative_url }}"></script>
+  {% include advertising-head.html %}
+</head>
+<body>
+  <header class="catalog-header shell">
+    <a class="catalog-brand" href="{% if page.lang == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}"><img src="{{ '/assets/brand.svg' | relative_url }}" width="32" height="32" alt="">DukiProgramming<span aria-hidden="true">.</span></a>
+    {% include company-language.html %}
+  </header>
+  {% include content-with-ads.html %}
+  <footer class="catalog-footer shell">
+    <span>© {{ site.time | date: '%Y' }} DukiProgramming</span>
+    <span>{{ copy.creator | escape }} Duki Programming</span>
+  </footer>
+</body>
+</html>

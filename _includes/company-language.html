@@ -1,0 +1,5 @@
+<nav class="company-language" aria-label="{{ copy.navigation | escape }}">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5c4 2 10 2 14 0M5 17.5c4-2 10-2 14 0"/></svg>
+  <a href="{{ page.ko_url | relative_url }}" lang="ko" hreflang="ko"{% if page.lang == 'ko' %} aria-current="page"{% endif %}>한국어</a>
+  <a href="{{ page.en_url | relative_url }}" lang="en" hreflang="en"{% if page.lang == 'en' %} aria-current="page"{% endif %}>English</a>
+</nav>

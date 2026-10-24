@@ -1,0 +1,6 @@
+# Public identifiers for Google AdSense Auto ads and the two side placements.
+adsense:
+  enabled: true
+  publisher_id: "ca-pub-7488501527988619"
+  side_slot: "4679016493"
+show_placeholder: false

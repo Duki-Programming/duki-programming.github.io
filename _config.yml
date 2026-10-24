@@ -1,0 +1,16 @@
+title: DukiProgramming
+description: DukiProgramming의 앱과 프로그램을 소개합니다.
+url: "https://duki-programming.github.io"
+baseurl: ""
+markdown: kramdown
+permalink: pretty
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - dist
+  - .bundle
+  - vendor
+  - node_modules
+  - scripts
+  - tests

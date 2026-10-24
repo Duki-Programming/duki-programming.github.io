@@ -1,0 +1,18 @@
+{% assign copy = site.data.catalog[page.lang] %}
+<main class="catalog-main shell">
+  <section class="catalog-intro" aria-labelledby="catalog-title">
+    <p class="catalog-eyebrow">APPS &amp; TOOLS</p>
+    <h1 id="catalog-title">{{ copy.title | escape }}</h1>
+    <p class="catalog-description">{{ copy.description | escape }}</p>
+  </section>
+  <section class="catalog-programs" aria-labelledby="programs-title">
+    <div class="catalog-section-heading"><h2 id="programs-title">{{ copy.section_title | escape }}</h2><span>{{ copy.programs.size }}</span></div>
+    <div class="program-links">
+      {% for program in copy.programs %}
+        {% assign style = site.data.program_styles[forloop.index0] %}
+        {% include program-banner.html program=program style=style mode='auto' cube=true %}
+      {% endfor %}
+    </div>
+    <script type="application/json" id="program-banner-styles">{{ site.data.program_styles | jsonify }}</script>
+  </section>
+</main>

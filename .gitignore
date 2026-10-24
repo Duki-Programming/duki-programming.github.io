@@ -1,0 +1,10 @@
+dist/
+_site/
+.openai/
+.DS_Store
+.bundle/
+.jekyll-cache/
+.sass-cache/
+Gemfile.lock
+.wrangler/
+node_modules/
