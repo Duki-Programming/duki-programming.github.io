@@ -37,6 +37,7 @@ GitHub Pages를 처음 설정할 때에는 저장소 Settings → Pages에서 `D
 
 ## 수정할 파일
 
+- Google 사이트 소유권 확인 키: `_config.yml`의 `google_site_verification`. 확인 완료 후에도 키와 공통 메타태그를 유지합니다.
 - 프로그램 목록·소개 문구: `_data/catalog.yml`
 - Market Peek 문구: `_data/market_peek_copy.yml`
 - 다운로드 초기값: `_data/market_peek.yml`
