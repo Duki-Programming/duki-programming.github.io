@@ -1,19 +1,19 @@
-# Publish the release before enabling the public download buttons.
-version: "1.0.2"
+# Generated from published GitHub releases by Market Peek release:site.
+version: "1.0.4"
 published: true
-release_url: https://github.com/Duki-Programming/Market-Peek-releases/releases/tag/v1.0.2
-releases_url: https://github.com/Duki-Programming/Market-Peek-releases/releases
+release_url: "https://github.com/Duki-Programming/Market-Peek-releases/releases/tag/v1.0.4"
+releases_url: "https://github.com/Duki-Programming/Market-Peek-releases/releases"
 installer:
-  url: https://github.com/Duki-Programming/Market-Peek-releases/releases/download/v1.0.2/Market.Peek.Setup.1.0.2.exe
-  filename: Market.Peek.Setup.1.0.2.exe
-  size: 112174161
+  url: "https://github.com/Duki-Programming/Market-Peek-releases/releases/download/v1.0.4/Market.Peek.Setup.1.0.4.exe"
+  filename: "Market.Peek.Setup.1.0.4.exe"
+  size: 112189912
 archive:
-  url: https://github.com/Duki-Programming/Market-Peek-releases/releases/download/v1.0.2/market-peek-1.0.2-x64.7z
-  filename: market-peek-1.0.2-x64.7z
-  size: 100432725
+  url: "https://github.com/Duki-Programming/Market-Peek-releases/releases/download/v1.0.4/market-peek-1.0.4-x64.7z"
+  filename: "market-peek-1.0.4-x64.7z"
+  size: 100445867
 mac:
-  version: "1.0.2"
+  version: "1.0.4"
   published: true
-  url: https://github.com/Duki-Programming/Market-Peek-releases/releases/download/v1.0.2/market-peek-1.0.2-universal.dmg
-  filename: market-peek-1.0.2-universal.dmg
-  size: 229333298
+  url: "https://github.com/Duki-Programming/Market-Peek-releases/releases/download/v1.0.4/market-peek-1.0.4-universal.dmg"
+  filename: "market-peek-1.0.4-universal.dmg"
+  size: 229432751

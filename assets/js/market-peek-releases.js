@@ -2,7 +2,8 @@
   'use strict';
   const repository = 'Duki-Programming/Market-Peek-releases';
   const base = `https://github.com/${repository}`;
-  const cacheKey = 'market-peek-downloads-v1';
+  const cacheKey = 'market-peek-downloads-v2';
+  const baseline = document.getElementById('main')?.dataset.releaseVersion;
   const english = document.documentElement?.lang?.toLowerCase().startsWith('en');
   const text = english ? {
     installer: 'Korean-language installer',
@@ -29,6 +30,9 @@
   function apply(releases) {
     const published = releases.filter(release => !release.draft && !release.prerelease && /^v\d+\.\d+\.\d+$/.test(release.tag_name))
       .sort((a, b) => b.tag_name.localeCompare(a.tag_name, undefined, { numeric: true }));
+    // Static downloads are refreshed by the release publisher. Never let an
+    // older cache or an incomplete API snapshot replace that published baseline.
+    if (!published.length || (baseline && published[0].tag_name.localeCompare(baseline, 'en', { numeric: true }) <= 0)) return false;
     const installer = release => findAsset(release, `Market.Peek.Setup.${release.tag_name.slice(1)}.exe`) || findAsset(release, `Market Peek Setup ${release.tag_name.slice(1)}.exe`);
     const dmg = release => findAsset(release, `market-peek-${release.tag_name.slice(1)}-universal.dmg`);
     function version(id, release) {
@@ -75,14 +79,14 @@
         if (element.nextElementSibling) element.nextElementSibling.textContent = text.macPendingDetail;
       }
     }
+    return true;
   }
 
   try {
     const cached = JSON.parse(window.localStorage.getItem(cacheKey));
     const age = Date.now() - cached?.savedAt;
     if (age >= 0 && age < 5 * 60 * 1000 && Array.isArray(cached.releases)) {
-      apply(cached.releases);
-      return;
+      if (apply(cached.releases)) return;
     }
   } catch { /* Downloads still work when storage is unavailable. */ }
   try {

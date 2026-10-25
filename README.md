@@ -48,3 +48,9 @@ GitHub Pages를 처음 설정할 때에는 저장소 Settings → Pages에서 `D
 프로그램을 추가할 때에는 `_data/catalog.yml`의 한국어·영어 목록에 항목을 넣고, 항목의 `url`에 대응하는 소개 페이지를 만듭니다. 개인 홈페이지의 주소나 프로필 링크를 추가하지 않고도 프로그램별로 확장할 수 있습니다.
 
 Google AdSense의 공개 게시자 ID와 기존 광고 코드를 포함합니다. 새 배포 주소에서의 광고 게재 여부는 AdSense의 사이트 등록·승인 상태에 따릅니다.
+
+## Market Peek 버전 동기화
+
+앱 저장소의 `npm run release:win` 또는 `npm run release:mac`이 배포 후 이 저장소의 `_data/market_peek.yml`을 공개 릴리스 기준으로 갱신합니다. GitHub Pages가 다시 빌드하므로 브라우저에서 GitHub API에 접속하지 못해도 최신 버전과 다운로드 링크를 볼 수 있습니다. 앱 저장소에서 `npm run release:site`만 실행해 사이트 데이터를 다시 갱신할 수도 있습니다. 실행 계정에는 이 사이트 저장소의 쓰기 권한이 필요합니다.
+
+브라우저 스크립트는 정적 페이지보다 새 버전이 있을 때만 갱신하며, 오래된 캐시로 버전이나 Mac 다운로드 상태를 되돌리지 않습니다. `node --test tests/*.test.mjs`로 검증합니다.
