@@ -50,6 +50,8 @@ ko:
   faq:
     - question: Python을 따로 설치해야 하나요?
       answer: 필요 없습니다. Windows와 macOS 설치 파일에 실행에 필요한 환경이 포함되어 있습니다.
+    - question: Mac 업데이트는 어떻게 하나요?
+      answer: Mac 1.0.4부터 업데이트 도우미가 앱에 포함됩니다. 앱에서 업데이트를 누르면 다운로드와 검증 후 앱을 교체하고 다시 실행합니다. 기존 1.0.2·1.0.3은 최신 DMG로 한 번 직접 설치해야 하며, 이후 새 버전부터 내장 도우미를 사용할 수 있습니다.
     - question: 거래소 계정은 어떻게 연결하나요?
       answer: 앱 설정에서 거래소마다 API 키를 연결하세요. 저장을 선택하면 각 거래소의 키·Secret·필요한 Passphrase를 이 PC에 암호화해 따로 보관합니다.
     - question: 작은 현물 잔고를 숨길 수 있나요?
@@ -107,7 +109,7 @@ en:
   version_downloads: All versions
   windows_pending: Your download is on its way.
   windows_pending_detail: An EXE installer and a 7z archive for Windows will be available here.
-  mac_detail: DMG installer · Korean-language app
+  mac_detail: Universal DMG installer
   mac_pending: macOS download coming soon
   mac_pending_detail: The macOS installer for the latest version is being prepared.
   install_title: Three steps to get started.
@@ -120,9 +122,11 @@ en:
       body: Click the symbol name to search for an instrument. Click the price to expand its chart.
   faq:
     - question: Is the app available in English?
-      answer: The website is available in Korean and English. The current desktop app and Windows installer use Korean. Changing the website language does not change the app language.
+      answer: The latest macOS app supports Korean and English in Settings → Language. The Windows installer’s prompts are in Korean. Changing the website language does not change the app language.
     - question: Do I need to install Python?
       answer: No. The Windows and macOS downloads include the environment needed to run the app.
+    - question: How do Mac updates work?
+      answer: Mac 1.0.4 includes an updater inside the app. Choose Update to download, verify, replace the app, and restart. If you have 1.0.2 or 1.0.3, install the latest DMG once to get the updater for future releases.
     - question: How do I connect an exchange account?
       answer: Add each exchange’s API credentials in the app settings. If you choose to save them, the key, secret, and any required passphrase are encrypted and stored separately for each exchange on this computer.
     - question: Can I hide small spot balances?
