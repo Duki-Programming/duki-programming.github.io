@@ -16,3 +16,6 @@ exclude:
   - scripts
   - tests
   - services
+
+# Cloudflare Worker origin; empty disables collection.
+notifier_api_url: "https://duki-notifier.duki-programming.workers.dev"
