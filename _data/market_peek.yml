@@ -6,11 +6,11 @@ releases_url: "https://github.com/Duki-Programming/Market-Peek-releases/releases
 installer:
   url: "https://github.com/Duki-Programming/Market-Peek-releases/releases/download/v1.0.4/Market.Peek.Setup.1.0.4.exe"
   filename: "Market.Peek.Setup.1.0.4.exe"
-  size: 112189912
+  size: 112189828
 archive:
   url: "https://github.com/Duki-Programming/Market-Peek-releases/releases/download/v1.0.4/market-peek-1.0.4-x64.7z"
   filename: "market-peek-1.0.4-x64.7z"
-  size: 100445867
+  size: 100445870
 mac:
   version: "1.0.4"
   published: true
