@@ -1,6 +1,7 @@
 ko:
   tip:
     title: Tip the Developer!
+    teaser: 개발자에게 커피 한 잔의 응원을 보내주세요.
     intro: Market Peek가 유용했다면, 개발자에게 커피 한 잔의 응원을 보내주세요.
     note: 팁은 선택 사항이며, 앱 다운로드나 이용을 위한 결제가 아닙니다.
     pending: 팁 결제를 준비하고 있어요.
@@ -82,6 +83,7 @@ ko:
 en:
   tip:
     title: Tip the Developer!
+    teaser: Support the developer with a coffee.
     intro: If Market Peek makes your day a little easier, you can say thanks with a coffee.
     note: Tips are optional and are not a payment for downloading or using the app.
     pending: Tipping is coming soon.

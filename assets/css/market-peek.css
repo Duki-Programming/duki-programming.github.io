@@ -64,16 +64,14 @@ html[lang="en"] .market-peek-page h2 { letter-spacing: -.035em; }
   .product-credits { text-align: left; }
 }
 
-/* Optional developer tips beside the primary download actions. */
-.hero-downloads { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 128px; align-items: stretch; gap: 10px; }
-.hero-downloads .button { min-width: 0; padding: 14px 10px; gap: 6px; }
-.hero-downloads .button > span[aria-hidden="true"] { display: none; }
-.hero-downloads .button > .hero-download-text { font-size: 13px; overflow-wrap: anywhere; }
-.hero-downloads .button svg { flex: 0 0 17px; }
-.hero-downloads .tip-button { border: 1px solid #63744f; background: #1b251e; color: var(--accent); cursor: pointer; }
-.hero-downloads .tip-button:hover { background: #283729; border-color: var(--accent); }
-.hero-downloads .tip-button svg { fill: none; }
-.hero-downloads .tip-button > .tip-button-label { margin: 0; font-size: 13px; font-weight: 650; line-height: 1.5; text-align: left; }
+/* Optional developer tips below the unchanged primary download actions. */
+.tip-button { display: flex; align-items: center; gap: 14px; width: 100%; margin-top: 16px; padding: 17px 18px; border: 1px solid #41523c; border-radius: 8px; background: #1b251e; color: var(--accent); text-align: left; cursor: pointer; }
+.tip-button:hover { background: #283729; border-color: #63744f; }
+.tip-button > svg { width: 22px; height: 22px; flex: 0 0 22px; }
+.tip-button-copy { display: grid; gap: 5px; min-width: 0; }
+.tip-button-copy strong { font-size: 14px; font-weight: 650; line-height: 1.4; }
+.tip-button-copy > span { color: var(--muted); font-size: 12px; line-height: 1.6; }
+.tip-button-arrow { margin-left: auto; font-size: 20px; }
 .tip-dialog { width: min(440px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 34px 30px 28px; border: 1px solid #41523c; border-radius: 18px; background: var(--panel); color: var(--text); box-shadow: 0 24px 100px #0008; }
 .tip-dialog::backdrop { background: #080e10ba; backdrop-filter: blur(5px); }
 .tip-dialog-close { display: flex; justify-content: flex-end; margin: -18px -14px 0 0; }
@@ -88,7 +86,5 @@ html[lang="en"] .market-peek-page h2 { letter-spacing: -.035em; }
 .tip-pending p { margin: 7px 0 0; font-size: 13px; color: var(--muted); }
 .tip-payment { width: 100%; margin: 12px 0; }
 @media (max-width: 480px) {
-  .hero-downloads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero-downloads .tip-button { grid-column: 1 / -1; justify-self: start; min-height: 44px; padding: 10px 16px; gap: 9px; }
   .tip-dialog { padding: 28px 22px 22px; }
 }
