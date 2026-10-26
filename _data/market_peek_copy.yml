@@ -28,7 +28,7 @@ ko:
     network_note: USDT를 TRON(TRC20) 네트워크로만 보내주세요. 다른 코인이나 네트워크로 보내면 자산을 잃을 수 있습니다.
   skip: 본문으로 이동
   language_navigation: 웹사이트 언어
-  hero_title: "시세를 한눈에,<br>언제나 함께하는 <span>트레이딩</span>"
+  hero_title: "<span class='hero-title-line'>주식/코인 시장을 한눈에</span><span class='hero-title-line'>언제나 함께하는 <span class='hero-title-accent'>차트!</span></span>"
   intro: "차트를 보러 창을 옮길 필요 없이.<br>코인부터 한국·미국 주식까지,<br>바탕화면 한편에서 가볍게 확인하세요."
   windows_download: Windows용 다운로드
   mac_download: macOS용 다운로드

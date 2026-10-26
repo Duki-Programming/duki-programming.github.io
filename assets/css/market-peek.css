@@ -112,3 +112,9 @@ html[lang="en"] .market-peek-page h2 { letter-spacing: -.035em; }
 @media (max-width: 480px) {
   .tip-dialog { padding: 28px 22px 22px; }
 }
+
+/* Size the Korean headline to its actual column, keeping each phrase intact. */
+html[lang="ko"] .hero-copy { min-width: 0; container-type: inline-size; }
+html[lang="ko"] #hero-title { font-size: min(52px, 8.5cqw); letter-spacing: -.04em; }
+#hero-title > .hero-title-line { display: block; white-space: nowrap; color: inherit; }
+#hero-title .hero-title-accent { color: var(--accent); }
