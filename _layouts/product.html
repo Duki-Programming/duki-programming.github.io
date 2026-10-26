@@ -19,7 +19,7 @@
   <link rel="alternate" hreflang="x-default" href="{{ '/market-peek/' | absolute_url }}">
   {% endif %}
   {% if page.icon %}<link rel="icon" href="{{ page.icon | relative_url }}">{% endif %}
-  <link rel="stylesheet" href="{{ page.css_file | relative_url }}">
+  <link rel="stylesheet" href="{{ page.css_file | relative_url }}?v={{ site.time | date: '%s' }}">
   {% include advertising-head.html %}
 </head>
 <body>

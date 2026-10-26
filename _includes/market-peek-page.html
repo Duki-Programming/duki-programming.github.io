@@ -107,4 +107,4 @@
 </footer>
 {% include developer-tip.html %}
 <script src="{{ '/assets/js/market-peek-releases.js' | relative_url }}" defer></script>
-<script src="{{ '/assets/js/developer-tip.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/developer-tip.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
