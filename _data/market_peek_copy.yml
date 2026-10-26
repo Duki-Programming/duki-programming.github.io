@@ -88,8 +88,8 @@ en:
     note: Tips are optional and are not a payment for downloading or using the app.
     pending: Tipping is coming soon.
     thanks: Thanks for your support. Please check back soon.
-    action: Leave a tip
-    external: The payment page opens in a new tab.
+    action: Tip with PayPal
+    external: Choose your tip amount in USD on PayPal. Opens in a new tab. Payments between Korean PayPal accounts are not supported.
     close: Close
   skip: Skip to content
   language_navigation: Website language

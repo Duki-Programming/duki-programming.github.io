@@ -4,5 +4,5 @@
 ko:
   tip_url: ""
 en:
-  # PayPal payment link for overseas supporters.
-  tip_url: ""
+  # PayPal Payments Standard: supporters choose their own amount in USD.
+  tip_url: "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=cbcc1234%40gmail.com&item_name=Tip%20the%20Developer%20-%20Market%20Peek&currency_code=USD&no_shipping=1&lc=US"
