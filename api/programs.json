@@ -1,0 +1,6 @@
+---
+layout: null
+permalink: /api/programs.json
+sitemap: false
+---
+{"version":1,"programs":{{ site.data.catalog.ko.programs | jsonify }}}
