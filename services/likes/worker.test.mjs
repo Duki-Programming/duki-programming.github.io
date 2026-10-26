@@ -14,6 +14,7 @@ function fixture(t) {
   const wrap = (sql, args = []) => ({
     bind: (...values) => wrap(sql, values),
     first: async () => sqlite.prepare(sql).get(...args),
+    all: async () => ({ results: sqlite.prepare(sql).all(...args) }),
     execute: () => sql.trim().startsWith('SELECT') ? { results: sqlite.prepare(sql).all(...args) } : { results: [], meta: sqlite.prepare(sql).run(...args) },
   });
   const env = { ALLOWED_ORIGIN: origin, IP_HASH_SECRET: 'test-only-secret-with-at-least-32-characters', DB: {
@@ -66,4 +67,31 @@ test('rejects other origins, missing edge identity, invalid writes, and missing 
   const { response } = await send('likes', { method: 'OPTIONS' });
   assert.equal(response.status, 204); assert.equal(response.headers.get('Access-Control-Allow-Origin'), origin);
   assert.equal((await send('likes')).response.headers.get('Cache-Control'), 'no-store');
+});
+
+test('manual likes work immediately; a later download does not add a second like for that OS', async t => {
+  const { send } = fixture(t);
+  let response = await send('windows/likes', { method: 'POST' });
+  assert.deepEqual(response.data.platforms.windows, { count: 1, liked: true, downloaded: false, downloads: 0 });
+  response = await send('windows/download', { method: 'POST' });
+  assert.deepEqual(response.data.platforms.windows, { count: 1, liked: true, downloaded: true, downloads: 1 });
+  await Promise.all(Array.from({ length: 10 }, () => send('windows/download', { method: 'POST' })));
+  assert.equal((await send('stats')).data.platforms.windows.downloads, 1);
+  assert.equal((await send('stats')).data.platforms.windows.count, 1);
+});
+
+test('Windows and macOS each count once per IP; downloads automatically add support', async t => {
+  const { send } = fixture(t);
+  await send('windows/download', { method: 'POST' });
+  await send('macos/download', { method: 'POST' });
+  await send('macos/likes', { method: 'POST' });
+  await send('windows/likes', { method: 'POST' });
+  let state = (await send('stats')).data;
+  for (const platform of ['windows', 'macos']) assert.deepEqual(state.platforms[platform], { count: 1, liked: true, downloaded: true, downloads: 1 });
+  await send('macos/likes', { method: 'POST', ip: '203.0.113.2' });
+  state = (await send('stats', { ip: '203.0.113.2' })).data;
+  assert.deepEqual(state.platforms.macos, { count: 2, liked: true, downloaded: false, downloads: 1 });
+  assert.deepEqual(state.platforms.windows, { count: 1, liked: false, downloaded: false, downloads: 1 });
+  assert.equal((await send('linux/download', { method: 'POST' })).response.status, 404);
+  assert.equal((await send('stats', { method: 'POST' })).response.status, 405);
 });

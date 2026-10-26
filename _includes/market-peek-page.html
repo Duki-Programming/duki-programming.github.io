@@ -29,6 +29,7 @@
         <span class="tip-button-copy"><strong lang="en">Tip the Developer!</strong><span>{{ copy.tip.teaser | escape }}</span></span>
         <span class="tip-button-arrow" aria-hidden="true">→</span>
       </button>
+      {% include download-likes.html %}
     </div>
     <div class="showcase real-screens">
       <img alt="{{ copy.chart_alt | escape }}" class="app-screenshot" fetchpriority="high" height="1080" src="{{ '/assets/programs/market-peek/btc-chart.png' | relative_url }}" width="1360">
@@ -91,7 +92,6 @@
       </div>
     </div>
   </section>
-  {% include download-likes.html %}
   <section aria-labelledby="install-title" class="install wrap" id="install">
     <div class="section-heading"><h2 id="install-title">{{ copy.install_title | escape }}</h2></div>
     <ol class="install-steps">

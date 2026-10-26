@@ -33,6 +33,16 @@ function state(row) {
   return { count: Number(row.count), liked: Boolean(row.liked), downloaded: Boolean(row.downloaded) };
 }
 
+function platformSnapshot(db, hash) {
+  return db.prepare(`SELECT t.platform, t.likes AS count, t.downloads,
+    (v.ip_hash IS NOT NULL) AS liked, COALESCE(v.downloaded, 0) AS downloaded
+    FROM platform_totals t LEFT JOIN platform_votes v ON t.platform = v.platform AND v.ip_hash = ?`).bind(hash);
+}
+
+function platformState(rows) {
+  return { platforms: Object.fromEntries(rows.map(row => [row.platform, { ...state(row), downloads: Number(row.downloads) }])) };
+}
+
 export default {
   async fetch(request, env) {
     const headers = new Headers({ 'Cache-Control': 'no-store', 'Vary': 'Origin', 'X-Content-Type-Options': 'nosniff' });
@@ -42,18 +52,30 @@ export default {
     headers.set('Access-Control-Allow-Origin', origin);
     const pathname = new URL(request.url).pathname;
     const route = pathname.slice(ROOT.length);
-    if (!pathname.startsWith(`${ROOT}/`) || !['/likes', '/download'].includes(route)) return reply({ error: 'not_found' }, 404);
+    const platformRoute = route.match(/^\/(windows|macos)\/(download|likes)$/);
+    if (!pathname.startsWith(`${ROOT}/`) || (!['/likes', '/download', '/stats'].includes(route) && !platformRoute)) return reply({ error: 'not_found' }, 404);
     if (request.method === 'OPTIONS') {
-      headers.set('Access-Control-Allow-Methods', route === '/likes' ? 'GET, POST, OPTIONS' : 'POST, OPTIONS');
+      headers.set('Access-Control-Allow-Methods', route === '/stats' ? 'GET, OPTIONS' : route === '/likes' ? 'GET, POST, OPTIONS' : 'POST, OPTIONS');
       headers.set('Access-Control-Allow-Headers', 'Content-Type');
       return new Response(null, { status: 204, headers });
     }
-    if (request.method !== 'POST' && !(route === '/likes' && request.method === 'GET')) return reply({ error: 'method_not_allowed' }, 405);
+    if (route === '/stats' && request.method !== 'GET') return reply({ error: 'method_not_allowed' }, 405);
+    if (request.method !== 'POST' && !(['/likes', '/stats'].includes(route) && request.method === 'GET')) return reply({ error: 'method_not_allowed' }, 405);
     if (request.method === 'POST' && request.headers.get('Content-Type') !== 'application/json') return reply({ error: 'json_required' }, 415);
     if (!env.DB || typeof env.IP_HASH_SECRET !== 'string' || env.IP_HASH_SECRET.length < 32) return reply({ error: 'unavailable' }, 503);
     try {
       const hash = await visitorHash(request, env.IP_HASH_SECRET);
       if (!hash) return reply({ error: 'client_ip_unavailable' }, 400);
+      if (route === '/stats') return reply(platformState((await platformSnapshot(env.DB, hash).all()).results));
+      if (platformRoute) {
+        const [, platform, action] = platformRoute;
+        const mutation = env.DB.prepare(`INSERT INTO platform_votes (platform, ip_hash, downloaded) VALUES (?, ?, ?)
+          ON CONFLICT(platform, ip_hash) DO UPDATE SET downloaded = MAX(platform_votes.downloaded, excluded.downloaded)`)
+          .bind(platform, hash, action === 'download' ? 1 : 0);
+        const [, result] = await env.DB.batch([mutation, platformSnapshot(env.DB, hash)]);
+        return reply(platformState(result.results));
+      }
+      // Keep the original routes for already-open pages using the previous script.
       if (request.method === 'GET') return reply(state(await snapshot(env.DB, hash).first()));
       const mutation = route === '/download'
         ? env.DB.prepare('INSERT OR IGNORE INTO downloads (ip_hash) VALUES (?)').bind(hash)

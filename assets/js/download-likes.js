@@ -1,21 +1,32 @@
 (() => {
   const root = document.querySelector('[data-likes-api]');
   if (!root) return;
-  const button = root.querySelector('.like-button'), count = root.querySelector('[data-likes-count]'), status = root.querySelector('[data-likes-status]');
+  const rows = [...root.querySelectorAll('[data-support-platform]')];
+  const status = root.querySelector('[data-likes-status]');
   const api = `${root.dataset.likesApi.replace(/\/$/, '')}/v1/market-peek`;
-  let current = null, pending = false, failed = false;
-  // Serialize initial status, download markers, and votes so stale responses cannot overwrite newer state.
-  let queue = Promise.resolve();
+  const number = new Intl.NumberFormat(document.documentElement.lang);
+  let current = null, pending = false, queue = Promise.resolve();
   const render = () => {
-    button.disabled = pending || !current?.downloaded || current.liked;
-    button.setAttribute('aria-pressed', String(Boolean(current?.liked)));
-    button.setAttribute('aria-label', current?.liked ? root.dataset.likesDone : root.dataset.likesLabel);
-    if (current) count.textContent = new Intl.NumberFormat(document.documentElement.lang).format(current.count);
-    status.textContent = failed ? root.dataset.likesError : current?.liked ? root.dataset.likesThanks : current?.downloaded ? root.dataset.likesReady : root.dataset.likesWaiting;
+    for (const row of rows) {
+      const platform = row.dataset.supportPlatform;
+      const data = current?.platforms[platform], button = row.querySelector('.like-button');
+      button.disabled = pending || !data || data.liked;
+      button.setAttribute('aria-pressed', String(Boolean(data?.liked)));
+      button.setAttribute('aria-label', `${platform === 'windows' ? 'Windows' : 'macOS'} · ${data?.liked ? root.dataset.likesDone : root.dataset.likesLabel}`);
+      if (data) {
+        row.querySelector('[data-likes-count]').textContent = number.format(data.count);
+        row.querySelector('[data-downloads-count]').textContent = number.format(data.downloads);
+      }
+    }
   };
+  const valid = data => ['windows', 'macos'].every(platform => {
+    const item = data?.platforms?.[platform];
+    return item && Number.isSafeInteger(item.count) && item.count >= 0 && Number.isSafeInteger(item.downloads) && item.downloads >= 0
+      && typeof item.liked === 'boolean' && typeof item.downloaded === 'boolean';
+  });
   const request = (path, method = 'GET') => {
     queue = queue.then(async () => {
-      pending = true; failed = false; render();
+      pending = true; render();
       try {
         const response = await fetch(`${api}${path}`, {
           method, mode: 'cors', credentials: 'omit', cache: 'no-store',
@@ -23,22 +34,25 @@
           signal: AbortSignal.timeout(10000),
         });
         const data = await response.json();
-        if (!Number.isSafeInteger(data.count) || data.count < 0 || typeof data.liked !== 'boolean' || typeof data.downloaded !== 'boolean') throw new Error('Invalid state');
+        if (!response.ok || !valid(data)) throw new Error('Invalid state');
         current = data;
-        if (!response.ok) throw new Error('Request failed');
-      } catch { failed = true; }
+        status.textContent = method === 'POST' ? root.dataset.likesThanks : '';
+      } catch { status.textContent = root.dataset.likesError; }
       finally { pending = false; render(); }
     });
     return queue;
   };
-  button.addEventListener('click', () => { if (!pending && current?.downloaded && !current.liked) request('/likes', 'POST'); });
+  for (const row of rows) row.querySelector('.like-button').addEventListener('click', () => {
+    const platform = row.dataset.supportPlatform;
+    if (!pending && current && !current.platforms[platform].liked) request(`/${platform}/likes`, 'POST');
+  });
   document.addEventListener('click', event => {
     const link = event.target.closest('#download-link, #archive-link, #mac-download-link');
     if (!link || link.getAttribute('aria-disabled') === 'true' || !link.href) return;
     const url = new URL(link.href);
     if (url.origin !== 'https://github.com' || !url.pathname.startsWith('/Duki-Programming/Market-Peek-releases/releases/download/')) return;
-    request('/download', 'POST');
+    request(`/${link.id === 'mac-download-link' ? 'macos' : 'windows'}/download`, 'POST');
   });
-  window.addEventListener('online', () => request('/likes'));
-  request('/likes');
+  window.addEventListener('online', () => request('/stats'));
+  request('/stats');
 })();
