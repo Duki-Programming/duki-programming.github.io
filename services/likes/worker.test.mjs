@@ -5,9 +5,10 @@ import { readFileSync, readdirSync } from 'node:fs';
 import worker, { normalizeIp } from './worker.mjs';
 
 const origin = 'https://duki-programming.github.io';
-function fixture(t) {
+function fixture(t, beforeUniqueMigration) {
   const sqlite = new DatabaseSync(':memory:');
   for (const name of readdirSync(new URL('./migrations/', import.meta.url)).sort()) {
+    if (name.startsWith('0004')) beforeUniqueMigration?.(sqlite);
     sqlite.exec(readFileSync(new URL(`./migrations/${name}`, import.meta.url), 'utf8'));
   }
   t.after(() => sqlite.close());
@@ -34,10 +35,10 @@ function fixture(t) {
   return { send, sqlite, env };
 }
 
-test('downloads unlock one like per IP, concurrent requests and both languages share the count', async t => {
+test('manual likes and legacy downloads share one vote per IP, including concurrent requests', async t => {
   const { send, sqlite } = fixture(t);
   assert.deepEqual((await send('likes')).data, { count: 0, liked: false, downloaded: false });
-  assert.equal((await send('likes', { method: 'POST' })).response.status, 409);
+  assert.deepEqual((await send('likes', { method: 'POST' })).data, { count: 1, liked: true, downloaded: false });
   assert.equal((await send('download', { method: 'POST' })).data.downloaded, true);
   await Promise.all(Array.from({ length: 12 }, () => send('likes', { method: 'POST' })));
   assert.deepEqual((await send('likes')).data, { count: 1, liked: true, downloaded: true });
@@ -45,7 +46,7 @@ test('downloads unlock one like per IP, concurrent requests and both languages s
   await send('download', { ip: '203.0.113.2', method: 'POST' });
   assert.equal((await send('likes', { ip: '203.0.113.2', method: 'POST' })).data.count, 2);
   assert.equal((await send('likes')).data.count, 2);
-  const rows = sqlite.prepare('SELECT ip_hash FROM likes').all();
+  const rows = sqlite.prepare('SELECT ip_hash FROM supporters').all();
   assert(rows.every(row => /^[a-f0-9]{64}$/.test(row.ip_hash)));
 });
 
@@ -80,18 +81,46 @@ test('manual likes work immediately; a later download does not add a second like
   assert.equal((await send('stats')).data.platforms.windows.count, 1);
 });
 
-test('Windows and macOS each count once per IP; downloads automatically add support', async t => {
+test('Windows and macOS downloads retain internal stats but share one public vote per IP', async t => {
   const { send } = fixture(t);
   await send('windows/download', { method: 'POST' });
   await send('macos/download', { method: 'POST' });
   await send('macos/likes', { method: 'POST' });
   await send('windows/likes', { method: 'POST' });
   let state = (await send('stats')).data;
+  assert.equal(state.count, 1);
+  assert.equal(state.liked, true);
   for (const platform of ['windows', 'macos']) assert.deepEqual(state.platforms[platform], { count: 1, liked: true, downloaded: true, downloads: 1 });
   await send('macos/likes', { method: 'POST', ip: '203.0.113.2' });
   state = (await send('stats', { ip: '203.0.113.2' })).data;
+  assert.equal(state.count, 2);
+  assert.equal(state.liked, true);
   assert.deepEqual(state.platforms.macos, { count: 2, liked: true, downloaded: false, downloads: 1 });
   assert.deepEqual(state.platforms.windows, { count: 1, liked: false, downloaded: false, downloads: 1 });
   assert.equal((await send('linux/download', { method: 'POST' })).response.status, 404);
   assert.equal((await send('stats', { method: 'POST' })).response.status, 405);
+});
+
+
+test('all routes racing from the same IP add only one public vote', async t => {
+  const { send } = fixture(t);
+  const routes = ['likes', 'download', 'windows/likes', 'macos/likes', 'windows/download', 'macos/download'];
+  const responses = await Promise.all(Array.from({ length: 24 }, (_, i) => send(routes[i % routes.length], { method: 'POST' })));
+  assert(responses.every(({ response, data }) => response.status === 200 && data.count === 1 && data.liked));
+  assert.equal((await send('stats')).data.count, 1);
+  assert.equal((await send('stats', { ip: '203.0.113.2' })).data.liked, false);
+  assert.equal((await send('macos/download', { method: 'POST', ip: '203.0.113.2' })).data.count, 2);
+});
+
+test('migration preserves existing support and deduplicates both platforms and legacy data', async t => {
+  const { sqlite } = fixture(t, db => db.exec(`
+    INSERT INTO platform_votes VALUES ('windows', 'shared', 1), ('macos', 'shared', 1), ('macos', 'platform-only', 0);
+    INSERT INTO downloads VALUES ('shared'), ('legacy-only');
+    INSERT INTO likes VALUES ('shared'), ('legacy-only');
+  `));
+  assert.equal(sqlite.prepare('SELECT count FROM support_total').get().count, 3);
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS count FROM supporters').get().count, 3);
+  assert.equal(sqlite.prepare('SELECT SUM(downloads) AS count FROM platform_totals').get().count, 2);
+  sqlite.exec("INSERT INTO platform_votes VALUES ('windows', 'legacy-only', 1)");
+  assert.equal(sqlite.prepare('SELECT count FROM support_total').get().count, 3);
 });

@@ -24,8 +24,8 @@ async function visitorHash(request, secret) {
 
 function snapshot(db, hash) {
   return db.prepare(`SELECT
-    (SELECT count FROM totals WHERE id = 1) AS count,
-    EXISTS(SELECT 1 FROM likes WHERE ip_hash = ?) AS liked,
+    (SELECT count FROM support_total WHERE id = 1) AS count,
+    EXISTS(SELECT 1 FROM supporters WHERE ip_hash = ?) AS liked,
     EXISTS(SELECT 1 FROM downloads WHERE ip_hash = ?) AS downloaded`).bind(hash, hash);
 }
 
@@ -39,8 +39,8 @@ function platformSnapshot(db, hash) {
     FROM platform_totals t LEFT JOIN platform_votes v ON t.platform = v.platform AND v.ip_hash = ?`).bind(hash);
 }
 
-function platformState(rows) {
-  return { platforms: Object.fromEntries(rows.map(row => [row.platform, { ...state(row), downloads: Number(row.downloads) }])) };
+function platformState(rows, total) {
+  return { ...state(total), platforms: Object.fromEntries(rows.map(row => [row.platform, { ...state(row), downloads: Number(row.downloads) }])) };
 }
 
 export default {
@@ -66,24 +66,26 @@ export default {
     try {
       const hash = await visitorHash(request, env.IP_HASH_SECRET);
       if (!hash) return reply({ error: 'client_ip_unavailable' }, 400);
-      if (route === '/stats') return reply(platformState((await platformSnapshot(env.DB, hash).all()).results));
+      if (route === '/stats') {
+        const [total, platforms] = await env.DB.batch([snapshot(env.DB, hash), platformSnapshot(env.DB, hash)]);
+        return reply(platformState(platforms.results, total.results[0]));
+      }
       if (platformRoute) {
         const [, platform, action] = platformRoute;
         const mutation = env.DB.prepare(`INSERT INTO platform_votes (platform, ip_hash, downloaded) VALUES (?, ?, ?)
           ON CONFLICT(platform, ip_hash) DO UPDATE SET downloaded = MAX(platform_votes.downloaded, excluded.downloaded)`)
           .bind(platform, hash, action === 'download' ? 1 : 0);
-        const [, result] = await env.DB.batch([mutation, platformSnapshot(env.DB, hash)]);
-        return reply(platformState(result.results));
+        const [, total, result] = await env.DB.batch([mutation, snapshot(env.DB, hash), platformSnapshot(env.DB, hash)]);
+        return reply(platformState(result.results, total.results[0]));
       }
       // Keep the original routes for already-open pages using the previous script.
       if (request.method === 'GET') return reply(state(await snapshot(env.DB, hash).first()));
       const mutation = route === '/download'
         ? env.DB.prepare('INSERT OR IGNORE INTO downloads (ip_hash) VALUES (?)').bind(hash)
-        : env.DB.prepare('INSERT OR IGNORE INTO likes (ip_hash) SELECT ip_hash FROM downloads WHERE ip_hash = ?').bind(hash);
+        : env.DB.prepare('INSERT OR IGNORE INTO supporters (ip_hash) VALUES (?)').bind(hash);
       // D1 batches execute transactionally. Unique keys make retries and racing clicks idempotent.
       const [, result] = await env.DB.batch([mutation, snapshot(env.DB, hash)]);
       const current = state(result.results[0]);
-      if (route === '/likes' && !current.downloaded) return reply({ ...current, error: 'download_required' }, 409);
       return reply(current);
     } catch {
       // Never log IPs, request headers, or database internals.

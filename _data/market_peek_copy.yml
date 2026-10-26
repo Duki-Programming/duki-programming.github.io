@@ -1,6 +1,6 @@
 ko:
   likes:
-    title: 좋아요로 응원하기
+    title: 좋아요&다운로드로 응원하기
     label: 좋아요
     downloads: 다운로드
     download_detail: 이 페이지의 다운로드 링크 클릭을 OS별·IP별 1회 집계합니다.
@@ -99,7 +99,7 @@ ko:
 
 en:
   likes:
-    title: Show your support with a like
+    title: Support with likes & downloads
     label: Likes
     downloads: Downloads
     download_detail: Download clicks on this page, counted once per IP for each operating system.
