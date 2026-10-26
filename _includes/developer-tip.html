@@ -2,12 +2,11 @@
 {% assign tip_url = site.data.support[tip_language].tip_url | default: '' | strip %}
 {% assign tip_scheme = tip_url | slice: 0, 8 %}
 {% assign usdt_address = site.data.support.usdt_trc20.address | default: '' | strip %}
-<dialog id="developer-tip-dialog" class="tip-dialog" aria-labelledby="developer-tip-title" aria-describedby="developer-tip-intro developer-tip-note">
+<dialog id="developer-tip-dialog" class="tip-dialog" aria-labelledby="developer-tip-title" aria-describedby="developer-tip-intro">
   <form method="dialog" class="tip-dialog-close"><button type="submit" aria-label="{{ copy.tip.close | escape }}" autofocus>×</button></form>
   <div class="tip-mark" aria-hidden="true">♡</div>
   <h2 id="developer-tip-title" lang="en">{{ copy.tip.title | escape }}</h2>
   <p id="developer-tip-intro">{{ copy.tip.intro | escape }}</p>
-  <p id="developer-tip-note" class="tip-note">{{ copy.tip.note | escape }}</p>
   <div class="tip-tabs" role="tablist" aria-label="{{ copy.tip.methods | escape }}">
     {% if tip_scheme == 'https://' %}<button type="button" role="tab" id="tip-tab-payment" aria-controls="tip-panel-payment" aria-selected="true">PayPal</button>{% endif %}
     <button type="button" role="tab" id="tip-tab-usdt" aria-controls="tip-panel-usdt" aria-selected="{% if tip_scheme == 'https://' %}false{% else %}true{% endif %}" tabindex="{% if tip_scheme == 'https://' %}-1{% else %}0{% endif %}">USDT <small>TRC20</small></button>
