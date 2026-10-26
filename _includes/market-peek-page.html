@@ -91,6 +91,7 @@
       </div>
     </div>
   </section>
+  {% include download-likes.html %}
   <section aria-labelledby="install-title" class="install wrap" id="install">
     <div class="section-heading"><h2 id="install-title">{{ copy.install_title | escape }}</h2></div>
     <ol class="install-steps">
@@ -108,3 +109,4 @@
 {% include developer-tip.html %}
 <script src="{{ '/assets/js/market-peek-releases.js' | relative_url }}" defer></script>
 <script src="{{ '/assets/js/developer-tip.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+<script src="{{ '/assets/js/download-likes.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

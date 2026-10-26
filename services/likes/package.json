@@ -1,0 +1,11 @@
+{
+  "name": "market-peek-likes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test worker.test.mjs",
+    "dev": "wrangler dev --config wrangler.local.jsonc",
+    "deploy": "wrangler deploy --config wrangler.production.jsonc"
+  },
+  "devDependencies": { "wrangler": "4.152.0" }
+}

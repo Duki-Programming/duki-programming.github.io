@@ -8,3 +8,5 @@ _site/
 Gemfile.lock
 .wrangler/
 node_modules/
+.dev.vars*
+services/likes/wrangler.production.jsonc

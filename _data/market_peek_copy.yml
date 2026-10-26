@@ -1,4 +1,14 @@
 ko:
+  likes:
+    title: 써보고 마음에 들었다면
+    label: 좋아요
+    action: Market Peek 좋아요 누르기
+    done: Market Peek 좋아요를 눌렀습니다
+    loading: 좋아요 수를 불러오는 중…
+    waiting: 다운로드한 뒤 하트로 응원해 주세요.
+    ready: 하트로 응원해 주세요!
+    thanks: 응원해 주셔서 감사합니다!
+    error: 좋아요를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.
   tip:
     title: Tip the Developer!
     teaser: 개발자에게 커피 한 잔의 응원을 보내주세요.
@@ -88,6 +98,16 @@ ko:
   creator: 개발자
 
 en:
+  likes:
+    title: Enjoying Market Peek?
+    label: Likes
+    action: Like Market Peek
+    done: You liked Market Peek
+    loading: Loading likes…
+    waiting: Download the app, then leave a heart.
+    ready: Leave a heart to show your support!
+    thanks: Thanks for your support!
+    error: Likes are unavailable right now. Please try again shortly.
   tip:
     title: Tip the Developer!
     teaser: Support the developer with a coffee.

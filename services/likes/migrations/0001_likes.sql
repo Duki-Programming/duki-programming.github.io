@@ -1,0 +1,7 @@
+CREATE TABLE downloads (
+  ip_hash TEXT PRIMARY KEY NOT NULL
+) WITHOUT ROWID;
+
+CREATE TABLE likes (
+  ip_hash TEXT PRIMARY KEY NOT NULL REFERENCES downloads(ip_hash)
+) WITHOUT ROWID;
