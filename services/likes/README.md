@@ -7,6 +7,7 @@ GitHub Pages는 기존 그대로 사용하고 이 Cloudflare Worker + D1 API만 
 - `GET /v1/market-peek/stats`: Windows·macOS 각각의 다운로드 수, 응원 수, 현재 IP의 상태.
 - `POST /v1/market-peek/{windows|macos}/likes`: 다운로드 전에도 직접 응원할 수 있습니다.
 - `POST /v1/market-peek/{windows|macos}/download`: 해당 OS의 다운로드와 응원을 함께 기록합니다.
+- 화면에는 응원 합계 및 따봉 버튼 하나만 표시합니다. 다운로드 수와 OS별 집계는 내부에서만 관리합니다. 수동 따봉은 브라우저 OS에 해당하는 미사용 몫부터 하나씩 사용하고, 다음에는 남은 몫을 사용합니다. 한 IP의 응원은 합계 최대 2개입니다.
 - 같은 IP는 OS별로 다운로드 1회·응원 1회만 반영됩니다. 따봉 이후 다운로드하거나 다운로드 이후 따봉을 눌러도 응원은 중복 증가하지 않습니다. Windows 설치 파일과 압축 파일은 같은 Windows 집계에 포함합니다.
 - 두 언어와 모든 릴리스 버전에서 각 OS의 카운터를 공유합니다. 기존 `/likes`, `/download` 경로와 데이터는 이전 페이지 호환용으로 유지하지만 새 OS별 집계에 임의로 귀속하지 않습니다.
 - IP 원문은 저장하지 않습니다. 서버 전용 `IP_HASH_SECRET`으로 만든 HMAC만 저장합니다. `CF-Connecting-IP`만 신뢰하며 클라이언트가 보낸 IP 값이나 `X-Forwarded-For`는 사용하지 않습니다.

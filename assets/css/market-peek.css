@@ -98,22 +98,16 @@ html[lang="en"] .market-peek-page h2 { letter-spacing: -.035em; }
 .tip-copy:disabled { opacity: .6; cursor: wait; }
 .tip-dialog .tip-copy-status { min-height: 21px; margin-bottom: 10px; color: var(--accent); }
 .tip-dialog .tip-network-note { margin-bottom: 0; padding: 12px; border-left: 2px solid #ad975d; background: #ad975d0a; color: #c8b98e; font-size: 12px; line-height: 1.7; }
-.download-likes { margin-top: 14px; padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: #161e1b; }
-.support-title { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 650; }
-.support-platform { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; }
-.support-platform + .support-platform { margin-top: 12px; border-top: 1px solid var(--line); }
-.support-platform-name { color: var(--muted); font-size: 13px; font-weight: 600; }
-.support-platform-actions { display: flex; align-items: center; gap: 18px; }
+.download-likes { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 12px; margin-top: 14px; padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: #161e1b; }
+.support-title { display: block; margin-bottom: 0; font-size: 14px; font-weight: 650; }
+.support-summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-top: 0; }
 .like-button { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 78px; min-height: 42px; padding: 9px 14px; border: 1px solid #596a4d; border-radius: 999px; color: var(--accent); background: #243024; font: inherit; font-size: 14px; font-weight: 650; cursor: pointer; }
 .like-thumb { font-size: 19px; line-height: 1; }
-.like-button[aria-pressed="true"] { border-color: var(--accent); background: #35452d; }
+.like-button[data-supported="true"] { border-color: var(--accent); background: #35452d; }
 .like-button:disabled { cursor: default; }
-.like-button:disabled[aria-pressed="false"] { color: var(--muted); border-color: var(--line); background: transparent; }
+.like-button:disabled[data-supported="false"] { color: var(--muted); border-color: var(--line); background: transparent; }
 .like-button:not(:disabled):hover { background: #34452d; }
-.download-total { display: grid; gap: 2px; text-align: center; }
-.download-total strong { font-size: 16px; font-weight: 650; color: var(--text); font-variant-numeric: tabular-nums; }
-.download-total > span { font-size: 10px; color: var(--muted); }
-.support-status { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.support-status { grid-column: 1 / -1; margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
 .support-status:empty { display: none; }
 @media (max-width: 480px) {
   .tip-dialog { padding: 28px 22px 22px; }

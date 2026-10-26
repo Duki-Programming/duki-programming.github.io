@@ -2,19 +2,11 @@
 {% if likes_api != '' %}
 <div class="download-likes" data-likes-api="{{ likes_api | escape }}" data-likes-thanks="{{ copy.likes.thanks | escape }}" data-likes-error="{{ copy.likes.error | escape }}" data-likes-label="{{ copy.likes.action | escape }}" data-likes-done="{{ copy.likes.done | escape }}">
   <strong class="support-title">{{ copy.likes.title | escape }}</strong>
-  {% assign platforms = 'windows,macos' | split: ',' %}
-  {% for platform in platforms %}
-  {% if platform == 'windows' %}{% assign platform_name = 'Windows' %}{% else %}{% assign platform_name = 'macOS' %}{% endif %}
-  <div class="support-platform" data-support-platform="{{ platform }}">
-    <span class="support-platform-name">{{ platform_name }}</span>
-    <div class="support-platform-actions">
-      <span class="download-total" title="{{ copy.likes.download_detail | escape }}"><strong data-downloads-count>—</strong><span>{{ copy.likes.downloads | escape }}</span></span>
-      <button class="like-button" type="button" aria-label="{{ platform_name }} · {{ copy.likes.action | escape }}" aria-pressed="false" disabled>
-        <span class="like-thumb" aria-hidden="true">👍</span><span data-likes-count>—</span>
-      </button>
-    </div>
+  <div class="support-summary">
+    <button class="like-button" type="button" aria-label="{{ copy.likes.action | escape }}" data-supported="false" disabled>
+      <span class="like-thumb" aria-hidden="true">👍</span><span data-likes-count aria-live="polite">—</span>
+    </button>
   </div>
-  {% endfor %}
   <p class="support-status" data-likes-status role="status" aria-live="polite">{{ copy.likes.loading | escape }}</p>
 </div>
 {% endif %}

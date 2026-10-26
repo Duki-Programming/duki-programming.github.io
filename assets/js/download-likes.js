@@ -1,22 +1,20 @@
 (() => {
   const root = document.querySelector('[data-likes-api]');
   if (!root) return;
-  const rows = [...root.querySelectorAll('[data-support-platform]')];
+  const button = root.querySelector('.like-button');
+  const platformOrder = /Mac|iPhone|iPad/.test(navigator.platform) ? ['macos', 'windows'] : ['windows', 'macos'];
   const status = root.querySelector('[data-likes-status]');
   const api = `${root.dataset.likesApi.replace(/\/$/, '')}/v1/market-peek`;
   const number = new Intl.NumberFormat(document.documentElement.lang);
   let current = null, pending = false, queue = Promise.resolve();
   const render = () => {
-    for (const row of rows) {
-      const platform = row.dataset.supportPlatform;
-      const data = current?.platforms[platform], button = row.querySelector('.like-button');
-      button.disabled = pending || !data || data.liked;
-      button.setAttribute('aria-pressed', String(Boolean(data?.liked)));
-      button.setAttribute('aria-label', `${platform === 'windows' ? 'Windows' : 'macOS'} · ${data?.liked ? root.dataset.likesDone : root.dataset.likesLabel}`);
-      if (data) {
-        row.querySelector('[data-likes-count]').textContent = number.format(data.count);
-        row.querySelector('[data-downloads-count]').textContent = number.format(data.downloads);
-      }
+    const states = current ? Object.values(current.platforms) : [];
+    const ownLikes = states.filter(item => item.liked).length;
+    button.disabled = pending || !current || ownLikes >= 2;
+    button.dataset.supported = String(ownLikes > 0);
+    button.setAttribute('aria-label', ownLikes >= 2 ? root.dataset.likesDone : root.dataset.likesLabel);
+    if (current) {
+      root.querySelector('[data-likes-count]').textContent = number.format(states.reduce((sum, item) => sum + item.count, 0));
     }
   };
   const valid = data => ['windows', 'macos'].every(platform => {
@@ -42,9 +40,10 @@
     });
     return queue;
   };
-  for (const row of rows) row.querySelector('.like-button').addEventListener('click', () => {
-    const platform = row.dataset.supportPlatform;
-    if (!pending && current && !current.platforms[platform].liked) request(`/${platform}/likes`, 'POST');
+  button.addEventListener('click', () => {
+    if (pending || !current) return;
+    const platform = platformOrder.find(id => !current.platforms[id].liked);
+    if (platform) request(`/${platform}/likes`, 'POST');
   });
   document.addEventListener('click', event => {
     const link = event.target.closest('#download-link, #archive-link, #mac-download-link');
