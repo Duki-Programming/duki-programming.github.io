@@ -1,0 +1,15 @@
+{% assign tip_url = site.data.support.tip_url | default: '' | strip %}
+{% assign tip_scheme = tip_url | slice: 0, 8 %}
+<dialog id="developer-tip-dialog" class="tip-dialog" aria-labelledby="developer-tip-title" aria-describedby="developer-tip-intro developer-tip-note">
+  <form method="dialog" class="tip-dialog-close"><button type="submit" aria-label="{{ copy.tip.close | escape }}" autofocus>×</button></form>
+  <div class="tip-mark" aria-hidden="true">♡</div>
+  <h2 id="developer-tip-title" lang="en">{{ copy.tip.title | escape }}</h2>
+  <p id="developer-tip-intro">{{ copy.tip.intro | escape }}</p>
+  <p id="developer-tip-note" class="tip-note">{{ copy.tip.note | escape }}</p>
+  {% if tip_scheme == 'https://' %}
+  <a class="button tip-payment" href="{{ tip_url | escape }}" target="_blank" rel="noopener noreferrer" aria-describedby="tip-external">{{ copy.tip.action | escape }} <span aria-hidden="true">↗</span></a>
+  <p id="tip-external" class="tip-note">{{ copy.tip.external | escape }}</p>
+  {% else %}
+  <div class="tip-pending"><strong>{{ copy.tip.pending | escape }}</strong><p>{{ copy.tip.thanks | escape }}</p></div>
+  {% endif %}
+</dialog>

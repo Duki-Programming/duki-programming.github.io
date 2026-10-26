@@ -1,4 +1,13 @@
 ko:
+  tip:
+    title: Tip the Developer!
+    intro: Market Peek가 유용했다면, 개발자에게 커피 한 잔의 응원을 보내주세요.
+    note: 팁은 선택 사항이며, 앱 다운로드나 이용을 위한 결제가 아닙니다.
+    pending: 팁 결제를 준비하고 있어요.
+    thanks: 관심 가져주셔서 감사합니다. 조금만 기다려 주세요.
+    action: 팁 보내기
+    external: 결제 페이지가 새 탭에서 열립니다.
+    close: 닫기
   skip: 본문으로 이동
   language_navigation: 웹사이트 언어
   hero_title: "시세를 가까이.<br>작업은 <span>그대로.</span>"
@@ -71,6 +80,15 @@ ko:
   creator: 개발자
 
 en:
+  tip:
+    title: Tip the Developer!
+    intro: If Market Peek makes your day a little easier, you can say thanks with a coffee.
+    note: Tips are optional and are not a payment for downloading or using the app.
+    pending: Tipping is coming soon.
+    thanks: Thanks for your support. Please check back soon.
+    action: Leave a tip
+    external: The payment page opens in a new tab.
+    close: Close
   skip: Skip to content
   language_navigation: Website language
   hero_title: "Markets in sight.<br>Stay in <span>your flow.</span>"
