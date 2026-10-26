@@ -85,6 +85,19 @@ html[lang="en"] .market-peek-page h2 { letter-spacing: -.035em; }
 .tip-pending strong { color: var(--accent); font-size: 14px; }
 .tip-pending p { margin: 7px 0 0; font-size: 13px; color: var(--muted); }
 .tip-payment { width: 100%; margin: 12px 0; }
+.tip-tabs { display: flex; gap: 6px; margin: 22px 0 20px; padding: 5px; border: 1px solid var(--line); border-radius: 9px; background: #121b18; }
+.tip-tabs button { flex: 1; min-height: 42px; border: 0; border-radius: 5px; background: transparent; color: var(--muted); cursor: pointer; font-size: 14px; font-weight: 650; }
+.tip-tabs button[aria-selected="true"] { background: #2b382b; color: var(--accent); }
+.tip-tabs small { margin-left: 4px; font-size: 10px; }
+.tip-dialog .tip-network { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.tip-network span { padding: 4px 8px; border: 1px solid #536847; border-radius: 5px; color: var(--accent); font-size: 12px; }
+.tip-address-label { display: block; margin: 18px 0 8px; color: var(--muted); font-size: 12px; }
+.tip-address { display: block; width: 100%; resize: none; padding: 12px; border: 1px solid #41523c; border-radius: 7px; background: #111917; color: var(--text); font: 13px/1.7 monospace; overflow-wrap: anywhere; }
+.tip-address:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.tip-copy { width: 100%; margin: 12px 0 8px; border: 0; cursor: pointer; }
+.tip-copy:disabled { opacity: .6; cursor: wait; }
+.tip-dialog .tip-copy-status { min-height: 21px; margin-bottom: 10px; color: var(--accent); }
+.tip-dialog .tip-network-note { margin-bottom: 0; padding: 12px; border-left: 2px solid #ad975d; background: #ad975d0a; color: #c8b98e; font-size: 12px; line-height: 1.7; }
 @media (max-width: 480px) {
   .tip-dialog { padding: 28px 22px 22px; }
 }

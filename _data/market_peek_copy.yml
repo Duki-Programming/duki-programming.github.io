@@ -9,6 +9,14 @@ ko:
     action: 팁 보내기
     external: 결제 페이지가 새 탭에서 열립니다.
     close: 닫기
+    methods: 후원 방법
+    crypto_amount: 원하시는 금액으로 후원할 수 있습니다. 전송 수수료는 별도입니다.
+    minimum: 최소 입금액은
+    address: USDT 입금 주소 · TRC20
+    copy: 주소 복사
+    copied: 주소를 복사했습니다.
+    copy_failed: 자동 복사가 차단되었습니다. 선택된 주소를 직접 복사해 주세요.
+    network_note: USDT를 TRON(TRC20) 네트워크로만 보내주세요. 다른 코인이나 네트워크로 보내면 자산을 잃을 수 있습니다.
   skip: 본문으로 이동
   language_navigation: 웹사이트 언어
   hero_title: "시세를 가까이.<br>작업은 <span>그대로.</span>"
@@ -91,6 +99,14 @@ en:
     action: Tip with PayPal
     external: Choose your tip amount in USD on PayPal. Opens in a new tab. Payments between Korean PayPal accounts are not supported.
     close: Close
+    methods: Tipping method
+    crypto_amount: Choose your own tip amount. Network fees are separate.
+    minimum: Minimum deposit is
+    address: USDT deposit address · TRC20
+    copy: Copy address
+    copied: Address copied.
+    copy_failed: Automatic copying was blocked. Please copy the selected address manually.
+    network_note: Send only USDT on the TRON (TRC20) network. Sending other coins or using another network may result in lost funds.
   skip: Skip to content
   language_navigation: Website language
   hero_title: "Markets in sight.<br>Stay in <span>your flow.</span>"

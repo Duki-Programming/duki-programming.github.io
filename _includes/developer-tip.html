@@ -1,16 +1,34 @@
 {% assign tip_language = page.lang | default: 'ko' %}
 {% assign tip_url = site.data.support[tip_language].tip_url | default: '' | strip %}
 {% assign tip_scheme = tip_url | slice: 0, 8 %}
+{% assign usdt_address = site.data.support.usdt_trc20.address | default: '' | strip %}
 <dialog id="developer-tip-dialog" class="tip-dialog" aria-labelledby="developer-tip-title" aria-describedby="developer-tip-intro developer-tip-note">
   <form method="dialog" class="tip-dialog-close"><button type="submit" aria-label="{{ copy.tip.close | escape }}" autofocus>×</button></form>
   <div class="tip-mark" aria-hidden="true">♡</div>
   <h2 id="developer-tip-title" lang="en">{{ copy.tip.title | escape }}</h2>
   <p id="developer-tip-intro">{{ copy.tip.intro | escape }}</p>
   <p id="developer-tip-note" class="tip-note">{{ copy.tip.note | escape }}</p>
+  <div class="tip-tabs" role="tablist" aria-label="{{ copy.tip.methods | escape }}">
+    {% if tip_scheme == 'https://' %}<button type="button" role="tab" id="tip-tab-payment" aria-controls="tip-panel-payment" aria-selected="true">PayPal</button>{% endif %}
+    <button type="button" role="tab" id="tip-tab-usdt" aria-controls="tip-panel-usdt" aria-selected="{% if tip_scheme == 'https://' %}false{% else %}true{% endif %}" tabindex="{% if tip_scheme == 'https://' %}-1{% else %}0{% endif %}">USDT <small>TRC20</small></button>
+  </div>
   {% if tip_scheme == 'https://' %}
-  <a class="button tip-payment" href="{{ tip_url | escape }}" target="_blank" rel="noopener noreferrer" aria-describedby="tip-external">{{ copy.tip.action | escape }} <span aria-hidden="true">↗</span></a>
-  <p id="tip-external" class="tip-note">{{ copy.tip.external | escape }}</p>
-  {% else %}
-  <div class="tip-pending"><strong>{{ copy.tip.pending | escape }}</strong><p>{{ copy.tip.thanks | escape }}</p></div>
+  <div id="tip-panel-payment" role="tabpanel" aria-labelledby="tip-tab-payment" tabindex="0">
+    <a class="button tip-payment" href="{{ tip_url | escape }}" target="_blank" rel="noopener noreferrer" aria-describedby="tip-external">{{ copy.tip.action | escape }} <span aria-hidden="true">↗</span></a>
+    <p id="tip-external" class="tip-note">{{ copy.tip.external | escape }}</p>
+  </div>
   {% endif %}
+  <div id="tip-panel-usdt" role="tabpanel" aria-labelledby="tip-tab-usdt" tabindex="0"{% if tip_scheme == 'https://' %} hidden{% endif %}>
+    <p class="tip-network"><strong>USDT</strong><span>TRON (TRC20)</span></p>
+    {% if usdt_address != '' %}
+    <p class="tip-note">{{ copy.tip.crypto_amount | escape }}{% if site.data.support.usdt_trc20.min_deposit %} {{ copy.tip.minimum | escape }} {{ site.data.support.usdt_trc20.min_deposit | escape }} USDT.{% endif %}</p>
+    <label class="tip-address-label" for="tip-usdt-address">{{ copy.tip.address | escape }}</label>
+    <textarea id="tip-usdt-address" class="tip-address" readonly rows="2" spellcheck="false">{{ usdt_address | escape }}</textarea>
+    <button type="button" class="button tip-copy" data-tip-copy data-success="{{ copy.tip.copied | escape }}" data-failure="{{ copy.tip.copy_failed | escape }}">{{ copy.tip.copy | escape }}</button>
+    <p class="tip-copy-status tip-note" role="status" aria-live="polite"></p>
+    <p class="tip-network-note">{{ copy.tip.network_note | escape }}</p>
+    {% else %}
+    <div class="tip-pending"><strong>{{ copy.tip.pending | escape }}</strong><p>{{ copy.tip.thanks | escape }}</p></div>
+    {% endif %}
+  </div>
 </dialog>
