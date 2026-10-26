@@ -1,4 +1,8 @@
-# Set this to the developer's verified HTTPS payment or tipping page.
+# Set each language to the developer's verified HTTPS payment or tipping page.
 # An empty URL shows an honest coming-soon message; no payment is collected.
 # Kept separate from market_peek.yml, which the app release command regenerates.
-tip_url: ""
+ko:
+  tip_url: ""
+en:
+  # PayPal payment link for overseas supporters.
+  tip_url: ""

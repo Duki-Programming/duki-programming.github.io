@@ -1,4 +1,5 @@
-{% assign tip_url = site.data.support.tip_url | default: '' | strip %}
+{% assign tip_language = page.lang | default: 'ko' %}
+{% assign tip_url = site.data.support[tip_language].tip_url | default: '' | strip %}
 {% assign tip_scheme = tip_url | slice: 0, 8 %}
 <dialog id="developer-tip-dialog" class="tip-dialog" aria-labelledby="developer-tip-title" aria-describedby="developer-tip-intro developer-tip-note">
   <form method="dialog" class="tip-dialog-close"><button type="submit" aria-label="{{ copy.tip.close | escape }}" autofocus>×</button></form>
