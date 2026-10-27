@@ -2,11 +2,8 @@
   const endpoint = document.currentScript?.dataset.api;
   const template = document.querySelector('template[data-product-stats-template]');
   if (endpoint && template && !document.querySelector('.product-stats')) {
-    const target = document.querySelector('.product-topbar .product-language');
-    if (target) {
-      target.after(template.content.cloneNode(true));
-      target.closest('.product-topbar').classList.add('has-product-stats');
-    }
+    const target = document.querySelector('.hero-copy .product-brand');
+    target?.after(template.content.cloneNode(true));
   }
   const roots = [...document.querySelectorAll('[data-program-stats]')];
   if (!endpoint || !roots.length) return;

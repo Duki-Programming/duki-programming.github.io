@@ -1,8 +1,7 @@
-.product-topbar.has-product-stats{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;row-gap:8px}
-.has-product-stats>.product-language{grid-column:2;grid-row:1;justify-self:end}
-.has-product-stats>.doro-home{grid-column:1;grid-row:1;justify-self:start}
-.has-product-stats>.product-stats{grid-column:2;grid-row:2;justify-self:end}
-.product-stats{display:flex;align-items:center;gap:12px;width:max-content;max-width:100%;margin:0;padding:9px 12px;border:1px solid var(--line,#393344);border-radius:6px;background:color-mix(in srgb,var(--panel,#192123) 65%,transparent);font-variant-numeric:tabular-nums}
+.hero-copy>.product-brand{font-size:40px;line-height:1.2;gap:12px;margin:0 0 12px;letter-spacing:-.8px}
+.hero-copy>.product-brand img{width:48px;height:48px;border-radius:10px}
+.doro-modbus-page .hero-copy>.product-brand{font-size:36px}
+.product-stats{display:flex;align-items:center;gap:12px;width:max-content;max-width:100%;margin:0 0 25px;padding:9px 12px;border:1px solid var(--line,#393344);border-radius:6px;background:color-mix(in srgb,var(--panel,#192123) 65%,transparent);font-variant-numeric:tabular-nums}
 .product-stat{display:flex;align-items:center;gap:7px;min-width:0}
 .product-stat+.product-stat{padding-left:12px;border-left:1px solid var(--line,#393344)}
 .product-stat dt{display:flex;align-items:center;gap:4px;color:var(--muted,#b6afbf);font-size:9px;line-height:1.4;white-space:nowrap}
@@ -11,4 +10,4 @@
 .program-link__text .program-card-stat{display:inline-flex;align-items:center;align-self:flex-start;gap:7px;margin-top:7px;padding:7px 11px;border:1px solid rgba(230,241,255,.27);border-radius:6px;background:rgba(3,13,24,.4);color:var(--p-ink);font-size:11px;line-height:1.4;text-shadow:none;font-variant-numeric:tabular-nums}
 .program-card-stat svg{width:15px;height:15px;flex-shrink:0}
 .program-card-stat b{font-size:16px;font-weight:750;letter-spacing:-.02em;margin-left:4px}
-@media(max-width:480px){.product-topbar.has-product-stats{column-gap:8px;row-gap:7px}.product-stats{gap:9px;padding:8px 10px}.product-stat{gap:6px}.product-stat+.product-stat{padding-left:9px}.product-stat dt{font-size:8px}.product-stat dt svg{width:10px;height:10px}.product-stat dd{font-size:14px}}
+@media(max-width:480px){.hero-copy>.product-brand{font-size:34px}.hero-copy>.product-brand img{width:44px;height:44px}.doro-modbus-page .hero-copy>.product-brand{font-size:32px}.product-stats{gap:9px;padding:8px 10px}.product-stat{gap:6px}.product-stat+.product-stat{padding-left:9px}.product-stat dt{font-size:8px}.product-stat dt svg{width:10px;height:10px}.product-stat dd{font-size:14px}}
