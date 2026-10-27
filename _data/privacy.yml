@@ -1,0 +1,162 @@
+{
+  "ko": {
+    "title": "개인정보처리방침",
+    "description": "Duki Lab 웹사이트의 개인정보 수집·이용, 보관, 외부 서비스 및 문의 안내입니다.",
+    "intro": "Duki Lab은 프로그램 소개·다운로드 웹사이트를 운영하며 다음과 같이 정보를 처리합니다.",
+    "effective": "시행일: 2026년 10월 27일",
+    "language": "언어 선택",
+    "home": "메인으로 돌아가기",
+    "sections": [
+      {
+        "title": "수집하는 정보와 목적",
+        "paragraphs": [
+          "프로그램 소개 페이지 방문, 다운로드 및 좋아요 이용 시 IP 주소, 접속 시각, 페이지·프로그램, 이용 행동, 다운로드 대상 운영체제를 자동으로 처리합니다. 좋아요 중복 방지를 위한 IP 기반 식별값도 생성합니다.",
+          "방문자·조회·다운로드 통계, 중복 집계 방지와 서비스 운영 확인에 사용합니다. 이메일 문의 시에는 이메일 주소와 문의 내용을 처리합니다."
+        ]
+      },
+      {
+        "title": "보관과 삭제",
+        "paragraphs": [
+          "통계와 중복 방지 기록은 통계 서비스 운영 종료 시까지 보관합니다. 그 전에 처리 목적이 사라지거나 법령에 따른 삭제 사유가 발생하면 운영 데이터베이스에서 삭제합니다. 문의 내용은 문의 처리 후 더 이상 필요하지 않으면 삭제하며, 법령상 보관 의무가 있으면 해당 기간을 따릅니다."
+        ]
+      },
+      {
+        "title": "공개 범위와 외부 서비스",
+        "paragraphs": [
+          "웹에는 방문자·조회·다운로드·좋아요 합계만 표시합니다. IP와 개별 접속 기록은 공개하지 않으며, 운영자의 인증된 관리 기능에서만 확인합니다.",
+          "Cloudflare Inc.는 통계 처리·저장, GitHub Inc.는 웹사이트 호스팅·파일 배포, Google LLC는 광고 제공을 담당합니다. 이들 서비스의 인프라에 따라 정보가 국외에서 처리·보관될 수 있습니다. 아래 각 제공자의 정책을 함께 확인할 수 있습니다."
+        ],
+        "links": [
+          {
+            "label": "Cloudflare 개인정보처리방침",
+            "url": "https://www.cloudflare.com/privacypolicy/"
+          },
+          {
+            "label": "GitHub 개인정보처리방침",
+            "url": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+          },
+          {
+            "label": "Google 개인정보처리방침",
+            "url": "https://policies.google.com/privacy"
+          }
+        ]
+      },
+      {
+        "title": "광고와 브라우저 저장소",
+        "paragraphs": [
+          "Google 및 광고 파트너는 이 사이트·다른 사이트의 방문 내역을 바탕으로 광고를 제공·측정하기 위해 쿠키와 기기·접속 정보를 사용할 수 있습니다. Google 광고 설정에서 맞춤 광고를 끌 수 있습니다.",
+          "동일 탭의 조회 중복 방지와 화면 설정에는 브라우저 저장소를 사용합니다. 브라우저 설정에서 쿠키·저장 정보를 삭제하거나 차단할 수 있습니다.",
+          "후원이나 파일 다운로드로 외부 서비스에 이동하면 해당 서비스의 정책도 적용됩니다. 이 웹사이트에서 카드번호나 결제 비밀번호를 입력받지는 않습니다."
+        ],
+        "links": [
+          {
+            "label": "Google의 광고 정보 이용 안내",
+            "url": "https://policies.google.com/technologies/ads"
+          },
+          {
+            "label": "Google 광고 설정",
+            "url": "https://myadcenter.google.com/"
+          },
+          {
+            "label": "PayPal 개인정보처리방침",
+            "url": "https://www.paypal.com/webapps/mpp/ua/privacy-full"
+          }
+        ]
+      },
+      {
+        "title": "이용자 권리와 문의",
+        "paragraphs": [
+          "개인정보의 열람·정정·삭제·처리정지를 요청할 수 있습니다. 아래 이메일로 연락하면 본인 확인 등 필요한 절차를 거쳐 관련 법령에 따라 처리합니다.",
+          "개인정보 보호 담당: Duki Lab 운영자"
+        ],
+        "email": true
+      },
+      {
+        "title": "방침 변경",
+        "paragraphs": [
+          "내용이 변경되면 이 페이지에 변경 사항과 시행일을 공개합니다."
+        ]
+      }
+    ]
+  },
+  "en": {
+    "title": "Privacy Policy",
+    "description": "How Duki Lab handles website statistics, personal data, retention, external services, and privacy requests.",
+    "intro": "This policy explains how Duki Lab handles information on its software information and download website.",
+    "effective": "Effective October 27, 2026",
+    "language": "Choose a language",
+    "home": "Back to home",
+    "sections": [
+      {
+        "title": "Information and purposes",
+        "paragraphs": [
+          "When you visit product pages, click downloads, or use likes, we automatically process IP addresses, timestamps, pages and product identifiers, actions, and the operating system targeted by a download. We also create an IP-based identifier to prevent duplicate likes.",
+          "We use this information for visitor, view, and download statistics, deduplication, and operating the service. Email inquiries include your email address and message."
+        ]
+      },
+      {
+        "title": "Retention and deletion",
+        "paragraphs": [
+          "Statistics and deduplication records are retained until the statistics service ends. We delete records from the operating database earlier when their purpose ends or applicable law requires deletion. Inquiry messages are deleted when no longer needed after handling the inquiry, subject to any legal retention requirements."
+        ]
+      },
+      {
+        "title": "Disclosure and service providers",
+        "paragraphs": [
+          "Public pages show aggregate visitors, views, downloads, and likes only. IP addresses and individual activity records are restricted to authenticated administration.",
+          "Cloudflare, Inc. processes and stores statistics; GitHub, Inc. hosts the website and download files; Google LLC provides advertising. Information may be processed or stored outside your country through their infrastructure. Their policies are linked below."
+        ],
+        "links": [
+          {
+            "label": "Cloudflare Privacy Policy",
+            "url": "https://www.cloudflare.com/privacypolicy/"
+          },
+          {
+            "label": "GitHub Privacy Statement",
+            "url": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+          },
+          {
+            "label": "Google Privacy Policy",
+            "url": "https://policies.google.com/privacy"
+          }
+        ]
+      },
+      {
+        "title": "Advertising and browser storage",
+        "paragraphs": [
+          "Google and its advertising partners may use cookies, device information, and access data to serve and measure ads based on visits to this and other websites. You can turn off personalized ads in Google’s ad settings.",
+          "We use browser storage to prevent duplicate views within a tab and keep display preferences. You can clear or block cookies and storage in your browser settings.",
+          "External donation and download services apply their own policies. This website does not ask you to enter card numbers or payment passwords."
+        ],
+        "links": [
+          {
+            "label": "How Google uses information for ads",
+            "url": "https://policies.google.com/technologies/ads"
+          },
+          {
+            "label": "Google ad settings",
+            "url": "https://myadcenter.google.com/"
+          },
+          {
+            "label": "PayPal Privacy Statement",
+            "url": "https://www.paypal.com/webapps/mpp/ua/privacy-full"
+          }
+        ]
+      },
+      {
+        "title": "Your rights and contact",
+        "paragraphs": [
+          "You may request access, correction, deletion, or restriction of processing by emailing us. We handle requests under applicable law after any necessary identity verification.",
+          "Privacy contact: Duki Lab operator"
+        ],
+        "email": true
+      },
+      {
+        "title": "Changes",
+        "paragraphs": [
+          "We publish changes and their effective date on this page."
+        ]
+      }
+    ]
+  }
+}

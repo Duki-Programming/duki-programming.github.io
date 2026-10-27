@@ -1,1 +1,2 @@
-<div class="business-footer" lang="{% if page.lang == 'en' %}en{% else %}ko{% endif %}">{% if page.lang == 'en' %}Duki Lab{% else %}두키랩{% endif %}</div>
+<span class="business-footer__name" lang="en">{% if include.copyright %}© {{ site.time | date: '%Y' }} {% endif %}Duki Lab</span>
+<a class="privacy-policy-link" href="{% if page.lang == 'en' %}{{ '/privacy/en/' | relative_url }}{% else %}{{ '/privacy/' | relative_url }}{% endif %}">{% if page.lang == 'en' %}Privacy Policy{% else %}개인정보처리방침{% endif %}</a>

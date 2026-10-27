@@ -1,0 +1,16 @@
+{% assign copy = site.data.privacy[page.lang] %}
+<main id="main" class="privacy-main shell">
+  <p class="privacy-eyebrow" lang="en">Duki Lab</p>
+  <h1>{{ copy.title | escape }}</h1>
+  <p class="privacy-effective">{{ copy.effective | escape }}</p>
+  <p class="privacy-intro">{{ copy.intro | escape }}</p>
+  {% for section in copy.sections %}
+  <section aria-labelledby="privacy-section-{{ forloop.index }}">
+    <h2 id="privacy-section-{{ forloop.index }}">{{ section.title | escape }}</h2>
+    {% for paragraph in section.paragraphs %}<p>{{ paragraph | escape }}</p>{% endfor %}
+    {% if section.email %}<p><a href="mailto:{{ site.data.legal.contact_email | escape }}">{{ site.data.legal.contact_email | escape }}</a></p>{% endif %}
+    {% if section.links %}<ul class="privacy-links">{% for link in section.links %}<li><a href="{{ link.url | escape }}">{{ link.label | escape }}</a></li>{% endfor %}</ul>{% endif %}
+  </section>
+  {% endfor %}
+  <a class="privacy-home" href="{% if page.lang == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}">← {{ copy.home | escape }}</a>
+</main>

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% include google-site-verification.html %}
-  <title>{% if page.title %}{{ page.title | escape }} — {% endif %}DukiProgramming</title>
+  <title>{% if page.title %}{{ page.title | escape }} — {% endif %}Duki Lab</title>
   <meta name="description" content="{{ page.description | default: copy.description | escape }}">
   <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
   <meta property="og:description" content="{{ page.description | default: copy.description | escape }}">
@@ -27,14 +27,10 @@
 </head>
 <body>
   <header class="catalog-header shell">
-    <a class="catalog-brand" href="{% if page.lang == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}"><img src="{{ '/assets/brand.svg' | relative_url }}" width="32" height="32" alt="">DukiProgramming<span aria-hidden="true">.</span></a>
+    <a class="catalog-brand" href="{% if page.lang == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}"><img src="{{ '/assets/brand.svg' | relative_url }}" width="32" height="32" alt="">Duki Lab<span aria-hidden="true">.</span></a>
     {% include company-language.html %}
   </header>
   {% include content-with-ads.html %}
-  <footer class="catalog-footer shell">
-    <span>© {{ site.time | date: '%Y' }} DukiProgramming</span>
-    <span>{{ copy.creator | escape }} Duki Programming</span>
-  </footer>
-  {% include business-footer.html %}
+  <footer class="catalog-footer shell business-footer">{% include business-footer.html copyright=true %}</footer>
 </body>
 </html>

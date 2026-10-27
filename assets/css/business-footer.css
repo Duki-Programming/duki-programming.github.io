@@ -1,1 +1,5 @@
-.business-footer{margin:0;padding:0 24px 26px;text-align:center;color:var(--muted,#a0adaa);font-size:12px;font-weight:650;line-height:1.6;letter-spacing:.02em}
+.business-footer__name{color:inherit;font-size:13px;font-weight:650;letter-spacing:.02em}
+.privacy-policy-link{display:inline-block;color:var(--muted,#a0adaa);font-size:12px;line-height:1.7;text-decoration:underline;text-underline-offset:3px}
+.privacy-policy-link:hover{color:var(--accent,#c8ed93)}
+.privacy-policy-link:focus-visible{outline:2px solid var(--accent,#c8ed93);outline-offset:4px}
+.product-credits .business-footer__name{color:var(--text,#eef1e9)}

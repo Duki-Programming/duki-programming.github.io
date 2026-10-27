@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ page.lang | default: 'ko' | escape }}">
+{% assign copy = site.data.privacy[page.lang] %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ copy.title | escape }} — Duki Lab</title>
+  <meta name="description" content="{{ copy.description | escape }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="alternate" hreflang="ko" href="{{ '/privacy/' | absolute_url }}">
+  <link rel="alternate" hreflang="en" href="{{ '/privacy/en/' | absolute_url }}">
+  <link rel="icon" href="{{ '/assets/brand.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/catalog.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/business-footer.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/privacy.css' | relative_url }}">
+  {% include google-site-verification.html %}
+</head>
+<body>
+  <header class="catalog-header shell">
+    <a class="catalog-brand" href="{% if page.lang == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}"><img src="{{ '/assets/brand.svg' | relative_url }}" width="32" height="32" alt="">Duki Lab<span aria-hidden="true">.</span></a>
+    <nav class="company-language" aria-label="{{ copy.language | escape }}">
+      <a href="{{ '/privacy/' | relative_url }}" lang="ko" hreflang="ko"{% if page.lang == 'ko' %} aria-current="page"{% endif %}>한국어</a>
+      <a href="{{ '/privacy/en/' | relative_url }}" lang="en" hreflang="en"{% if page.lang == 'en' %} aria-current="page"{% endif %}>English</a>
+    </nav>
+  </header>
+  {{ content }}
+  <footer class="catalog-footer shell business-footer">{% include business-footer.html copyright=true %}</footer>
+</body>
+</html>
