@@ -1,6 +1,6 @@
-{% assign likes_api = site.data.likes.api_url | default: '' | strip %}
+{% assign likes_api = page.likes_api | default: site.data.likes.api_url | default: '' | strip %}
 {% if likes_api != '' %}
-<div class="download-likes" data-likes-api="{{ likes_api | escape }}" data-likes-thanks="{{ copy.likes.thanks | escape }}" data-likes-error="{{ copy.likes.error | escape }}" data-likes-label="{{ copy.likes.action | escape }}" data-likes-done="{{ copy.likes.done | escape }}">
+<div class="download-likes" data-likes-product="{{ page.likes_product | default: 'market-peek' | escape }}" data-release-repository="{{ page.release_repository | default: 'Duki-Programming/Market-Peek-releases' | escape }}" data-likes-api="{{ likes_api | escape }}" data-likes-thanks="{{ copy.likes.thanks | escape }}" data-likes-error="{{ copy.likes.error | escape }}" data-likes-label="{{ copy.likes.action | escape }}" data-likes-done="{{ copy.likes.done | escape }}">
   <strong class="support-title">{{ copy.likes.title | escape }}</strong>
   <div class="support-summary">
     <button class="like-button" type="button" aria-label="{{ copy.likes.action | escape }}" data-supported="false" disabled>

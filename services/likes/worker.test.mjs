@@ -26,8 +26,8 @@ function fixture(t, beforeUniqueMigration) {
       catch (error) { sqlite.exec('ROLLBACK'); throw error; }
     },
   } };
-  const send = async (route, { ip = '203.0.113.1', method = 'GET', headers = {}, environment = env } = {}) => {
-    const response = await worker.fetch(new Request(`https://likes.example/v1/market-peek/${route}`, {
+  const send = async (route, { ip = '203.0.113.1', method = 'GET', headers = {}, environment = env, product = 'market-peek' } = {}) => {
+    const response = await worker.fetch(new Request(`https://likes.example/v1/${product}/${route}`, {
       method, headers: { Origin: origin, 'CF-Connecting-IP': ip, ...(method === 'POST' ? { 'Content-Type': 'application/json' } : {}), ...headers },
     }), environment);
     return { response, data: response.status === 204 ? null : await response.json() };
@@ -158,4 +158,15 @@ test('legacy downloads retain original first-click metadata too', async t => {
   assert.ok(Number.isFinite(Date.parse(first.downloaded_at)));
   await send('download', { method: 'POST', ip: '2001:db8::1' });
   assert.deepEqual(sqlite.prepare('SELECT source_ip, downloaded_at FROM downloads').get(), first);
+});
+
+ test('Doro Worker uses its configured product route and an independent database', async t => {
+  const market = fixture(t), doro = fixture(t);
+  doro.env.PRODUCT = 'doro-modbus';
+  const vote = await doro.send('likes', { product: 'doro-modbus', method: 'POST' });
+  assert.equal(vote.response.status, 200);
+  assert.equal(vote.data.count, 1);
+  assert.equal((await market.send('stats')).data.count, 0);
+  assert.equal((await doro.send('stats')).response.status, 404);
+  assert.equal((await market.send('stats', { product: 'doro-modbus' })).response.status, 404);
 });

@@ -1,0 +1,16 @@
+{
+  "name": "doro-modbus-likes",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-26",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "vars": {
+    "PRODUCT": "doro-modbus", "ALLOWED_ORIGIN": "https://duki-programming.github.io" },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "doro-modbus-likes",
+    "database_id": "REPLACE_WITH_CREATED_DATABASE_ID",
+    "migrations_dir": "migrations"
+  }]
+}

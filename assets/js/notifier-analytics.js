@@ -11,7 +11,7 @@
 
   const path = location.pathname;
   if (['/', '/en/', '/index.html', '/en/index.html'].includes(path)) return;
-  const knownPrograms = ['market-peek', 'ble-smart-cube'];
+  const knownPrograms = ['market-peek', 'ble-smart-cube', 'doro-modbus'];
   const program = knownPrograms.find(name => path.startsWith(`/${name}/`)) || 'site';
   const send = (kind, platform) => {
     // Only path and product metadata are sent; no query strings or visitor identifiers.

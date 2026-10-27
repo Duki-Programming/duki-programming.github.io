@@ -1,6 +1,5 @@
 import { isIP } from 'node:net';
 
-const ROOT = '/v1/market-peek';
 const encoder = new TextEncoder();
 
 export function normalizeIp(raw) {
@@ -13,12 +12,12 @@ export function normalizeIp(raw) {
   return [high >> 8, high & 255, low >> 8, low & 255].join('.');
 }
 
-async function visitorHash(request, secret) {
+async function visitorHash(request, secret, product) {
   // Trust only Cloudflare's edge-supplied client IP, never a browser payload.
   const ip = normalizeIp(request.headers.get('CF-Connecting-IP'));
   if (!ip) return null;
   const key = await crypto.subtle.importKey('raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-  const signature = await crypto.subtle.sign('HMAC', key, encoder.encode(`market-peek\n${ip}`));
+  const signature = await crypto.subtle.sign('HMAC', key, encoder.encode(`${product}\n${ip}`));
   return [...new Uint8Array(signature)].map(byte => byte.toString(16).padStart(2, '0')).join('');
 }
 
@@ -50,6 +49,8 @@ export default {
     const origin = request.headers.get('Origin');
     if (!env.ALLOWED_ORIGIN || origin !== env.ALLOWED_ORIGIN) return reply({ error: 'origin_not_allowed' }, 403);
     headers.set('Access-Control-Allow-Origin', origin);
+    const product = env.PRODUCT || 'market-peek';
+    const ROOT = `/v1/${product}`;
     const pathname = new URL(request.url).pathname;
     const route = pathname.slice(ROOT.length);
     const platformRoute = route.match(/^\/(windows|macos)\/(download|likes)$/);
@@ -64,7 +65,7 @@ export default {
     if (request.method === 'POST' && request.headers.get('Content-Type') !== 'application/json') return reply({ error: 'json_required' }, 415);
     if (!env.DB || typeof env.IP_HASH_SECRET !== 'string' || env.IP_HASH_SECRET.length < 32) return reply({ error: 'unavailable' }, 503);
     try {
-      const hash = await visitorHash(request, env.IP_HASH_SECRET);
+      const hash = await visitorHash(request, env.IP_HASH_SECRET, product);
       if (!hash) return reply({ error: 'client_ip_unavailable' }, 400);
       if (route === '/stats') {
         const [total, platforms] = await env.DB.batch([snapshot(env.DB, hash), platformSnapshot(env.DB, hash)]);

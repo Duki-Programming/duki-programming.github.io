@@ -82,3 +82,11 @@ Tip 버튼 바로 아래의 “좋아요&다운로드로 응원하기”에서 �
 두키 알리미 다운로드 내역은 수집 시각과 Cloudflare가 제공한 원문 IP를 저장합니다. 조회수 이벤트도 기록 시각과 Cloudflare가 제공한 IP를 저장하고 앱의 별도 조회 기록 탭에 표시합니다. 기존 응원 API의 HMAC 집계와는 별도이며 최근 50건의 원문 IP는 조회 전용 토큰이 있는 통계 API에서만 반환합니다. 과거에 저장하지 않은 IP는 복원하지 않습니다.
 
 조회 기록은 Market Peek 같은 개별 소개 페이지에 한정합니다. 메인 목록(`/`, `/en/`, 두 경로의 `index.html`)은 수집하지 않으며, 이미 열린 구버전 페이지에서 보내는 메인 조회 요청도 서버가 저장하지 않습니다. 기존 메인 조회 기록은 삭제하고 개별 소개 페이지·다운로드 기록은 유지합니다.
+
+## Doro Modbus
+
+- 한국어: https://duki-programming.github.io/doro-modbus/
+- English: https://duki-programming.github.io/doro-modbus/en/
+- Windows Beta: https://github.com/Duki-Programming/Doro-Modbus-releases/releases
+
+`_includes/doro-modbus-page.html`과 `_data/doro_modbus_copy.yml`로 소개를 관리합니다. Market Peek의 제품 레이아웃, 후원 창, 좋아요 UI를 공유하고 Doro 전용 좋아요 Worker·D1을 사용합니다. 사이트 카탈로그와 `/api/programs.json`에도 등록되어 개인 홈페이지 프로그램 목록에 반영됩니다. 버전·다운로드 파일은 `_data/doro_modbus.yml`에 기록하며, 비공개 EngineSimulatorWeb의 `python build.py --doro-modbus --release --version 0.1.1` 명령이 릴리스 공개 후 자동 갱신합니다. 페이지는 GitHub API를 이용해 더 최신 공개 베타 EXE도 확인하며 API가 실패하면 빌드 시 기록된 다운로드를 유지합니다.

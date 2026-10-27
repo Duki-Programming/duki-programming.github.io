@@ -3,7 +3,9 @@
   if (!root) return;
   const button = root.querySelector('.like-button');
   const status = root.querySelector('[data-likes-status]');
-  const api = `${root.dataset.likesApi.replace(/\/$/, '')}/v1/market-peek`;
+  const product = root.dataset.likesProduct || 'market-peek';
+  const repository = root.dataset.releaseRepository || 'Duki-Programming/Market-Peek-releases';
+  const api = `${root.dataset.likesApi.replace(/\/$/, '')}/v1/${encodeURIComponent(product)}`;
   const number = new Intl.NumberFormat(document.documentElement.lang);
   let current = null, pending = false, queue = Promise.resolve();
   const render = () => {
@@ -42,7 +44,7 @@
     const link = event.target.closest('#download-link, #archive-link, #mac-download-link');
     if (!link || link.getAttribute('aria-disabled') === 'true' || !link.href) return;
     const url = new URL(link.href);
-    if (url.origin !== 'https://github.com' || !url.pathname.startsWith('/Duki-Programming/Market-Peek-releases/releases/download/')) return;
+    if (url.origin !== 'https://github.com' || !url.pathname.startsWith(`/${repository}/releases/download/`)) return;
     request(`/${link.id === 'mac-download-link' ? 'macos' : 'windows'}/download`, 'POST');
   });
   window.addEventListener('online', () => request('/stats'));

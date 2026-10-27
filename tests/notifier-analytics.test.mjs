@@ -20,7 +20,7 @@ test('catalog roots are excluded while product and translated product pages rema
   for (const path of ['/', '/en/', '/index.html', '/en/index.html']) {
     assert.equal(page(new Map(), 'https://metrics.example', path).calls.length, 0);
   }
-  for (const path of ['/market-peek/', '/market-peek/en/', '/ble-smart-cube/']) {
+  for (const path of ['/market-peek/', '/market-peek/en/', '/ble-smart-cube/', '/doro-modbus/', '/doro-modbus/en/']) {
     const p = page(new Map(), 'https://metrics.example', path);
     assert.equal(p.calls.length, 1);
     assert.equal(p.calls[0].page, path);

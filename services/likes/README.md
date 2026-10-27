@@ -48,3 +48,14 @@ npx wrangler d1 migrations apply DB --local --config wrangler.local.jsonc
 로컬 테스트 시 `.dev.vars`에 테스트 전용 32자 이상의 `IP_HASH_SECRET`을 넣고 `npm run dev`로 실행합니다. 허용 origin은 로컬에서 `http://127.0.0.1:4212`, 배포 시 `https://duki-programming.github.io`입니다. 로컬 DB는 운영 집계와 분리됩니다. 브라우저 테스트는 다운로드 전 수동 응원, 다운로드의 자동 응원, OS와 동작을 합친 IP 중복 방지, 한국어·영문 공유 및 모바일 배치를 확인합니다.
 
 공식 문서: [Workers 설정](https://developers.cloudflare.com/workers/wrangler/configuration/), [D1 마이그레이션](https://developers.cloudflare.com/d1/reference/migrations/), [클라이언트 IP 헤더](https://developers.cloudflare.com/fundamentals/reference/http-headers/).
+
+## Doro Modbus
+
+Doro Modbus는 같은 Worker 구현과 마이그레이션을 사용하되 `doro-modbus-likes` Worker와 별도 D1 데이터베이스에 배포합니다. `PRODUCT=doro-modbus`로 설정하면 `/v1/doro-modbus/*` 경로만 허용합니다. Market Peek 기본 경로·집계는 유지합니다. `wrangler.doro.example.jsonc`를 `wrangler.doro.jsonc`로 복사한 뒤 실제 DB ID를 설정하세요. 비밀값은 Worker별 `IP_HASH_SECRET`에 저장합니다.
+
+```sh
+npx wrangler d1 migrations apply DB --remote --config wrangler.doro.jsonc
+npx wrangler deploy --config wrangler.doro.jsonc
+```
+
+Doro 페이지의 front matter `likes_api`, `likes_product`, `release_repository`로 기존 공유 좋아요 UI를 연결합니다.

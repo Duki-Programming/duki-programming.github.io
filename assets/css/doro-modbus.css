@@ -1,0 +1,11 @@
+@import url("market-peek.css");
+:root{--accent:#f2bfd9}
+.doro-modbus-page .hero{gap:34px}
+.doro-modbus-page .real-screens .app-screenshot{height:auto;object-fit:contain}
+.doro-download-options{grid-template-columns:minmax(0,1fr);max-width:600px}
+.doro-screens{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:70px}
+.doro-screens figure{margin:0;min-width:0}
+.doro-screens img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}
+.doro-screens figcaption{padding-top:14px;font-size:13px;color:var(--muted)}
+@media(max-width:760px){.doro-screens{grid-template-columns:1fr}.doro-modbus-page h1{font-size:38px}}
+.doro-modbus-page h2{word-break:keep-all}

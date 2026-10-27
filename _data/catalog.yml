@@ -11,6 +11,12 @@ ko:
       icon: /assets/programs/market-peek/icon.png
       url: /market-peek/
       featured: true
+    - title: Doro Modbus
+      description: Modbus RTU Master / Slave 시뮬레이터. CSV 주소 관리와 테스트 값 생성, 통신 그래프를 지원합니다.
+      platform: Windows · Beta
+      icon: /assets/programs/doro-modbus/icon.png
+      url: /doro-modbus/
+      featured: false
 en:
   title: Useful software, all in one place.
   description: Explore programs made by DukiProgramming and learn how to use them. Follow crypto and stock prices from your desktop with Market Peek.
@@ -24,3 +30,9 @@ en:
       icon: /assets/programs/market-peek/icon.png
       url: /market-peek/en/
       featured: true
+    - title: Doro Modbus
+      description: Modbus RTU Master / Slave simulator with CSV address lists, value generators, and graphs.
+      platform: Windows · Beta
+      icon: /assets/programs/doro-modbus/icon.png
+      url: /doro-modbus/en/
+      featured: false

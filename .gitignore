@@ -10,3 +10,5 @@ Gemfile.lock
 node_modules/
 .dev.vars*
 services/likes/wrangler.production.jsonc
+
+services/likes/wrangler.doro.jsonc
