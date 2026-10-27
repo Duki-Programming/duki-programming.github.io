@@ -2,8 +2,11 @@
   const endpoint = document.currentScript?.dataset.api;
   const template = document.querySelector('template[data-product-stats-template]');
   if (endpoint && template && !document.querySelector('.product-stats')) {
-    const target = document.querySelector('.hero-copy .intro') || document.querySelector('main h1');
-    target?.after(template.content.cloneNode(true));
+    const target = document.querySelector('.product-topbar .product-language');
+    if (target) {
+      target.after(template.content.cloneNode(true));
+      target.closest('.product-topbar').classList.add('has-product-stats');
+    }
   }
   const roots = [...document.querySelectorAll('[data-program-stats]')];
   if (!endpoint || !roots.length) return;
@@ -14,7 +17,7 @@
   const render = data => {
     if (!Array.isArray(data?.programs)) throw Error('Invalid statistics');
     const programs = new Map(data.programs.filter(row => typeof row?.program === 'string' &&
-      ['views','visitors','downloads'].every(key => Number.isSafeInteger(row[key]) && row[key] >= 0)).map(row => [row.program, row]));
+      ['visitors','downloads'].every(key => Number.isSafeInteger(row[key]) && row[key] >= 0)).map(row => [row.program, row]));
     for (const root of roots) {
       const row = programs.get(root.dataset.programStats);
       if (!row) continue;
