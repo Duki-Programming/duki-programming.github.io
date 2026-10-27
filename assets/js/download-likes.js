@@ -30,6 +30,7 @@
         const data = await response.json();
         if (!response.ok || !valid(data)) throw new Error('Invalid state');
         current = data;
+        if (method === 'POST' && path.endsWith('/download')) window.dispatchEvent(new Event('program-stats-updated'));
         status.textContent = method === 'POST' ? root.dataset.likesThanks : '';
       } catch { status.textContent = root.dataset.likesError; }
       finally { pending = false; render(); }

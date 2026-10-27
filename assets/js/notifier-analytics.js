@@ -18,7 +18,9 @@
     // Only path and product metadata are sent; no query strings or visitor identifiers.
     const body = JSON.stringify({ id: crypto.randomUUID(), kind, program, page: path, platform });
     fetch(api.href, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body,
-      keepalive: true, credentials: 'omit', referrerPolicy: 'no-referrer' }).catch(() => {});
+      keepalive: true, credentials: 'omit', referrerPolicy: 'no-referrer' }).then(response => {
+      if (response?.ok) window.dispatchEvent(new Event('program-stats-updated'));
+    }).catch(() => {});
   };
   // Count once per path in a tab session. English and Korean are separate page views.
   const key = `duki-view:${path}`;
