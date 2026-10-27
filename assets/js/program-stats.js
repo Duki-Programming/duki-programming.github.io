@@ -3,7 +3,19 @@
   const template = document.querySelector('template[data-product-stats-template]');
   if (endpoint && template && !document.querySelector('.product-stats')) {
     const target = document.querySelector('.hero-copy .product-brand');
-    target?.after(template.content.cloneNode(true));
+    const hero = target?.closest('.hero');
+    if (target && hero) {
+      const identity = document.createElement('div');
+      identity.className = 'product-identity';
+      const eyebrow = target.parentElement.querySelector(':scope > .doro-eyebrow');
+      if (eyebrow) identity.append(eyebrow);
+      const row = document.createElement('div');
+      row.className = 'product-identity__row';
+      row.append(target, template.content.cloneNode(true));
+      identity.append(row);
+      hero.prepend(identity);
+      hero.classList.add('has-product-identity');
+    }
   }
   const roots = [...document.querySelectorAll('[data-program-stats]')];
   if (!endpoint || !roots.length) return;
