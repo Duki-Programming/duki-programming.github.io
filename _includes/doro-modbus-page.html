@@ -3,6 +3,7 @@
 {% assign release = site.data.doro_modbus %}
 <a class="skip" href="#main">{{ copy.skip | escape }}</a>
 <header class="product-topbar wrap">
+  <a class="doro-home" href="{{ '/' | relative_url }}" aria-label="Duki Programming"><span aria-hidden="true">←</span> DUKI PROGRAMMING</a>
   <nav class="product-language" aria-label="{{ copy.language_navigation | escape }}">
     <svg class="product-language__globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
       <circle cx="12" cy="12" r="9"></circle>
@@ -17,6 +18,7 @@
 <main id="main" class="market-peek-page doro-modbus-page" data-release-version="v{{ release.mac.version | default: release.version | escape }}">
   <section aria-labelledby="hero-title" class="hero wrap">
     <div class="hero-copy">
+      <p class="doro-eyebrow"><span aria-hidden="true">✦</span> MODBUS RTU · WINDOWS BETA</p>
       <p class="product-brand"><img alt="" height="30" src="{{ '/assets/programs/doro-modbus/icon.png' | relative_url }}" width="30">Doro Modbus<span aria-hidden="true">.</span></p>
       <h1 id="hero-title">{{ copy.hero_title }}</h1>
       <p class="intro">{{ copy.intro }}</p>
@@ -29,18 +31,41 @@
         <span class="tip-button-copy"><strong lang="en">Tip the Developer!</strong><span>{{ copy.tip.teaser | escape }}</span></span>
         <span class="tip-button-arrow" aria-hidden="true">→</span>
       </button>
+      <aside class="doro-preview" data-doro-map="grass" aria-labelledby="doro-preview-title">
+        <div class="doro-preview-heading"><strong id="doro-preview-title">{{ copy.preview_title | escape }}</strong><span aria-hidden="true">✦</span></div>
+        <div class="doro-map-controls" data-doro-controls hidden>
+          <div role="tablist" aria-label="{{ copy.maps_label | escape }}">
+            {% assign maps = 'grass,space,ocean' | split: ',' %}
+            {% assign map_icons = '🌿,🪐,🌊' | split: ',' %}
+            {% for map in maps %}<button type="button" role="tab" id="doro-map-{{ map }}" aria-controls="doro-preview-panel" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" data-doro-theme="{{ map }}"><span aria-hidden="true">{{ map_icons[forloop.index0] }}</span> {{ copy.map_names[forloop.index0] | escape }}</button>{% endfor %}
+          </div>
+          <button type="button" class="doro-motion" data-doro-motion aria-pressed="false" data-play="{{ copy.play | escape }}" data-pause="{{ copy.pause | escape }}" aria-label="{{ copy.pause | escape }}"><span aria-hidden="true">Ⅱ</span></button>
+        </div>
+        <div id="doro-preview-panel" role="tabpanel" tabindex="0" aria-labelledby="doro-map-grass">
+          <img data-doro-animation src="{{ '/assets/programs/doro-modbus/doro-grass.png' | relative_url }}" data-asset-base="{{ '/assets/programs/doro-modbus/' | relative_url }}" alt="{{ copy.preview_alt | escape }}" width="560" height="140">
+        </div>
+        <ul class="doro-promo-lines">{% for line in copy.preview_lines %}<li>{{ line | escape }}</li>{% endfor %}</ul>
+        <small class="doro-preview-note">{{ copy.preview_label | escape }}</small>
+      </aside>
       {% include download-likes.html %}
     </div>
-    <div class="showcase real-screens">
-      <img alt="{{ copy.chart_alt | escape }}" class="app-screenshot" fetchpriority="high" height="900" src="{{ '/assets/programs/doro-modbus/master.png' | relative_url }}" width="1400">
-
+    <div class="doro-showcase">
+      <div class="doro-screen-top"><span class="doro-screen-led" aria-hidden="true"></span><span>PLAYER SELECT</span><span>01 / 02</span></div>
+      <div class="doro-role-controls" data-doro-controls hidden role="group" aria-label="{{ copy.role_label | escape }}">
+        <button type="button" data-doro-role="master" aria-pressed="true">01 <strong>MASTER</strong></button>
+        <button type="button" data-doro-role="slave" aria-pressed="false">02 <strong>SLAVE</strong></button>
+      </div>
+      <img data-doro-screen src="{{ '/assets/programs/doro-modbus/master.png' | relative_url }}" data-asset-base="{{ '/assets/programs/doro-modbus/' | relative_url }}" alt="{{ copy.chart_alt | escape }}" width="1028" height="720" fetchpriority="high">
+      <div class="doro-screen-bottom"><span data-doro-role-caption data-master="{{ copy.role_master | escape }}" data-slave="{{ copy.role_slave | escape }}">{{ copy.role_master | escape }}</span><span>RTU</span></div>
+      <p class="doro-screen-note">{{ copy.showcase_note | escape }}</p>
+      <div class="doro-loadout" aria-label="Modbus function codes"><span>READ <b>01 · 02 · 03 · 04</b></span><span>WRITE <b>05 · 06 · 15 · 16</b></span></div>
     </div>
   </section>
   <section aria-labelledby="features-title" class="features wrap" id="features">
-    <div class="section-heading"><h2 id="features-title">{{ copy.features_title | escape }}</h2><p>{{ copy.features_intro | escape }}</p></div>
+    <div class="section-heading"><p class="doro-eyebrow">{{ copy.features_eyebrow | escape }}</p><h2 id="features-title">{{ copy.features_title | escape }}</h2><p>{{ copy.features_intro | escape }}</p></div>
     <div class="feature-grid">
       {% for feature in copy.features %}
-      <article><h3>{{ feature.title | escape }}</h3><p>{{ feature.body | escape }}</p></article>
+      <article><span class="doro-skill-badge"><span aria-hidden="true">✦</span> {{ feature.badge | escape }}</span><h3>{{ feature.title | escape }}</h3><p>{{ feature.body | escape }}</p></article>
       {% endfor %}
     </div>
 
@@ -73,15 +98,19 @@
 
     </div>
   </section>
-  <section class="wrap doro-screens" aria-label="{% if language == 'ko' %}실제 실행 화면{% else %}App screenshots{% endif %}">
+  <section class="wrap doro-gallery" aria-label="{% if language == 'ko' %}실제 실행 화면{% else %}App screenshots{% endif %}">
+    <div class="section-heading"><p class="doro-eyebrow">WORLD BUILDER</p><h2>{{ copy.screens_title | escape }}</h2><p>{{ copy.screens_intro | escape }}</p></div>
+    <div class="doro-screens">
     <figure><img src="{{ '/assets/programs/doro-modbus/slave.png' | relative_url }}" alt="Doro Modbus Slave" loading="lazy"><figcaption>{% if language == 'ko' %}범용 Slave · 테스트 값 시뮬레이션{% else %}Generic Slave · Simulated test values{% endif %}</figcaption></figure>
     <figure><img src="{{ '/assets/programs/doro-modbus/editor.png' | relative_url }}" alt="Doro Modbus simulation editor" loading="lazy"><figcaption>{% if language == 'ko' %}주소 · 생성 설정{% else %}Addresses and value generators{% endif %}</figcaption></figure>
+    </div>
   </section>
   <section aria-labelledby="install-title" class="install wrap" id="install">
-    <div class="section-heading"><h2 id="install-title">{{ copy.install_title | escape }}</h2></div>
+    <div class="section-heading"><p class="doro-eyebrow">{{ copy.install_eyebrow | escape }}</p><h2 id="install-title">{{ copy.install_title | escape }}</h2></div>
     <ol class="install-steps">
-      {% for step in copy.install_steps %}<li><h3>{{ step.title | escape }}</h3><p>{{ step.body | escape }}</p></li>{% endfor %}
+      {% for step in copy.install_steps %}<li><span class="doro-quest">QUEST 0{{ forloop.index }}</span><h3>{{ step.title | escape }}</h3><p>{{ step.body | escape }}</p></li>{% endfor %}
     </ol>
+    <h3 class="doro-faq-title">{{ copy.faq_title | escape }}</h3>
     <div class="faq">
       {% for item in copy.faq %}<details><summary>{{ item.question | escape }}</summary><p>{{ item.answer | escape }}</p></details>{% endfor %}
     </div>
@@ -95,3 +124,5 @@
 <script src="{{ '/assets/js/doro-modbus-releases.js' | relative_url }}" defer></script>
 <script src="{{ '/assets/js/developer-tip.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 <script src="{{ '/assets/js/download-likes.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+
+<script src="{{ '/assets/js/doro-playground.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

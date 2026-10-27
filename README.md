@@ -90,3 +90,9 @@ Tip 버튼 바로 아래의 “좋아요&다운로드로 응원하기”에서 �
 - Windows Beta: https://github.com/Duki-Programming/Doro-Modbus-releases/releases
 
 `_includes/doro-modbus-page.html`과 `_data/doro_modbus_copy.yml`로 소개를 관리합니다. Market Peek의 제품 레이아웃, 후원 창, 좋아요 UI를 공유하고 Doro 전용 좋아요 Worker·D1을 사용합니다. 사이트 카탈로그와 `/api/programs.json`에도 등록되어 개인 홈페이지 프로그램 목록에 반영됩니다. 버전·다운로드 파일은 `_data/doro_modbus.yml`에 기록하며, 비공개 EngineSimulatorWeb의 `python build.py --doro-modbus --release --version 0.1.1` 명령이 릴리스 공개 후 자동 갱신합니다. 페이지는 GitHub API를 이용해 더 최신 공개 베타 EXE도 확인하며 API가 실패하면 빌드 시 기록된 다운로드를 유지합니다.
+
+### Doro 놀이터와 게임 소개 스타일
+
+Doro 페이지는 Galmuri 픽셀 라벨, 역할 선택 미리보기, 스킬 목록, 연결 퀘스트로 구성합니다. 후원 버튼 바로 아래의 소개 문구는 언어별 `preview_lines` 세 항목으로 관리합니다. 맵 선택·일시정지·Master/Slave 화면 전환은 `assets/js/doro-playground.js`에서 처리합니다. OS의 동작 줄이기 설정에서는 정지 이미지로 시작하며, JavaScript 없이도 기본 미리보기와 실제 다운로드를 제공합니다.
+
+맵 GIF는 비공개 EngineSimulatorWeb의 `Record Doro website preview` Actions workflow가 실제 Windows `DoroPanel`을 실행해 녹화한 자료입니다. 입력한 예시 응답 속도가 느림 → 빠름 → 느림으로 바뀌며 장치 연결이나 쓰기를 수행하지 않습니다. artifact의 `doro-{grass,space,ocean}.{gif,png}`를 `assets/programs/doro-modbus/`에 복사합니다. 원본 녹화 도구는 `BWACS/tools/Doro_Modbus/capture_preview.py`입니다.

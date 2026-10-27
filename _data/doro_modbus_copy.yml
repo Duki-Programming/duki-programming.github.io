@@ -31,40 +31,46 @@
     },
     "skip": "본문으로 이동",
     "language_navigation": "웹사이트 언어",
-    "hero_title": "<span class='hero-title-line'>Modbus 통신 테스트</span><span class='hero-title-line'><span class='hero-title-accent'>Doro</span>와 함께 가볍게.</span>",
-    "intro": "Master부터 Slave 시뮬레이션까지.<br>시리얼 연결, 레지스터 확인, 테스트 값 생성을<br>하나의 Windows 앱에서 시작하세요.",
+    "hero_title": "<span class='hero-title-line'>Modbus 테스트에</span><span class='hero-title-line'><span class='hero-title-accent'>Doro</span>가 합류했습니다!</span>",
+    "intro": "읽고, 쓰고, 시뮬레이션하고.<br>든든한 RTU 도구에 귀여운 동료 하나.<br>Master와 Slave, 원하는 역할로 시작하세요.",
     "windows_download": "Windows용 다운로드",
     "beta": "Beta 버전",
     "chart_alt": "Doro Modbus Master 실제 실행 화면",
-    "features_title": "읽고, 쓰고, 직접 시뮬레이션하세요.",
-    "features_intro": "Modbus RTU 장비와 통신하거나, 장비 대신 Slave를 만들어 테스트하세요.",
+    "features_title": "귀여움 뒤에 숨겨진 스킬 세트.",
+    "features_intro": "Modbus RTU 테스트에 필요한 기능을 챙겼습니다. 이제 역할을 골라보세요.",
     "features": [
       {
         "title": "Master / Slave 전환",
-        "body": "하나의 앱에서 RTU Master와 범용 Slave 역할을 선택합니다. 연결을 해제한 뒤 역할과 Win/WSL 모드를 바꿀 수 있습니다."
+        "body": "하나의 앱에서 RTU Master와 범용 Slave 역할을 선택합니다. 연결을 해제한 뒤 역할과 Win/WSL 모드를 바꿀 수 있습니다.",
+        "badge": "ROLE SELECT"
       },
       {
         "title": "8가지 표준 기능 코드",
-        "body": "FC01·02·03·04 읽기와 FC05·06·15·16 쓰기를 지원합니다. 쓰기는 직접 전송 버튼을 눌렀을 때만 수행합니다."
+        "body": "FC01·02·03·04 읽기와 FC05·06·15·16 쓰기를 지원합니다. 쓰기는 직접 전송 버튼을 눌렀을 때만 수행합니다.",
+        "badge": "8 FUNCTION CODES"
       },
       {
         "title": "CSV로 관리하는 주소",
-        "body": "Slave ID와 Device Address 두 열로 주소를 관리하세요. 전용 CSV 폴더에서 저장·선택·삭제할 수 있습니다."
+        "body": "Slave ID와 Device Address 두 열로 주소를 관리하세요. 전용 CSV 폴더에서 저장·선택·삭제할 수 있습니다.",
+        "badge": "ADDRESS LIBRARY"
       },
       {
         "title": "내 데이터에 맞는 값 해석",
-        "body": "UInt16·Int16·UInt32·Int32·Float32와 바이트/워드 순서를 선택합니다. Scale·Offset과 원시값 변환을 제공합니다."
+        "body": "UInt16·Int16·UInt32·Int32·Float32와 바이트/워드 순서를 선택합니다. Scale·Offset과 원시값 변환을 제공합니다.",
+        "badge": "VALUE DECODER"
       },
       {
         "title": "장비 없이 만드는 테스트 값",
-        "body": "고정값, 랜덤, 증가/감소 반복, 사인파와 시간별 시나리오를 설정하세요. 응답 지연·누락·강제 예외도 시험할 수 있습니다."
+        "body": "고정값, 랜덤, 증가/감소 반복, 사인파와 시간별 시나리오를 설정하세요. 응답 지연·누락·강제 예외도 시험할 수 있습니다.",
+        "badge": "SIMULATION LAB"
       },
       {
         "title": "그래프와 통신 프레임",
-        "body": "최대 4개 값의 그래프를 열고 TX/RX 프레임을 클릭해 복사하세요. 전용 설정·프로필을 저장하고 Doro도 함께 띄워 보세요."
+        "body": "최대 4개 값의 그래프를 열고 TX/RX 프레임을 클릭해 복사하세요. 전용 설정·프로필을 저장하고 Doro도 함께 띄워 보세요.",
+        "badge": "FRAME VIEWER"
       }
     ],
-    "download_title": "연결할 준비가 됐다면,<br>Doro Modbus Beta.",
+    "download_title": "파티 준비 완료.<br>이제 Doro와 연결하세요.",
     "windows_platform": "Windows 64비트",
     "installer_download": "Windows EXE 다운로드",
     "installer_detail": "설치 없이 실행 · Python 설치 불필요",
@@ -74,7 +80,7 @@
     "version_downloads": "버전별 다운로드",
     "windows_pending": "다운로드를 준비하고 있습니다.",
     "windows_pending_detail": "Windows 64비트용 단일 실행 파일을 준비하고 있습니다.",
-    "install_title": "세 단계로 시작하세요.",
+    "install_title": "첫 연결까지, 퀘스트 세 개.",
     "install_steps": [
       {
         "title": "EXE 다운로드",
@@ -118,7 +124,32 @@
         "question": "실행 시 게시자를 확인할 수 없다고 나와요.",
         "answer": "현재 GitHub Actions에서 빌드한 베타 EXE는 코드 서명되지 않았습니다. 공식 릴리스의 SHA256SUMS.txt로 파일 해시를 확인할 수 있습니다."
       }
-    ]
+    ],
+    "preview_lines": [
+      "🌿 풀밭부터 우주·바다까지, 다양한 맵에서 움직이는 Doro!",
+      "⚡ 통신이 바빠질수록 빨라지는 Doro를 구경하세요!",
+      "🎮 F2로 펼치고, F3로 숨기세요."
+    ],
+    "preview_title": "DORO의 작은 놀이터",
+    "preview_label": "실제 앱 움직임 · 통신 속도 예시",
+    "maps_label": "맵 선택",
+    "map_names": [
+      "풀밭",
+      "우주",
+      "바다"
+    ],
+    "pause": "움직임 멈추기",
+    "play": "움직임 재생",
+    "preview_alt": "통신 응답 속도 예시에 따라 천천히 움직이다 빨라지는 Doro",
+    "role_label": "역할 미리보기",
+    "role_master": "Master · 읽기 / 쓰기",
+    "role_slave": "Slave · 장치 시뮬레이션",
+    "showcase_note": "실제 Windows 앱 화면",
+    "features_eyebrow": "SKILL INVENTORY",
+    "install_eyebrow": "GET READY",
+    "screens_title": "테스트 월드를 직접 설계하세요.",
+    "screens_intro": "값이 어떻게 움직일지 정하고, 가상 Slave에서 확인하세요.",
+    "faq_title": "시작 전, 궁금한 것들."
   },
   "en": {
     "likes": {
@@ -152,40 +183,46 @@
     },
     "skip": "Skip to content",
     "language_navigation": "Website language",
-    "hero_title": "Modbus testing.<br>A little easier with <span>Doro.</span>",
-    "intro": "From Master requests to Slave simulation.<br>Connect a serial port, inspect registers, and generate<br>test values in one Windows app.",
+    "hero_title": "Your Modbus tests.<br>Now with <span>Doro</span><br>in the party.",
+    "intro": "Read, write, simulate.<br>A capable RTU toolkit. One very cute companion.<br>Choose Master or Slave and get started.",
     "windows_download": "Download for Windows",
     "beta": "Beta version",
     "chart_alt": "Doro Modbus Master running on Windows",
-    "features_title": "Read, write, and simulate.",
-    "features_intro": "Connect to a Modbus RTU device, or simulate a Slave before hardware is ready.",
+    "features_title": "Cute companion. Serious skill set.",
+    "features_intro": "The tools for your next Modbus RTU test. Pick a role and bring Doro along.",
     "features": [
       {
         "title": "Master and Slave in one app",
-        "body": "Choose RTU Master or generic Slave. Disconnect before switching roles or Win/WSL serial modes."
+        "body": "Choose RTU Master or generic Slave. Disconnect before switching roles or Win/WSL serial modes.",
+        "badge": "ROLE SELECT"
       },
       {
         "title": "Eight standard function codes",
-        "body": "Read with FC01/02/03/04 and write with FC05/06/15/16. Writes are sent only when you press the one-shot write button."
+        "body": "Read with FC01/02/03/04 and write with FC05/06/15/16. Writes are sent only when you press the one-shot write button.",
+        "badge": "8 FUNCTION CODES"
       },
       {
         "title": "A simple CSV address library",
-        "body": "Manage addresses with just Slave ID and Device Address columns. Save, select, and delete files in a dedicated CSV folder."
+        "body": "Manage addresses with just Slave ID and Device Address columns. Save, select, and delete files in a dedicated CSV folder.",
+        "badge": "ADDRESS LIBRARY"
       },
       {
         "title": "Decode values your way",
-        "body": "Choose UInt16, Int16, UInt32, Int32, Float32, and byte/word order. Apply Scale/Offset or convert values into raw registers."
+        "body": "Choose UInt16, Int16, UInt32, Int32, Float32, and byte/word order. Apply Scale/Offset or convert values into raw registers.",
+        "badge": "VALUE DECODER"
       },
       {
         "title": "Generate values without hardware",
-        "body": "Configure fixed, random, ramp, sine, and timed scenario generators. Test response delays, dropped responses, and forced exceptions."
+        "body": "Configure fixed, random, ramp, sine, and timed scenario generators. Test response delays, dropped responses, and forced exceptions.",
+        "badge": "SIMULATION LAB"
       },
       {
         "title": "Graphs and frame inspection",
-        "body": "Plot up to four values and click TX/RX frames to copy them. Save dedicated settings and profiles, with Doro alongside your work."
+        "body": "Plot up to four values and click TX/RX frames to copy them. Save dedicated settings and profiles, with Doro alongside your work.",
+        "badge": "FRAME VIEWER"
       }
     ],
-    "download_title": "Ready to connect?<br>Meet Doro Modbus Beta.",
+    "download_title": "Your party is ready.<br>Connect with Doro.",
     "download_language_note": "This website is available in English. The app currently uses a mix of Korean and English labels.",
     "windows_platform": "Windows 64-bit",
     "installer_download": "Download Windows EXE",
@@ -196,7 +233,7 @@
     "version_downloads": "All versions",
     "windows_pending": "Your download is on its way.",
     "windows_pending_detail": "The Windows 64-bit portable executable is being prepared.",
-    "install_title": "Three steps to get started.",
+    "install_title": "Three quests to your first connection.",
     "install_steps": [
       {
         "title": "Download the EXE",
@@ -240,6 +277,31 @@
         "question": "Why does Windows show an unknown publisher?",
         "answer": "The current beta EXE is built with GitHub Actions and is unsigned. You can check the file hash against SHA256SUMS.txt in the official release."
       }
-    ]
+    ],
+    "preview_lines": [
+      "🌿 Meet Doro in the meadow, space, and ocean!",
+      "⚡ Busier communication? Watch Doro pick up the pace!",
+      "🎮 F2 to open the panel. F3 to hide Doro."
+    ],
+    "preview_title": "DORO’S LITTLE PLAYGROUND",
+    "preview_label": "Actual app animation · Example response rates",
+    "maps_label": "Choose a map",
+    "map_names": [
+      "Meadow",
+      "Space",
+      "Ocean"
+    ],
+    "pause": "Pause animation",
+    "play": "Play animation",
+    "preview_alt": "Doro moving slowly and then faster with example communication response rates",
+    "role_label": "Preview a role",
+    "role_master": "Master · Read / Write",
+    "role_slave": "Slave · Simulate a device",
+    "showcase_note": "Actual Windows app screens",
+    "features_eyebrow": "SKILL INVENTORY",
+    "install_eyebrow": "GET READY",
+    "screens_title": "Build your own test world.",
+    "screens_intro": "Choose how values change, then try them in a simulated Slave.",
+    "faq_title": "Before you start your quest."
   }
 }

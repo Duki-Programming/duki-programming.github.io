@@ -1,11 +1,95 @@
 @import url("market-peek.css");
-:root{--accent:#f2bfd9}
-.doro-modbus-page .hero{gap:34px}
-.doro-modbus-page .real-screens .app-screenshot{height:auto;object-fit:contain}
-.doro-download-options{grid-template-columns:minmax(0,1fr);max-width:600px}
-.doro-screens{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:70px}
-.doro-screens figure{margin:0;min-width:0}
-.doro-screens img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}
-.doro-screens figcaption{padding-top:14px;font-size:13px;color:var(--muted)}
-@media(max-width:760px){.doro-screens{grid-template-columns:1fr}.doro-modbus-page h1{font-size:38px}}
-.doro-modbus-page h2{word-break:keep-all}
+@font-face{font-family:Galmuri;src:url('../fonts/Galmuri9.woff2') format('woff2');font-display:swap}
+:root{--bg:#14131c;--panel:#211e2d;--line:#393344;--text:#f8f2e8;--muted:#b6afbf;--accent:#f4b8d4;background:var(--bg)}
+body{background:radial-gradient(ellipse at 76% 8%,#7651a41b,transparent 36%),radial-gradient(ellipse at 8% 46%,#55426b15,transparent 35%),var(--bg)}
+.wrap{max-width:1220px}
+.product-topbar{justify-content:space-between;gap:16px;min-height:88px}
+.doro-home{font:10px Galmuri,monospace;color:#c5b8d0;letter-spacing:.04em;padding:12px 0;display:inline-flex;align-items:center;gap:10px}
+.doro-home:hover{color:var(--accent)}
+.product-language{background:#211e2d;border-color:var(--line)}
+.product-language a[aria-current=page]{background:#413047;color:#ffd2e7}
+.product-language a:hover{background:#34283e}
+.doro-modbus-page .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:58px;padding-top:36px;padding-bottom:66px;align-items:center}
+.doro-eyebrow{font:10px/1.8 Galmuri,monospace;color:#bbeba8;letter-spacing:.06em;margin:0 0 18px}
+.doro-eyebrow>span{color:#f4b8d4;margin-right:6px}
+.product-brand{font-size:18px;margin-bottom:23px}
+.doro-modbus-page h1{line-height:1.3}
+html[lang=ko] #hero-title{font-size:min(51px,9cqw)}
+html[lang=en] .doro-modbus-page h1{font-size:clamp(36px,3.4vw,51px)}
+.doro-modbus-page .intro{font-size:15px;line-height:1.9;margin-bottom:25px}
+.button{border-radius:5px;box-shadow:0 4px 0 #a66a8b;color:#2b1825}
+.button:hover{background:#ffd4e8;box-shadow:0 5px 0 #a66a8b}
+.button:active{transform:translateY(2px);box-shadow:0 2px 0 #a66a8b}
+.tip-button{margin-top:20px;border-color:#4e3c56;background:#231e2c;padding:13px 15px}
+.tip-button:hover{background:#302539;border-color:#9f7194}
+.tip-dialog,.tip-pending{background:#211e2d;border-color:#5d4764}
+.tip-tabs{background:#17141e;border-color:#4c3b55}
+.tip-tabs button[aria-selected=true]{background:#44304a}
+.download-likes{background:#201c29;border-color:var(--line);padding:14px 15px}
+.support-title{font-size:12px}
+.like-button{background:#3b2b3c;border-color:#70536b;min-height:38px}
+.like-button:not(:disabled):hover,.like-button[data-supported=true]{background:#50354b}
+/* A small playable-looking showcase built from recordings of the real app. */
+.doro-preview{margin-top:16px;padding:13px;background:#211e2b;border:1px solid #5c4866;border-radius:9px;box-shadow:3px 3px 0 #0d0b12;overflow:hidden}
+.doro-preview-heading{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;color:#e1c8e7;font:10px/1.7 Galmuri,monospace;gap:8px}
+.doro-preview-heading>span{color:#e7bf6e}
+.doro-map-controls{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:9px}
+.doro-map-controls[hidden],.doro-role-controls[hidden]{display:none}
+.doro-map-controls [role=tablist]{display:flex;gap:5px}
+.doro-map-controls button{min-height:36px;padding:6px 10px;border:1px solid #51445e;border-radius:4px;background:#2c2538;color:#bdb1cd;cursor:pointer;font-size:11px}
+.doro-map-controls button[aria-selected=true]{background:#3a4933;color:#ddf3bb;border-color:#9dbd7d;box-shadow:0 2px 0 #10180b}
+[data-doro-map=space] button[aria-selected=true]{background:#3b315b;color:#e4d6ff;border-color:#a68acb}
+[data-doro-map=ocean] button[aria-selected=true]{background:#234555;color:#c6eeff;border-color:#77afc9}
+.doro-map-controls .doro-motion{min-width:36px;padding:5px;color:#eadbea}
+#doro-preview-panel{border:1px solid #6c5d76;border-radius:4px;overflow:hidden;background:#bdeb9c}
+[data-doro-animation]{display:block;width:100%;height:auto;aspect-ratio:4;object-fit:cover}
+.doro-promo-lines{list-style:none;margin:13px 0 0;padding:0;display:grid;gap:6px;font-size:11.5px;line-height:1.75;color:#e0d5e5;word-break:keep-all}
+.doro-preview-note{display:block;margin-top:10px;font-size:9px;color:#aaa0b5;line-height:1.6}
+.doro-showcase{min-width:0;position:relative;border:1px solid #5b4967;border-radius:10px;background:#221e2d;box-shadow:7px 7px 0 #0e0c14,0 0 80px #ab7dcc0b;padding:14px}
+.doro-showcase:before{content:'✦';position:absolute;right:24px;top:-46px;color:#f4cc7b;font-size:26px}
+.doro-screen-top{display:flex;align-items:center;gap:8px;font:10px Galmuri,monospace;color:#cbbcd9;padding:3px 2px 16px}
+.doro-screen-top>span:last-child{margin-left:auto;color:#877594}
+.doro-screen-led{width:7px;height:7px;background:#bcdf9a;box-shadow:0 0 8px #bcdf9a50}
+.doro-role-controls{display:flex;gap:8px;margin-bottom:12px}
+.doro-role-controls button{flex:1;min-height:44px;background:#19161f;color:#a99bb8;border:1px solid #44374e;border-radius:5px;padding:9px 10px;cursor:pointer;font:10px Galmuri,monospace;text-align:left;display:flex;align-items:center;gap:10px}
+.doro-role-controls button strong{font-weight:400;font-size:12px}
+.doro-role-controls button[aria-pressed=true]{background:#493445;color:#ffcee3;border-color:#c886a8;box-shadow:inset 3px 0 #f4b8d4}
+[data-doro-screen]{display:block;width:100%;height:auto;aspect-ratio:1028/720;object-fit:contain;background:#1e2530;border:1px solid #52465e;border-radius:3px}
+.doro-screen-bottom{display:flex;justify-content:space-between;gap:8px;padding:14px 2px 0;font-size:12px;color:#d4c4df}
+.doro-screen-bottom>span:last-child{font:9px Galmuri,monospace;color:#bde59d}
+.doro-screen-note{font-size:10px;color:#a89cb5;margin:8px 2px 18px}
+.doro-loadout{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px dashed #51435c;padding-top:17px}
+.doro-loadout>span{display:grid;gap:8px;color:#ac9bb8;font:9px Galmuri,monospace}
+.doro-loadout b{color:#e1d6e9;font:10px Galmuri,monospace}
+/* Inventory and quest styling keep real product details easy to scan. */
+.doro-modbus-page .features{padding-top:42px;padding-bottom:72px;border-top:1px dashed #42364b}
+.doro-modbus-page h2{word-break:keep-all;font-size:32px;letter-spacing:-1px}
+.doro-modbus-page .feature-grid{gap:18px;margin-top:30px}
+.doro-modbus-page .feature-grid article{border:1px solid #43354e;border-top:3px solid #89638f;border-radius:7px;padding:22px;background:linear-gradient(140deg,#2b2235,#1c1924)}
+.doro-modbus-page .feature-grid article:nth-child(3n+2){border-top-color:#8bad79}
+.doro-modbus-page .feature-grid article:nth-child(3n){border-top-color:#6b9fb7}
+.doro-skill-badge{font:8px/1.8 Galmuri,monospace;color:#d4b4d8;display:flex;gap:8px;align-items:center}
+.doro-modbus-page .feature-grid h3{margin:18px 0 12px;font-size:17px}
+.doro-modbus-page .feature-grid p{font-size:13px;line-height:1.9}
+.doro-modbus-page .download-section{background:linear-gradient(130deg,#302238,#211d2a);border:1px solid #775582;border-radius:10px;box-shadow:5px 5px 0 #0e0c14;max-width:1156px}
+.doro-modbus-page .download-panel{background:#19151f;border-color:#594063}
+.doro-download-options{grid-template-columns:minmax(0,1fr);max-width:620px}
+.doro-modbus-page .download-copy h2{font-size:36px}
+.doro-gallery{padding-top:80px;padding-bottom:20px}
+.doro-screens{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+.doro-screens figure{margin:0;min-width:0;padding:10px;background:#211c2b;border:1px solid #4c3e58;border-radius:8px}
+.doro-screens img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:4px}
+.doro-screens figcaption{padding:13px 2px 4px;font-size:12px;color:var(--muted)}
+.doro-modbus-page .install{padding-top:65px}
+.doro-quest{font:10px Galmuri,monospace;color:#bbdf9c;letter-spacing:.05em}
+.doro-modbus-page .install-steps{gap:20px;margin-bottom:65px}
+.doro-modbus-page .install-steps li{padding:23px;background:#201c29;border:1px solid #48394f;border-radius:7px}
+.doro-faq-title{margin-bottom:20px}
+.doro-modbus-page .faq{border-color:#43364b}
+.doro-modbus-page details{border-color:#43364b}
+.product-footer{border-top:1px dashed #43364b}
+@media(min-width:1440px){.wrap{max-width:1160px}.doro-modbus-page .hero{gap:38px}}
+@media(max-width:900px){.doro-modbus-page .hero{gap:28px}.doro-promo-lines{font-size:11px}.doro-modbus-page .feature-grid article{padding:18px}}
+@media(max-width:760px){.doro-modbus-page .hero{grid-template-columns:1fr;gap:48px;padding-top:22px}.doro-showcase{max-width:600px;width:100%;margin:auto}.doro-modbus-page .feature-grid{grid-template-columns:1fr 1fr}.doro-screens{grid-template-columns:1fr}.doro-modbus-page h2{font-size:27px}.doro-modbus-page .download-copy h2{font-size:30px}.doro-home{font-size:8px}.doro-modbus-page .install-steps{grid-template-columns:1fr}.doro-showcase:before{top:-32px;font-size:21px}}
+@media(max-width:480px){.wrap{padding-left:22px;padding-right:22px}.product-topbar{gap:8px}.doro-home{letter-spacing:0;font-size:7px;gap:5px}.product-language{font-size:11px;padding-left:9px}.product-language a{padding:7px 9px}.product-language__globe{width:15px;height:15px;margin-right:0}.doro-modbus-page .feature-grid{grid-template-columns:1fr}.doro-promo-lines{font-size:11px}.doro-modbus-page .download-section{margin-left:14px;margin-right:14px;padding:28px 20px}.doro-gallery{padding-top:65px}.doro-screen-bottom{font-size:11px}.doro-modbus-page .features{padding-top:36px}.doro-preview{padding:11px}.doro-map-controls button{padding:5px 8px}.doro-preview-heading{font-size:9px}.doro-eyebrow{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.button{transition:none;transform:none}.button:hover{transform:none}}
