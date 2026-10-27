@@ -24,7 +24,7 @@
         "title": "공개 범위와 외부 서비스",
         "paragraphs": [
           "웹에는 방문자·조회·다운로드·좋아요 합계만 표시합니다. IP와 개별 접속 기록은 공개하지 않으며, 운영자의 인증된 관리 기능에서만 확인합니다.",
-          "Cloudflare Inc.는 통계 처리·저장, GitHub Inc.는 웹사이트 호스팅·파일 배포, Google LLC는 광고 제공을 담당합니다. 이들 서비스의 인프라에 따라 정보가 국외에서 처리·보관될 수 있습니다. 아래 각 제공자의 정책을 함께 확인할 수 있습니다."
+          "Cloudflare Inc.는 통계 처리·저장, GitHub Inc.는 웹사이트 호스팅·파일 배포, Google LLC는 광고 제공과 문의 이메일 운영을 담당합니다. 이들 서비스의 인프라에 따라 정보가 국외에서 처리·보관될 수 있습니다. 아래 각 제공자의 정책을 함께 확인할 수 있습니다."
         ],
         "links": [
           {
@@ -104,7 +104,7 @@
         "title": "Disclosure and service providers",
         "paragraphs": [
           "Public pages show aggregate visitors, views, downloads, and likes only. IP addresses and individual activity records are restricted to authenticated administration.",
-          "Cloudflare, Inc. processes and stores statistics; GitHub, Inc. hosts the website and download files; Google LLC provides advertising. Information may be processed or stored outside your country through their infrastructure. Their policies are linked below."
+          "Cloudflare, Inc. processes and stores statistics; GitHub, Inc. hosts the website and download files; Google LLC provides advertising and inquiry email hosting. Information may be processed or stored outside your country through their infrastructure. Their policies are linked below."
         ],
         "links": [
           {
