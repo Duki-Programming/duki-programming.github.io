@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
 const source = readFileSync(new URL('../assets/js/notifier-analytics.js', import.meta.url), 'utf8');
-function page(storage = new Map(), endpoint = 'https://metrics.example') {
+function page(storage = new Map(), endpoint = 'https://metrics.example', path = '/market-peek/') {
   const calls = []; let click;
-  const context = { URL, Date, Map, crypto, location: { pathname: '/market-peek/' },
+  const context = { URL, Date, Map, crypto, location: { pathname: path },
     sessionStorage: { getItem: key => storage.get(key), setItem: (k,v) => storage.set(k,v) },
     fetch: async (url, options) => { calls.push(JSON.parse(options.body)); },
     document: { currentScript: { dataset: { api: endpoint } }, addEventListener: (_, fn) => { click = fn; } } };
@@ -15,6 +15,16 @@ function page(storage = new Map(), endpoint = 'https://metrics.example') {
 test('refreshes in a tab do not inflate views; query strings are absent', () => {
   const storage = new Map(); assert.equal(page(storage).calls.length, 1);
   assert.equal(page(storage).calls.length, 0);
+});
+test('catalog roots are excluded while product and translated product pages remain tracked', () => {
+  for (const path of ['/', '/en/', '/index.html', '/en/index.html']) {
+    assert.equal(page(new Map(), 'https://metrics.example', path).calls.length, 0);
+  }
+  for (const path of ['/market-peek/', '/market-peek/en/', '/ble-smart-cube/']) {
+    const p = page(new Map(), 'https://metrics.example', path);
+    assert.equal(p.calls.length, 1);
+    assert.equal(p.calls[0].page, path);
+  }
 });
 test('tracks live download links and suppresses double clicks, disabled links and release notes', () => {
   const p = page();
