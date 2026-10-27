@@ -23,6 +23,7 @@
   {% include notifier-analytics.html %}
   <link rel="stylesheet" href="{{ '/assets/css/program-stats.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   {% include program-stats-script.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/business-footer.css' | relative_url }}">
   {% include advertising-head.html %}
 </head>
 <body>
@@ -30,5 +31,6 @@
   {% include site-ad.html %}
   {% include content-with-ads.html %}
   {% include notifier-privacy.html %}
+  {% include business-footer.html %}
 </body>
 </html>
