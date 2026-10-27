@@ -11,8 +11,9 @@
 
   const path = location.pathname;
   if (['/', '/en/', '/index.html', '/en/index.html'].includes(path)) return;
-  const knownPrograms = ['market-peek', 'ble-smart-cube', 'doro-modbus'];
-  const program = knownPrograms.find(name => path.startsWith(`/${name}/`)) || 'site';
+  // A product's front matter is authoritative; flat product URLs also work without it.
+  const candidate = script.dataset.program || path.split('/').filter(Boolean)[0] || '';
+  const program = /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(candidate) && candidate.length <= 64 ? candidate : 'site';
   const send = (kind, platform) => {
     // Only path and product metadata are sent; no query strings or visitor identifiers.
     const body = JSON.stringify({ id: crypto.randomUUID(), kind, program, page: path, platform });

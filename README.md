@@ -96,3 +96,9 @@ Tip 버튼 바로 아래의 “좋아요&다운로드로 응원하기”에서 �
 Doro 페이지는 Galmuri 픽셀 라벨, 역할 선택 미리보기, 스킬 목록, 연결 퀘스트로 구성합니다. 후원 버튼 바로 아래의 소개 문구는 언어별 `preview_lines` 세 항목으로 관리합니다. 맵 선택·일시정지·Master/Slave 화면 전환은 `assets/js/doro-playground.js`에서 처리합니다. OS의 동작 줄이기 설정에서는 정지 이미지로 시작하며, JavaScript 없이도 기본 미리보기와 실제 다운로드를 제공합니다.
 
 맵 GIF는 비공개 EngineSimulatorWeb의 `Record Doro website preview` Actions workflow가 실제 Windows `DoroPanel`을 실행해 녹화한 자료입니다. 입력한 예시 응답 속도가 느림 → 빠름 → 느림으로 바뀌며 장치 연결이나 쓰기를 수행하지 않습니다. artifact의 `doro-{grass,space,ocean}.{gif,png}`를 `assets/programs/doro-modbus/`에 복사합니다. 원본 녹화 도구는 `BWACS/tools/Doro_Modbus/capture_preview.py`입니다.
+
+### 새 프로그램 조회·다운로드 자동 저장
+
+`_data/catalog.yml`에 `id`, `title`, `url`을 등록하고 기존 `product` 레이아웃의 소개 페이지를 추가하면 두키 알리미용 수집 대상에 자동으로 포함됩니다. 소개 페이지의 front matter `product`를 같은 `id`로 지정합니다. `id`를 생략한 평면 URL은 첫 경로에서 ID를 유도합니다. 별도의 `knownPrograms` 목록은 없습니다.
+
+카탈로그 API를 읽는 Cloudflare Worker가 프로그램을 확인하고 조회·실제 GitHub Release 파일 링크 클릭을 공통 D1 테이블에 저장합니다. 알리미 앱 코드를 수정하거나 프로그램마다 서버를 재배포할 필요가 없습니다. 카탈로그는 서버에서 최대 60초 캐시합니다. 프로그램 이름을 바꿔도 기존 집계를 이어가려면 `id`와 소개 경로를 유지하세요.

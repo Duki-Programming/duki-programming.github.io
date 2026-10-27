@@ -5,13 +5,15 @@ ko:
   navigation: 언어 선택
   creator: 개발·제작
   programs:
-    - title: Market Peek
+    - id: market-peek
+      title: Market Peek
       description: 코인과 한국·미국 주식 시세를 바탕화면 한편에서 확인하는 작은 위젯입니다.
       platform: Windows · macOS
       icon: /assets/programs/market-peek/icon.png
       url: /market-peek/
       featured: true
-    - title: Doro Modbus
+    - id: doro-modbus
+      title: Doro Modbus
       description: Modbus RTU Master / Slave 시뮬레이터. CSV 주소 관리와 테스트 값 생성, 통신 그래프를 지원합니다.
       platform: Windows · Beta
       icon: /assets/programs/doro-modbus/icon.png
@@ -24,13 +26,15 @@ en:
   navigation: Choose a language
   creator: Created by
   programs:
-    - title: Market Peek
+    - id: market-peek
+      title: Market Peek
       description: Follow crypto, Korean stocks, and US stocks from a small widget in the corner of your desktop.
       platform: Windows · macOS
       icon: /assets/programs/market-peek/icon.png
       url: /market-peek/en/
       featured: true
-    - title: Doro Modbus
+    - id: doro-modbus
+      title: Doro Modbus
       description: Modbus RTU Master / Slave simulator with CSV address lists, value generators, and graphs.
       platform: Windows · Beta
       icon: /assets/programs/doro-modbus/icon.png
