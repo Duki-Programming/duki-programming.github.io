@@ -46,7 +46,7 @@
         "paragraphs": [
           "Google 및 광고 파트너는 이 사이트·다른 사이트의 방문 내역을 바탕으로 광고를 제공·측정하기 위해 쿠키와 기기·접속 정보를 사용할 수 있습니다. Google 광고 설정에서 맞춤 광고를 끌 수 있습니다.",
           "동일 탭의 조회 중복 방지와 화면 설정에는 브라우저 저장소를 사용합니다. 브라우저 설정에서 쿠키·저장 정보를 삭제하거나 차단할 수 있습니다.",
-          "후원이나 파일 다운로드로 외부 서비스에 이동하면 해당 서비스의 정책도 적용됩니다. 이 웹사이트에서 카드번호나 결제 비밀번호를 입력받지는 않습니다."
+          "후원이나 파일 다운로드로 외부 서비스에 이동하면 해당 서비스의 정책도 적용됩니다. 후원 확인·운영자 알림을 위해 PayPal 결제 완료 정보와 공개된 USDT 입금 거래의 거래번호·금액·통화·시각·프로그램을 Cloudflare에 기록하며, 후원 확인 기능 운영 종료 시까지 보관합니다. 후원자의 이름·이메일·카드번호·결제 비밀번호는 이 알림 데이터베이스에 저장하지 않습니다."
         ],
         "links": [
           {
@@ -126,7 +126,7 @@
         "paragraphs": [
           "Google and its advertising partners may use cookies, device information, and access data to serve and measure ads based on visits to this and other websites. You can turn off personalized ads in Google’s ad settings.",
           "We use browser storage to prevent duplicate views within a tab and keep display preferences. You can clear or block cookies and storage in your browser settings.",
-          "External donation and download services apply their own policies. This website does not ask you to enter card numbers or payment passwords."
+          "External donation and download services apply their own policies. To confirm tips and notify the operator, Cloudflare stores transaction IDs, amounts, currencies, timestamps, and product references from completed PayPal payments and public USDT deposits until the tip monitoring service ends. This notification database does not store donors’ names, email addresses, card numbers, or payment passwords."
         ],
         "links": [
           {

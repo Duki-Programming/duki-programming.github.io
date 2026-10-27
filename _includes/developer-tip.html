@@ -1,6 +1,9 @@
 {% assign tip_language = page.lang | default: 'ko' %}
 {% assign tip_url = site.data.support[tip_language].tip_url | default: '' | strip %}
 {% assign tip_scheme = tip_url | slice: 0, 8 %}
+{% assign tip_program = page.product | default: 'duki-lab' | url_encode %}
+{% assign tip_name = 'Tip the Developer - ' | append: page.title | url_encode %}
+{% assign tip_notification = site.notifier_api_url | append: '/v1/payments/paypal/ipn' | url_encode %}
 {% assign usdt_address = site.data.support.usdt_trc20.address | default: '' | strip %}
 <dialog id="developer-tip-dialog" class="tip-dialog" aria-labelledby="developer-tip-title" aria-describedby="developer-tip-intro">
   <form method="dialog" class="tip-dialog-close"><button type="submit" aria-label="{{ copy.tip.close | escape }}" autofocus>×</button></form>
@@ -13,7 +16,7 @@
   </div>
   {% if tip_scheme == 'https://' %}
   <div id="tip-panel-payment" role="tabpanel" aria-labelledby="tip-tab-payment" tabindex="0">
-    <a class="button tip-payment" href="{{ tip_url | escape }}" target="_blank" rel="noopener noreferrer" aria-describedby="tip-external">{{ copy.tip.action | escape }} <span aria-hidden="true">↗</span></a>
+    <a class="button tip-payment" href="{{ tip_url | escape }}&amp;item_number={{ tip_program }}&amp;item_name={{ tip_name }}{% if site.notifier_api_url != '' %}&amp;notify_url={{ tip_notification }}{% endif %}" target="_blank" rel="noopener noreferrer" aria-describedby="tip-external">{{ copy.tip.action | escape }} <span aria-hidden="true">↗</span></a>
     <p id="tip-external" class="tip-note">{{ copy.tip.external | escape }}</p>
   </div>
   {% endif %}
