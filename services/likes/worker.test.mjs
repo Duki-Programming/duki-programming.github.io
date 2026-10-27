@@ -121,6 +121,41 @@ test('migration preserves existing support and deduplicates both platforms and l
   assert.equal(sqlite.prepare('SELECT count FROM support_total').get().count, 3);
   assert.equal(sqlite.prepare('SELECT COUNT(*) AS count FROM supporters').get().count, 3);
   assert.equal(sqlite.prepare('SELECT SUM(downloads) AS count FROM platform_totals').get().count, 2);
-  sqlite.exec("INSERT INTO platform_votes VALUES ('windows', 'legacy-only', 1)");
+  sqlite.exec("INSERT INTO platform_votes (platform, ip_hash, downloaded) VALUES ('windows', 'legacy-only', 1)");
   assert.equal(sqlite.prepare('SELECT count FROM support_total').get().count, 3);
+});
+test('new downloads store edge IP and server time once without leaking them publicly', async t => {
+  const { send, sqlite } = fixture(t);
+  await send('windows/likes', { method: 'POST' });
+  let row = sqlite.prepare('SELECT source_ip, downloaded_at FROM platform_votes').get();
+  assert.equal(row.source_ip, null); assert.equal(row.downloaded_at, null);
+  const res = await send('windows/download', { method: 'POST', headers: { 'X-Forwarded-For': '192.0.2.99' } });
+  row = sqlite.prepare('SELECT source_ip, downloaded_at FROM platform_votes').get();
+  assert.equal(row.source_ip, '203.0.113.1');
+  assert.ok(Number.isFinite(Date.parse(row.downloaded_at)));
+  const firstTime = row.downloaded_at;
+  await Promise.all(Array.from({ length: 8 }, () => send('windows/download', { method: 'POST' })));
+  row = sqlite.prepare('SELECT source_ip, downloaded_at FROM platform_votes').get();
+  assert.equal(row.downloaded_at, firstTime);
+  assert.equal((await send('stats')).data.platforms.windows.downloads, 1);
+  assert.ok(!JSON.stringify(res.data).includes('203.0.113.1'));
+  assert.ok(!JSON.stringify(res.data).includes('downloaded_at'));
+});
+test('historical unknown metadata stays unknown on repeated clicks', async t => {
+  const { send, sqlite } = fixture(t);
+  await send('macos/download', { method: 'POST' });
+  sqlite.exec('UPDATE platform_votes SET source_ip = NULL, downloaded_at = NULL');
+  await send('macos/download', { method: 'POST' });
+  const row = sqlite.prepare('SELECT downloaded, source_ip, downloaded_at FROM platform_votes').get();
+  assert.equal(row.downloaded, 1); assert.equal(row.source_ip, null); assert.equal(row.downloaded_at, null);
+  assert.equal((await send('stats')).data.platforms.macos.downloads, 1);
+});
+test('legacy downloads retain original first-click metadata too', async t => {
+  const { send, sqlite } = fixture(t);
+  await send('download', { method: 'POST', ip: '2001:0db8:0:0:0:0:0:1' });
+  const first = sqlite.prepare('SELECT source_ip, downloaded_at FROM downloads').get();
+  assert.equal(first.source_ip, '2001:db8::1');
+  assert.ok(Number.isFinite(Date.parse(first.downloaded_at)));
+  await send('download', { method: 'POST', ip: '2001:db8::1' });
+  assert.deepEqual(sqlite.prepare('SELECT source_ip, downloaded_at FROM downloads').get(), first);
 });

@@ -72,16 +72,24 @@ export default {
       }
       if (platformRoute) {
         const [, platform, action] = platformRoute;
-        const mutation = env.DB.prepare(`INSERT INTO platform_votes (platform, ip_hash, downloaded) VALUES (?, ?, ?)
-          ON CONFLICT(platform, ip_hash) DO UPDATE SET downloaded = MAX(platform_votes.downloaded, excluded.downloaded)`)
-          .bind(platform, hash, action === 'download' ? 1 : 0);
+        const isDownload = action === 'download';
+        const ip = isDownload ? normalizeIp(request.headers.get('CF-Connecting-IP')) : null;
+        const at = isDownload ? new Date().toISOString() : null;
+        const mutation = env.DB.prepare(`INSERT INTO platform_votes
+          (platform, ip_hash, downloaded, source_ip, downloaded_at) VALUES (?, ?, ?, ?, ?)
+          ON CONFLICT(platform, ip_hash) DO UPDATE SET
+            source_ip = CASE WHEN platform_votes.downloaded = 0 AND excluded.downloaded = 1 THEN excluded.source_ip ELSE platform_votes.source_ip END,
+            downloaded_at = CASE WHEN platform_votes.downloaded = 0 AND excluded.downloaded = 1 THEN excluded.downloaded_at ELSE platform_votes.downloaded_at END,
+            downloaded = MAX(platform_votes.downloaded, excluded.downloaded)`)
+          .bind(platform, hash, isDownload ? 1 : 0, ip, at);
         const [, total, result] = await env.DB.batch([mutation, snapshot(env.DB, hash), platformSnapshot(env.DB, hash)]);
         return reply(platformState(result.results, total.results[0]));
       }
       // Keep the original routes for already-open pages using the previous script.
       if (request.method === 'GET') return reply(state(await snapshot(env.DB, hash).first()));
       const mutation = route === '/download'
-        ? env.DB.prepare('INSERT OR IGNORE INTO downloads (ip_hash) VALUES (?)').bind(hash)
+        ? env.DB.prepare('INSERT OR IGNORE INTO downloads (ip_hash, source_ip, downloaded_at) VALUES (?, ?, ?)')
+          .bind(hash, normalizeIp(request.headers.get('CF-Connecting-IP')), new Date().toISOString())
         : env.DB.prepare('INSERT OR IGNORE INTO supporters (ip_hash) VALUES (?)').bind(hash);
       // D1 batches execute transactionally. Unique keys make retries and racing clicks idempotent.
       const [, result] = await env.DB.batch([mutation, snapshot(env.DB, hash)]);
