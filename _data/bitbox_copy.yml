@@ -1,0 +1,150 @@
+{
+  "ko": {
+    "status": "작업 중 · 다운로드 준비 중",
+    "name": "비트박스",
+    "hero_title": "숫자는 선명하게.<br>포지션은 손목에서.",
+    "intro": "아이폰에서는 계좌를 한눈에, Apple Watch에서는 포지션을 가볍게. BitBox는 내 Bitget 계좌를 확인하는 작은 아이폰·워치 앱입니다.",
+    "cta": "다운로드 준비 중",
+    "status_note": "아직 개발 중인 앱이에요. 소개만 먼저 공개하며, 설치 파일과 다운로드는 제공하지 않습니다.",
+    "preview_label": "개발 중 화면 · 예시 데이터",
+    "preview_note": "실제 앱을 예시 계좌 데이터로 실행한 화면입니다. 실제 계좌나 수익 실적이 아닙니다. 공개 전 화면과 기능은 바뀔 수 있습니다.",
+    "iphone_alt": "예시 데이터로 실행한 BitBox 아이폰 화면: 계좌 잔고, 손익과 포지션 목록",
+    "watch_alt": "예시 데이터로 실행한 BitBox Apple Watch 화면: 잔고와 미실현 손익, 손익률",
+    "features_eyebrow": "SMALL APP. CLEAR NUMBERS.",
+    "features_title": "계좌를 여는 순간부터, 손목을 드는 순간까지.",
+    "features": [
+      {
+        "badge": "01 / ACCOUNT",
+        "title": "잔고와 손익, 한 카드에",
+        "body": "잔고·미실현 손익·계좌 손익률을 맨 위에 모았습니다. 필요한 숫자를 먼저 읽고 포지션으로 내려가세요."
+      },
+      {
+        "badge": "02 / POSITION",
+        "title": "롱은 초록, 숏은 빨강",
+        "body": "포지션 방향과 배율을 같은 색으로 표시합니다. 종목별 수익률과 기준 가격도 함께 확인해요."
+      },
+      {
+        "badge": "03 / WRIST",
+        "title": "큰 포지션부터 손목으로",
+        "body": "아이폰이 포지션을 계산하고 정렬해 워치로 보냅니다. 기본 10 USDT 미만은 제외하고, 표시 기준은 직접 바꿀 수 있어요."
+      },
+      {
+        "badge": "04 / CONNECTION",
+        "title": "API는 아이폰에서 입력",
+        "body": "API Key·Secret·Passphrase를 직접 입력하거나 붙여넣으세요. 키는 아이폰 Keychain에 보관하고 워치에는 표시할 결과만 전달합니다."
+      },
+      {
+        "badge": "05 / READ ONLY",
+        "title": "조회에 집중한 앱",
+        "body": "현재 Bitget의 통합 계좌와 일반 계좌를 지원하도록 개발 중입니다. 잔고·포지션을 조회하며 주문·출금 기능은 넣지 않았어요."
+      },
+      {
+        "badge": "06 / CHARACTER",
+        "title": "작지만, 존재감 있게",
+        "body": "비트코인 캐릭터와 주황빛 화면, 한글 포지션 표시. 매일 확인할 화면을 읽기 쉽고 보기 좋게 다듬고 있습니다."
+      }
+    ],
+    "development_title": "지금은, 만드는 중입니다.",
+    "development_body": "아이폰·워치 화면과 Bitget 계좌 연결을 개발·검증하고 있습니다. 공개 배포는 준비가 끝난 뒤 안내할게요.",
+    "availability": [
+      "iPhone · iOS 17 이상",
+      "Apple Watch · watchOS 10 이상",
+      "현재 연결 대상: Bitget"
+    ],
+    "faq_title": "미리 알아두세요",
+    "faq": [
+      {
+        "question": "지금 다운로드할 수 있나요?",
+        "answer": "아직 아닙니다. 현재는 소개 페이지와 개발 중 화면만 공개합니다. App Store·TestFlight·설치 파일 링크는 제공하지 않습니다."
+      },
+      {
+        "question": "워치만으로 계좌를 조회하나요?",
+        "answer": "아니요. API 조회·손익률 계산·포지션 정렬·소액 필터링은 아이폰이 처리합니다. 워치 새로고침은 연결된 아이폰에 조회를 요청하며, 연결과 iOS 실행 상태에 따라 지연되거나 실패할 수 있습니다."
+      },
+      {
+        "question": "어떤 가격과 손익률을 보여주나요?",
+        "answer": "워치 포지션의 큰 가격은 거래소 마크 가격입니다. 계좌 손익률은 미실현 손익 ÷ 손익을 제외한 잔고로 계산하고, 포지션 수익률은 거래소 제공 비율을 우선 사용합니다. 통합 계좌 요약은 공유 통합 계좌 기준입니다."
+      },
+      {
+        "question": "다른 거래소도 연결할 수 있나요?",
+        "answer": "현재 개발 대상은 Bitget입니다. 다른 거래소 연결이나 공개 일정은 아직 정해지지 않았습니다."
+      }
+    ],
+    "home": "프로그램 목록",
+    "language": "언어 선택"
+  },
+  "en": {
+    "status": "In development · Downloads unavailable",
+    "name": "BitBox",
+    "hero_title": "Clear numbers.<br>Positions on your wrist.",
+    "intro": "An account overview on iPhone. A lighter view of your positions on Apple Watch. BitBox is a small companion for checking your Bitget account.",
+    "cta": "Download coming later",
+    "status_note": "BitBox is still in development. This is an introduction only; no installation files or downloads are available.",
+    "preview_label": "Development preview · Sample data",
+    "preview_note": "Screenshots show the actual app running with sample account data, not a real account or investment results. Screens and features may change before release.",
+    "iphone_alt": "BitBox iPhone development screen with sample account balance, profit and loss, and positions",
+    "watch_alt": "BitBox Apple Watch development screen with sample balance, unrealized profit and loss, and account return",
+    "features_eyebrow": "SMALL APP. CLEAR NUMBERS.",
+    "features_title": "From opening your account to raising your wrist.",
+    "features": [
+      {
+        "badge": "01 / ACCOUNT",
+        "title": "Your account, in one card",
+        "body": "Balance, unrealized profit and loss, and account return sit at the top. Read the essential numbers first, then explore your positions."
+      },
+      {
+        "badge": "02 / POSITION",
+        "title": "Green for long. Red for short.",
+        "body": "Position direction and leverage share a color. Check the return and reference price for each position at a glance."
+      },
+      {
+        "badge": "03 / WRIST",
+        "title": "Larger positions first",
+        "body": "iPhone calculates, sorts, and sends positions to your watch. Positions under 10 USDT are hidden by default; adjust the threshold on iPhone."
+      },
+      {
+        "badge": "04 / CONNECTION",
+        "title": "Enter API keys on iPhone",
+        "body": "Type or paste your API key, secret, and passphrase. Keys stay in the iPhone Keychain; the watch receives display results only."
+      },
+      {
+        "badge": "05 / READ ONLY",
+        "title": "Built for checking",
+        "body": "Support for Bitget unified and classic accounts is in development. BitBox reads balances and positions and has no order or withdrawal functions."
+      },
+      {
+        "badge": "06 / CHARACTER",
+        "title": "Small app. A little personality.",
+        "body": "A pixel Bitcoin character, warm orange accents, and clear position labels. We are refining the details of a screen you can check every day."
+      }
+    ],
+    "development_title": "Still in the making.",
+    "development_body": "We are developing and validating the iPhone and watch interfaces and Bitget account connection. Public availability will be announced when it is ready.",
+    "availability": [
+      "iPhone · iOS 17 or later",
+      "Apple Watch · watchOS 10 or later",
+      "Current exchange: Bitget"
+    ],
+    "faq_title": "A few things to know",
+    "faq": [
+      {
+        "question": "Can I download it now?",
+        "answer": "Not yet. Only this introduction and development previews are public. There are no App Store, TestFlight, or installation-file links."
+      },
+      {
+        "question": "Does the watch query my account directly?",
+        "answer": "No. iPhone handles API requests, return calculations, sorting, and small-position filtering. Refresh on the watch requests an update from the paired iPhone. Connectivity and iOS execution conditions can delay or prevent the update."
+      },
+      {
+        "question": "Which prices and returns are shown?",
+        "answer": "The large position price on the watch is the exchange mark price. Account return is unrealized PnL divided by the balance excluding that PnL. Position return uses the exchange-provided rate when available. Unified account totals cover the shared account."
+      },
+      {
+        "question": "Are other exchanges supported?",
+        "answer": "Bitget is the current development target. Additional exchanges and a public release date have not been announced."
+      }
+    ],
+    "home": "All programs",
+    "language": "Choose a language"
+  }
+}

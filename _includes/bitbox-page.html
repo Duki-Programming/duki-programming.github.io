@@ -1,0 +1,53 @@
+{% assign language = page.lang | default: 'ko' %}
+{% assign copy = site.data.bitbox_copy[language] %}
+<header class="product-topbar wrap">
+  <a class="bitbox-home" href="{% if language == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}"><span aria-hidden="true">←</span> DUKI LAB</a>
+  <nav class="product-language" aria-label="{{ copy.language | escape }}">
+    <a href="{{ '/bitbox/' | relative_url }}" lang="ko" hreflang="ko"{% if language == 'ko' %} aria-current="page"{% endif %}>한국어</a>
+    <span class="product-language__divider" aria-hidden="true"></span>
+    <a href="{{ '/bitbox/en/' | relative_url }}" lang="en" hreflang="en"{% if language == 'en' %} aria-current="page"{% endif %}>English</a>
+  </nav>
+</header>
+<main id="main" class="bitbox-page" data-release-state="development">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="doro-eyebrow bitbox-eyebrow">✦ IPHONE + APPLE WATCH</p>
+      <p class="product-brand"><img src="{{ '/assets/programs/bitbox/icon.png' | relative_url }}" width="48" height="48" alt="">Bit<span class="bitbox-wordmark">Box</span></p>
+      <span class="bitbox-status"><span aria-hidden="true"></span>{{ copy.status | escape }}</span>
+      <h1 id="hero-title">{{ copy.hero_title }}</h1>
+      <p class="intro">{{ copy.intro | escape }}</p>
+      <div class="bitbox-download-area">
+        <button class="button bitbox-download" type="button" disabled aria-disabled="true" aria-describedby="bitbox-download-note"><span aria-hidden="true">⌛</span>{{ copy.cta | escape }}</button>
+        <p id="bitbox-download-note">{{ copy.status_note | escape }}</p>
+      </div>
+    </div>
+    <figure class="bitbox-showcase">
+      <div class="bitbox-preview-heading"><span>{{ copy.preview_label | escape }}</span><span aria-hidden="true">✦</span></div>
+      <div class="bitbox-devices">
+        <div class="bitbox-phone"><img src="{{ '/assets/programs/bitbox/iphone-preview.png' | relative_url }}" width="1206" height="2622" alt="{{ copy.iphone_alt | escape }}" fetchpriority="high"></div>
+        <div class="bitbox-watch"><div class="bitbox-watch-crown" aria-hidden="true"></div><img src="{{ '/assets/programs/bitbox/watch-preview.png' | relative_url }}" width="324" height="394" alt="{{ copy.watch_alt | escape }}"></div>
+        <img class="bitbox-mascot" src="{{ '/assets/programs/bitbox/icon.png' | relative_url }}" width="100" height="100" alt="" aria-hidden="true">
+      </div>
+      <figcaption>{{ copy.preview_note | escape }}</figcaption>
+    </figure>
+  </section>
+  <section id="features" class="features wrap" aria-labelledby="features-title">
+    <p class="bitbox-eyebrow">{{ copy.features_eyebrow | escape }}</p>
+    <h2 id="features-title">{{ copy.features_title | escape }}</h2>
+    <div class="feature-grid">
+      {% for feature in copy.features %}<article><span class="bitbox-feature-badge">{{ feature.badge | escape }}</span><h3>{{ feature.title | escape }}</h3><p>{{ feature.body | escape }}</p></article>{% endfor %}
+    </div>
+  </section>
+  <section class="bitbox-development wrap" aria-labelledby="development-title">
+    <div><p class="bitbox-eyebrow">WORK IN PROGRESS</p><h2 id="development-title">{{ copy.development_title | escape }}</h2><p>{{ copy.development_body | escape }}</p></div>
+    <ul>{% for item in copy.availability %}<li>{{ item | escape }}</li>{% endfor %}</ul>
+  </section>
+  <section class="wrap bitbox-faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">{{ copy.faq_title | escape }}</h2>
+    <div class="faq">{% for item in copy.faq %}<details><summary>{{ item.question | escape }}</summary><p>{{ item.answer | escape }}</p></details>{% endfor %}</div>
+  </section>
+</main>
+<footer class="wrap product-footer">
+  <span class="brand"><img src="{{ '/assets/programs/bitbox/icon.png' | relative_url }}" width="28" height="28" alt="">BitBox<span class="brand-dot">.</span></span>
+  <div class="product-credits business-footer">{% include business-footer.html %}</div>
+</footer>

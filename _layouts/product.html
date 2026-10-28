@@ -13,7 +13,7 @@
   {% if page.cover %}<meta property="og:image" content="{{ page.cover | absolute_url }}">{% endif %}
   <title>{{ page.title | escape }} — {{ page.tagline | escape }}</title>
   <link rel="canonical" href="{{ page.url | absolute_url }}">
-  {% if page.product == 'market-peek' or page.product == 'doro-modbus' %}
+  {% if page.product == 'market-peek' or page.product == 'doro-modbus' or page.product == 'bitbox' %}
   <link rel="alternate" hreflang="ko" href="{{ '/' | append: page.product | append: '/' | absolute_url }}">
   <link rel="alternate" hreflang="en" href="{{ '/' | append: page.product | append: '/en/' | absolute_url }}">
   <link rel="alternate" hreflang="x-default" href="{{ '/' | append: page.product | append: '/' | absolute_url }}">

@@ -112,3 +112,12 @@ Doro 페이지는 Galmuri 픽셀 라벨, 역할 선택 미리보기, 스킬 목�
 모든 HTML 페이지의 사업자 표기는 공통 `_includes/business-footer.html`에서 관리하며, 언어와 관계없이 `Duki Lab`으로 표시합니다. 화면과 메타 정보에는 기존 브랜드명을 사용하지 않고, 기존 주소·저장소·배포 링크는 유지합니다.
 
 개인정보처리방침은 `/privacy/`와 `/privacy/en/`에서 제공합니다. 내용은 `_data/privacy.yml`, 기존 공개 문의 이메일은 `_data/legal.yml`에서 관리합니다. 현행 서버 저장 항목, 통계 서비스 운영기간의 보관 기준, 삭제·권리 요청, Cloudflare·GitHub·Google 및 외부 후원 서비스, 광고 쿠키·브라우저 저장소를 설명합니다. 처리방침 페이지에는 방문 집계와 광고 스크립트를 넣지 않습니다. 보관기간·외부 서비스·문의처가 바뀌면 방침도 함께 갱신합니다.
+
+## BitBox · 비트박스 (개발 중)
+
+- 한국어: https://duki-programming.github.io/bitbox/
+- English: https://duki-programming.github.io/bitbox/en/
+
+`_includes/bitbox-page.html`, `_data/bitbox_copy.yml`, `assets/css/bitbox.css`에서 소개를 관리합니다. 카탈로그·공통 제품 레이아웃·통계·개인정보처리방침 링크를 공유합니다. 아이폰·워치 이미지는 실제 앱을 **가짜 계좌 데이터**로 실행한 개발 미리보기이며 실제 계좌나 투자 수익 실적이 아닙니다.
+
+현재는 소개만 공개합니다. 다운로드는 링크 없는 `disabled` 버튼이며 App Store·TestFlight·IPA·GitHub Release 파일 링크나 릴리스 자동 갱신 스크립트를 넣지 않습니다. 소스는 비공개 `Duki-Programming/BitBox`에 보관하고 공개 릴리스는 만들지 않습니다. 공개 배포 전 별도 검증 후 다운로드 정책을 변경하세요. 이 상태는 `tests/bitbox-preview.test.mjs`로 확인합니다.
