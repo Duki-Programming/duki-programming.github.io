@@ -29,7 +29,9 @@ ko:
       url: /bitbox/
       featured: false
 en:
-  title: Programs I made for myself.
+  title: |-
+    Programs a little too good
+    to keep to myself!
   description: Explore programs made by Duki Lab and learn how to use them.
   section_title: Programs
   navigation: Choose a language
