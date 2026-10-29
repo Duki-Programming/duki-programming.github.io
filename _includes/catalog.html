@@ -2,7 +2,7 @@
 <main class="catalog-main shell">
   <section class="catalog-intro" aria-labelledby="catalog-title">
     <p class="catalog-eyebrow">APPS &amp; TOOLS</p>
-    <h1 id="catalog-title">{{ copy.title | escape }}</h1>
+    <h1 id="catalog-title">{{ copy.title | escape | newline_to_br }}</h1>
     <p class="catalog-description">{{ copy.description | escape }}</p>
   </section>
   <section class="catalog-programs" aria-labelledby="programs-title">
