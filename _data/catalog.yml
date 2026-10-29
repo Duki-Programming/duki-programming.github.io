@@ -1,6 +1,6 @@
 ko:
   title: 혼자 쓰기엔 아까운 프로그램들!
-  description: Duki Lab에서 만든 프로그램과 사용 방법을 소개합니다. Market Peek으로 바탕화면에서 코인과 주식 시세를 확인해 보세요.
+  description: Duki Lab에서 만든 프로그램과 사용 방법을 소개합니다.
   section_title: 프로그램
   navigation: 언어 선택
   creator: 개발·제작
@@ -28,7 +28,7 @@ ko:
       featured: false
 en:
   title: Programs I made for myself.
-  description: Explore programs made by Duki Lab and learn how to use them. Follow crypto and stock prices from your desktop with Market Peek.
+  description: Explore programs made by Duki Lab and learn how to use them.
   section_title: Programs
   navigation: Choose a language
   creator: Created by

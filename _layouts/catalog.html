@@ -16,6 +16,7 @@
   <link rel="alternate" hreflang="en" href="{{ page.en_url | absolute_url }}">
   <link rel="icon" href="{{ '/assets/brand.svg' | relative_url }}" type="image/svg+xml">
   <link rel="preload" href="{{ '/assets/fonts/PretendardVariable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/Galmuri9.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/css/catalog.css' | relative_url }}">
   <script defer src="{{ '/assets/js/card-tilt.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/js/hover-sparkles.js' | relative_url }}"></script>
@@ -25,7 +26,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/business-footer.css' | relative_url }}">
   {% include advertising-head.html %}
 </head>
-<body>
+<body class="catalog-page">
   <header class="catalog-header shell">
     <a class="catalog-brand" href="{% if page.lang == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}"><img src="{{ '/assets/brand.svg' | relative_url }}" width="32" height="32" alt="">Duki Lab<span aria-hidden="true">.</span></a>
     {% include company-language.html %}
