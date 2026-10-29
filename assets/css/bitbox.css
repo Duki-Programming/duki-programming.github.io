@@ -1,16 +1,15 @@
 @import url("market-peek.css");
-@font-face{font-family:Galmuri;src:url('../fonts/Galmuri9.woff2') format('woff2');font-display:swap}
 :root{--bg:#111318;--panel:#1b1c23;--line:#393329;--text:#f8f4ec;--muted:#b4b0a9;--accent:#ffad43;background:var(--bg)}
 body{background:radial-gradient(ellipse at 80% 6%,#a65c141c,transparent 45%),radial-gradient(ellipse at 8% 48%,#51412912,transparent 38%),var(--bg)}
 .wrap{max-width:1200px}
 .product-topbar{justify-content:space-between;gap:16px;min-height:84px}
-.bitbox-home{display:inline-flex;align-items:center;gap:9px;font:10px Galmuri,monospace;color:var(--muted);padding:14px 0}
+.bitbox-home{display:inline-flex;align-items:center;gap:9px;font:10px var(--site-font);color:var(--muted);padding:14px 0}
 .bitbox-home:hover{color:var(--accent)}
 .product-language{border-color:var(--line);background:#201d19}
 .product-language a[aria-current=page]{background:#4b351c;color:#ffd79b}
 .product-language a:hover{background:#35291e}
 .bitbox-page .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;padding-top:32px;padding-bottom:64px}
-.bitbox-eyebrow{font:10px/1.8 Galmuri,monospace;letter-spacing:.06em;color:var(--accent);margin:0 0 18px}
+.bitbox-eyebrow{font:10px/1.8 var(--site-font);letter-spacing:.06em;color:var(--accent);margin:0 0 18px}
 .bitbox-page .product-brand{font-size:38px;gap:10px}
 .bitbox-wordmark{color:var(--accent);margin-left:-10px}
 .bitbox-status{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:650;color:#ffd7a0;background:#35291b;border:1px solid #67471d;border-radius:99px;padding:8px 12px}
@@ -21,7 +20,7 @@ body{background:radial-gradient(ellipse at 80% 6%,#a65c141c,transparent 45%),rad
 .bitbox-download.button:disabled{width:100%;justify-content:center;gap:12px;cursor:not-allowed;opacity:1;background:#302a22;color:#c9b99e;border:1px dashed #766143;border-radius:7px;box-shadow:0 4px 0 #090a0e;transform:none;font-size:14px;min-height:54px}
 #bitbox-download-note{font-size:11px;line-height:1.9;color:var(--muted);margin:15px 0 0}
 .bitbox-showcase{margin:0;padding:18px;background:linear-gradient(145deg,#25211b,#18191f);border:1px solid #53432e;border-radius:14px;box-shadow:7px 7px 0 #090a0d;min-width:0}
-.bitbox-preview-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;font:9px/1.7 Galmuri,monospace;color:#dbbd8f}
+.bitbox-preview-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;font:9px/1.7 var(--site-font);color:#dbbd8f}
 .bitbox-devices{position:relative;height:555px;margin:20px 0 16px;display:flex;align-items:center;justify-content:flex-start;padding-left:12px}
 .bitbox-phone{width:236px;background:#050608;border:6px solid #4b4b50;border-radius:34px;box-shadow:0 18px 35px #0007;overflow:hidden}
 .bitbox-phone img{display:block;width:100%;height:auto}
@@ -38,7 +37,7 @@ body{background:radial-gradient(ellipse at 80% 6%,#a65c141c,transparent 45%),rad
 .bitbox-page .feature-grid article{border:1px solid #3c3429;border-top:3px solid #bd863d;border-radius:8px;padding:22px;background:linear-gradient(145deg,#27221b,#191a20)}
 .bitbox-page .feature-grid article:nth-child(3n+2){border-top-color:#73ad8c}
 .bitbox-page .feature-grid article:nth-child(3n){border-top-color:#7d9dc9}
-.bitbox-feature-badge{font:9px/1.7 Galmuri,monospace;color:#d7bd94}
+.bitbox-feature-badge{font:9px/1.7 var(--site-font);color:#d7bd94}
 .bitbox-page .feature-grid h3{font-size:17px;margin:18px 0 10px}
 .bitbox-page .feature-grid p{font-size:13px;line-height:1.9}
 .bitbox-development{display:grid;grid-template-columns:1.4fr 1fr;gap:35px;padding-top:30px;padding-bottom:30px;border:1px solid #5e4628;background:#211e19;border-radius:10px;box-shadow:5px 5px 0 #090a0d}
