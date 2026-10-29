@@ -93,7 +93,7 @@ Tip 버튼 바로 아래의 “좋아요&다운로드로 응원하기”에서 �
 
 ### Doro 놀이터와 게임 소개 스타일
 
-Doro 페이지는 스타더스트 픽셀 라벨, 역할 선택 미리보기, 스킬 목록, 연결 퀘스트로 구성합니다. 후원 버튼 바로 아래의 소개 문구는 언어별 `preview_lines` 세 항목으로 관리합니다. 맵 선택·일시정지·Master/Slave 화면 전환은 `assets/js/doro-playground.js`에서 처리합니다. OS의 동작 줄이기 설정에서는 정지 이미지로 시작하며, JavaScript 없이도 기본 미리보기와 실제 다운로드를 제공합니다.
+Doro 페이지는 갈무리·스타더스트 픽셀 라벨, 역할 선택 미리보기, 스킬 목록, 연결 퀘스트로 구성합니다. 후원 버튼 바로 아래의 소개 문구는 언어별 `preview_lines` 세 항목으로 관리합니다. 맵 선택·일시정지·Master/Slave 화면 전환은 `assets/js/doro-playground.js`에서 처리합니다. OS의 동작 줄이기 설정에서는 정지 이미지로 시작하며, JavaScript 없이도 기본 미리보기와 실제 다운로드를 제공합니다.
 
 맵 GIF는 비공개 EngineSimulatorWeb의 `Record Doro website preview` Actions workflow가 실제 Windows `DoroPanel`을 실행해 녹화한 자료입니다. 입력한 예시 응답 속도가 느림 → 빠름 → 느림으로 바뀌며 장치 연결이나 쓰기를 수행하지 않습니다. artifact의 `doro-{grass,space,ocean}.{gif,png}`를 `assets/programs/doro-modbus/`에 복사합니다. 원본 녹화 도구는 `BWACS/tools/Doro_Modbus/capture_preview.py`입니다.
 
@@ -124,4 +124,4 @@ Doro 페이지는 스타더스트 픽셀 라벨, 역할 선택 미리보기, 스
 
 ### 사이트 글꼴
 
-전체 페이지는 피나타의 PF 스타더스트 3.0을 사용합니다. 공통 설정은 `_includes/site-fonts.html`과 `assets/css/site-fonts.css`에 있으며, 본문·제목·버튼에 같은 글꼴을 적용합니다. Regular, Bold, ExtraBold 웹폰트는 [눈누가 제공하는 고정 버전 CDN](https://noonnu.cc/font_page/1614)에서 불러옵니다. 폰트 파일은 이 저장소에서 재배포하지 않습니다. [원 제작자 배포 및 이용 조건](https://m.blog.naver.com/campanula913/221366697603)을 참고하세요.
+전체 페이지의 한글은 Galmuri9, 영문은 피나타의 PF 스타더스트 3.0을 사용합니다. 스타더스트의 `unicode-range`를 라틴 문자 범위로 제한하여 혼합 문장에서도 한글은 갈무리로 표시합니다. 공통 설정은 `_includes/site-fonts.html`과 `assets/css/site-fonts.css`에 있으며, 본문·제목·버튼에 같은 글꼴을 적용합니다. Regular, Bold, ExtraBold 웹폰트는 [눈누가 제공하는 고정 버전 CDN](https://noonnu.cc/font_page/1614)에서 불러옵니다. 스타더스트 파일은 이 저장소에서 재배포하지 않습니다. 갈무리는 기존 로컬 파일과 OFL 라이선스를 사용합니다. [원 제작자 배포 및 이용 조건](https://m.blog.naver.com/campanula913/221366697603)을 참고하세요.
