@@ -1,4 +1,8 @@
 /* Let Japanese sentences wrap naturally, including long product headings. */
+.company-language, .product-language {
+  --site-font: 'PF Stardust', 'Galmuri9', sans-serif;
+  font-family: var(--site-font);
+}
 html[lang="ja"] :is(h1, h2, h3, p, li, summary, .program-link__text) {
   word-break: normal;
   overflow-wrap: anywhere;
