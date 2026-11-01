@@ -1,12 +1,8 @@
 {% assign language = page.lang | default: 'ko' %}
 {% assign copy = site.data.bitbox_copy[language] %}
 <header class="product-topbar wrap">
-  <a class="bitbox-home" href="{% if language == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}"><span aria-hidden="true">←</span> DUKI LAB</a>
-  <nav class="product-language" aria-label="{{ copy.language | escape }}">
-    <a href="{{ '/bitbox/' | relative_url }}" lang="ko" hreflang="ko"{% if language == 'ko' %} aria-current="page"{% endif %}>한국어</a>
-    <span class="product-language__divider" aria-hidden="true"></span>
-    <a href="{{ '/bitbox/en/' | relative_url }}" lang="en" hreflang="en"{% if language == 'en' %} aria-current="page"{% endif %}>English</a>
-  </nav>
+  <a class="bitbox-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}"><span aria-hidden="true">←</span> DUKI LAB</a>
+  {% include language-switch.html class="product-language" %}
 </header>
 <main id="main" class="bitbox-page" data-release-state="development">
   <section class="hero wrap" aria-labelledby="hero-title">
@@ -39,7 +35,7 @@
     </div>
   </section>
   <section class="bitbox-development wrap" aria-labelledby="development-title">
-    <div><p class="bitbox-eyebrow">WORK IN PROGRESS</p><h2 id="development-title">{{ copy.development_title | escape }}</h2><p>{{ copy.development_body | escape }}</p></div>
+    <div><p class="bitbox-eyebrow">{{ site.data.ui[page.lang].work_in_progress | escape }}</p><h2 id="development-title">{{ copy.development_title | escape }}</h2><p>{{ copy.development_body | escape }}</p></div>
     <ul>{% for item in copy.availability %}<li>{{ item | escape }}</li>{% endfor %}</ul>
   </section>
   <section class="wrap bitbox-faq" aria-labelledby="faq-title">

@@ -303,5 +303,158 @@
     "screens_title": "Build your own test world.",
     "screens_intro": "Choose how values change, then try them in a simulated Slave.",
     "faq_title": "Before you start your quest."
+  },
+  "ja": {
+    "likes": {
+      "title": "いいねとダウンロードで応援",
+      "label": "いいね",
+      "downloads": "ダウンロード",
+      "download_detail": "このページのダウンロードリンクのクリックを、OSごと・IPアドレスごとに1回集計します。",
+      "action": "Doro Modbusを応援する",
+      "done": "Doro Modbusを応援しました",
+      "loading": "いいねを読み込み中…",
+      "thanks": "応援ありがとうございます！",
+      "error": "現在いいねを利用できません。しばらくしてからお試しください。"
+    },
+    "tip": {
+      "title": "開発者を応援する",
+      "teaser": "コーヒー1杯で開発を応援。",
+      "intro": "Doro Modbusが日々の作業に役立ったら、コーヒー1杯で応援していただけます。",
+      "pending": "支援機能を準備中です。",
+      "thanks": "応援ありがとうございます。公開までしばらくお待ちください。",
+      "action": "PayPalで支援する",
+      "external": "PayPalで支援金額を米ドル（USD）で指定します。新しいタブで開きます。韓国のPayPalアカウント同士の支払いには対応していません。",
+      "close": "閉じる",
+      "methods": "支援方法",
+      "crypto_amount": "金額は自由に指定できます。ネットワーク手数料は別途かかります。",
+      "minimum": "最低入金額：",
+      "address": "USDT入金アドレス · TRC20",
+      "copy": "アドレスをコピー",
+      "copied": "アドレスをコピーしました。",
+      "copy_failed": "自動コピーがブロックされました。選択されたアドレスを手動でコピーしてください。",
+      "network_note": "TRON（TRC20）ネットワークのUSDTのみ送金してください。他の通貨やネットワークを使うと資金を失う可能性があります。"
+    },
+    "skip": "本文へスキップ",
+    "language_navigation": "サイトの言語",
+    "hero_title": "Modbusのテストに。<br>頼れる仲間、<br><span>Doro</span>と一緒に。",
+    "intro": "読み取り、書き込み、シミュレーション。<br>便利なRTUツールと、小さな相棒。<br>MasterかSlaveを選んで始めましょう。",
+    "windows_download": "Windows版をダウンロード",
+    "beta": "ベータ版",
+    "chart_alt": "Windowsで動作するDoro Modbus Master",
+    "features_title": "かわいい相棒。頼れる機能。",
+    "features_intro": "次のModbus RTUテストに必要なツールをひとつに。役割を選んでDoroと始めましょう。",
+    "features": [
+      {
+        "title": "MasterとSlaveをひとつのアプリで",
+        "body": "RTU Masterまたは汎用Slaveを選択できます。役割やWin/WSLシリアルモードの切り替え前には切断してください。",
+        "badge": "役割を選択"
+      },
+      {
+        "title": "8種類の標準ファンクションコード",
+        "body": "FC01/02/03/04で読み取り、FC05/06/15/16で書き込みます。書き込みは単発書き込みボタンを押したときだけ送信します。",
+        "badge": "8種類の機能コード"
+      },
+      {
+        "title": "シンプルなCSVアドレス管理",
+        "body": "Slave IDとDevice Addressの2列でアドレスを管理します。専用CSVフォルダ内のファイルを保存・選択・削除できます。",
+        "badge": "アドレスライブラリ"
+      },
+      {
+        "title": "用途に合わせて値をデコード",
+        "body": "UInt16、Int16、UInt32、Int32、Float32とバイト・ワード順を選べます。Scale/Offsetの適用や生のレジスタ値への変換に対応しています。",
+        "badge": "値のデコード"
+      },
+      {
+        "title": "実機なしでテスト値を生成",
+        "body": "固定値、乱数、ランプ、正弦波、時間指定シナリオを設定できます。応答遅延、応答の欠落、強制例外も試せます。",
+        "badge": "シミュレーション"
+      },
+      {
+        "title": "グラフと通信フレームを確認",
+        "body": "最大4つの値をグラフに表示し、TX/RXフレームをクリックしてコピーできます。専用の設定とプロファイルを保存でき、作業中はDoroがそばにいます。",
+        "badge": "フレームビューアー"
+      }
+    ],
+    "download_title": "準備ができたら、<br>Doroと接続。",
+    "download_language_note": "このページは日本語版です。アプリ内のラベルには現在、韓国語と英語が使われています。",
+    "windows_platform": "Windows 64ビット",
+    "installer_download": "Windows用EXEをダウンロード",
+    "installer_detail": "インストール不要 · Python不要",
+    "archive_download": "7zアーカイブをダウンロード",
+    "archive_detail": "展開して実行 · 韓国語のアプリ",
+    "release_notes": "リリースノート",
+    "version_downloads": "すべてのバージョン",
+    "windows_pending": "ダウンロードを準備中です。",
+    "windows_pending_detail": "Windows 64ビット用のポータブル実行ファイルを準備しています。",
+    "install_title": "接続までの3つのクエスト。",
+    "install_steps": [
+      {
+        "title": "EXEをダウンロード",
+        "body": "Windows 64ビット用実行ファイルをダウンロードします。ベータ版のバージョンと変更内容はリリースページで確認できます。"
+      },
+      {
+        "title": "起動して役割を選ぶ",
+        "body": "EXEを実行し、MasterまたはSlaveを選びます。Pythonのインストールは不要です。"
+      },
+      {
+        "title": "通信条件を設定して接続",
+        "body": "COMポート、ボーレート、データビット、パリティ、ストップビットを機器に合わせます。Slave IDとアドレスを指定して接続します。"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Modbus TCPに対応していますか？",
+        "answer": "このベータ版はModbus RTUのみ対応しています。TCP、ASCII、FC22/23、機器の自動検出は含まれていません。"
+      },
+      {
+        "question": "アドレスは40001と入力しますか？",
+        "answer": "実際の0始まりのPDUアドレスを入力してください。40001や30001などの参照番号は自動変換されません。"
+      },
+      {
+        "question": "Excelファイルを開けますか？",
+        "answer": "CSVまたはTSVを使用してください。.xlsxファイルは先にCSV形式で保存します。必須列はSlave IDとDevice Addressです。"
+      },
+      {
+        "question": "WSLのシリアルポートを使うには？",
+        "answer": "WindowsアプリでWSLモードを選びます。Ubuntu、/usr/bin/python3、WSLに接続されたシリアルデバイスが必要です。ワーカーにはpyserialが含まれています。"
+      },
+      {
+        "question": "設定はどこに保存されますか？",
+        "answer": "設定と専用CSVフォルダは%LOCALAPPDATA%/EngineSimulator_DoroModbusに保存され、Modbus Monitorとは分離されています。"
+      },
+      {
+        "question": "Macでも使えますか？",
+        "answer": "このベータ版の配布ファイルはWindows x64用です。macOS用の実行ファイルはありません。"
+      },
+      {
+        "question": "Windowsで発行元が不明と表示されるのはなぜですか？",
+        "answer": "現在のベータ版EXEはGitHub Actionsでビルドした署名なしのファイルです。公式リリースのSHA256SUMS.txtとファイルのハッシュ値を照合できます。"
+      }
+    ],
+    "preview_lines": [
+      "🌿 草原、宇宙、海でDoroに会いましょう！",
+      "⚡ 通信が忙しくなると、Doroの動きも速くなります！",
+      "🎮 F2でパネルを開き、F3でDoroを隠せます。"
+    ],
+    "preview_title": "DOROの小さな遊び場",
+    "preview_label": "実際のアプリ映像 · 応答速度の例",
+    "maps_label": "マップを選択",
+    "map_names": [
+      "草原",
+      "宇宙",
+      "海"
+    ],
+    "pause": "アニメーションを一時停止",
+    "play": "アニメーションを再生",
+    "preview_alt": "通信応答速度の例に合わせて、ゆっくり、そして速く動くDoro",
+    "role_label": "役割のプレビュー",
+    "role_master": "Master · 読み取り／書き込み",
+    "role_slave": "Slave · 機器をシミュレーション",
+    "showcase_note": "実際のWindowsアプリ画面",
+    "features_eyebrow": "機能一覧",
+    "install_eyebrow": "準備を始めよう",
+    "screens_title": "自分だけのテスト環境を。",
+    "screens_intro": "値の変化を設定し、シミュレーション用Slaveで試せます。",
+    "faq_title": "冒険を始める前に。"
   }
 }

@@ -1,0 +1,60 @@
+ko:
+  language: 언어 선택
+  home_url: /
+  privacy_url: /privacy/
+  privacy: 개인정보처리방침
+  stats: 앱 통계
+  visitors: 방문자 수
+  downloads: 누적 다운로드
+  apps_tools: APPS & TOOLS
+  role_select: PLAYER SELECT
+  function_codes: Modbus function codes
+  read: READ
+  write: WRITE
+  screenshots: 실제 실행 화면
+  slave_caption: 범용 Slave · 테스트 값 시뮬레이션
+  editor_caption: 주소 · 생성 설정
+  editor_alt: Doro Modbus simulation editor
+  world_builder: WORLD BUILDER
+  quest: QUEST
+  work_in_progress: WORK IN PROGRESS
+en:
+  language: Choose a language
+  home_url: /en/
+  privacy_url: /privacy/en/
+  privacy: Privacy Policy
+  stats: App statistics
+  visitors: Visitors
+  downloads: Total downloads
+  apps_tools: APPS & TOOLS
+  role_select: PLAYER SELECT
+  function_codes: Modbus function codes
+  read: READ
+  write: WRITE
+  screenshots: App screenshots
+  slave_caption: Generic Slave · Simulated test values
+  editor_caption: Addresses and value generators
+  editor_alt: Doro Modbus simulation editor
+  world_builder: WORLD BUILDER
+  quest: QUEST
+  work_in_progress: WORK IN PROGRESS
+ja:
+  language: 言語を選択
+  home_url: /ja/
+  privacy_url: /privacy/ja/
+  privacy: プライバシーポリシー
+  stats: アプリの統計
+  visitors: 訪問者数
+  downloads: 累計ダウンロード数
+  apps_tools: アプリとツール
+  role_select: 役割を選択
+  function_codes: Modbusファンクションコード
+  read: 読み取り
+  write: 書き込み
+  screenshots: アプリの画面
+  slave_caption: 汎用Slave · テスト値のシミュレーション
+  editor_caption: アドレスと値の生成設定
+  editor_alt: Doro Modbusのシミュレーション設定画面
+  world_builder: テスト環境を作る
+  quest: クエスト
+  work_in_progress: 開発中

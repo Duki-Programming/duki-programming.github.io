@@ -1,0 +1,17 @@
+{%- assign language_ui = site.data.ui[page.lang] | default: site.data.ui.ko -%}
+{%- assign language_base = '/' -%}
+{%- if page.product -%}{%- assign language_base = '/' | append: page.product | append: '/' -%}
+{%- elsif page.layout == 'privacy' -%}{%- assign language_base = '/privacy/' -%}{%- endif -%}
+{%- assign language_ko = page.ko_url | default: language_base -%}
+{%- assign language_en = language_base | append: 'en/' -%}
+{%- assign language_en = page.en_url | default: language_en -%}
+{%- assign language_ja = language_base | append: 'ja/' -%}
+{%- assign language_ja = page.ja_url | default: language_ja -%}
+<nav class="{{ include.class | default: 'company-language' }}" aria-label="{{ language_ui.language | escape }}">
+  <svg class="{{ include.class | default: 'company-language' }}__globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5c4 2 10 2 14 0M5 17.5c4-2 10-2 14 0"/></svg>
+  <a href="{{ language_ko | relative_url }}" lang="ko" hreflang="ko"{% if page.lang == 'ko' %} aria-current="page"{% endif %}>한국어</a>
+  {% if include.class == 'product-language' %}<span class="product-language__divider" aria-hidden="true"></span>{% endif %}
+  <a href="{{ language_en | relative_url }}" lang="en" hreflang="en"{% if page.lang == 'en' %} aria-current="page"{% endif %}>English</a>
+  {% if include.class == 'product-language' %}<span class="product-language__divider" aria-hidden="true"></span>{% endif %}
+  <a href="{{ language_ja | relative_url }}" lang="ja" hreflang="ja"{% if page.lang == 'ja' %} aria-current="page"{% endif %}>日本語</a>
+</nav>

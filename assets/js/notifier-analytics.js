@@ -10,7 +10,7 @@
   } catch { return; }
 
   const path = location.pathname;
-  if (['/', '/en/', '/index.html', '/en/index.html'].includes(path)) return;
+  if (['/', '/en/', '/ja/', '/index.html', '/en/index.html', '/ja/index.html'].includes(path)) return;
   // A product's front matter is authoritative; flat product URLs also work without it.
   const candidate = script.dataset.program || path.split('/').filter(Boolean)[0] || '';
   const program = /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(candidate) && candidate.length <= 64 ? candidate : 'site';
@@ -22,7 +22,7 @@
       if (response?.ok) window.dispatchEvent(new Event('program-stats-updated'));
     }).catch(() => {});
   };
-  // Count once per path in a tab session. English and Korean are separate page views.
+  // Count once per path in a tab session. Each language has a separate page path.
   const key = `duki-view:${path}`;
   try {
     if (!sessionStorage.getItem(key)) {

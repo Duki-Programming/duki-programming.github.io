@@ -198,3 +198,106 @@ en:
     - question: Why does my Mac say the developer cannot be verified?
       answer: The current macOS build is not signed with an Apple Developer ID or notarized. After verifying the source and file, try opening the app once, then check System Settings → Privacy & Security for the option to open the blocked app.
   creator: Created by
+
+ja:
+  likes:
+    title: いいねとダウンロードで応援
+    label: いいね
+    downloads: ダウンロード
+    download_detail: このページのダウンロードリンクのクリックを、OSごと・IPアドレスごとに1回集計します。
+    action: Market Peekを応援する
+    done: Market Peekを応援しました
+    loading: いいねを読み込み中…
+    thanks: 応援ありがとうございます！
+    error: 現在いいねを利用できません。しばらくしてからお試しください。
+  tip:
+    title: 開発者を応援する
+    teaser: コーヒー1杯で開発を応援。
+    intro: Market Peekが日々の作業に役立ったら、コーヒー1杯で応援していただけます。
+    pending: 支援機能を準備中です。
+    thanks: 応援ありがとうございます。公開までしばらくお待ちください。
+    action: PayPalで支援する
+    external: PayPalで支援金額を米ドル（USD）で指定します。新しいタブで開きます。韓国のPayPalアカウント同士の支払いには対応していません。
+    close: 閉じる
+    methods: 支援方法
+    crypto_amount: 金額は自由に指定できます。ネットワーク手数料は別途かかります。
+    minimum: 最低入金額：
+    address: USDT入金アドレス · TRC20
+    copy: アドレスをコピー
+    copied: アドレスをコピーしました。
+    copy_failed: 自動コピーがブロックされました。選択されたアドレスを手動でコピーしてください。
+    network_note: TRON（TRC20）ネットワークのUSDTのみ送金してください。他の通貨やネットワークを使うと資金を失う可能性があります。
+  skip: 本文へスキップ
+  language_navigation: サイトの言語
+  hero_title: 相場はいつもそばに。<br><span>作業の流れ</span>を止めずに。
+  intro: ウィンドウを切り替えずに価格を確認。<br>暗号資産、韓国株、米国株の値動きを<br>デスクトップの片隅で追いかけられます。
+  windows_download: Windows版をダウンロード
+  mac_download: macOS版をダウンロード
+  beta: ベータ版
+  chart_alt: Binance BTC/USDTの1時間足チャートを表示するMarket Peek
+  widget_alt: Market PeekのBTC価格ウィジェット
+  features_title: 気になったら、もう少し詳しく。
+  features_intro: 小さな価格ウィジェットからチャート、タスクバー表示、保有ポジションまで。
+  features:
+  - title: いつでも手元にあるウィジェット
+    body: 最前面に固定したり、閉じる・非表示でトレイに収納したりできます。標準のAlt+Hショートカットで表示と非表示を切り替えられます。
+  - title: ワンクリックでチャートを開く
+    body: 価格をクリックするとローソク足チャートを展開します。移動平均線、RSI、MACDなど10種類のテクニカル指標を組み合わせられます。
+  - title: 気になる銘柄をまとめて管理
+    body: 暗号資産、韓国株、米国株を検索してお気に入りに追加できます。暗号資産チャートは5つの取引所に対応しています。
+  - title: 最小化しても価格を表示
+    body: タスクバーの価格表示を有効にすると、−ボタンで最小化しても銘柄名・価格・騰落率を確認できます。Windows側でタスクバーのラベル表示を有効にする必要があります。
+  - title: 現物と先物をひとつの画面に
+    body: 接続した取引所の現物保有とUSDT先物ポジションを銘柄別にまとめて表示します。現物・ロング・ショートを区別でき、Upbitは現物保有のみ対応しています。
+  - title: コンパクトで見やすいポジション情報
+    body: 各ポジションを1〜2行にまとめ、損益額を小数第1位まで表示します。対応取引所では未設定の利確・損切り価格を追加したり、既存の設定を編集したりできます。
+  api_title: 対応する取引所アカウントAPI
+  spot_futures: 現物 · USDT先物
+  spot: 現物
+  download_title: 相場のための小さな場所を。<br>あなたのデスクトップに。
+  download_language_note: このページは日本語版です。macOSアプリは韓国語・英語に対応し、Windowsインストーラーの案内は韓国語です。サイトの言語を変えてもアプリの言語は変わりません。
+  windows_platform: Windows 64ビット
+  installer_download: EXEインストーラーをダウンロード
+  installer_detail: 韓国語のインストーラー
+  archive_download: 7zアーカイブをダウンロード
+  archive_detail: 展開して実行 · 韓国語のアプリ
+  release_notes: リリースノート
+  version_downloads: すべてのバージョン
+  windows_pending: ダウンロードを準備中です。
+  windows_pending_detail: Windows用EXEインストーラーと7zアーカイブを公開予定です。
+  mac_detail: Universal DMGインストーラー
+  mac_pending: macOS版を準備中
+  mac_pending_detail: 最新バージョンのmacOSインストーラーを準備しています。
+  install_title: 3ステップで始められます。
+  install_steps:
+  - title: ファイルをダウンロード
+    body: WindowsではEXEインストーラーか7zアーカイブを、MacではUniversal DMGを選びます。
+  - title: アプリをインストール
+    body: Windowsでは韓国語の案内に従ってインストールするか、7zを展開して実行します。MacではDMGを開き、Market Peekをアプリケーションフォルダへドラッグします。
+  - title: 追いかける銘柄を選ぶ
+    body: 銘柄名をクリックして検索します。価格をクリックするとチャートが開きます。
+  faq:
+  - question: アプリで選べる言語は？
+    answer: 最新のmacOS版は、設定 → 言語で韓国語と英語を選べます。Windowsインストーラーの案内は韓国語です。サイトの言語切り替えはアプリの言語設定には影響しません。
+  - question: Pythonのインストールは必要ですか？
+    answer: 不要です。Windows版とmacOS版には実行に必要な環境が含まれています。
+  - question: Mac版の更新方法は？
+    answer: Mac版1.0.4にはアプリ内更新機能があります。「更新」を選ぶと、ダウンロード・検証・置き換え・再起動を行います。1.0.2または1.0.3の場合は、最新のDMGを一度インストールすると以後の更新機能を利用できます。
+  - question: 取引所アカウントの接続方法は？
+    answer: アプリの設定で各取引所のAPI認証情報を追加します。保存を選ぶと、キー・シークレット・必要なパスフレーズを暗号化し、このコンピューター内に取引所ごとに保存します。
+  - question: 少額の現物残高を非表示にできますか？
+    answer: 設定 → 表示とウィンドウで、現物の最低表示額を変更できます。初期設定では1 USDT以下を非表示にします。0にするとすべて表示します。先物と評価額が不明な現物は表示されます。
+  - question: 最小化と、閉じる・非表示の違いは？
+    answer: "−ボタンはタスクバーへ最小化します。閉じる・非表示・Alt+Hはウィンドウをトレイに収納します。トレイアイコンかAlt+Hで再表示できます。完全に終了するにはトレイメニューか設定の終了を使います。トレイを利用できない場合は最小化します。"
+  - question: タスクバーに価格が表示されません。
+    answer: アプリの設定 → 表示とウィンドウで価格表示を有効にします。Windowsの設定 → 個人用設定 → タスクバーで、ボタンの結合とラベル非表示の設定を「なし」にします。名称はWindowsのバージョンによって異なります。価格は1行表示のため、幅が足りないと一部が省略されることがあります。
+  - question: TP・SLはどのように表示されますか？
+    answer: ポジションのラベルと関連ツールチップは小数第1位まで表示します。0より大きく0.1未満の値は<0.1と表示します。これは表示のみの簡略化で、注文価格や数量の精度は維持されます。
+  - question: Windowsでセキュリティ通知が出るのはなぜですか？
+    answer: 現在のインストーラーは個人開発の署名なしビルドです。発行元を確認できないという通知が出る場合があります。配布元とファイルを確認してからインストールを判断してください。
+  - question: Macやスマートフォンで使えますか？
+    answer: Universal DMGはApple SiliconとIntel Macに対応しています。タスクバーの価格表示とログイン時起動はWindows専用です。スマートフォンでこのページを閲覧できますが、アプリはデスクトップ用です。
+  - question: Macで開発元を確認できないと表示されます。
+    answer: 現在のmacOS版はApple Developer IDによる署名と公証を行っていません。配布元とファイルを確認したうえで一度起動を試し、システム設定
+      → プライバシーとセキュリティでブロックされたアプリを開く項目を確認してください。
+  creator: 開発・制作

@@ -5,7 +5,18 @@
   const cacheKey = 'market-peek-downloads-v2';
   const baseline = document.getElementById('main')?.dataset.releaseVersion;
   const english = document.documentElement?.lang?.toLowerCase().startsWith('en');
-  const text = english ? {
+  const japanese = document.documentElement?.lang?.toLowerCase().startsWith('ja');
+  const beta = japanese ? 'ベータ版' : 'Beta';
+  const text = japanese ? {
+    installer: '韓国語のインストーラー',
+    archive: '展開して実行 · 韓国語のアプリ',
+    mac: 'Universal DMGインストーラー',
+    macDownload: 'macOS版をダウンロード ',
+    notes: 'リリースノート',
+    pending: '準備中',
+    macPending: 'macOS版を準備中 ',
+    macPendingDetail: '最新バージョンのmacOSインストーラーを準備しています。',
+  } : english ? {
     installer: 'Korean-language installer',
     archive: 'Extract and run · Korean-language app',
     mac: 'DMG installer · Korean-language app',
@@ -37,7 +48,7 @@
     const dmg = release => findAsset(release, `market-peek-${release.tag_name.slice(1)}-universal.dmg`);
     function version(id, release) {
       const element = document.getElementById(id);
-      if (element) element.textContent = `${release.tag_name} Beta`;
+      if (element) element.textContent = `${release.tag_name} ${beta}`;
     }
     function button(id, release, asset, description) {
       const element = document.getElementById(id);
@@ -60,7 +71,7 @@
       const notes = document.getElementById('windows-release-notes');
       if (notes) {
         notes.href = `${base}/releases/tag/${encodeURIComponent(windows.tag_name)}`;
-        notes.textContent = `${windows.tag_name} Beta ${text.notes} ↗`;
+        notes.textContent = `${windows.tag_name} ${beta} ${text.notes} ↗`;
       }
     }
     const mac = published.find(release => dmg(release));
@@ -70,7 +81,7 @@
     } else if (published.length) {
       const element = document.getElementById('mac-download-link');
       const heading = document.getElementById('mac-release-version');
-      if (heading) heading.textContent = `${published[0].tag_name} Beta ${text.pending}`;
+      if (heading) heading.textContent = `${published[0].tag_name} ${beta} ${text.pending}`;
       if (element) {
         element.removeAttribute('href');
         element.setAttribute('aria-disabled', 'true');

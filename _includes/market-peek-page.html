@@ -3,16 +3,7 @@
 {% assign release = site.data.market_peek %}
 <a class="skip" href="#main">{{ copy.skip | escape }}</a>
 <header class="product-topbar wrap">
-  <nav class="product-language" aria-label="{{ copy.language_navigation | escape }}">
-    <svg class="product-language__globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-      <circle cx="12" cy="12" r="9"></circle>
-      <ellipse cx="12" cy="12" rx="4" ry="9"></ellipse>
-      <path d="M3 12h18M5 6.5c4 2 10 2 14 0M5 17.5c4-2 10-2 14 0"></path>
-    </svg>
-    <a href="{{ '/market-peek/' | relative_url }}" lang="ko" hreflang="ko"{% if language == 'ko' %} aria-current="page"{% endif %}>한국어</a>
-    <span class="product-language__divider" aria-hidden="true"></span>
-    <a href="{{ '/market-peek/en/' | relative_url }}" lang="en" hreflang="en"{% if language == 'en' %} aria-current="page"{% endif %}>English</a>
-  </nav>
+  {% include language-switch.html class="product-language" %}
 </header>
 <main id="main" class="market-peek-page" data-release-version="v{{ release.mac.version | default: release.version | escape }}">
   <section aria-labelledby="hero-title" class="hero wrap">
@@ -26,7 +17,7 @@
       </div>
       <button class="tip-button" type="button" data-tip-open aria-haspopup="dialog" aria-controls="developer-tip-dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>
-        <span class="tip-button-copy"><strong lang="en">Tip the Developer!</strong><span>{{ copy.tip.teaser | escape }}</span></span>
+        <span class="tip-button-copy"><strong{% unless language == 'ja' %} lang="en"{% endunless %}>{{ copy.tip.title | escape }}</strong><span>{{ copy.tip.teaser | escape }}</span></span>
         <span class="tip-button-arrow" aria-hidden="true">→</span>
       </button>
       {% include download-likes.html %}
@@ -61,7 +52,7 @@
     </div>
     <div class="download-options">
       <div class="download-panel" id="download-windows">
-        <div class="release-heading"><strong>{{ copy.windows_platform | escape }}</strong><span id="windows-release-version">v{{ release.version | escape }} Beta</span></div>
+        <div class="release-heading"><strong>{{ copy.windows_platform | escape }}</strong><span id="windows-release-version">v{{ release.version | escape }} {% if language == 'ja' %}ベータ版{% else %}Beta{% endif %}</span></div>
         <p class="platform-label">Windows · x64</p>
         {% if release.published %}
         <a class="button download-button" href="{{ release.installer.url | escape }}" id="download-link">{{ copy.installer_download | escape }} <span aria-hidden="true">↓</span></a>
@@ -71,7 +62,7 @@
         <p class="download-file">{{ release.archive.size | divided_by: 1000000.0 | round: 1 }} MB · {{ copy.archive_detail | escape }}</p>
         {% endif %}
         <div class="release-links">
-          <a class="release-notes" id="windows-release-notes" href="{{ release.release_url | escape }}">v{{ release.version | escape }} Beta {{ copy.release_notes | escape }} <span aria-hidden="true">↗</span></a>
+          <a class="release-notes" id="windows-release-notes" href="{{ release.release_url | escape }}">v{{ release.version | escape }} {% if language == 'ja' %}ベータ版{% else %}Beta{% endif %} {{ copy.release_notes | escape }} <span aria-hidden="true">↗</span></a>
           <a class="release-notes" href="{{ release.releases_url | escape }}">{{ copy.version_downloads | escape }} <span aria-hidden="true">↗</span></a>
         </div>
         {% else %}
@@ -80,7 +71,7 @@
         {% endif %}
       </div>
       <div class="download-panel" id="download-mac">
-        <div class="release-heading"><strong>macOS</strong><span id="mac-release-version">v{{ release.mac.version | default: release.version | escape }} Beta{% unless release.mac.published %} {{ copy.mac_pending | escape }}{% endunless %}</span></div>
+        <div class="release-heading"><strong>macOS</strong><span id="mac-release-version">v{{ release.mac.version | default: release.version | escape }} {% if language == 'ja' %}ベータ版{% else %}Beta{% endif %}{% unless release.mac.published %} {{ copy.mac_pending | escape }}{% endunless %}</span></div>
         <p class="platform-label">Universal · Apple Silicon / Intel</p>
         {% if release.mac.published and release.mac.url %}
         <a class="button download-button" href="{{ release.mac.url | escape }}" id="mac-download-link">{{ copy.mac_download | escape }} <span aria-hidden="true">↓</span></a>

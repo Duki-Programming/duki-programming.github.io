@@ -1,6 +1,7 @@
 (() => {
   const repository = 'Duki-Programming/Doro-Modbus-releases';
   const english = document.documentElement.lang === 'en';
+  const japanese = document.documentElement.lang === 'ja';
   const compare = (a, b) => {
     const x = a.tag_name.slice(1).split('.').map(Number), y = b.tag_name.slice(1).split('.').map(Number);
     for (let i = 0; i < 3; i++) if (x[i] !== y[i]) return y[i] - x[i];
@@ -29,12 +30,12 @@
     const link = document.getElementById('download-link');
     if (!link) return;
     link.href = asset.browser_download_url;
-    document.getElementById('windows-release-version').textContent = `${release.tag_name} Beta`;
+    document.getElementById('windows-release-version').textContent = `${release.tag_name} ${japanese ? 'ベータ版' : 'Beta'}`;
     const notes = document.getElementById('windows-release-notes');
     notes.href = `https://github.com/${repository}/releases/tag/${release.tag_name}`;
-    notes.textContent = `${release.tag_name} Beta ${english ? 'release notes ↗' : '릴리스 정보 ↗'}`;
+    notes.textContent = `${release.tag_name} ${japanese ? 'ベータ版' : 'Beta'} ${japanese ? 'リリースノート ↗' : english ? 'release notes ↗' : '릴리스 정보 ↗'}`;
     const details = document.querySelector('#download-windows .download-file');
-    if (details && Number.isSafeInteger(asset.size)) details.textContent = `${(asset.size / 1000000).toFixed(1)} MB · ${english ? 'Portable executable · No Python required' : '설치 없이 실행 · Python 설치 불필요'}`;
+    if (details && Number.isSafeInteger(asset.size)) details.textContent = `${(asset.size / 1000000).toFixed(1)} MB · ${japanese ? 'インストール不要 · Python不要' : english ? 'Portable executable · No Python required' : '설치 없이 실행 · Python 설치 불필요'}`;
     if (root) root.dataset.releaseVersion = release.tag_name;
   })().catch(() => {});
 })();

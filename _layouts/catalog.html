@@ -15,6 +15,7 @@
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="alternate" hreflang="ko" href="{{ page.ko_url | absolute_url }}">
   <link rel="alternate" hreflang="en" href="{{ page.en_url | absolute_url }}">
+  <link rel="alternate" hreflang="ja" href="{{ page.ja_url | absolute_url }}">
   <link rel="icon" href="{{ '/assets/brand.svg' | relative_url }}" type="image/svg+xml">
   <link rel="stylesheet" href="{{ '/assets/css/catalog.css' | relative_url }}">
   <script defer src="{{ '/assets/js/card-tilt.js' | relative_url }}"></script>
@@ -24,10 +25,11 @@
   {% include program-stats-script.html %}
   <link rel="stylesheet" href="{{ '/assets/css/business-footer.css' | relative_url }}">
   {% include advertising-head.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/languages.css' | relative_url }}">
 </head>
 <body class="catalog-page">
   <header class="catalog-header shell">
-    <a class="catalog-brand" href="{% if page.lang == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}"><img src="{{ '/assets/brand.svg' | relative_url }}" width="32" height="32" alt="">Duki Lab<span aria-hidden="true">.</span></a>
+    <a class="catalog-brand" href="{{ site.data.ui[page.lang].home_url | relative_url }}"><img src="{{ '/assets/brand.svg' | relative_url }}" width="32" height="32" alt="">Duki Lab<span aria-hidden="true">.</span></a>
     {% include company-language.html %}
   </header>
   {% include content-with-ads.html %}

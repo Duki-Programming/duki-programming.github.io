@@ -4,19 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% include site-fonts.html %}
+  {% if page.lang == 'en' %}
+  <link rel="preload" href="{{ '/assets/fonts/pixel-operator/PixelOperator.ttf' | relative_url }}" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="{{ '/assets/css/product-english-font.css' | relative_url }}">
+  {% endif %}
   {% include google-site-verification.html %}
   <meta name="description" content="{{ page.description | escape }}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ page.title | escape }}">
   <meta property="og:description" content="{{ page.description | escape }}">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
-  <meta property="og:locale" content="{% if page.lang == 'en' %}en_US{% else %}ko_KR{% endif %}">
+  <meta property="og:locale" content="{% if page.lang == 'en' %}en_US{% elsif page.lang == 'ja' %}ja_JP{% else %}ko_KR{% endif %}">
   {% if page.cover %}<meta property="og:image" content="{{ page.cover | absolute_url }}">{% endif %}
   <title>{{ page.title | escape }} — {{ page.tagline | escape }}</title>
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   {% if page.product == 'market-peek' or page.product == 'doro-modbus' or page.product == 'bitbox' %}
   <link rel="alternate" hreflang="ko" href="{{ '/' | append: page.product | append: '/' | absolute_url }}">
   <link rel="alternate" hreflang="en" href="{{ '/' | append: page.product | append: '/en/' | absolute_url }}">
+  <link rel="alternate" hreflang="ja" href="{{ '/' | append: page.product | append: '/ja/' | absolute_url }}">
   <link rel="alternate" hreflang="x-default" href="{{ '/' | append: page.product | append: '/' | absolute_url }}">
   {% endif %}
   {% if page.icon %}<link rel="icon" href="{{ page.icon | relative_url }}">{% endif %}
@@ -26,6 +31,7 @@
   {% include program-stats-script.html %}
   <link rel="stylesheet" href="{{ '/assets/css/business-footer.css' | relative_url }}">
   {% include advertising-head.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/languages.css' | relative_url }}">
 </head>
 <body>
   <template data-product-stats-template>{% include program-stats.html %}</template>

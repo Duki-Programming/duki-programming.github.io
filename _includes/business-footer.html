@@ -1,2 +1,3 @@
+{% assign footer_ui = site.data.ui[page.lang] | default: site.data.ui.ko %}
 <span class="business-footer__name" lang="en">© {{ site.time | date: '%Y' }} Duki Lab</span>
-<a class="privacy-policy-link" href="{% if page.lang == 'en' %}{{ '/privacy/en/' | relative_url }}{% else %}{{ '/privacy/' | relative_url }}{% endif %}">{% if page.lang == 'en' %}Privacy Policy{% else %}개인정보처리방침{% endif %}</a>
+<a class="privacy-policy-link" href="{{ footer_ui.privacy_url | relative_url }}">{{ footer_ui.privacy | escape }}</a>

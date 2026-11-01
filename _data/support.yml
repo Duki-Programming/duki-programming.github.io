@@ -12,3 +12,7 @@ en:
 usdt_trc20:
   address: "TW1FWayHAum3wmA5JFvezCrM9mctRAKXHb"
   min_deposit: "0.01"
+
+# Japanese pages use the same existing PayPal recipient as Korean and English.
+ja:
+  tip_url: "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=cbcc1234%40gmail.com&currency_code=USD&no_shipping=1&lc=US&charset=UTF-8"

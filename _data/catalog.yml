@@ -58,3 +58,34 @@ en:
       icon: /assets/programs/bitbox/icon.png
       url: /bitbox/en/
       featured: false
+
+ja:
+  title: |-
+    ひとりで使うには
+    ちょっと惜しいプログラムたち。
+  description: Duki Labが作ったアプリと、その使い方を紹介します。
+  section_title: プログラム
+  navigation: 言語を選択
+  creator: 開発・制作
+  programs:
+  - id: market-peek
+    title: Market Peek
+    description: 暗号資産、韓国株、米国株の価格をデスクトップの片隅で確認できる、小さなウィジェットです。
+    platform: Windows · macOS
+    icon: "/assets/programs/market-peek/icon.png"
+    url: "/market-peek/ja/"
+    featured: true
+  - id: doro-modbus
+    title: Doro Modbus
+    description: Modbus RTU Master / Slaveシミュレーター。CSVアドレス管理、テスト値の生成、通信グラフに対応しています。
+    platform: Windows · ベータ版
+    icon: "/assets/programs/doro-modbus/icon.png"
+    url: "/doro-modbus/ja/"
+    featured: false
+  - id: bitbox
+    title: BitBox
+    description: iPhoneとApple WatchでBitgetの残高とポジションを確認するアプリ。開発中のため、ダウンロードはまだ利用できません。
+    platform: iPhone · Apple Watch · 開発中
+    icon: "/assets/programs/bitbox/icon.png"
+    url: "/bitbox/ja/"
+    featured: false

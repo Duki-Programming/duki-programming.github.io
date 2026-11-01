@@ -12,5 +12,5 @@
     {% if section.links %}<ul class="privacy-links">{% for link in section.links %}<li><a href="{{ link.url | escape }}">{{ link.label | escape }}</a></li>{% endfor %}</ul>{% endif %}
   </section>
   {% endfor %}
-  <a class="privacy-home" href="{% if page.lang == 'en' %}{{ '/en/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}">← {{ copy.home | escape }}</a>
+  <a class="privacy-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}">← {{ copy.home | escape }}</a>
 </main>

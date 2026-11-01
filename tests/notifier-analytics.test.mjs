@@ -17,10 +17,10 @@ test('refreshes in a tab do not inflate views; query strings are absent', () => 
   assert.equal(page(storage).calls.length, 0);
 });
 test('catalog roots are excluded while product and translated product pages remain tracked', () => {
-  for (const path of ['/', '/en/', '/index.html', '/en/index.html']) {
+  for (const path of ['/', '/en/', '/ja/', '/index.html', '/en/index.html', '/ja/index.html']) {
     assert.equal(page(new Map(), 'https://metrics.example', path).calls.length, 0);
   }
-  for (const path of ['/market-peek/', '/market-peek/en/', '/ble-smart-cube/', '/doro-modbus/', '/doro-modbus/en/']) {
+  for (const path of ['/market-peek/', '/market-peek/en/', '/ble-smart-cube/', '/doro-modbus/', '/doro-modbus/en/', '/market-peek/ja/', '/doro-modbus/ja/', '/bitbox/ja/']) {
     const p = page(new Map(), 'https://metrics.example', path);
     assert.equal(p.calls.length, 1);
     assert.equal(p.calls[0].page, path);
@@ -39,8 +39,8 @@ test('unconfigured or insecure collectors remain inactive', () => {
   assert.equal(page(new Map(), 'http://metrics.example').calls.length, 0);
 });
 
-test('new products work without editing a hard-coded list in either language', () => {
-  for (const path of ['/new-serial-tool/', '/new-serial-tool/en/']) {
+test('new products work without editing a hard-coded list in all three languages', () => {
+  for (const path of ['/new-serial-tool/', '/new-serial-tool/en/', '/new-serial-tool/ja/']) {
     const p = page(new Map(), 'https://metrics.example', path);
     assert.equal(p.calls[0].program, 'new-serial-tool');
     p.click('https://github.com/Duki-Programming/New-Tool-releases/releases/download/v1/tool.exe');

@@ -24,8 +24,8 @@ function page(language = 'ko') {
     window: { localStorage: { getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value) } } } };
 }
 
-test('blocked GitHub API preserves the published static downloads in both languages', async () => {
-  for (const language of ['ko', 'en']) {
+test('blocked GitHub API preserves the published static downloads in all three languages', async () => {
+  for (const language of ['ko', 'en', 'ja']) {
     const p = page(language);
     await vm.runInNewContext(source, { ...p.context, fetch: async () => { throw new Error('blocked'); } });
     assert.equal(p.nodes.get('windows-release-version').textContent, 'v1.0.4 Beta');
@@ -58,4 +58,18 @@ test('a newer Windows-only release disables the obsolete Mac download', async ()
   assert.equal(p.nodes.get('mac-download-link').attributes['aria-disabled'], 'true');
   assert.equal(p.nodes.get('mac-download-link').href, undefined);
   assert.equal(p.nodes.get('mac-release-version').textContent, 'v1.0.5 Beta 준비 중');
+});
+
+test('Japanese release updates retain Japanese labels and valid download destinations', async () => {
+  const p = page('ja');
+  await vm.runInNewContext(source, { ...p.context, fetch: async () => ({ ok: true, json: async () => [release('1.0.10')] }) });
+  assert.equal(p.nodes.get('windows-release-version').textContent, 'v1.0.10 ベータ版');
+  assert.match(p.nodes.get('windows-release-notes').textContent, /リリースノート/);
+  assert.equal(p.nodes.get('mac-download-link').firstChild.textContent, 'macOS版をダウンロード ');
+  assert.match(p.nodes.get('download-link').href, /^https:\/\/github.com\/Duki-Programming\/Market-Peek-releases\/releases\/download\//);
+  const latest = release('1.0.11'); latest.assets.pop();
+  p.storage.clear();
+  await vm.runInNewContext(source, { ...p.context, fetch: async () => ({ ok: true, json: async () => [latest] }) });
+  assert.equal(p.nodes.get('mac-download-link').attributes['aria-disabled'], 'true');
+  assert.equal(p.nodes.get('mac-download-link').firstChild.textContent, 'macOS版を準備中 ');
 });

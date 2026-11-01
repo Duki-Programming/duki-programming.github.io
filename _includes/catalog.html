@@ -1,7 +1,7 @@
 {% assign copy = site.data.catalog[page.lang] %}
 <main class="catalog-main shell">
   <section class="catalog-intro" aria-labelledby="catalog-title">
-    <p class="catalog-eyebrow">APPS &amp; TOOLS</p>
+    <p class="catalog-eyebrow">{{ site.data.ui[page.lang].apps_tools | escape }}</p>
     <h1 id="catalog-title">{{ copy.title | escape | newline_to_br }}</h1>
     <p class="catalog-description">{{ copy.description | escape }}</p>
   </section>
