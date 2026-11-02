@@ -45,6 +45,10 @@
 
 /* Product-only language navigation; creator credits remain plain text. */
 .product-topbar { display: flex; justify-content: flex-end; align-items: center; min-height: 80px; padding-top: 18px; padding-bottom: 14px; }
+.market-peek-topbar { justify-content: space-between; gap: 8px 16px; }
+.market-peek-home { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 12px 0; font: 10px var(--site-font); color: var(--muted); white-space: nowrap; }
+.market-peek-home:hover { color: var(--accent); }
+@media (max-width: 480px) { .market-peek-home { font-size: 8px; gap: 5px; } }
 .product-language { display: inline-flex; align-items: center; gap: 4px; padding: 5px 6px 5px 13px; border: 1px solid #34413c; border-radius: 999px; background: #192220; font-size: 13px; }
 .product-language__globe { width: 19px; height: 19px; margin-right: 5px; color: #a9baac; flex-shrink: 0; }
 .product-language a { padding: 8px 13px; border-radius: 999px; color: #aebcb3; line-height: 1.3; }

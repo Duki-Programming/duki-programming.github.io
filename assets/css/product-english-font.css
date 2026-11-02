@@ -65,7 +65,7 @@ html[lang="en"] :is(
   line-height: 1.6;
 }
 html[lang="en"] :is(
-  .doro-home, .bitbox-home, .eyebrow, .doro-eyebrow, .bitbox-eyebrow,
+  .market-peek-home, .doro-home, .bitbox-home, .eyebrow, .doro-eyebrow, .bitbox-eyebrow,
   .doro-preview-heading, .bitbox-preview-heading, .doro-screen-top,
   .doro-screen-bottom > span:last-child, .doro-loadout > span, .doro-loadout b,
   .doro-skill-badge, .bitbox-feature-badge, .install-steps .doro-quest,

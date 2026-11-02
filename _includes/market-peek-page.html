@@ -2,7 +2,8 @@
 {% assign copy = site.data.market_peek_copy[language] %}
 {% assign release = site.data.market_peek %}
 <a class="skip" href="#main">{{ copy.skip | escape }}</a>
-<header class="product-topbar wrap">
+<header class="product-topbar market-peek-topbar wrap">
+  <a class="market-peek-home" href="{{ site.data.ui[language].home_url | relative_url }}" aria-label="Duki Lab"><span aria-hidden="true">←</span> DUKI LAB</a>
   {% include language-switch.html class="product-language" %}
 </header>
 <main id="main" class="market-peek-page" data-release-version="v{{ release.mac.version | default: release.version | escape }}">
