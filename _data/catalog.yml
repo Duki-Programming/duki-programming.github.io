@@ -28,6 +28,14 @@ ko:
       icon: /assets/programs/bitbox/icon.png
       url: /bitbox/
       featured: false
+    - id: talkey
+      title: Talkey
+      description: 손목에서 말하고 아이폰에 글자로. Apple Watch 음성 입력 앱 Talkey를 만들고 있습니다.
+      platform: iPhone · Apple Watch · 작업 중
+      icon: /assets/programs/talkey/icon.png
+      url: /talkey/
+      featured: false
+
 en:
   title: |-
     Programs a little too good
@@ -59,6 +67,14 @@ en:
       url: /bitbox/en/
       featured: false
 
+    - id: talkey
+      title: Talkey
+      description: Speak on your wrist, type on your iPhone. Talkey is a Korean voice-input companion in development.
+      platform: iPhone · Apple Watch · In development
+      icon: /assets/programs/talkey/icon.png
+      url: /talkey/en/
+      featured: false
+
 ja:
   title: |-
     ひとりで使うには
@@ -88,4 +104,12 @@ ja:
     platform: iPhone · Apple Watch · 開発中
     icon: "/assets/programs/bitbox/icon.png"
     url: "/bitbox/ja/"
+    featured: false
+
+  - id: talkey
+    title: Talkey
+    description: 手首で話して、iPhoneに文字を。韓国語の音声入力アプリTalkeyを開発中です。
+    platform: iPhone · Apple Watch · 開発中
+    icon: /assets/programs/talkey/icon.png
+    url: /talkey/ja/
     featured: false

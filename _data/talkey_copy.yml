@@ -1,0 +1,224 @@
+{
+  "ko": {
+    "status": "작업 중 · 다운로드 준비 중",
+    "name": "Talkey",
+    "hero_title": "손목에서 말하고.<br>아이폰에 적고.",
+    "intro": "작은 아이콘을 꾹 누르고 말해 보세요. Talkey가 Apple Watch의 목소리를 아이폰 입력칸의 글자로 바꿉니다.",
+    "cta": "다운로드 준비 중",
+    "status_note": "지금은 소개와 개발 중 화면만 공개합니다. 설치 파일과 다운로드는 제공하지 않습니다.",
+    "preview_label": "Talkey · 개발 중 화면",
+    "preview_note": "실제 개발 빌드를 시뮬레이터에서 실행한 화면입니다. 음성 입력과 연결 상태는 실기기에서 검증 중이며, 공개 전 기능과 화면이 바뀔 수 있습니다.",
+    "iphone_alt": "보라색 Talkey 아이콘과 음성 입력 설정이 있는 아이폰 앱 화면",
+    "watch_alt": "큰 원형 Talkey 녹음 아이콘과 스페이스, 엔터, 삭제 키가 있는 Apple Watch 화면",
+    "features_eyebrow": "A LITTLE TALK. A LITTLE TAP.",
+    "features_title": "손목에는 딱 필요한 것만.",
+    "features": [
+      {
+        "badge": "01 / TALK",
+        "title": "아이콘을 꾹, 말을 쓱",
+        "body": "큰 원형 아이콘이 녹음 버튼입니다. 연결 후 파형이 나타나면 말하고, 손을 떼면 아이폰으로 보냅니다."
+      },
+      {
+        "badge": "02 / FIFTEEN",
+        "title": "한 번에, 최대 15초",
+        "body": "말한 뒤 약 2초 동안 조용해지거나 15초가 되면 자동으로 입력을 준비합니다. 녹음은 작은 조각으로 나눠 전송합니다."
+      },
+      {
+        "badge": "03 / KEYS",
+        "title": "간격, 줄바꿈, 지우기",
+        "body": "스페이스·엔터·삭제를 세 개의 기호로 모았습니다. 키를 누르면 짧은 진동과 눌리는 움직임으로 답합니다."
+      },
+      {
+        "badge": "04 / TYPE",
+        "title": "쓰던 입력칸으로",
+        "body": "아이폰에서 전용 ‘워치 입력’ 키보드를 선택하세요. 외부 키보드를 허용하는 앱의 입력칸에 인식된 문장을 넣습니다."
+      },
+      {
+        "badge": "05 / VOICE",
+        "title": "한국어로, 자연스럽게",
+        "body": "아이폰의 기기 내 한국어 음성 인식을 우선합니다. 기기에서 지원하지 않으면 설정에서 Apple 서버 인식을 선택할 수 있습니다."
+      },
+      {
+        "badge": "06 / LITTLE DETAILS",
+        "title": "보랏빛의 작은 도구",
+        "body": "픽셀 워치 캐릭터와 큰 원형 버튼, 은은한 보라색 키. 작은 화면의 설명은 줄이고 누르는 곳을 또렷하게 만들었습니다."
+      }
+    ],
+    "development_title": "조금씩, 더 편한 입력으로.",
+    "development_body": "15초 음성 입력과 워치·아이폰 연결을 다듬고 있습니다. 실제 사용 환경의 속도와 호환성을 확인한 뒤 공개 배포를 안내할게요.",
+    "availability": [
+      "iPhone · iOS 17 이상",
+      "Apple Watch · watchOS 10 이상",
+      "현재 음성 인식 언어: 한국어"
+    ],
+    "faq_title": "미리 알아두세요",
+    "faq": [
+      {
+        "question": "지금 다운로드할 수 있나요?",
+        "answer": "아직은 아닙니다. 현재는 소개와 개발 화면만 공개하며, App Store·TestFlight·설치 파일 링크는 제공하지 않습니다."
+      },
+      {
+        "question": "카톡 메시지도 자동으로 보내나요?",
+        "answer": "메시지 전송 기능은 없습니다. 전용 키보드를 선택한 입력칸에 글자를 넣는 앱입니다. 실제 메시지는 아이폰의 해당 앱에서 보내세요."
+      },
+      {
+        "question": "모든 입력칸에서 사용할 수 있나요?",
+        "answer": "아이폰에서 ‘워치 입력’ 키보드를 추가하고 전체 접근을 허용해야 합니다. 비밀번호 입력칸이나 외부 키보드를 허용하지 않는 앱에서는 사용할 수 없습니다."
+      },
+      {
+        "question": "워치만 있으면 되나요?",
+        "answer": "페어링된 아이폰이 필요합니다. 워치는 녹음하고 아이폰이 한국어를 인식해 글자로 입력합니다. 연결 상태와 iOS 실행 조건에 따라 입력이 지연되거나 완료되지 않을 수 있습니다."
+      }
+    ],
+    "home": "프로그램 목록",
+    "language": "언어 선택"
+  },
+  "en": {
+    "status": "In development · Downloads unavailable",
+    "name": "Talkey",
+    "hero_title": "Speak on your wrist.<br>Type on your iPhone.",
+    "intro": "Press the little icon and say a few words. Talkey turns your Apple Watch recording into text in an iPhone input field.",
+    "cta": "Download coming later",
+    "status_note": "An introduction and development previews only. No installation files or downloads are available.",
+    "preview_label": "Talkey · Development preview",
+    "preview_note": "Screenshots show the actual development build running in simulators. Voice input and connectivity are being tested on physical devices. Features and screens may change before release.",
+    "iphone_alt": "Talkey iPhone app with its purple icon and voice input setup",
+    "watch_alt": "Talkey Apple Watch app with a large round recording icon and space, return, and delete keys",
+    "features_eyebrow": "A LITTLE TALK. A LITTLE TAP.",
+    "features_title": "Just the essentials, on your wrist.",
+    "features": [
+      {
+        "badge": "01 / TALK",
+        "title": "Press. Speak. Release.",
+        "body": "The large round icon is your recording button. Speak when the waveform appears; release to send the recording to iPhone."
+      },
+      {
+        "badge": "02 / FIFTEEN",
+        "title": "Up to 15 seconds at a time",
+        "body": "Input starts after roughly two seconds of silence following speech, or at 15 seconds. Audio travels in small chunks."
+      },
+      {
+        "badge": "03 / KEYS",
+        "title": "Space, return, delete",
+        "body": "Three familiar symbols for quick edits. A short haptic and a small press animation acknowledge each touch."
+      },
+      {
+        "badge": "04 / TYPE",
+        "title": "The field you are using",
+        "body": "Select the dedicated Watch Input keyboard on iPhone. Recognized text goes into the input field of an app that allows third-party keyboards."
+      },
+      {
+        "badge": "05 / VOICE",
+        "title": "Made for Korean speech",
+        "body": "Talkey prefers on-device Korean recognition on iPhone. Apple server recognition is optional when on-device recognition is unavailable."
+      },
+      {
+        "badge": "06 / LITTLE DETAILS",
+        "title": "A little purple personality",
+        "body": "A pixel watch character, a generous circular button, and softly lit purple keys. Fewer words on a small screen, clearer places to press."
+      }
+    ],
+    "development_title": "Making everyday input a little easier.",
+    "development_body": "We are refining 15-second voice input and the watch-to-iPhone connection. Public availability will follow testing of real-world speed and compatibility.",
+    "availability": [
+      "iPhone · iOS 17 or later",
+      "Apple Watch · watchOS 10 or later",
+      "Current speech recognition language: Korean"
+    ],
+    "faq_title": "A few things to know",
+    "faq": [
+      {
+        "question": "Can I download it now?",
+        "answer": "Not yet. Only the introduction and development screens are public. There are no App Store, TestFlight, or installation-file links."
+      },
+      {
+        "question": "Does it send chat messages automatically?",
+        "answer": "No. Talkey inserts text through its dedicated keyboard. Send the actual message from the app on your iPhone."
+      },
+      {
+        "question": "Does it work in every text field?",
+        "answer": "Add the dedicated Watch Input keyboard and allow Full Access on iPhone. Password fields and apps that disable third-party keyboards are not supported."
+      },
+      {
+        "question": "Can I use just the watch?",
+        "answer": "A paired iPhone is required. The watch records; iPhone recognizes Korean speech and inserts the text. Connectivity and iOS execution conditions can delay or prevent completion."
+      }
+    ],
+    "home": "All programs",
+    "language": "Choose a language"
+  },
+  "ja": {
+    "status": "開発中 · ダウンロード未公開",
+    "name": "Talkey",
+    "hero_title": "手首で話して。<br>iPhoneに文字を。",
+    "intro": "小さなアイコンを押しながら話してみてください。TalkeyがApple Watchの録音をiPhoneの入力欄の文字に変えます。",
+    "cta": "ダウンロードは準備中",
+    "status_note": "現在は紹介と開発画面のみを公開しています。インストールファイルやダウンロードは提供していません。",
+    "preview_label": "Talkey · 開発プレビュー",
+    "preview_note": "実際の開発ビルドをシミュレーターで実行した画面です。音声入力と接続は実機で検証中です。公開までに機能や画面が変わる場合があります。",
+    "iphone_alt": "紫色のTalkeyアイコンと音声入力の設定があるiPhone画面",
+    "watch_alt": "大きな丸いTalkey録音アイコンとスペース、改行、削除キーがあるApple Watch画面",
+    "features_eyebrow": "少し話して、少しタップ。",
+    "features_title": "手首には、必要なものだけ。",
+    "features": [
+      {
+        "badge": "01 / 話す",
+        "title": "押して、話して、離す。",
+        "body": "大きな丸いアイコンが録音ボタンです。波形が現れたら話し、指を離すとiPhoneに録音を送ります。"
+      },
+      {
+        "badge": "02 / 15秒",
+        "title": "1回の録音は最大15秒",
+        "body": "発話後に約2秒静かになるか、15秒に達すると入力の準備を始めます。音声は小さく分けて転送します。"
+      },
+      {
+        "badge": "03 / キー",
+        "title": "スペース、改行、削除",
+        "body": "3つの記号で手軽に編集。短い振動と押し込むような動きで、タッチに応えます。"
+      },
+      {
+        "badge": "04 / 入力",
+        "title": "いつもの入力欄へ",
+        "body": "iPhoneで専用キーボードを選びます。他社製キーボードを許可するアプリの入力欄に、認識した文章を入れます。"
+      },
+      {
+        "badge": "05 / 音声",
+        "title": "韓国語の音声入力",
+        "body": "iPhoneのデバイス内韓国語認識を優先します。非対応の場合は、設定でAppleのサーバー認識を選べます。"
+      },
+      {
+        "badge": "06 / デザイン",
+        "title": "紫色の、小さな道具",
+        "body": "ドット絵のWatchキャラクター、大きな丸いボタン、柔らかな紫色のキー。小さな画面の説明を減らし、押す場所を見やすくしました。"
+      }
+    ],
+    "development_title": "毎日の入力を、少しずつ快適に。",
+    "development_body": "15秒の音声入力とWatch・iPhoneの接続を調整しています。実際の環境で速度と互換性を確認してから、一般公開をご案内します。",
+    "availability": [
+      "iPhone · iOS 17以降",
+      "Apple Watch · watchOS 10以降",
+      "現在の音声認識言語：韓国語"
+    ],
+    "faq_title": "ご利用前に知っておきたいこと",
+    "faq": [
+      {
+        "question": "今すぐダウンロードできますか？",
+        "answer": "まだできません。現在は紹介と開発画面のみを公開しています。App Store、TestFlight、インストールファイルへのリンクはありません。"
+      },
+      {
+        "question": "チャットのメッセージも自動送信しますか？",
+        "answer": "いいえ。Talkeyは専用キーボードで文字を入力するアプリです。メッセージの送信はiPhoneの各アプリで行ってください。"
+      },
+      {
+        "question": "すべての入力欄で使えますか？",
+        "answer": "iPhoneで専用キーボードを追加し、フルアクセスを許可する必要があります。パスワード欄や他社製キーボードを許可しないアプリでは使えません。"
+      },
+      {
+        "question": "Watchだけで使えますか？",
+        "answer": "ペアリングしたiPhoneが必要です。Watchが録音し、iPhoneが韓国語を認識して文字を入力します。接続やiOSの実行状態によっては、遅延したり完了できなかったりする場合があります。"
+      }
+    ],
+    "home": "すべてのプログラム",
+    "language": "言語を選択"
+  }
+}

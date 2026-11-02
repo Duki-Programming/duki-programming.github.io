@@ -1,0 +1,14 @@
+@import url("bitbox.css");
+:root{--bg:#100c18;--panel:#1c1529;--line:#403052;--text:#f8f3ff;--muted:#baaccb;--accent:#c691ff}
+body{background:radial-gradient(ellipse at 80% 8%,#8c39d52e,transparent 45%),radial-gradient(ellipse at 4% 55%,#4a25661f,transparent 40%),var(--bg)}
+.product-language{border-color:#4c365f;background:#21182e}.product-language a[aria-current=page]{background:#503269;color:#f2dcff}.product-language a:hover{background:#342340}
+.talkey-page .bitbox-status{color:#e3c2ff;background:#2d1c3d;border-color:#61417d}
+.talkey-page .bitbox-download.button:disabled{background:#261d32;color:#cbb8dc;border-color:#6b507e}
+.talkey-page .bitbox-showcase{background:linear-gradient(145deg,#2b1d3c,#16101f);border-color:#65447f;box-shadow:7px 7px 0 #08060d,0 20px 90px #762b9f14}
+.talkey-page .bitbox-preview-heading{color:#ddbcf7}.talkey-page .bitbox-phone{border-color:#514159}
+.talkey-page .bitbox-watch{border-color:#9276a9;background:#100b18;box-shadow:0 15px 30px #0009}.talkey-page .bitbox-watch-crown{background:#b096c3}
+.talkey-page .bitbox-watch:before,.talkey-page .bitbox-watch:after{background:repeating-linear-gradient(0deg,#392448 0 3px,#4d335c 3px 5px)}
+.talkey-page .bitbox-mascot{border-color:#74508b;transform:rotate(-8deg);border-radius:22px}
+.talkey-page .feature-grid article{border-color:#443051;border-top-color:#bd83ee;background:linear-gradient(145deg,#281c35,#181120)}
+.talkey-page .feature-grid article:nth-child(3n+2){border-top-color:#e6a0c6}.talkey-page .feature-grid article:nth-child(3n){border-top-color:#9b9ce9}
+.talkey-page .bitbox-feature-badge{color:#d7b8ee}.talkey-page .bitbox-development{border-color:#634279;background:#21172d}.talkey-page .bitbox-development ul{color:#e0cce9}

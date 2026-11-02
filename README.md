@@ -151,3 +151,7 @@ node --test tests/*.test.mjs
 ```
 
 다른 빌드 경로를 쓰면 테스트에 `JEKYLL_DESTINATION=/빌드/경로`를 지정합니다. 번역 키, 세 언어 연결, 폰트 적용 범위, 개인정보처리방침의 광고·집계 제외, 일본어 릴리스 갱신을 검사합니다.
+
+### Talkey 소개 페이지
+
+`/talkey/`, `/talkey/en/`, `/talkey/ja/`는 BitBox와 같은 소개 전용 구조입니다. 큰 원형 아이콘 버튼과 보라색 화면을 실제 시뮬레이터에서 캡처해 보여줍니다. 공개 자산은 아이콘과 화면 이미지뿐이며, 앱 소스·IPA·설치 파일·App Store·TestFlight 다운로드 링크는 포함하지 않습니다. `tests/talkey-preview.test.mjs`와 공통 언어 검사로 이 상태를 확인합니다.

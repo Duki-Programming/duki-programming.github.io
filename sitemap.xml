@@ -3,6 +3,6 @@ layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% assign paths = '/,/en/,/ja/,/market-peek/,/market-peek/en/,/market-peek/ja/,/ja/,/doro-modbus/,/doro-modbus/en/,/doro-modbus/ja/,/ja/,/bitbox/,/bitbox/en/,/bitbox/ja/,/ja/,/privacy/,/privacy/en/,/privacy/ja/,/ja/' | split: ',' %}
+  {% assign paths = '/,/en/,/ja/,/market-peek/,/market-peek/en/,/market-peek/ja/,/ja/,/doro-modbus/,/doro-modbus/en/,/doro-modbus/ja/,/ja/,/bitbox/,/bitbox/en/,/bitbox/ja/,/talkey/,/talkey/en/,/talkey/ja/,/ja/,/privacy/,/privacy/en/,/privacy/ja/,/ja/' | split: ',' %}
   {% for path in paths %}<url><loc>{{ path | absolute_url }}</loc></url>{% endfor %}
 </urlset>
