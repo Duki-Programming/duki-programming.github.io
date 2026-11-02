@@ -133,9 +133,9 @@ Doro 페이지는 갈무리·스타더스트 픽셀 라벨, 역할 선택 미리
 
 메인 목록은 기존 폰트를 유지합니다. 공통 설정은 `_includes/site-fonts.html`과 `assets/css/site-fonts.css`에 있으며, 한글은 Galmuri9, 라틴 문자는 PF 스타더스트 3.0을 사용합니다. 일본어도 기존 글꼴 스택을 사용하고 문장 줄바꿈을 언어에 맞춰 조정합니다.
 
-프로그램별 **영문 페이지에서만** Pixel Operator를 사용합니다. `_layouts/product.html`이 `lang: en`일 때만 `assets/css/product-english-font.css`를 불러옵니다. 메인 목록과 개인정보처리방침의 영문 페이지, 한국어·일본어 프로그램 페이지에는 이 CSS를 넣지 않습니다. Regular/Bold 파일과 CC0 라이선스·출처는 `assets/fonts/pixel-operator/`에 보관합니다. [제작자 배포 페이지](https://www.dafont.com/pixel-operator.font)에서 받은 파일을 사용합니다.
+프로그램별 **영문 페이지의 큰 메인 제목(`#hero-title`)에만** Pixel Operator를 사용합니다. 본문·버튼·메뉴·제품 이름·섹션 제목은 기존 PF 스타더스트·Galmuri9 조합을 사용합니다. `_layouts/product.html`이 `lang: en`일 때만 `assets/css/product-english-font.css`를 불러옵니다. 메인 목록과 개인정보처리방침의 영문 페이지, 한국어·일본어 프로그램 페이지에는 이 CSS를 넣지 않습니다. Regular/Bold 파일과 CC0 라이선스·출처는 `assets/fonts/pixel-operator/`에 보관합니다. [제작자 배포 페이지](https://www.dafont.com/pixel-operator.font)에서 받은 파일을 사용합니다.
 
-언어 전환 버튼은 모든 페이지에서 기존 PF 스타더스트·Galmuri9 조합을 사용합니다. `assets/css/languages.css`가 전환 영역의 글꼴을 고정하므로 영문 본문의 Pixel Operator 설정을 상속하지 않습니다.
+언어 전환 버튼은 모든 페이지에서 기존 PF 스타더스트·Galmuri9 조합을 사용하며, `assets/css/languages.css`가 전환 영역의 글꼴을 고정합니다.
 
 PF 스타더스트는 [고정 버전 CDN](https://noonnu.cc/font_page/1614)에서 불러오며 재배포하지 않습니다. Galmuri9는 기존 로컬 파일과 OFL 라이선스를 사용합니다.
 
