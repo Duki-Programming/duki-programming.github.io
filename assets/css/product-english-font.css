@@ -19,8 +19,64 @@ html[lang="en"] {
   --site-font: 'Pixel Operator', 'Galmuri9', sans-serif;
 }
 
-/* Keep button labels and their nested text in the original font. */
-html[lang="en"] :is(button, .button, [role="button"], [role="tab"]) {
+/* Keep product names, button labels, and their nested text in the original font. */
+html[lang="en"] :is(button, .button, [role="button"], [role="tab"], .product-brand, .product-footer .brand) {
   --site-font: 'PF Stardust', 'Galmuri9', sans-serif;
   font-family: var(--site-font);
+}
+
+/* Pixel Operator needs more room than the original font at small text sizes. */
+html[lang="en"] main .intro {
+  font-size: 22px;
+  line-height: 1.65;
+}
+html[lang="en"] :is(
+  .section-heading > p:where(:not(.doro-eyebrow)), .feature-grid p,
+  .install-steps p, .faq summary, .faq details p, .download-language-note,
+  .bitbox-development p:where(:not(.bitbox-eyebrow)), .bitbox-development ul,
+  .tip-dialog > p
+) {
+  font-size: 18px;
+  line-height: 1.65;
+}
+html[lang="en"] :is(.feature-grid, .install-steps) h3,
+html[lang="en"] :is(.api-support h3, .doro-faq-title) {
+  font-size: 24px;
+  line-height: 1.4;
+}
+html[lang="en"] :is(.api-exchanges strong, .release-heading strong) {
+  font-size: 20px;
+}
+html[lang="en"] :is(.api-exchanges span, .release-heading > span, .support-title, .download-pending) {
+  font-size: 18px;
+  line-height: 1.5;
+}
+html[lang="en"] #bitbox-download-note,
+html[lang="en"] :is(
+  .download-file, .download-panel .platform-label, .release-notes,
+  .download-status, .support-status, .hero-note, .archive-detail, .filename,
+  .doro-promo-lines, .doro-screen-note, .doro-preview-note,
+  .doro-screen-bottom, .doro-screens figcaption, .bitbox-showcase figcaption,
+  .bitbox-status, .product-credits span, .product-credits strong,
+  .business-footer__name, .privacy-policy-link, .tip-dialog .tip-note,
+  .tip-dialog .tip-network-note, .tip-address, .tip-address-label
+) {
+  font-size: 16px;
+  line-height: 1.6;
+}
+html[lang="en"] :is(
+  .doro-home, .bitbox-home, .eyebrow, .doro-eyebrow, .bitbox-eyebrow,
+  .doro-preview-heading, .bitbox-preview-heading, .doro-screen-top,
+  .doro-screen-bottom > span:last-child, .doro-loadout > span, .doro-loadout b,
+  .doro-skill-badge, .bitbox-feature-badge, .install-steps .doro-quest,
+  .tip-network span, .site-ad__label, .site-side-ad__label
+) {
+  font-size: 14px;
+  line-height: 1.5;
+}
+html[lang="en"] .product-stat dt { font-size: 14px; }
+html[lang="en"] .product-stat dd { font-size: 20px; }
+html[lang="en"] .product-stats { flex-wrap: wrap; }
+@media (max-width: 760px) {
+  html[lang="en"] main .intro { font-size: 20px; }
 }
