@@ -3,13 +3,13 @@
     "status": "작업 중 · 다운로드 준비 중",
     "name": "Talkey",
     "hero_title": "손목에서 말하고.<br>아이폰에 적고.",
-    "intro": "작은 아이콘을 꾹 누르고 말해 보세요. Talkey가 Apple Watch의 목소리를 아이폰 입력칸의 글자로 바꿉니다.",
+    "intro": "원형 아이콘을 꾹 누르고 말해 보세요. Talkey가 Apple Watch의 목소리를 아이폰 입력칸의 글자로 바꿉니다.",
     "cta": "다운로드 준비 중",
     "status_note": "지금은 소개와 개발 중 화면만 공개합니다. 설치 파일과 다운로드는 제공하지 않습니다.",
     "preview_label": "Talkey · 개발 중 화면",
     "preview_note": "실제 개발 빌드를 시뮬레이터에서 실행한 화면입니다. 음성 입력과 연결 상태는 실기기에서 검증 중이며, 공개 전 기능과 화면이 바뀔 수 있습니다.",
     "iphone_alt": "보라색 Talkey 아이콘과 음성 입력 설정이 있는 아이폰 앱 화면",
-    "watch_alt": "큰 원형 Talkey 녹음 아이콘과 스페이스, 엔터, 삭제 키가 있는 Apple Watch 화면",
+    "watch_alt": "왼쪽의 큰 원형 Talkey 녹음 아이콘과 오른쪽 위부터 백스페이스, 스페이스, 엔터 키가 있는 Apple Watch 화면",
     "features_eyebrow": "A LITTLE TALK. A LITTLE TAP.",
     "features_title": "손목에는 딱 필요한 것만.",
     "features": [
@@ -25,8 +25,8 @@
       },
       {
         "badge": "03 / KEYS",
-        "title": "간격, 줄바꿈, 지우기",
-        "body": "스페이스·엔터·삭제를 세 개의 기호로 모았습니다. 키를 누르면 짧은 진동과 눌리는 움직임으로 답합니다."
+        "title": "지우고, 띄우고, 줄바꿈",
+        "body": "오른쪽 위부터 백스페이스 · 스페이스 · 엔터. 백스페이스와 스페이스는 짧게 누르면 한 번, 꾹 누르면 연속으로 입력합니다."
       },
       {
         "badge": "04 / TYPE",
@@ -41,11 +41,11 @@
       {
         "badge": "06 / LITTLE DETAILS",
         "title": "보랏빛의 작은 도구",
-        "body": "픽셀 워치 캐릭터와 큰 원형 버튼, 은은한 보라색 키. 작은 화면의 설명은 줄이고 누르는 곳을 또렷하게 만들었습니다."
+        "body": "픽셀 워치 캐릭터와 큰 원형 버튼, 은은한 보라색 키. 누르는 움직임과 처음 누를 때의 짧은 진동으로 터치에 답합니다."
       }
     ],
     "development_title": "조금씩, 더 편한 입력으로.",
-    "development_body": "15초 음성 입력과 워치·아이폰 연결을 다듬고 있습니다. 실제 사용 환경의 속도와 호환성을 확인한 뒤 공개 배포를 안내할게요.",
+    "development_body": "백스페이스 · 스페이스 · 엔터 순서와 길게 누르기 반복 입력을 반영했습니다. 15초 음성 입력과 실제 사용 환경의 속도·호환성을 계속 다듬고 있습니다.",
     "availability": [
       "iPhone · iOS 17 이상",
       "Apple Watch · watchOS 10 이상",
@@ -56,6 +56,10 @@
       {
         "question": "지금 다운로드할 수 있나요?",
         "answer": "아직은 아닙니다. 현재는 소개와 개발 화면만 공개하며, App Store·TestFlight·설치 파일 링크는 제공하지 않습니다."
+      },
+      {
+        "question": "키를 길게 누르면 어떻게 되나요?",
+        "answer": "백스페이스와 스페이스는 누를 때 한 번 입력하고, 약 0.4초 이상 누르면 반복합니다. 손을 떼거나 버튼 밖으로 움직이면 추가 반복을 멈춥니다. 엔터는 한 번씩 입력합니다. 반복 속도는 연결 상태에 따라 달라질 수 있습니다."
       },
       {
         "question": "카톡 메시지도 자동으로 보내나요?",
@@ -77,13 +81,13 @@
     "status": "In development · Downloads unavailable",
     "name": "Talkey",
     "hero_title": "Speak on your wrist.<br>Type on your iPhone.",
-    "intro": "Press the little icon and say a few words. Talkey turns your Apple Watch recording into text in an iPhone input field.",
+    "intro": "Press the round icon and say a few words. Talkey turns your Apple Watch recording into text in an iPhone input field.",
     "cta": "Download coming later",
     "status_note": "An introduction and development previews only. No installation files or downloads are available.",
     "preview_label": "Talkey · Development preview",
     "preview_note": "Screenshots show the actual development build running in simulators. Voice input and connectivity are being tested on physical devices. Features and screens may change before release.",
     "iphone_alt": "Talkey iPhone app with its purple icon and voice input setup",
-    "watch_alt": "Talkey Apple Watch app with a large round recording icon and space, return, and delete keys",
+    "watch_alt": "Talkey Apple Watch app with a large round recording icon on the left and backspace, space, and return keys from top to bottom on the right",
     "features_eyebrow": "A LITTLE TALK. A LITTLE TAP.",
     "features_title": "Just the essentials, on your wrist.",
     "features": [
@@ -99,8 +103,8 @@
       },
       {
         "badge": "03 / KEYS",
-        "title": "Space, return, delete",
-        "body": "Three familiar symbols for quick edits. A short haptic and a small press animation acknowledge each touch."
+        "title": "Backspace, space, return",
+        "body": "Three keys, in that order from top to bottom. Tap backspace or space for one input; hold either key to keep deleting or adding spaces."
       },
       {
         "badge": "04 / TYPE",
@@ -115,11 +119,11 @@
       {
         "badge": "06 / LITTLE DETAILS",
         "title": "A little purple personality",
-        "body": "A pixel watch character, a generous circular button, and softly lit purple keys. Fewer words on a small screen, clearer places to press."
+        "body": "A pixel watch character, a generous circular button, and softly lit purple keys. A press animation and one short haptic at the start of each press acknowledge your touch."
       }
     ],
     "development_title": "Making everyday input a little easier.",
-    "development_body": "We are refining 15-second voice input and the watch-to-iPhone connection. Public availability will follow testing of real-world speed and compatibility.",
+    "development_body": "The latest build puts backspace, space, and return in order and adds hold-to-repeat. We are continuing to refine 15-second voice input, real-world responsiveness, and compatibility.",
     "availability": [
       "iPhone · iOS 17 or later",
       "Apple Watch · watchOS 10 or later",
@@ -130,6 +134,10 @@
       {
         "question": "Can I download it now?",
         "answer": "Not yet. Only the introduction and development screens are public. There are no App Store, TestFlight, or installation-file links."
+      },
+      {
+        "question": "What happens when I hold a key?",
+        "answer": "Backspace and space trigger once when pressed, then repeat after about 0.4 seconds. Release or move your finger outside the key to stop further repeats. Return triggers once per tap. Repeat speed can vary with the connection."
       },
       {
         "question": "Does it send chat messages automatically?",
@@ -151,13 +159,13 @@
     "status": "開発中 · ダウンロード未公開",
     "name": "Talkey",
     "hero_title": "手首で話して。<br>iPhoneに文字を。",
-    "intro": "小さなアイコンを押しながら話してみてください。TalkeyがApple Watchの録音をiPhoneの入力欄の文字に変えます。",
+    "intro": "丸いアイコンを押しながら話してみてください。TalkeyがApple Watchの録音をiPhoneの入力欄の文字に変えます。",
     "cta": "ダウンロードは準備中",
     "status_note": "現在は紹介と開発画面のみを公開しています。インストールファイルやダウンロードは提供していません。",
     "preview_label": "Talkey · 開発プレビュー",
     "preview_note": "実際の開発ビルドをシミュレーターで実行した画面です。音声入力と接続は実機で検証中です。公開までに機能や画面が変わる場合があります。",
     "iphone_alt": "紫色のTalkeyアイコンと音声入力の設定があるiPhone画面",
-    "watch_alt": "大きな丸いTalkey録音アイコンとスペース、改行、削除キーがあるApple Watch画面",
+    "watch_alt": "左に大きな丸いTalkey録音アイコン、右に上からバックスペース、スペース、改行キーが並ぶApple Watch画面",
     "features_eyebrow": "少し話して、少しタップ。",
     "features_title": "手首には、必要なものだけ。",
     "features": [
@@ -173,8 +181,8 @@
       },
       {
         "badge": "03 / キー",
-        "title": "スペース、改行、削除",
-        "body": "3つの記号で手軽に編集。短い振動と押し込むような動きで、タッチに応えます。"
+        "title": "消して、空けて、改行",
+        "body": "右側は上からバックスペース・スペース・改行。バックスペースとスペースは短く押すと1回、長押しすると連続で入力します。"
       },
       {
         "badge": "04 / 入力",
@@ -189,11 +197,11 @@
       {
         "badge": "06 / デザイン",
         "title": "紫色の、小さな道具",
-        "body": "ドット絵のWatchキャラクター、大きな丸いボタン、柔らかな紫色のキー。小さな画面の説明を減らし、押す場所を見やすくしました。"
+        "body": "ドット絵のWatchキャラクター、大きな丸いボタン、柔らかな紫色のキー。押し込むような動きと、押し始めの短い振動でタッチに応えます。"
       }
     ],
     "development_title": "毎日の入力を、少しずつ快適に。",
-    "development_body": "15秒の音声入力とWatch・iPhoneの接続を調整しています。実際の環境で速度と互換性を確認してから、一般公開をご案内します。",
+    "development_body": "バックスペース・スペース・改行の順に並べ、長押しによる連続入力に対応しました。15秒の音声入力、実際の環境での応答速度や互換性を引き続き調整しています。",
     "availability": [
       "iPhone · iOS 17以降",
       "Apple Watch · watchOS 10以降",
@@ -204,6 +212,10 @@
       {
         "question": "今すぐダウンロードできますか？",
         "answer": "まだできません。現在は紹介と開発画面のみを公開しています。App Store、TestFlight、インストールファイルへのリンクはありません。"
+      },
+      {
+        "question": "キーを長押しするとどうなりますか？",
+        "answer": "バックスペースとスペースは押したときに1回入力し、約0.4秒以上押し続けると連続入力します。指を離すかキーの外へ動かすと、追加の連続入力が止まります。改行はタップごとに1回入力します。連続入力の速さは接続状況によって変わります。"
       },
       {
         "question": "チャットのメッセージも自動送信しますか？",

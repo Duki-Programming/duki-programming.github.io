@@ -155,3 +155,5 @@ node --test tests/*.test.mjs
 ### Talkey 소개 페이지
 
 `/talkey/`, `/talkey/en/`, `/talkey/ja/`는 BitBox와 같은 소개 전용 구조입니다. 큰 원형 아이콘 버튼과 보라색 화면을 실제 시뮬레이터에서 캡처해 보여줍니다. 공개 자산은 아이콘과 화면 이미지뿐이며, 앱 소스·IPA·설치 파일·App Store·TestFlight 다운로드 링크는 포함하지 않습니다. `tests/talkey-preview.test.mjs`와 공통 언어 검사로 이 상태를 확인합니다.
+
+워치 화면은 백스페이스·스페이스·엔터 순서이며, 백스페이스와 스페이스의 길게 누르기 반복 동작을 세 언어로 안내합니다. 화면 이미지를 갱신할 때에는 `_includes/talkey-page.html`의 이미지 버전 값도 변경해 이전 캡처가 캐시에 남지 않도록 합니다.
