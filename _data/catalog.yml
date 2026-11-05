@@ -7,6 +7,15 @@ ko:
   navigation: 언어 선택
   creator: 개발·제작
   programs:
+    - id: "chatville"
+      title: "ChatVille"
+      description: "여섯 주민이 자기만의 하루를 사는 AI 픽셀 마을. 걷고, 지켜보고, 말을 걸어보세요."
+      platform: "PC 게임 · 개발 중"
+      icon: "/assets/programs/chatville/icon.svg"
+      url: "/chatville/"
+      featured: true
+      banner_style: "aurora-rainbow"
+      spotlight: "✦ NEW · 작은 마을, 여섯 개의 하루"
     - id: market-peek
       title: Market Peek
       description: 코인과 한국·미국 주식 시세를 바탕화면 한편에서 확인하는 작은 위젯입니다.
@@ -45,6 +54,15 @@ en:
   navigation: Choose a language
   creator: Created by
   programs:
+    - id: "chatville"
+      title: "ChatVille"
+      description: "An AI pixel village with six lives of their own. Walk, watch, and say hello."
+      platform: "PC game · In development"
+      icon: "/assets/programs/chatville/icon.svg"
+      url: "/chatville/en/"
+      featured: true
+      banner_style: "aurora-rainbow"
+      spotlight: "✦ NEW · A little village, six lives"
     - id: market-peek
       title: Market Peek
       description: Follow crypto, Korean stocks, and US stocks from a small widget in the corner of your desktop.
@@ -84,6 +102,15 @@ ja:
   navigation: 言語を選択
   creator: 開発・制作
   programs:
+  - id: "chatville"
+    title: "ChatVille"
+    description: "6人の住民が自分らしい一日を送るAIピクセルの村。歩いて、眺めて、話しかけてみましょう。"
+    platform: "PCゲーム · 開発中"
+    icon: "/assets/programs/chatville/icon.svg"
+    url: "/chatville/ja/"
+    featured: true
+    banner_style: "aurora-rainbow"
+    spotlight: "✦ NEW · 小さな村、6人の暮らし"
   - id: market-peek
     title: Market Peek
     description: 暗号資産、韓国株、米国株の価格をデスクトップの片隅で確認できる、小さなウィジェットです。

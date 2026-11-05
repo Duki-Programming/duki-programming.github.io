@@ -1,0 +1,70 @@
+{% assign copy = site.data.chatville_copy[page.lang] %}
+<a class="cv-skip" href="#main">{{ copy.skip | escape }}</a>
+<header class="cv-topbar cv-wrap">
+  <a class="cv-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}"><span aria-hidden="true">←</span> DUKI LAB</a>
+  {% include language-switch.html class="product-language" %}
+</header>
+<main id="main" class="cv-page" data-release-state="development">
+  <section class="cv-hero cv-wrap" aria-labelledby="cv-title">
+    <div class="cv-stars" aria-hidden="true">{% for i in (1..18) %}<i></i>{% endfor %}</div>
+    <div class="cv-hero-copy">
+      <p class="cv-eyebrow"><span class="cv-pixel-star" aria-hidden="true">✦</span> AI LIFE SIMULATION</p>
+      <p class="cv-status"><span aria-hidden="true"></span>{{ copy.status | escape }}</p>
+      <h1 id="cv-title"><span class="cv-wordmark product-brand">ChatVille<span aria-hidden="true">✦</span></span><span class="cv-headline">{{ copy.hero_title | escape | newline_to_br }}</span></h1>
+      <p class="cv-intro">{{ copy.intro | escape }}</p>
+      <div class="cv-actions">
+        <a class="button cv-button" href="#village">{{ copy.explore | escape }} <span aria-hidden="true">↗</span></a>
+        <a class="cv-text-link" href="#residents">{{ copy.meet | escape }} <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="cv-release-note">{{ copy.release_note | escape }}</p>
+    </div>
+    <figure class="cv-window">
+      <div class="cv-window-bar"><span><i></i><i></i><i></i></span><span>CHATVILLE / A LITTLE WORLD</span><span aria-hidden="true">✧</span></div>
+      <img class="cv-game-image" src="{{ '/assets/programs/chatville/neighborhood.png' | relative_url }}" width="1280" height="800" alt="{{ copy.closeup_alt | escape }}" fetchpriority="high">
+      <figcaption><span class="cv-live-dot" aria-hidden="true"></span>{{ copy.capture_label | escape }}<span>2026.11.05</span></figcaption>
+      <div class="cv-window-glint" aria-hidden="true">✦</div>
+    </figure>
+    <div class="cv-facts">
+      {% for fact in copy.facts %}<div><strong>{{ fact.value | escape }}</strong><span>{{ fact.label | escape }}</span></div>{% endfor %}
+      <button class="cv-effects" type="button" data-effects-toggle aria-pressed="true" hidden><span aria-hidden="true">✧</span><span data-effects-label>{{ copy.effects_on | escape }}</span></button>
+    </div>
+  </section>
+
+  <section id="residents" class="cv-section cv-wrap" aria-labelledby="residents-title">
+    <div class="cv-section-heading"><div><p class="cv-eyebrow">MEET YOUR NEIGHBORS</p><h2 id="residents-title">{{ copy.residents_title | escape | newline_to_br }}</h2></div><p>{{ copy.residents_intro | escape }}</p></div>
+    <div class="cv-residents">
+      {% for resident in copy.residents %}
+      <article class="cv-resident cv-resident--{{ resident.id }}">
+        <div class="cv-resident-top"><span class="cv-portrait"><img src="{{ '/assets/programs/chatville/' | append: resident.id | append: '.png' | relative_url }}" width="64" height="64" loading="lazy" alt=""></span><span class="cv-resident-number">0{{ forloop.index }} <span aria-hidden="true">✧</span></span></div>
+        <p class="cv-job">{{ resident.job | escape }}</p><h3>{{ resident.name | escape }}</h3><p class="cv-bio">{{ resident.bio | escape }}</p>
+        <div class="cv-tags">{% for tag in resident.tags %}<span>{{ tag | escape }}</span>{% endfor %}</div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section id="village" class="cv-section cv-wrap" aria-labelledby="village-title">
+    <div class="cv-section-heading"><div><p class="cv-eyebrow">A DAY IN CHATVILLE</p><h2 id="village-title">{{ copy.village_title | escape | newline_to_br }}</h2></div><p>{{ copy.village_intro | escape }}</p></div>
+    <figure class="cv-map"><div class="cv-map-heading"><span><span aria-hidden="true">⌘</span> {{ copy.map_title | escape }}</span><span>66 × 36</span></div><a href="{{ '/assets/programs/chatville/village.png' | relative_url }}" aria-label="{{ copy.map_expand | escape }}"><img src="{{ '/assets/programs/chatville/village.png' | relative_url }}" width="1536" height="864" loading="lazy" alt="{{ copy.map_alt | escape }}"></a><figcaption>{{ copy.map_caption | escape }}</figcaption></figure>
+    <div class="cv-features">
+      {% for feature in copy.features %}<article><span class="cv-feature-icon" aria-hidden="true">{{ feature.icon }}</span><h3>{{ feature.title | escape }}</h3><p>{{ feature.body | escape }}</p></article>{% endfor %}
+    </div>
+  </section>
+
+  <section class="cv-section cv-wrap" aria-labelledby="play-title">
+    <div class="cv-play-panel">
+      <div><p class="cv-eyebrow">WALK. WATCH. TALK.</p><h2 id="play-title">{{ copy.play_title | escape | newline_to_br }}</h2><p class="cv-panel-intro">{{ copy.play_intro | escape }}</p><p class="cv-note">{{ copy.language_note | escape }}</p></div>
+      <dl class="cv-controls">{% for control in copy.controls %}<div><dt>{% for key in control.keys %}<kbd>{{ key | escape }}</kbd>{% endfor %}</dt><dd>{{ control.action | escape }}</dd></div>{% endfor %}</dl>
+    </div>
+    <div class="cv-modes">{% for mode in copy.modes %}<article><p class="cv-eyebrow">{{ mode.label | escape }}</p><h3>{{ mode.title | escape }}</h3><p>{{ mode.body | escape }}</p></article>{% endfor %}</div>
+  </section>
+
+  <section class="cv-section cv-wrap cv-development" aria-labelledby="development-title">
+    <div class="cv-section-heading"><div><p class="cv-eyebrow">GROWING, ONE DAY AT A TIME</p><h2 id="development-title">{{ copy.development_title | escape }}</h2></div><p>{{ copy.development_intro | escape }}</p></div>
+    <div class="cv-updates"><article><p class="cv-update-label"><span aria-hidden="true">✦</span> {{ copy.latest_label | escape }} <time datetime="2026-11-05">2026.11.05</time></p><ul>{% for item in copy.latest %}<li>{{ item | escape }}</li>{% endfor %}</ul></article><article><p class="cv-update-label cv-planned">{{ copy.planned_label | escape }}</p><ul>{% for item in copy.planned %}<li>{{ item | escape }}</li>{% endfor %}</ul><p class="cv-note">{{ copy.planned_note | escape }}</p></article></div>
+    <div class="cv-endnote"><span aria-hidden="true">✧</span><p>{{ copy.endnote | escape }}</p><a class="cv-text-link" href="{{ site.data.ui[page.lang].home_url | relative_url }}">{{ copy.back | escape }} <span aria-hidden="true">↗</span></a></div>
+  </section>
+</main>
+<footer class="cv-wrap cv-footer product-footer"><a class="brand" href="#main"><img src="{{ '/assets/programs/chatville/icon.svg' | relative_url }}" width="32" height="32" alt="">ChatVille<span aria-hidden="true">✦</span></a><div class="product-credits business-footer">{% include business-footer.html %}</div></footer>
+<script type="application/json" id="cv-effects-copy">{{ copy.effects | jsonify }}</script>
+<script defer src="{{ '/assets/js/chatville.js' | relative_url }}"></script>

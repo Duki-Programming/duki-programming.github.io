@@ -10,7 +10,12 @@
     <div class="program-links">
       {% for program in copy.programs %}
         {% assign style = site.data.program_styles[forloop.index0] %}
-        {% include program-banner.html program=program style=style mode='auto' cube=true %}
+        {% if program.banner_style %}
+          {% assign style = site.data.program_styles | where: 'id', program.banner_style | first %}
+          {% include program-banner.html program=program style=style mode='fixed' cube=true %}
+        {% else %}
+          {% include program-banner.html program=program style=style mode='auto' cube=true %}
+        {% endif %}
       {% endfor %}
     </div>
     <script type="application/json" id="program-banner-styles">{{ site.data.program_styles | jsonify }}</script>

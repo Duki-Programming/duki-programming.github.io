@@ -1,0 +1,608 @@
+{
+  "ko": {
+    "skip": "본문으로 건너뛰기",
+    "status": "개발 중인 작은 픽셀 마을",
+    "hero_title": "작은 마을,\n저마다의 커다란 하루.",
+    "intro": "그림을 그리고, 코드를 짜고, 연못의 소리에 귀를 기울이고. 여섯 주민이 자기만의 하루를 보내는 AI 생활 시뮬레이션. 당신은 그 사이를 걷고, 지켜보고, 말을 걸어요.",
+    "explore": "마을 둘러보기",
+    "meet": "주민 만나기",
+    "release_note": "PC 게임 개발 중 · 지금은 소개만 공개해요.",
+    "closeup_alt": "실제 ChatVille 개발 씬의 연못과 카페, 길 위의 주민들",
+    "capture_label": "개발 중 마을 화면",
+    "facts": [
+      {
+        "value": "6",
+        "label": "서로 다른 주민"
+      },
+      {
+        "value": "23",
+        "label": "생활 행동"
+      },
+      {
+        "value": "AI",
+        "label": "이웃과 나누는 대화"
+      }
+    ],
+    "effects_on": "반짝임 켜짐",
+    "effects": {
+      "on": "반짝임 켜짐",
+      "off": "반짝임 꺼짐"
+    },
+    "residents_title": "같은 마을에 살아도,\n좋아하는 하루는 다르니까.",
+    "residents_intro": "직업도 취향도 생활 리듬도 다른 여섯 사람. 누가 어떤 하루를 보내는지 천천히 알아가 보세요.",
+    "residents": [
+      {
+        "id": "seoyun",
+        "name": "서윤",
+        "job": "프리랜서 일러스트레이터",
+        "bio": "도시를 떠나 마을의 색을 그림으로 남기는 사람. 일에 몰입하다가도 따뜻한 커피와 마당 앞에서 잠깐 멈춰요.",
+        "tags": [
+          "그림",
+          "따뜻한 커피",
+          "마당"
+        ]
+      },
+      {
+        "id": "minjae",
+        "name": "민재",
+        "job": "에세이 작가",
+        "bio": "아침 산책에서 글감을 줍고, 낚시하며 생각을 정리해요. 별일 없는 풍경에서도 한 문장을 찾아내는 편이에요.",
+        "tags": [
+          "산책",
+          "낚시",
+          "메모"
+        ]
+      },
+      {
+        "id": "ayoung",
+        "name": "아영",
+        "job": "원격 근무 개발자",
+        "bio": "반복되는 일은 자동화하고 싶어요. 코드를 고치며 집중하는 시간도, 일을 마치고 게임하는 시간도 소중해요.",
+        "tags": [
+          "개발",
+          "자동화",
+          "게임"
+        ]
+      },
+      {
+        "id": "doyun",
+        "name": "도윤",
+        "job": "인디 기타리스트",
+        "bio": "기타를 연습하고 작은 무대에서 연주해요. 혼자 다듬은 멜로디를 이웃과 나누는 하루를 보내요.",
+        "tags": [
+          "기타",
+          "연습",
+          "공연"
+        ]
+      },
+      {
+        "id": "harin",
+        "name": "하린",
+        "job": "로파이 작곡가",
+        "bio": "연못과 마을의 작은 소리를 녹음해요. 익숙한 풍경을 건반과 드럼 루프에 담고, 헤드폰 속에서 다시 들어요.",
+        "tags": [
+          "주변 소리",
+          "건반",
+          "믹싱"
+        ]
+      },
+      {
+        "id": "trader",
+        "name": "최씨",
+        "job": "코인 트레이더",
+        "bio": "파란 츄리닝에 슬리퍼, 차트 앞에서는 반짝이는 안경. 게임 속 가상 차트를 살피며 모의거래와 일지를 이어가요.",
+        "tags": [
+          "가상 차트",
+          "모의거래",
+          "기록"
+        ]
+      }
+    ],
+    "village_title": "누가 시키지 않아도,\n하루는 흘러가요.",
+    "village_intro": "각자의 방에서 시작해 카페, 연못, 음악 공간, 술집으로. 주민은 시간과 욕구, 성향에 따라 다음 장소와 행동을 골라요.",
+    "map_title": "지금 만들어지고 있는 마을",
+    "map_expand": "마을 전체 화면 원본 보기",
+    "map_alt": "북쪽의 개인 방 여섯 개와 빈방, 남쪽의 카페와 연못, 공동 술집이 있는 ChatVille 전체 지도",
+    "map_caption": "현재 Unity 개발 씬에서 직접 촬영한 화면이에요. 그래픽과 배치는 개발 과정에서 달라질 수 있어요.",
+    "features": [
+      {
+        "icon": "⌂",
+        "title": "스스로 보내는 하루",
+        "body": "일하고, 식사하고, 쉬고, 잠들어요. 이동을 마치고 목적지에 도착한 뒤 실제 행동을 시작해요."
+      },
+      {
+        "icon": "♫",
+        "title": "취향이 보이는 일상",
+        "body": "그림, 글쓰기, 개발, 기타, 건반과 믹싱. 같은 마을에서 서로 다른 작업과 취미를 이어가요."
+      },
+      {
+        "icon": "…",
+        "title": "이웃에게 말 걸기",
+        "body": "가까이 다가가 말을 걸면 짧은 답변이 이어져요. AI를 연결하면 주민끼리도 성격과 최근 경험에 맞춰 대화해요."
+      },
+      {
+        "icon": "↗",
+        "title": "걸어서 발견하기",
+        "body": "관찰자로 직접 마을을 돌아다녀요. 길을 양보하는 주민과 작은 말풍선을 따라 오늘의 풍경을 발견해요."
+      }
+    ],
+    "play_title": "잠깐 멈춰 서서,\n오늘 어땠냐고 물어보세요.",
+    "play_intro": "조작은 가볍게. 걷다가 마음에 드는 풍경을 보고, 가까운 이웃에게 말을 걸면 돼요.",
+    "language_note": "현재 게임 내 대화와 UI는 한국어를 기준으로 개발하고 있어요.",
+    "controls": [
+      {
+        "keys": [
+          "W",
+          "A",
+          "S",
+          "D"
+        ],
+        "action": "이동 · 방향키도 가능"
+      },
+      {
+        "keys": [
+          "Shift"
+        ],
+        "action": "이동하며 1.8배 달리기"
+      },
+      {
+        "keys": [
+          "Space"
+        ],
+        "action": "가까운 주민에게 말 걸기"
+      },
+      {
+        "keys": [
+          "Enter",
+          "Esc"
+        ],
+        "action": "메시지 전송 · 대화 닫기"
+      },
+      {
+        "keys": [
+          "Tab"
+        ],
+        "action": "마을 전체 / 가까이 보기"
+      },
+      {
+        "keys": [
+          "Wheel"
+        ],
+        "action": "카메라 확대 · 축소"
+      }
+    ],
+    "modes": [
+      {
+        "label": "LOCAL LIFE",
+        "title": "AI를 연결하지 않아도, 마을은 움직여요.",
+        "body": "기본 모드에서는 주민의 성향, 욕구, 시간에 따라 생활이 이어져요. 마을을 관찰하는 데 외부 AI 연결은 필요하지 않아요."
+      },
+      {
+        "label": "AI CONVERSATION",
+        "title": "게임 속 버튼으로 AI 연결.",
+        "body": "AI 연결을 켜면 주민의 행동 선택과 대화에 AI를 사용할 수 있어요. 현재 개발판은 별도의 로컬 서버 설정과 OpenAI API 키가 필요하며, API 사용에는 비용이 발생해요."
+      }
+    ],
+    "development_title": "조금씩, 더 살아 있는 마을로.",
+    "development_intro": "지금의 모습을 먼저 소개해요. 아직 공개 설치 파일은 제공하지 않으며, 다음 기능들을 차근차근 준비하고 있어요.",
+    "latest_label": "최근 반영한 것",
+    "latest": [
+      "이동 중 양쪽 Shift로 달리기, 속도에 맞춘 걷기 애니메이션.",
+      "게임 안 AI 버튼으로 로컬 서버를 시작하고 연결하는 흐름.",
+      "연못 주변 녹음 오브젝트 옆을 지나가기 쉽도록 충돌 수정."
+    ],
+    "planned_label": "다음으로 준비하는 것",
+    "planned": [
+      "인물별 취향이 담긴 구체적인 행동: 무엇을 먹고 어떤 작업을 했는지.",
+      "게임별 세션과 시작 메뉴, JSON 저장, 일주일의 기억을 필요한 만큼 꺼내 쓰는 방식.",
+      "각자의 침대에 눕고 눈을 감는 수면 모습과 작은 Z 효과."
+    ],
+    "planned_note": "위 항목은 설계·준비 단계이며 아직 게임에 모두 반영되지는 않았어요.",
+    "endnote": "내일은 이 마을에서 어떤 하루가 반짝일까요?",
+    "back": "Duki Lab의 다른 프로그램 보기"
+  },
+  "en": {
+    "skip": "Skip to content",
+    "status": "A little pixel village in development",
+    "hero_title": "A little village.\nSix lives of their own.",
+    "intro": "Painting, writing code, listening to the pond. Six neighbors spend the day in their own way in this AI life simulation. Walk among them, watch a little, and say hello.",
+    "explore": "Explore the village",
+    "meet": "Meet the neighbors",
+    "release_note": "PC game in development · Introduction only for now.",
+    "closeup_alt": "The pond, café, and residents on the paths in the actual ChatVille development scene",
+    "capture_label": "Development scene",
+    "facts": [
+      {
+        "value": "6",
+        "label": "unique neighbors"
+      },
+      {
+        "value": "23",
+        "label": "everyday activities"
+      },
+      {
+        "value": "AI",
+        "label": "neighbor conversations"
+      }
+    ],
+    "effects_on": "Sparkles on",
+    "effects": {
+      "on": "Sparkles on",
+      "off": "Sparkles off"
+    },
+    "residents_title": "One village.\nSix ways to spend a day.",
+    "residents_intro": "Different jobs, favorite things, and daily rhythms. Take your time getting to know the people who call this village home.",
+    "residents": [
+      {
+        "id": "seoyun",
+        "name": "Seoyun",
+        "job": "Freelance illustrator",
+        "bio": "She left the city to capture the village in color. Work draws her in; warm coffee and a quiet garden invite her to pause.",
+        "tags": [
+          "Painting",
+          "Warm coffee",
+          "Gardening"
+        ]
+      },
+      {
+        "id": "minjae",
+        "name": "Minjae",
+        "job": "Essay writer",
+        "bio": "Morning walks bring ideas; fishing gives them room to settle. Even an ordinary view can hold the start of a sentence.",
+        "tags": [
+          "Walking",
+          "Fishing",
+          "Notes"
+        ]
+      },
+      {
+        "id": "ayoung",
+        "name": "Ayoung",
+        "job": "Remote developer",
+        "bio": "Repetitive tasks are an invitation to automate. She values a good stretch of coding and a game after the work is done.",
+        "tags": [
+          "Coding",
+          "Automation",
+          "Gaming"
+        ]
+      },
+      {
+        "id": "doyun",
+        "name": "Doyun",
+        "job": "Indie guitarist",
+        "bio": "He practices guitar and plays on a small stage, sharing melodies he has worked on with the people around him.",
+        "tags": [
+          "Guitar",
+          "Practice",
+          "Performance"
+        ]
+      },
+      {
+        "id": "harin",
+        "name": "Harin",
+        "job": "Lo-fi composer",
+        "bio": "She records little sounds around the village, weaving familiar places into keyboard lines and drum loops.",
+        "tags": [
+          "Field recording",
+          "Keys",
+          "Mixing"
+        ]
+      },
+      {
+        "id": "trader",
+        "name": "Mr. Choi",
+        "job": "Crypto trader",
+        "bio": "A blue tracksuit, slippers, and glasses that gleam at a chart. His days revolve around fictional charts, simulated trades, and a journal.",
+        "tags": [
+          "Virtual charts",
+          "Paper trades",
+          "Journal"
+        ]
+      }
+    ],
+    "village_title": "Nobody needs to direct\nevery little moment.",
+    "village_intro": "From their rooms to the café, pond, music space, and pub, residents choose where to go and what to do based on the time, their needs, and their preferences.",
+    "map_title": "The village taking shape",
+    "map_expand": "View the full-size village image",
+    "map_alt": "ChatVille map with six private rooms and a spare room to the north, a café and pond to the south, and a shared pub",
+    "map_caption": "Captured directly from the current Unity development scene. Artwork and layout may change during development.",
+    "features": [
+      {
+        "icon": "⌂",
+        "title": "A day of their own",
+        "body": "Work, eat, rest, and sleep. Residents travel to a destination before starting the activity itself."
+      },
+      {
+        "icon": "♫",
+        "title": "Personal routines",
+        "body": "Drawing, writing, coding, guitar, keys, and mixing. Each neighbor brings different work and hobbies to the village."
+      },
+      {
+        "icon": "…",
+        "title": "A small conversation",
+        "body": "Walk up and say hello for a short reply. With AI connected, neighbors also talk to each other using their profiles and recent experiences."
+      },
+      {
+        "icon": "↗",
+        "title": "Discover on foot",
+        "body": "Explore as an observer. Follow little speech bubbles and residents making room on the path to see the day unfold."
+      }
+    ],
+    "play_title": "Stop for a moment.\nAsk about their day.",
+    "play_intro": "Simple controls leave room to look around. Walk somewhere interesting, then say hello to a nearby neighbor.",
+    "language_note": "The game interface and conversations are currently being developed in Korean.",
+    "controls": [
+      {
+        "keys": [
+          "W",
+          "A",
+          "S",
+          "D"
+        ],
+        "action": "Move · arrow keys also work"
+      },
+      {
+        "keys": [
+          "Shift"
+        ],
+        "action": "Run at 1.8× while moving"
+      },
+      {
+        "keys": [
+          "Space"
+        ],
+        "action": "Talk to a nearby resident"
+      },
+      {
+        "keys": [
+          "Enter",
+          "Esc"
+        ],
+        "action": "Send a message · close chat"
+      },
+      {
+        "keys": [
+          "Tab"
+        ],
+        "action": "Village overview / close view"
+      },
+      {
+        "keys": [
+          "Wheel"
+        ],
+        "action": "Zoom in and out"
+      }
+    ],
+    "modes": [
+      {
+        "label": "LOCAL LIFE",
+        "title": "Life continues without an AI connection.",
+        "body": "In the default mode, residents follow their preferences, needs, and the time of day. Watching village life does not require an external AI connection."
+      },
+      {
+        "label": "AI CONVERSATION",
+        "title": "Connect AI from inside the game.",
+        "body": "The AI button enables AI-assisted choices and conversations. The development build requires local server setup and an OpenAI API key. API usage is billed separately."
+      }
+    ],
+    "development_title": "A little more life, day by day.",
+    "development_intro": "This is a first look at the village. Public installation files are not available yet, and more features are being prepared.",
+    "latest_label": "Recently added",
+    "latest": [
+      "Run with either Shift key, with walking animation matched to the faster pace.",
+      "Start and connect the local AI server through the in-game button.",
+      "Adjusted collision around the pond recording object to make passing it easier."
+    ],
+    "planned_label": "What comes next",
+    "planned": [
+      "More specific activities shaped by each resident: what they ate and what they worked on.",
+      "Game sessions, a start menu, JSON saves, and a week of memories retrieved only when relevant.",
+      "Lying down in personal beds, closed eyes, and little floating Zs."
+    ],
+    "planned_note": "These features are in planning or preparation and are not all implemented in the game yet.",
+    "endnote": "What kind of day will sparkle here tomorrow?",
+    "back": "Explore more from Duki Lab"
+  },
+  "ja": {
+    "skip": "本文へスキップ",
+    "status": "開発中の小さなピクセルの村",
+    "hero_title": "小さな村で、\nそれぞれの一日を。",
+    "intro": "絵を描き、コードを書き、池の音に耳を澄ます。6人の住民が自分らしい一日を送るAI生活シミュレーション。その間を歩き、眺め、話しかけてみましょう。",
+    "explore": "村を見てみる",
+    "meet": "住民に会う",
+    "release_note": "PCゲームを開発中 · 現在は紹介のみを公開しています。",
+    "closeup_alt": "実際のChatVille開発シーンにある池とカフェ、道を歩く住民たち",
+    "capture_label": "開発中の村の画面",
+    "facts": [
+      {
+        "value": "6",
+        "label": "個性豊かな住民"
+      },
+      {
+        "value": "23",
+        "label": "日々の行動"
+      },
+      {
+        "value": "AI",
+        "label": "住民との会話"
+      }
+    ],
+    "effects_on": "きらめき ON",
+    "effects": {
+      "on": "きらめき ON",
+      "off": "きらめき OFF"
+    },
+    "residents_title": "同じ村でも、\n好きな一日はそれぞれ。",
+    "residents_intro": "仕事も、好みも、暮らしのリズムも違う6人。ここに住む人たちを、ゆっくり知っていきましょう。",
+    "residents": [
+      {
+        "id": "seoyun",
+        "name": "ソユン",
+        "job": "フリーランスのイラストレーター",
+        "bio": "都会を離れ、村の色を絵に残す人。仕事に夢中になっても、温かいコーヒーと庭の前ではひと休み。",
+        "tags": [
+          "絵",
+          "温かいコーヒー",
+          "庭"
+        ]
+      },
+      {
+        "id": "minjae",
+        "name": "ミンジェ",
+        "job": "エッセイ作家",
+        "bio": "朝の散歩で題材を見つけ、釣りをしながら考えを整理します。何気ない景色にも、一文の始まりを見つけます。",
+        "tags": [
+          "散歩",
+          "釣り",
+          "メモ"
+        ]
+      },
+      {
+        "id": "ayoung",
+        "name": "アヨン",
+        "job": "リモート勤務の開発者",
+        "bio": "繰り返す作業は自動化したい派。コードに集中する時間も、仕事のあとのゲームの時間も大切です。",
+        "tags": [
+          "開発",
+          "自動化",
+          "ゲーム"
+        ]
+      },
+      {
+        "id": "doyun",
+        "name": "ドユン",
+        "job": "インディーズのギタリスト",
+        "bio": "ギターを練習し、小さなステージで演奏します。一人で磨いたメロディーを、近所の人たちと分かち合います。",
+        "tags": [
+          "ギター",
+          "練習",
+          "演奏"
+        ]
+      },
+      {
+        "id": "harin",
+        "name": "ハリン",
+        "job": "ローファイ作曲家",
+        "bio": "池や村の小さな音を録音し、鍵盤とドラムループに織り込みます。いつもの景色を、ヘッドホンの中でもう一度。",
+        "tags": [
+          "環境音",
+          "鍵盤",
+          "ミックス"
+        ]
+      },
+      {
+        "id": "trader",
+        "name": "チェさん",
+        "job": "暗号資産トレーダー",
+        "bio": "青いジャージにスリッパ、チャートの前では光る眼鏡。ゲーム内の架空チャートで模擬取引をして、日誌をつけます。",
+        "tags": [
+          "架空チャート",
+          "模擬取引",
+          "記録"
+        ]
+      }
+    ],
+    "village_title": "誰かが指示しなくても、\n一日は流れていきます。",
+    "village_intro": "自分の部屋から、カフェ、池、音楽スペース、パブへ。住民は時間や欲求、好みに合わせて次の場所と行動を選びます。",
+    "map_title": "いま、できあがっていく村",
+    "map_expand": "村の全体画像を原寸で見る",
+    "map_alt": "北に6人の個室と空き部屋、南にカフェと池、共同のパブがあるChatVilleの全体マップ",
+    "map_caption": "現在のUnity開発シーンから直接撮影した画面です。グラフィックや配置は開発中に変わる場合があります。",
+    "features": [
+      {
+        "icon": "⌂",
+        "title": "自分で過ごす一日",
+        "body": "働き、食べ、休み、眠る。住民は目的地まで移動し、到着してから実際の行動を始めます。"
+      },
+      {
+        "icon": "♫",
+        "title": "好みが見える日常",
+        "body": "絵、文章、開発、ギター、鍵盤、ミックス。同じ村で、それぞれ違う仕事や趣味を続けます。"
+      },
+      {
+        "icon": "…",
+        "title": "ちょっとした会話",
+        "body": "近づいて話しかけると、短い返事が続きます。AI接続時は、住民同士も性格や最近の経験に沿って会話します。"
+      },
+      {
+        "icon": "↗",
+        "title": "歩いて見つける",
+        "body": "観察者として村を自由に歩きます。道を譲る住民や小さな吹き出しを追いかけて、今日の風景を見つけましょう。"
+      }
+    ],
+    "play_title": "少し立ち止まって、\n今日のことを聞いてみよう。",
+    "play_intro": "操作はシンプル。気になる景色を見つけたら歩いていって、近くの住民に話しかけてみましょう。",
+    "language_note": "現在、ゲーム内の会話とUIは韓国語を基準に開発しています。",
+    "controls": [
+      {
+        "keys": [
+          "W",
+          "A",
+          "S",
+          "D"
+        ],
+        "action": "移動 · 矢印キーも対応"
+      },
+      {
+        "keys": [
+          "Shift"
+        ],
+        "action": "移動中に1.8倍で走る"
+      },
+      {
+        "keys": [
+          "Space"
+        ],
+        "action": "近くの住民に話しかける"
+      },
+      {
+        "keys": [
+          "Enter",
+          "Esc"
+        ],
+        "action": "送信 · 会話を閉じる"
+      },
+      {
+        "keys": [
+          "Tab"
+        ],
+        "action": "村全体 / 近くを見る"
+      },
+      {
+        "keys": [
+          "Wheel"
+        ],
+        "action": "カメラの拡大・縮小"
+      }
+    ],
+    "modes": [
+      {
+        "label": "LOCAL LIFE",
+        "title": "AIをつながなくても、村は動きます。",
+        "body": "基本モードでは、住民の好み、欲求、時間に合わせて暮らしが続きます。村を眺めるだけなら外部AIへの接続は不要です。"
+      },
+      {
+        "label": "AI CONVERSATION",
+        "title": "ゲーム内のボタンからAIに接続。",
+        "body": "AI接続を有効にすると、行動の選択や会話にAIを使えます。現在の開発版ではローカルサーバーの設定とOpenAI APIキーが必要で、APIの利用料金が別途かかります。"
+      }
+    ],
+    "development_title": "少しずつ、暮らしが息づく村へ。",
+    "development_intro": "まずは現在の村をご紹介します。インストールファイルはまだ一般公開していません。次の機能を少しずつ準備しています。",
+    "latest_label": "最近追加したこと",
+    "latest": [
+      "左右どちらのShiftでも走れる操作と、速度に合わせた歩行アニメーション。",
+      "ゲーム内のAIボタンからローカルサーバーを起動・接続する流れ。",
+      "池の録音オブジェクトのそばを通りやすくする衝突判定の修正。"
+    ],
+    "planned_label": "次に準備していること",
+    "planned": [
+      "何を食べ、何に取り組んだか。住民の好みを反映した、より具体的な行動。",
+      "ゲームごとのセッション、開始メニュー、JSON保存、必要なときに取り出す一週間の記憶。",
+      "自分のベッドに横たわり、目を閉じて眠る姿と、小さく浮かぶZの演出。"
+    ],
+    "planned_note": "これらは設計・準備段階で、まだすべてがゲームに実装されたわけではありません。",
+    "endnote": "明日は、この村でどんな一日がきらめくでしょう。",
+    "back": "Duki Labのほかのプログラムを見る"
+  }
+}
