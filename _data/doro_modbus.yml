@@ -1,11 +1,11 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "published": true,
-  "release_url": "https://github.com/Duki-Programming/Doro-Modbus-releases/releases/tag/v0.1.0",
+  "release_url": "https://github.com/Duki-Programming/Doro-Modbus-releases/releases/tag/v0.1.1",
   "releases_url": "https://github.com/Duki-Programming/Doro-Modbus-releases/releases",
   "installer": {
-    "url": "https://github.com/Duki-Programming/Doro-Modbus-releases/releases/download/v0.1.0/Doro.Modbus.0.1.0.exe",
-    "filename": "Doro.Modbus.0.1.0.exe",
-    "size": 21280946
+    "url": "https://github.com/Duki-Programming/Doro-Modbus-releases/releases/download/v0.1.1/Doro.Modbus.0.1.1.exe",
+    "filename": "Doro.Modbus.0.1.1.exe",
+    "size": 21287130
   }
 }
