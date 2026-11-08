@@ -3,20 +3,20 @@
     "skip": "본문으로 건너뛰기",
     "status": "개발 중인 작은 픽셀 마을",
     "hero_title": "작은 마을,\n저마다의 커다란 하루.",
-    "intro": "그림을 그리고, 코드를 짜고, 연못의 소리에 귀를 기울이고. 여섯 주민이 자기만의 하루를 보내는 AI 생활 시뮬레이션. 당신은 그 사이를 걷고, 지켜보고, 말을 걸어요.",
+    "intro": "가까워진 집들 사이로 커피 향이 나고, 강가에서는 낚싯줄이 흔들려요. 일곱 주민이 일하고, 쉬고, 오늘의 일을 기억하는 AI 생활 시뮬레이션. 그 사이를 걷고, 지켜보고, 말을 걸어요.",
     "explore": "마을 둘러보기",
     "meet": "주민 만나기",
     "release_note": "PC 게임 개발 중 · 지금은 소개만 공개해요.",
-    "closeup_alt": "실제 ChatVille 개발 씬의 연못과 카페, 길 위의 주민들",
+    "closeup_alt": "새 간판을 단 개인 주택과 오사케, 바 블루아워, Jazzy Star가 모인 현재 ChatVille 마을",
     "capture_label": "개발 중 마을 화면",
     "facts": [
       {
-        "value": "6",
+        "value": "7",
         "label": "서로 다른 주민"
       },
       {
-        "value": "23",
-        "label": "생활 행동"
+        "value": "24h",
+        "label": "낮과 밤의 생활"
       },
       {
         "value": "AI",
@@ -29,7 +29,7 @@
       "off": "반짝임 꺼짐"
     },
     "residents_title": "같은 마을에 살아도,\n좋아하는 하루는 다르니까.",
-    "residents_intro": "직업도 취향도 생활 리듬도 다른 여섯 사람. 누가 어떤 하루를 보내는지 천천히 알아가 보세요.",
+    "residents_intro": "직업도 취향도 생활 리듬도 다른 일곱 사람. 낮에는 오사케를, 밤에는 바를 지키는 마스터도 함께 살아요.",
     "residents": [
       {
         "id": "seoyun",
@@ -79,7 +79,7 @@
         "id": "harin",
         "name": "하린",
         "job": "로파이 작곡가",
-        "bio": "연못과 마을의 작은 소리를 녹음해요. 익숙한 풍경을 건반과 드럼 루프에 담고, 헤드폰 속에서 다시 들어요.",
+        "bio": "강변과 마을의 작은 소리를 녹음해요. 익숙한 풍경을 건반과 드럼 루프에 담고, 헤드폰 속에서 다시 들어요.",
         "tags": [
           "주변 소리",
           "건반",
@@ -96,38 +96,49 @@
           "모의거래",
           "기록"
         ]
+      },
+      {
+        "id": "bartender",
+        "name": "마스터",
+        "job": "낮에는 오마카세, 밤에는 바",
+        "bio": "아침에는 오사케를 열고 생선과 초밥을 준비해요. 저녁이면 바 블루아워로 자리를 옮겨 또 다른 하루를 이어가요.",
+        "tags": [
+          "오사케",
+          "바 블루아워",
+          "요리"
+        ]
       }
     ],
     "village_title": "누가 시키지 않아도,\n하루는 흘러가요.",
-    "village_intro": "각자의 방에서 시작해 카페, 연못, 음악 공간, 술집으로. 주민은 시간과 욕구, 성향에 따라 다음 장소와 행동을 골라요.",
+    "village_intro": "각자의 집에서 StarBugs 카페와 테라스, 오사케, 바 블루아워, Jazzy Star로. 강변의 낚시 데크와 다리, 정원을 거닐며 주민들의 하루를 만나보세요.",
     "map_title": "지금 만들어지고 있는 마을",
     "map_expand": "마을 전체 화면 원본 보기",
-    "map_alt": "북쪽의 개인 방 여섯 개와 빈방, 남쪽의 카페와 연못, 공동 술집이 있는 ChatVille 전체 지도",
-    "map_caption": "현재 Unity 개발 씬에서 직접 촬영한 화면이에요. 그래픽과 배치는 개발 과정에서 달라질 수 있어요.",
+    "map_alt": "개인 주택과 네 가게, 카페 테라스, 강변 낚시 데크, 나무다리와 남쪽 정원이 있는 ChatVille 마을 전체",
+    "map_caption": "2026년 11월 8일 Unity 개발 씬에서 촬영했어요. 가까워진 집들과 새 간판, 강변과 정원의 현재 배치를 볼 수 있어요.",
     "features": [
       {
         "icon": "⌂",
-        "title": "스스로 보내는 하루",
-        "body": "일하고, 식사하고, 쉬고, 잠들어요. 이동을 마치고 목적지에 도착한 뒤 실제 행동을 시작해요."
+        "title": "집에서 쉬는 시간",
+        "body": "작업 의자와 소파에 앉고, 밤이면 침대에 누워 이불을 덮어요. 집과 가게의 가구도 캐릭터에 맞게 다듬었어요."
       },
       {
         "icon": "♫",
-        "title": "취향이 보이는 일상",
-        "body": "그림, 글쓰기, 개발, 기타, 건반과 믹싱. 같은 마을에서 서로 다른 작업과 취미를 이어가요."
+        "title": "낮과 밤의 단골 가게",
+        "body": "StarBugs에서 커피 한 잔, 낮에는 오사케, 저녁에는 바 블루아워. Jazzy Star에는 음악을 나눌 무대가 있어요."
+      },
+      {
+        "icon": "!",
+        "title": "낚시 한 번의 이야기",
+        "body": "찌가 움직이면 느낌표! 힘을 주어 물고기를 낚거나, 놓치고 아쉬워해요. 한 번의 낚시가 하나의 기억으로 남아요."
       },
       {
         "icon": "…",
-        "title": "이웃에게 말 걸기",
-        "body": "가까이 다가가 말을 걸면 짧은 답변이 이어져요. AI를 연결하면 주민끼리도 성격과 최근 경험에 맞춰 대화해요."
-      },
-      {
-        "icon": "↗",
-        "title": "걸어서 발견하기",
-        "body": "관찰자로 직접 마을을 돌아다녀요. 길을 양보하는 주민과 작은 말풍선을 따라 오늘의 풍경을 발견해요."
+        "title": "오늘을 기억하는 대화",
+        "body": "주민은 최근 경험과 관련된 기억을 참고해 대화해요. 생활과 기억을 저장하고, 다음에 이어서 관찰할 수 있어요."
       }
     ],
     "play_title": "잠깐 멈춰 서서,\n오늘 어땠냐고 물어보세요.",
-    "play_intro": "조작은 가볍게. 걷다가 마음에 드는 풍경을 보고, 가까운 이웃에게 말을 걸면 돼요.",
+    "play_intro": "문을 향해 걸으면 집과 가게 안으로 이어져요. 의자 근처에서는 E로 앉거나 일어나고, 가까운 이웃에게 말을 걸어보세요.",
     "language_note": "현재 게임 내 대화와 UI는 한국어를 기준으로 개발하고 있어요.",
     "controls": [
       {
@@ -144,6 +155,12 @@
           "Shift"
         ],
         "action": "이동하며 1.8배 달리기"
+      },
+      {
+        "keys": [
+          "E"
+        ],
+        "action": "의자에 앉기 · 일어나기"
       },
       {
         "keys": [
@@ -184,41 +201,73 @@
       }
     ],
     "development_title": "조금씩, 더 살아 있는 마을로.",
-    "development_intro": "지금의 모습을 먼저 소개해요. 아직 공개 설치 파일은 제공하지 않으며, 다음 기능들을 차근차근 준비하고 있어요.",
+    "development_intro": "마을과 가게, 주민의 생활 동작을 계속 다듬고 있어요. 현재 개발판의 모습을 소개하며, 공개 설치 파일은 아직 제공하지 않아요.",
     "latest_label": "최근 반영한 것",
     "latest": [
-      "이동 중 양쪽 Shift로 달리기, 속도에 맞춘 걷기 애니메이션.",
-      "게임 안 AI 버튼으로 로컬 서버를 시작하고 연결하는 흐름.",
-      "연못 주변 녹음 오브젝트 옆을 지나가기 쉽도록 충돌 수정."
+      "가까워진 집들과 지붕에 맞춘 간판, 나무다리·낚시 데크·정원으로 채운 강변.",
+      "StarBugs 카페와 테라스, 오사케·바 블루아워·Jazzy Star의 실내와 가구 비율 조정.",
+      "의자·소파 방향에 맞춰 앉기, 침대에서 이불을 덮고 눕기, 잘린 가구 이미지 보완.",
+      "낚싯대 던지기부터 입질·힘겨루기·성공과 실패 반응까지 이어지는 낚시와 결과 기억.",
+      "마스터를 포함한 일곱 주민, 아영의 새 모습, 생활과 기억을 저장하고 이어가는 기능."
     ],
-    "planned_label": "다음으로 준비하는 것",
+    "planned_label": "계속 다듬는 중",
     "planned": [
-      "인물별 취향이 담긴 구체적인 행동: 무엇을 먹고 어떤 작업을 했는지.",
-      "게임별 세션과 시작 메뉴, JSON 저장, 일주일의 기억을 필요한 만큼 꺼내 쓰는 방식.",
-      "각자의 침대에 눕고 눈을 감는 수면 모습과 작은 Z 효과."
+      "주민별 작업·취미 동작과 가구를 사용하는 자세.",
+      "생활 경험이 이어지는 대화와 기억, 이동 중 상호작용.",
+      "공개 체험판을 위한 조작·화면 구성과 저장 흐름."
     ],
-    "planned_note": "위 항목은 설계·준비 단계이며 아직 게임에 모두 반영되지는 않았어요.",
+    "planned_note": "소개한 모습은 개발판 기준이며, 세부 동작과 화면은 계속 달라질 수 있어요.",
     "endnote": "내일은 이 마을에서 어떤 하루가 반짝일까요?",
-    "back": "Duki Lab의 다른 프로그램 보기"
+    "back": "Duki Lab의 다른 프로그램 보기",
+    "map_badge": "강변 마을",
+    "scenes": [
+      {
+        "image": "cafe.png",
+        "width": 1280,
+        "height": 720,
+        "title": "창가에서 마시는 커피",
+        "body": "새로 꾸민 StarBugs의 실내와 테라스에서 잠깐 쉬어가요.",
+        "alt": "StarBugs 카페 내부의 커피 머신과 카운터, 여러 방향으로 놓인 테이블과 좌석",
+        "expand": "카페 화면 원본 보기"
+      },
+      {
+        "image": "fishing.png",
+        "width": 640,
+        "height": 640,
+        "title": "입질부터 한 마리의 기억까지",
+        "body": "물고기를 낚으면 하트, 놓치면 아쉬운 몸짓. 낚시의 결과도 주민의 기억에 남아요.",
+        "alt": "강변 데크의 낚시 의자에서 물고기를 낚고 하트가 떠오른 민재",
+        "expand": "낚시 화면 원본 보기"
+      },
+      {
+        "image": "sleep.png",
+        "width": 1280,
+        "height": 720,
+        "title": "하루 끝에는 각자의 방으로",
+        "body": "침대에 누워 이불을 덮고 쉬어요. 소파와 의자에서도 방향에 맞춰 앉을 수 있어요.",
+        "alt": "개인 방의 침대에 누워 이불을 덮고 잠든 민재",
+        "expand": "수면 화면 원본 보기"
+      }
+    ]
   },
   "en": {
     "skip": "Skip to content",
     "status": "A little pixel village in development",
-    "hero_title": "A little village.\nSix lives of their own.",
-    "intro": "Painting, writing code, listening to the pond. Six neighbors spend the day in their own way in this AI life simulation. Walk among them, watch a little, and say hello.",
+    "hero_title": "A little village.\nSeven lives of their own.",
+    "intro": "Coffee drifts between neighboring homes, and a fishing line sways by the river. Seven residents work, rest, and remember their day in this AI life simulation. Walk among them, watch, and say hello.",
     "explore": "Explore the village",
     "meet": "Meet the neighbors",
     "release_note": "PC game in development · Introduction only for now.",
-    "closeup_alt": "The pond, café, and residents on the paths in the actual ChatVille development scene",
+    "closeup_alt": "The current ChatVille neighborhood with new house signs, OhSake, Blue Hour, and Jazzy Star",
     "capture_label": "Development scene",
     "facts": [
       {
-        "value": "6",
+        "value": "7",
         "label": "unique neighbors"
       },
       {
-        "value": "23",
-        "label": "everyday activities"
+        "value": "24h",
+        "label": "a daily rhythm"
       },
       {
         "value": "AI",
@@ -230,8 +279,8 @@
       "on": "Sparkles on",
       "off": "Sparkles off"
     },
-    "residents_title": "One village.\nSix ways to spend a day.",
-    "residents_intro": "Different jobs, favorite things, and daily rhythms. Take your time getting to know the people who call this village home.",
+    "residents_title": "One village.\nSeven ways to spend a day.",
+    "residents_intro": "Different jobs, favorite things, and daily rhythms. Meet seven neighbors, including the Master who runs OhSake by day and the bar at night.",
     "residents": [
       {
         "id": "seoyun",
@@ -298,38 +347,49 @@
           "Paper trades",
           "Journal"
         ]
+      },
+      {
+        "id": "bartender",
+        "name": "The Master",
+        "job": "Omakase by day, bar by night",
+        "bio": "He opens OhSake in the morning to prepare fish and sushi. In the evening, he moves to Blue Hour for the next part of his day.",
+        "tags": [
+          "OhSake",
+          "Blue Hour",
+          "Cooking"
+        ]
       }
     ],
     "village_title": "Nobody needs to direct\nevery little moment.",
-    "village_intro": "From their rooms to the café, pond, music space, and pub, residents choose where to go and what to do based on the time, their needs, and their preferences.",
+    "village_intro": "Step from a personal home into the StarBugs café and terrace, OhSake, Blue Hour, or Jazzy Star. Follow the riverside fishing deck, wooden bridge, and garden paths to see the day unfold.",
     "map_title": "The village taking shape",
     "map_expand": "View the full-size village image",
-    "map_alt": "ChatVille map with six private rooms and a spare room to the north, a café and pond to the south, and a shared pub",
-    "map_caption": "Captured directly from the current Unity development scene. Artwork and layout may change during development.",
+    "map_alt": "ChatVille with individual homes, four shops, a café terrace, riverside fishing deck, wooden bridge, and southern gardens",
+    "map_caption": "Captured from the Unity development scene on November 8, 2026. See the closer homes, new signs, riverside, and garden layout as they look today.",
     "features": [
       {
         "icon": "⌂",
-        "title": "A day of their own",
-        "body": "Work, eat, rest, and sleep. Residents travel to a destination before starting the activity itself."
+        "title": "Time at home",
+        "body": "Sit at a desk or settle on a sofa, then lie under the covers at night. Furniture and interiors have been refined around the characters."
       },
       {
         "icon": "♫",
-        "title": "Personal routines",
-        "body": "Drawing, writing, coding, guitar, keys, and mixing. Each neighbor brings different work and hobbies to the village."
+        "title": "Familiar places, day and night",
+        "body": "Coffee at StarBugs, OhSake by day, and Blue Hour in the evening. Jazzy Star offers a stage for sharing music."
+      },
+      {
+        "icon": "!",
+        "title": "One cast, one story",
+        "body": "A bite brings an exclamation mark. Reel in a fish or watch it escape, then react with joy or disappointment. Each attempt becomes a memory."
       },
       {
         "icon": "…",
-        "title": "A small conversation",
-        "body": "Walk up and say hello for a short reply. With AI connected, neighbors also talk to each other using their profiles and recent experiences."
-      },
-      {
-        "icon": "↗",
-        "title": "Discover on foot",
-        "body": "Explore as an observer. Follow little speech bubbles and residents making room on the path to see the day unfold."
+        "title": "A day worth remembering",
+        "body": "Residents draw on relevant memories and recent experiences in conversation. Save their daily life and memories to keep watching another time."
       }
     ],
     "play_title": "Stop for a moment.\nAsk about their day.",
-    "play_intro": "Simple controls leave room to look around. Walk somewhere interesting, then say hello to a nearby neighbor.",
+    "play_intro": "Walk toward a door to enter a home or shop. Press E near a chair to sit or stand, then say hello to a nearby neighbor.",
     "language_note": "The game interface and conversations are currently being developed in Korean.",
     "controls": [
       {
@@ -346,6 +406,12 @@
           "Shift"
         ],
         "action": "Run at 1.8× while moving"
+      },
+      {
+        "keys": [
+          "E"
+        ],
+        "action": "Sit down · stand up"
       },
       {
         "keys": [
@@ -386,41 +452,73 @@
       }
     ],
     "development_title": "A little more life, day by day.",
-    "development_intro": "This is a first look at the village. Public installation files are not available yet, and more features are being prepared.",
+    "development_intro": "The village, shops, and everyday animations are still growing. These are scenes from the development build; public installation files are not available yet.",
     "latest_label": "Recently added",
     "latest": [
-      "Run with either Shift key, with walking animation matched to the faster pace.",
-      "Start and connect the local AI server through the in-game button.",
-      "Adjusted collision around the pond recording object to make passing it easier."
+      "Closer homes with roof-aligned signs, a wooden bridge, fishing deck, and riverside gardens.",
+      "StarBugs café and terrace, with refined room and furniture proportions in OhSake, Blue Hour, and Jazzy Star.",
+      "Direction-aware chair and sofa seating, lying under bedcovers, and restored furniture artwork.",
+      "A fishing sequence from casting and a bite to reeling, success or disappointment, and a memory of the result.",
+      "Seven residents including the Master, a new look for Ayoung, and saved daily life and memories."
     ],
-    "planned_label": "What comes next",
+    "planned_label": "Still being refined",
     "planned": [
-      "More specific activities shaped by each resident: what they ate and what they worked on.",
-      "Game sessions, a start menu, JSON saves, and a week of memories retrieved only when relevant.",
-      "Lying down in personal beds, closed eyes, and little floating Zs."
+      "Personal work and hobby animations, and how residents use their furniture.",
+      "Conversations, memories, and interactions that grow out of everyday experiences.",
+      "Controls, screen layouts, and saving for a future public demo."
     ],
-    "planned_note": "These features are in planning or preparation and are not all implemented in the game yet.",
+    "planned_note": "These scenes come from a development build. Details of the behavior and presentation may change.",
     "endnote": "What kind of day will sparkle here tomorrow?",
-    "back": "Explore more from Duki Lab"
+    "back": "Explore more from Duki Lab",
+    "map_badge": "Riverside village",
+    "scenes": [
+      {
+        "image": "cafe.png",
+        "width": 1280,
+        "height": 720,
+        "title": "Coffee by the window",
+        "body": "Take a break in the new StarBugs interior or out on its terrace.",
+        "alt": "The StarBugs café interior with an espresso machine, counter, tables, and seating",
+        "expand": "View the full-size café scene"
+      },
+      {
+        "image": "fishing.png",
+        "width": 640,
+        "height": 640,
+        "title": "From a bite to a memory",
+        "body": "A catch brings a heart; an escape brings disappointment. The result stays in the resident’s memory.",
+        "alt": "Minjae catches a fish from a chair on the riverside deck, with a heart above him",
+        "expand": "View the full-size fishing scene"
+      },
+      {
+        "image": "sleep.png",
+        "width": 1280,
+        "height": 720,
+        "title": "Back home at the end of the day",
+        "body": "Lie down under the covers, or take a seat on a sofa or chair facing the right way.",
+        "alt": "Minjae asleep under the covers in the bed in his own room",
+        "expand": "View the full-size sleeping scene"
+      }
+    ]
   },
   "ja": {
     "skip": "本文へスキップ",
     "status": "開発中の小さなピクセルの村",
     "hero_title": "小さな村で、\nそれぞれの一日を。",
-    "intro": "絵を描き、コードを書き、池の音に耳を澄ます。6人の住民が自分らしい一日を送るAI生活シミュレーション。その間を歩き、眺め、話しかけてみましょう。",
+    "intro": "近くなった家々の間にコーヒーの香りが漂い、川辺では釣り糸が揺れます。7人の住民が働き、休み、一日の出来事を覚えていくAI生活シミュレーション。歩いて、眺めて、話しかけてみましょう。",
     "explore": "村を見てみる",
     "meet": "住民に会う",
     "release_note": "PCゲームを開発中 · 現在は紹介のみを公開しています。",
-    "closeup_alt": "実際のChatVille開発シーンにある池とカフェ、道を歩く住民たち",
+    "closeup_alt": "新しい看板を付けた家々と、オサケ、ブルーアワー、Jazzy Starが並ぶ現在のChatVille",
     "capture_label": "開発中の村の画面",
     "facts": [
       {
-        "value": "6",
+        "value": "7",
         "label": "個性豊かな住民"
       },
       {
-        "value": "23",
-        "label": "日々の行動"
+        "value": "24h",
+        "label": "昼と夜の暮らし"
       },
       {
         "value": "AI",
@@ -433,7 +531,7 @@
       "off": "きらめき OFF"
     },
     "residents_title": "同じ村でも、\n好きな一日はそれぞれ。",
-    "residents_intro": "仕事も、好みも、暮らしのリズムも違う6人。ここに住む人たちを、ゆっくり知っていきましょう。",
+    "residents_intro": "仕事も、好みも、暮らしのリズムも違う7人。昼はオサケ、夜はバーを営むマスターも暮らしています。",
     "residents": [
       {
         "id": "seoyun",
@@ -483,7 +581,7 @@
         "id": "harin",
         "name": "ハリン",
         "job": "ローファイ作曲家",
-        "bio": "池や村の小さな音を録音し、鍵盤とドラムループに織り込みます。いつもの景色を、ヘッドホンの中でもう一度。",
+        "bio": "川辺や村の小さな音を録音し、鍵盤とドラムループに織り込みます。いつもの景色を、ヘッドホンの中でもう一度。",
         "tags": [
           "環境音",
           "鍵盤",
@@ -500,38 +598,49 @@
           "模擬取引",
           "記録"
         ]
+      },
+      {
+        "id": "bartender",
+        "name": "マスター",
+        "job": "昼はおまかせ、夜はバー",
+        "bio": "朝はオサケを開け、魚や寿司を準備します。夕方にはブルーアワーへ移り、一日のもうひとつの時間を過ごします。",
+        "tags": [
+          "オサケ",
+          "ブルーアワー",
+          "料理"
+        ]
       }
     ],
     "village_title": "誰かが指示しなくても、\n一日は流れていきます。",
-    "village_intro": "自分の部屋から、カフェ、池、音楽スペース、パブへ。住民は時間や欲求、好みに合わせて次の場所と行動を選びます。",
+    "village_intro": "それぞれの家から、StarBugsのカフェとテラス、オサケ、ブルーアワー、Jazzy Starへ。川辺の釣りデッキや木の橋、庭の小道で住民の一日を見つけましょう。",
     "map_title": "いま、できあがっていく村",
     "map_expand": "村の全体画像を原寸で見る",
-    "map_alt": "北に6人の個室と空き部屋、南にカフェと池、共同のパブがあるChatVilleの全体マップ",
-    "map_caption": "現在のUnity開発シーンから直接撮影した画面です。グラフィックや配置は開発中に変わる場合があります。",
+    "map_alt": "家々と4つのお店、カフェテラス、川辺の釣りデッキ、木の橋、南側の庭があるChatVille全体図",
+    "map_caption": "2026年11月8日にUnityの開発シーンから撮影。近くなった家々、新しい看板、川辺や庭の現在の配置が見られます。",
     "features": [
       {
         "icon": "⌂",
-        "title": "自分で過ごす一日",
-        "body": "働き、食べ、休み、眠る。住民は目的地まで移動し、到着してから実際の行動を始めます。"
+        "title": "家で過ごすひととき",
+        "body": "机の椅子やソファに座り、夜はベッドで布団に入ります。家具や室内の大きさもキャラクターに合わせて整えました。"
       },
       {
         "icon": "♫",
-        "title": "好みが見える日常",
-        "body": "絵、文章、開発、ギター、鍵盤、ミックス。同じ村で、それぞれ違う仕事や趣味を続けます。"
+        "title": "昼と夜のおなじみのお店",
+        "body": "StarBugsでコーヒー、昼はオサケ、夜はブルーアワーへ。Jazzy Starには音楽を分かち合うステージがあります。"
+      },
+      {
+        "icon": "!",
+        "title": "一回の釣りが、ひとつの話に",
+        "body": "アタリが来たらビックリマーク。魚を引き上げて喜んだり、逃してがっかりしたり。一回の釣りがひとつの記憶になります。"
       },
       {
         "icon": "…",
-        "title": "ちょっとした会話",
-        "body": "近づいて話しかけると、短い返事が続きます。AI接続時は、住民同士も性格や最近の経験に沿って会話します。"
-      },
-      {
-        "icon": "↗",
-        "title": "歩いて見つける",
-        "body": "観察者として村を自由に歩きます。道を譲る住民や小さな吹き出しを追いかけて、今日の風景を見つけましょう。"
+        "title": "今日を覚えている会話",
+        "body": "最近の経験や関連する記憶をもとに住民が会話します。暮らしと記憶を保存して、また続きを見守れます。"
       }
     ],
     "play_title": "少し立ち止まって、\n今日のことを聞いてみよう。",
-    "play_intro": "操作はシンプル。気になる景色を見つけたら歩いていって、近くの住民に話しかけてみましょう。",
+    "play_intro": "ドアに向かって歩くと家やお店に入れます。椅子の近くではEで座る・立つを切り替えて、近くの住民に話しかけてみましょう。",
     "language_note": "現在、ゲーム内の会話とUIは韓国語を基準に開発しています。",
     "controls": [
       {
@@ -548,6 +657,12 @@
           "Shift"
         ],
         "action": "移動中に1.8倍で走る"
+      },
+      {
+        "keys": [
+          "E"
+        ],
+        "action": "椅子に座る · 立つ"
       },
       {
         "keys": [
@@ -588,21 +703,53 @@
       }
     ],
     "development_title": "少しずつ、暮らしが息づく村へ。",
-    "development_intro": "まずは現在の村をご紹介します。インストールファイルはまだ一般公開していません。次の機能を少しずつ準備しています。",
+    "development_intro": "村やお店、日常の動きを少しずつ磨いています。現在の開発版をご紹介しており、インストールファイルはまだ一般公開していません。",
     "latest_label": "最近追加したこと",
     "latest": [
-      "左右どちらのShiftでも走れる操作と、速度に合わせた歩行アニメーション。",
-      "ゲーム内のAIボタンからローカルサーバーを起動・接続する流れ。",
-      "池の録音オブジェクトのそばを通りやすくする衝突判定の修正。"
+      "近くなった家々と屋根に合わせた看板、木の橋・釣りデッキ・川辺の庭。",
+      "StarBugsのカフェとテラス、オサケ・ブルーアワー・Jazzy Starの室内や家具の大きさを調整。",
+      "椅子やソファの向きに合った座り方、布団に入って横になる動き、欠けていた家具の画像を補修。",
+      "釣り糸を投げ、アタリに反応し、魚を引き上げる一連の動作。成功や失敗の反応と、その結果の記憶。",
+      "マスターを含む7人の住民、アヨンの新しい姿、暮らしと記憶を保存して続ける機能。"
     ],
-    "planned_label": "次に準備していること",
+    "planned_label": "引き続き調整中",
     "planned": [
-      "何を食べ、何に取り組んだか。住民の好みを反映した、より具体的な行動。",
-      "ゲームごとのセッション、開始メニュー、JSON保存、必要なときに取り出す一週間の記憶。",
-      "自分のベッドに横たわり、目を閉じて眠る姿と、小さく浮かぶZの演出。"
+      "住民ごとの仕事・趣味の動きと、家具を使う姿勢。",
+      "日常の経験から続く会話や記憶、移動中の交流。",
+      "将来の公開体験版に向けた操作・画面構成・保存の流れ。"
     ],
-    "planned_note": "これらは設計・準備段階で、まだすべてがゲームに実装されたわけではありません。",
+    "planned_note": "開発版の画面です。細かな動作や見た目は今後変わる場合があります。",
     "endnote": "明日は、この村でどんな一日がきらめくでしょう。",
-    "back": "Duki Labのほかのプログラムを見る"
+    "back": "Duki Labのほかのプログラムを見る",
+    "map_badge": "川辺の村",
+    "scenes": [
+      {
+        "image": "cafe.png",
+        "width": 1280,
+        "height": 720,
+        "title": "窓辺で飲むコーヒー",
+        "body": "新しく整えたStarBugsの店内やテラスで、少しひと休み。",
+        "alt": "エスプレッソマシンとカウンター、テーブルや座席が並ぶStarBugsの店内",
+        "expand": "カフェの画面を原寸で見る"
+      },
+      {
+        "image": "fishing.png",
+        "width": 640,
+        "height": 640,
+        "title": "アタリから、ひとつの記憶へ",
+        "body": "釣れたらハート、逃したらがっかり。結果も住民の記憶に残ります。",
+        "alt": "川辺のデッキの椅子で魚を釣り、頭上にハートが浮かぶミンジェ",
+        "expand": "釣りの画面を原寸で見る"
+      },
+      {
+        "image": "sleep.png",
+        "width": 1280,
+        "height": 720,
+        "title": "一日の終わりは自分の部屋へ",
+        "body": "ベッドで布団に入り、ひと休み。ソファや椅子でも向きに合わせて座れます。",
+        "alt": "自分の部屋のベッドで布団をかけて眠るミンジェ",
+        "expand": "睡眠の画面を原寸で見る"
+      }
+    ]
   }
 }

@@ -1,18 +1,16 @@
-/* ChatVille keeps a fixed finish while the other catalog cards shuffle. */
+/* ChatVille shares the shuffled palettes while retaining its sparkle effects. */
 .catalog-programs .program-link--chatville {
   min-height:216px;
-  border:2px solid #c7e9a4;
-  --p-start:#284c37; --p-mid:#182a29; --p-end:#364b36; --p-edge:#f3df9b;
-  --p-ink:#fff7d9; --p-muted:#dce9d2;
-  background:linear-gradient(115deg,#304e33dd,#152d2bea 52%,#3f4930e8) padding-box,linear-gradient(120deg,#f5dc9c,#b6e9ad,#8cced1,#e4c192,#f5dc9c) border-box;
-  box-shadow:0 0 28px #b7dc7c20,0 0 3px #e9d59388,inset 0 0 32px #b2d58b0a;
+  border:2px solid transparent;
+  background:linear-gradient(115deg,var(--p-start),var(--p-mid) 52%,var(--p-end)) padding-box,linear-gradient(120deg,var(--p-edge),var(--s2),var(--s3),var(--s4),var(--p-edge)) border-box;
+  box-shadow:0 0 28px color-mix(in srgb,var(--p-edge) 13%,transparent),0 0 3px color-mix(in srgb,var(--p-edge) 55%,transparent),inset 0 0 32px color-mix(in srgb,var(--p-edge) 4%,transparent);
 }
 .program-link--chatville .program-foil--wash { opacity:.24; }
 .program-link--chatville .program-foil--texture { opacity:.55; }
 .program-link--chatville .program-foil--glare { opacity:.6; background:linear-gradient(112deg,transparent 15%,#f3e7b518 38%,#e8ffd43b 45%,#e2d4ff1a 52%,transparent 72%); background-size:240% 100%; animation:cv-banner-sheen 8s ease-in-out 2; }
 .program-link--chatville .program-cube { animation-play-state:running; animation-duration:22s; }
-.program-link--chatville .program-link__text>strong { color:#fff0bc; text-shadow:0 0 16px #f2d28844,2px 2px #4a573d; }
-.program-link--chatville .program-link__text>.program-spotlight { align-self:flex-start; padding:3px 8px; margin-bottom:4px; border:1px solid #d2da9b66; border-radius:3px; color:#f0e6b5; background:#d9e89c0d; font-size:10px; letter-spacing:.05em; }
+.program-link--chatville .program-link__text>strong { color:var(--p-ink); text-shadow:0 0 16px color-mix(in srgb,var(--p-edge) 27%,transparent),2px 2px var(--p-mid); }
+.program-link--chatville .program-link__text>.program-spotlight { align-self:flex-start; padding:3px 8px; margin-bottom:4px; border:1px solid color-mix(in srgb,var(--p-edge) 40%,transparent); border-radius:3px; color:var(--p-ink); background:color-mix(in srgb,var(--p-edge) 5%,transparent); font-size:10px; letter-spacing:.05em; }
 .program-link--chatville>.program-twinkles { position:absolute; inset:0; z-index:3; pointer-events:none; }
 .program-twinkles i { position:absolute; color:#ffeeb5; font-style:normal; font-size:18px; text-shadow:0 0 9px #f0e79a99; animation:cv-banner-twinkle 4s ease-in-out 4; }
 .program-twinkles i:nth-child(1) { left:2%; top:15%; animation-delay:-1s; }

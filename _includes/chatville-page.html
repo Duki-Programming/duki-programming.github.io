@@ -20,8 +20,8 @@
     </div>
     <figure class="cv-window">
       <div class="cv-window-bar"><span><i></i><i></i><i></i></span><span>CHATVILLE / A LITTLE WORLD</span><span aria-hidden="true">✧</span></div>
-      <img class="cv-game-image" src="{{ '/assets/programs/chatville/neighborhood.png' | relative_url }}" width="1280" height="800" alt="{{ copy.closeup_alt | escape }}" fetchpriority="high">
-      <figcaption><span class="cv-live-dot" aria-hidden="true"></span>{{ copy.capture_label | escape }}<span>2026.11.05</span></figcaption>
+      <img class="cv-game-image" src="{{ '/assets/programs/chatville/neighborhood.png' | relative_url }}?v=20261108" width="1600" height="960" alt="{{ copy.closeup_alt | escape }}" fetchpriority="high">
+      <figcaption><span class="cv-live-dot" aria-hidden="true"></span>{{ copy.capture_label | escape }}<time datetime="2026-11-08">2026.11.08</time></figcaption>
       <div class="cv-window-glint" aria-hidden="true">✦</div>
     </figure>
     <div class="cv-facts">
@@ -35,9 +35,9 @@
     <div class="cv-residents">
       {% for resident in copy.residents %}
       <article class="cv-resident cv-resident--{{ resident.id }}">
-        <div class="cv-resident-top"><span class="cv-portrait"><img src="{{ '/assets/programs/chatville/' | append: resident.id | append: '.png' | relative_url }}" width="64" height="64" loading="lazy" alt=""></span><span class="cv-resident-number">0{{ forloop.index }} <span aria-hidden="true">✧</span></span></div>
-        <p class="cv-job">{{ resident.job | escape }}</p><h3>{{ resident.name | escape }}</h3><p class="cv-bio">{{ resident.bio | escape }}</p>
-        <div class="cv-tags">{% for tag in resident.tags %}<span>{{ tag | escape }}</span>{% endfor %}</div>
+        <div class="cv-resident-top"><span class="cv-portrait"><img src="{{ '/assets/programs/chatville/' | append: resident.id | append: '.png' | relative_url }}?v=20261108" width="64" height="64" loading="lazy" alt=""></span><span class="cv-resident-number">0{{ forloop.index }} <span aria-hidden="true">✧</span></span></div>
+        <div class="cv-resident-details"><p class="cv-job">{{ resident.job | escape }}</p><h3>{{ resident.name | escape }}</h3><p class="cv-bio">{{ resident.bio | escape }}</p>
+        <div class="cv-tags">{% for tag in resident.tags %}<span>{{ tag | escape }}</span>{% endfor %}</div></div>
       </article>
       {% endfor %}
     </div>
@@ -45,7 +45,12 @@
 
   <section id="village" class="cv-section cv-wrap" aria-labelledby="village-title">
     <div class="cv-section-heading"><div><p class="cv-eyebrow">A DAY IN CHATVILLE</p><h2 id="village-title">{{ copy.village_title | escape | newline_to_br }}</h2></div><p>{{ copy.village_intro | escape }}</p></div>
-    <figure class="cv-map"><div class="cv-map-heading"><span><span aria-hidden="true">⌘</span> {{ copy.map_title | escape }}</span><span>66 × 36</span></div><a href="{{ '/assets/programs/chatville/village.png' | relative_url }}" aria-label="{{ copy.map_expand | escape }}"><img src="{{ '/assets/programs/chatville/village.png' | relative_url }}" width="1536" height="864" loading="lazy" alt="{{ copy.map_alt | escape }}"></a><figcaption>{{ copy.map_caption | escape }}</figcaption></figure>
+    <figure class="cv-map"><div class="cv-map-heading"><span><span aria-hidden="true">⌘</span> {{ copy.map_title | escape }}</span><span>{{ copy.map_badge | escape }}</span></div><a href="{{ '/assets/programs/chatville/village.png' | relative_url }}?v=20261108" aria-label="{{ copy.map_expand | escape }}"><img src="{{ '/assets/programs/chatville/village.png' | relative_url }}?v=20261108" width="2176" height="1664" loading="lazy" alt="{{ copy.map_alt | escape }}"></a><figcaption>{{ copy.map_caption | escape }}</figcaption></figure>
+    <div class="cv-scenes">
+      {% for scene in copy.scenes %}
+      <figure class="cv-scene"><a href="{{ '/assets/programs/chatville/' | append: scene.image | relative_url }}" aria-label="{{ scene.expand | escape }}"><img src="{{ '/assets/programs/chatville/' | append: scene.image | relative_url }}" width="{{ scene.width }}" height="{{ scene.height }}" loading="lazy" alt="{{ scene.alt | escape }}"></a><figcaption><h3>{{ scene.title | escape }}</h3><p>{{ scene.body | escape }}</p></figcaption></figure>
+      {% endfor %}
+    </div>
     <div class="cv-features">
       {% for feature in copy.features %}<article><span class="cv-feature-icon" aria-hidden="true">{{ feature.icon }}</span><h3>{{ feature.title | escape }}</h3><p>{{ feature.body | escape }}</p></article>{% endfor %}
     </div>
@@ -61,7 +66,7 @@
 
   <section class="cv-section cv-wrap cv-development" aria-labelledby="development-title">
     <div class="cv-section-heading"><div><p class="cv-eyebrow">GROWING, ONE DAY AT A TIME</p><h2 id="development-title">{{ copy.development_title | escape }}</h2></div><p>{{ copy.development_intro | escape }}</p></div>
-    <div class="cv-updates"><article><p class="cv-update-label"><span aria-hidden="true">✦</span> {{ copy.latest_label | escape }} <time datetime="2026-11-05">2026.11.05</time></p><ul>{% for item in copy.latest %}<li>{{ item | escape }}</li>{% endfor %}</ul></article><article><p class="cv-update-label cv-planned">{{ copy.planned_label | escape }}</p><ul>{% for item in copy.planned %}<li>{{ item | escape }}</li>{% endfor %}</ul><p class="cv-note">{{ copy.planned_note | escape }}</p></article></div>
+    <div class="cv-updates"><article><p class="cv-update-label"><span aria-hidden="true">✦</span> {{ copy.latest_label | escape }} <time datetime="2026-11-08">2026.11.08</time></p><ul>{% for item in copy.latest %}<li>{{ item | escape }}</li>{% endfor %}</ul></article><article><p class="cv-update-label cv-planned">{{ copy.planned_label | escape }}</p><ul>{% for item in copy.planned %}<li>{{ item | escape }}</li>{% endfor %}</ul><p class="cv-note">{{ copy.planned_note | escape }}</p></article></div>
     <div class="cv-endnote"><span aria-hidden="true">✧</span><p>{{ copy.endnote | escape }}</p><a class="cv-text-link" href="{{ site.data.ui[page.lang].home_url | relative_url }}">{{ copy.back | escape }} <span aria-hidden="true">↗</span></a></div>
   </section>
 </main>

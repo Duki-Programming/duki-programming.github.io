@@ -50,6 +50,12 @@ GitHub Pages를 처음 설정할 때에는 저장소 Settings → Pages에서 `D
 - 공통 프로그램 목록 화면: `_includes/catalog.html`, `_layouts/catalog.html`, `assets/css/catalog.css`
 - Market Peek 화면: `_includes/market-peek-page.html`, `_layouts/product.html`, `assets/css/market-peek.css`
 
+### ChatVille 소개
+
+`_data/chatville_copy.yml`과 `_includes/chatville-page.html`에서 한국어·영어·일본어 소개를 함께 관리합니다. 2026-11-08 갱신에는 주민 7명, StarBugs와 강변 환경, 낚시 결과와 기억, 소파·침대 생활 동작을 반영했습니다. 마을·카페 사진은 같은 날 ChatVille의 저장된 Unity 씬을 촬영했으며, 낚시와 수면 사진은 게임 저장소의 `docs/fishing/Caught.png`, `docs/sleep-minjae.png`, 주민 초상은 현재 64×64 원본입니다. 이미지는 `assets/programs/chatville/`에 보관합니다.
+
+프로그램 목록의 ChatVille은 `banner_style`을 고정하지 않고 기존 `program-banners.js`의 10개 색상·포일 조합을 사용합니다. 방문·새로고침마다 무작위로 고르며 같은 세션에서는 직전 조합을 피합니다. `chatville-banner.css`는 선택된 팔레트를 따르고 기존 반짝임, 광택, 큐브 회전과 모션 줄이기 설정을 유지합니다.
+
 프로그램을 추가할 때에는 `_data/catalog.yml`의 한국어·영어·일본어 목록에 항목을 넣고, 항목의 `url`에 대응하는 소개 페이지를 만듭니다. 개인 홈페이지의 주소나 프로필 링크를 추가하지 않고도 프로그램별로 확장할 수 있습니다.
 
 Google AdSense의 공개 게시자 ID와 기존 광고 코드를 포함합니다. 새 배포 주소에서의 광고 게재 여부는 AdSense의 사이트 등록·승인 상태에 따릅니다.
