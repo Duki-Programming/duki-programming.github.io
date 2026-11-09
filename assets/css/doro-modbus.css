@@ -92,3 +92,22 @@ html[lang=en] .doro-modbus-page h1{font-size:clamp(36px,3.4vw,51px)}
 @media(max-width:760px){.doro-modbus-page .hero{grid-template-columns:1fr;gap:48px;padding-top:22px}.doro-showcase{max-width:600px;width:100%;margin:auto}.doro-modbus-page .feature-grid{grid-template-columns:1fr 1fr}.doro-screens{grid-template-columns:1fr}.doro-modbus-page h2{font-size:27px}.doro-modbus-page .download-copy h2{font-size:30px}.doro-home{font-size:8px}.doro-modbus-page .install-steps{grid-template-columns:1fr}.doro-showcase:before{top:-32px;font-size:21px}}
 @media(max-width:480px){.wrap{padding-left:22px;padding-right:22px}.product-topbar{gap:8px}.doro-home{letter-spacing:0;font-size:7px;gap:5px}.product-language{font-size:11px;padding-left:9px}.product-language a{padding:7px 9px}.product-language__globe{width:15px;height:15px;margin-right:0}.doro-modbus-page .feature-grid{grid-template-columns:1fr}.doro-promo-lines{font-size:11px}.doro-modbus-page .download-section{margin-left:14px;margin-right:14px;padding:28px 20px}.doro-gallery{padding-top:65px}.doro-screen-bottom{font-size:11px}.doro-modbus-page .features{padding-top:36px}.doro-preview{padding:11px}.doro-map-controls button{padding:5px 8px}.doro-preview-heading{font-size:9px}.doro-eyebrow{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.button{transition:none;transform:none}.button:hover{transform:none}}
+
+/* Role walkthroughs use current screenshots; the animated Doro intro stays intact. */
+.doro-roles{padding-top:12px;padding-bottom:64px}
+.doro-role{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.45fr);align-items:center;gap:40px;padding:48px 0;border-bottom:1px dashed #594464}
+.doro-role:nth-of-type(even){grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr)}
+.doro-role:nth-of-type(even) .doro-role-copy{order:2}
+.doro-role-number{color:#bbdf9c;font-size:12px;letter-spacing:.04em}
+.doro-role-copy h3,.doro-multiport h3{font-size:25px;line-height:1.65;word-break:keep-all;margin:14px 0}
+.doro-role-copy>p:not(.doro-role-number),.doro-role-copy li{color:var(--muted);font-size:14px;line-height:1.95}
+.doro-role-copy ul{padding-left:19px;display:grid;gap:9px;margin-top:22px}
+.doro-role-copy li::marker{color:#d5a1c5}
+.doro-role figure,.doro-multiport figure{margin:0;min-width:0;padding:9px;border:1px solid #695576;border-radius:8px;background:#211c2b}
+.doro-role img,.doro-multiport img{display:block;width:100%;height:auto;border:1px solid #51445e}
+.doro-role figcaption,.doro-multiport figcaption{font-size:11px;line-height:1.8;color:#b5a5c1;padding:12px 3px 3px}
+.doro-role a:focus-visible,.doro-multiport a:focus-visible{outline:2px solid #e9b9d6;outline-offset:4px}
+.doro-multiport{margin-top:48px;padding:28px;border:1px solid #594464;border-radius:10px;background:#1e1a27}
+.doro-multiport .section-heading{max-width:830px}
+.doro-multiport-screens{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;margin-top:26px}
+@media(max-width:760px){.doro-role,.doro-role:nth-of-type(even){grid-template-columns:1fr;gap:20px;padding:34px 0}.doro-role:nth-of-type(even) .doro-role-copy{order:0}.doro-role-copy h3,.doro-multiport h3{font-size:23px}.doro-multiport{padding:18px}.doro-multiport-screens{grid-template-columns:1fr}.doro-roles{padding-bottom:40px}}

@@ -17,7 +17,7 @@
       releases.push(...batch);
       if (batch.length < 100) break;
     }
-    const release = releases.filter(r => !r.draft && /^v\d+\.\d+\.\d+$/.test(r.tag_name) &&
+    const release = releases.filter(r => !r.draft && !r.prerelease && /^v\d+\.\d+\.\d+$/.test(r.tag_name) &&
       r.assets?.some(a => a.name === `Doro.Modbus.${r.tag_name.slice(1)}.exe`)).sort(compare)[0];
     if (!release) return;
     const root = document.querySelector('[data-release-version]');
@@ -30,10 +30,10 @@
     const link = document.getElementById('download-link');
     if (!link) return;
     link.href = asset.browser_download_url;
-    document.getElementById('windows-release-version').textContent = `${release.tag_name} ${japanese ? 'ベータ版' : 'Beta'}`;
+    document.getElementById('windows-release-version').textContent = release.tag_name;
     const notes = document.getElementById('windows-release-notes');
     notes.href = `https://github.com/${repository}/releases/tag/${release.tag_name}`;
-    notes.textContent = `${release.tag_name} ${japanese ? 'ベータ版' : 'Beta'} ${japanese ? 'リリースノート ↗' : english ? 'release notes ↗' : '릴리스 정보 ↗'}`;
+    notes.textContent = `${release.tag_name} ${japanese ? 'リリースノート ↗' : english ? 'release notes ↗' : '릴리스 정보 ↗'}`;
     const details = document.querySelector('#download-windows .download-file');
     if (details && Number.isSafeInteger(asset.size)) details.textContent = `${(asset.size / 1000000).toFixed(1)} MB · ${japanese ? 'インストール不要 · Python不要' : english ? 'Portable executable · No Python required' : '설치 없이 실행 · Python 설치 불필요'}`;
     if (root) root.dataset.releaseVersion = release.tag_name;

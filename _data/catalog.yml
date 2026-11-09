@@ -26,7 +26,7 @@ ko:
     - id: doro-modbus
       title: Doro Modbus
       description: Modbus RTU Master / Slave 시뮬레이터. CSV 주소 관리와 테스트 값 생성, 통신 그래프를 지원합니다.
-      platform: Windows · Beta
+      platform: Windows · 1.0.0
       icon: /assets/programs/doro-modbus/icon.png
       url: /doro-modbus/
       featured: false
@@ -73,7 +73,7 @@ en:
     - id: doro-modbus
       title: Doro Modbus
       description: Modbus RTU Master / Slave simulator with CSV address lists, value generators, and graphs.
-      platform: Windows · Beta
+      platform: Windows · 1.0.0
       icon: /assets/programs/doro-modbus/icon.png
       url: /doro-modbus/en/
       featured: false
@@ -121,7 +121,7 @@ ja:
   - id: doro-modbus
     title: Doro Modbus
     description: Modbus RTU Master / Slaveシミュレーター。CSVアドレス管理、テスト値の生成、通信グラフに対応しています。
-    platform: Windows · ベータ版
+    platform: Windows · 1.0.0
     icon: "/assets/programs/doro-modbus/icon.png"
     url: "/doro-modbus/ja/"
     featured: false

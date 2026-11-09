@@ -6,15 +6,15 @@
   <a class="doro-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}" aria-label="Duki Lab"><span aria-hidden="true">←</span> DUKI LAB</a>
   {% include language-switch.html class="product-language" %}
 </header>
-<main id="main" class="market-peek-page doro-modbus-page" data-release-version="v{{ release.mac.version | default: release.version | escape }}">
+<main id="main" class="market-peek-page doro-modbus-page" data-release-version="v{{ release.version | escape }}">
   <section aria-labelledby="hero-title" class="hero wrap">
     <div class="hero-copy">
-      <p class="doro-eyebrow"><span aria-hidden="true">✦</span> MODBUS RTU · WINDOWS BETA</p>
+      <p class="doro-eyebrow"><span aria-hidden="true">✦</span> MODBUS RTU · WINDOWS · 1.0.0</p>
       <p class="product-brand"><img alt="" height="30" src="{{ '/assets/programs/doro-modbus/icon.png' | relative_url }}" width="30">Doro Modbus<span aria-hidden="true">.</span></p>
       <h1 id="hero-title">{{ copy.hero_title }}</h1>
       <p class="intro">{{ copy.intro }}</p>
       <div class="hero-downloads">
-        <a class="button" href="#download-windows"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M2 3l7-1v7H2zm9-1l7-1v8h-7zM2 11h7v7l-7-1zm9 0h7v8l-7-1z"></path></svg><span class="hero-download-text">{{ copy.windows_download | escape }}<small>({{ copy.beta | escape }})</small></span><span aria-hidden="true">↓</span></a>
+        <a class="button" href="#download-windows"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M2 3l7-1v7H2zm9-1l7-1v8h-7zM2 11h7v7l-7-1zm9 0h7v8l-7-1z"></path></svg><span class="hero-download-text">{{ copy.windows_download | escape }}<small>({{ copy.release_label | escape }})</small></span><span aria-hidden="true">↓</span></a>
 
       </div>
       <button class="tip-button" type="button" data-tip-open aria-haspopup="dialog" aria-controls="developer-tip-dialog">
@@ -61,6 +61,22 @@
     </div>
 
   </section>
+  <section class="wrap doro-roles" aria-labelledby="roles-title" id="roles">
+    <div class="section-heading"><p class="doro-eyebrow">ROLE SELECT · 1.0.0</p><h2 id="roles-title">{{ copy.screens_title | escape }}</h2><p>{{ copy.screens_intro | escape }}</p></div>
+    {% for role in copy.roles %}
+    <article class="doro-role" id="role-{{ role.id }}" aria-labelledby="role-{{ role.id }}-title">
+      <div class="doro-role-copy"><p class="doro-role-number">0{{ forloop.index }} / {{ role.name | escape }}</p><h3 id="role-{{ role.id }}-title">{{ role.title | escape }}</h3><p>{{ role.body | escape }}</p><ul>{% for point in role.points %}<li>{{ point | escape }}</li>{% endfor %}</ul></div>
+      <figure><a href="{{ '/assets/programs/doro-modbus/' | append: role.image | relative_url }}"><img src="{{ '/assets/programs/doro-modbus/' | append: role.image | relative_url }}" alt="{{ role.alt | escape }}" loading="lazy" width="1120" height="810"></a><figcaption>{{ role.name | escape }} · Doro Modbus 1.0.0</figcaption></figure>
+    </article>
+    {% endfor %}
+    <article class="doro-multiport" aria-labelledby="multiport-title">
+      <div class="section-heading"><p class="doro-eyebrow">MASTER · GRAPHS & TABLE</p><h3 id="multiport-title">{{ copy.multiport_title | escape }}</h3><p>{{ copy.multiport_body | escape }}</p></div>
+      <div class="doro-multiport-screens">
+        <figure><a href="{{ '/assets/programs/doro-modbus/table-popup.png' | relative_url }}"><img src="{{ '/assets/programs/doro-modbus/table-popup.png' | relative_url }}" alt="{{ copy.table_alt | escape }}" loading="lazy" width="1180" height="650"></a><figcaption>{{ copy.table_caption | escape }}</figcaption></figure>
+        <figure><a href="{{ '/assets/programs/doro-modbus/multiport-graph.png' | relative_url }}"><img src="{{ '/assets/programs/doro-modbus/multiport-graph.png' | relative_url }}" alt="{{ copy.graph_alt | escape }}" loading="lazy" width="1050" height="650"></a><figcaption>{{ copy.graph_caption | escape }}</figcaption></figure>
+      </div>
+    </article>
+  </section>
   <section aria-labelledby="download-title" class="download-section wrap" id="download">
     <div class="download-copy">
       <h2 id="download-title">{{ copy.download_title }}</h2>
@@ -68,7 +84,7 @@
     </div>
     <div class="download-options doro-download-options">
       <div class="download-panel" id="download-windows">
-        <div class="release-heading"><strong>{{ copy.windows_platform | escape }}</strong><span id="windows-release-version">v{{ release.version | escape }} {% if language == 'ja' %}ベータ版{% else %}Beta{% endif %}</span></div>
+        <div class="release-heading"><strong>{{ copy.windows_platform | escape }}</strong><span id="windows-release-version">v{{ release.version | escape }}</span></div>
         <p class="platform-label">Windows · x64</p>
         {% if release.published %}
         <a class="button download-button" href="{{ release.installer.url | escape }}" id="download-link">{{ copy.installer_download | escape }} <span aria-hidden="true">↓</span></a>
@@ -78,22 +94,16 @@
         <p class="download-file">{{ release.archive.size | divided_by: 1000000.0 | round: 1 }} MB · {{ copy.archive_detail | escape }}</p>
         {% endif %}
         <div class="release-links">
-          <a class="release-notes" id="windows-release-notes" href="{{ release.release_url | escape }}">v{{ release.version | escape }} {% if language == 'ja' %}ベータ版{% else %}Beta{% endif %} {{ copy.release_notes | escape }} <span aria-hidden="true">↗</span></a>
+          <a class="release-notes" id="windows-release-notes" href="{{ release.release_url | escape }}">v{{ release.version | escape }} {{ copy.release_notes | escape }} <span aria-hidden="true">↗</span></a>
           <a class="release-notes" href="{{ release.releases_url | escape }}">{{ copy.version_downloads | escape }} <span aria-hidden="true">↗</span></a>
         </div>
         {% else %}
         <p class="download-pending" role="status">{{ copy.windows_pending | escape }}</p>
         <p class="download-file">{{ copy.windows_pending_detail | escape }}</p>
+        <a class="release-notes" href="{{ release.releases_url | escape }}">{{ copy.version_downloads | escape }} <span aria-hidden="true">↗</span></a>
         {% endif %}
       </div>
 
-    </div>
-  </section>
-  <section class="wrap doro-gallery" aria-label="{{ site.data.ui[page.lang].screenshots | escape }}">
-    <div class="section-heading"><p class="doro-eyebrow">{{ site.data.ui[page.lang].world_builder | escape }}</p><h2>{{ copy.screens_title | escape }}</h2><p>{{ copy.screens_intro | escape }}</p></div>
-    <div class="doro-screens">
-    <figure><img src="{{ '/assets/programs/doro-modbus/slave.png' | relative_url }}" alt="Doro Modbus Slave" loading="lazy"><figcaption>{{ site.data.ui[page.lang].slave_caption | escape }}</figcaption></figure>
-    <figure><img src="{{ '/assets/programs/doro-modbus/editor.png' | relative_url }}" alt="{{ site.data.ui[page.lang].editor_alt | escape }}" loading="lazy"><figcaption>{{ site.data.ui[page.lang].editor_caption | escape }}</figcaption></figure>
     </div>
   </section>
   <section aria-labelledby="install-title" class="install wrap" id="install">

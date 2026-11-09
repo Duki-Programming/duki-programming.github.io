@@ -34,14 +34,13 @@
     "hero_title": "<span class='hero-title-line'>Modbus 테스트에</span><span class='hero-title-line'><span class='hero-title-accent'>Doro</span>가 합류했습니다!</span>",
     "intro": "읽고, 쓰고, 시뮬레이션하고.<br>든든한 RTU 도구에 귀여운 동료 하나.<br>Master와 Slave, 원하는 역할로 시작하세요.",
     "windows_download": "Windows용 다운로드",
-    "beta": "Beta 버전",
     "chart_alt": "Doro Modbus Master 실제 실행 화면",
     "features_title": "귀여움 뒤에 숨겨진 스킬 세트.",
     "features_intro": "Modbus RTU 테스트에 필요한 기능을 챙겼습니다. 이제 역할을 골라보세요.",
     "features": [
       {
-        "title": "Master / Slave 전환",
-        "body": "하나의 앱에서 RTU Master와 범용 Slave 역할을 선택합니다. 연결을 해제한 뒤 역할과 Win/WSL 모드를 바꿀 수 있습니다.",
+        "title": "세 가지 Role 전환",
+        "body": "Master·Slave Simulator·간이 Slave를 선택합니다. 연결을 해제한 뒤 역할과 Win/WSL 모드를 바꿀 수 있습니다.",
         "badge": "ROLE SELECT"
       },
       {
@@ -51,7 +50,7 @@
       },
       {
         "title": "CSV로 관리하는 주소",
-        "body": "Slave ID와 Device Address 두 열로 주소를 관리하세요. 전용 CSV 폴더에서 저장·선택·삭제할 수 있습니다.",
+        "body": "직접 입력과 CSV를 같은 표에서 편집합니다. 주소·통신 설정을 저장하고 현재 수신값과 캡처 시각을 CSV로 내보내세요.",
         "badge": "ADDRESS LIBRARY"
       },
       {
@@ -66,7 +65,7 @@
       },
       {
         "title": "그래프와 통신 프레임",
-        "body": "최대 4개 값의 그래프를 열고 TX/RX 프레임을 클릭해 복사하세요. 전용 설정·프로필을 저장하고 Doro도 함께 띄워 보세요.",
+        "body": "최대 10개 값의 그래프와 TX/RX 복사를 지원합니다. Master는 포트별 최근 60초 기록과 확대 그래프를 제공합니다.",
         "badge": "FRAME VIEWER"
       }
     ],
@@ -78,17 +77,17 @@
     "archive_detail": "압축을 풀고 실행",
     "release_notes": "릴리스 정보",
     "version_downloads": "버전별 다운로드",
-    "windows_pending": "다운로드를 준비하고 있습니다.",
-    "windows_pending_detail": "Windows 64비트용 단일 실행 파일을 준비하고 있습니다.",
+    "windows_pending": "1.0.0 다운로드 준비 중",
+    "windows_pending_detail": "새 버전 실행 파일은 확인을 마친 뒤 공개합니다. 기존 버전은 아래 링크에서 받을 수 있습니다.",
     "install_title": "첫 연결까지, 퀘스트 세 개.",
     "install_steps": [
       {
         "title": "EXE 다운로드",
-        "body": "Windows 64비트 실행 파일을 내려받으세요. 베타 버전과 변경 내용은 릴리스 페이지에서 확인할 수 있습니다."
+        "body": "Windows 64비트 실행 파일을 내려받으세요. 버전과 변경 내용은 릴리스 페이지에서 확인할 수 있습니다."
       },
       {
         "title": "실행하고 역할 선택",
-        "body": "EXE를 실행하고 Master 또는 Slave를 선택하세요. Python 설치는 필요하지 않습니다."
+        "body": "EXE를 실행하고 Master·Slave Simulator·간이 Slave를 선택하세요. Python 설치는 필요하지 않습니다."
       },
       {
         "title": "포트 설정 후 연결",
@@ -118,11 +117,11 @@
       },
       {
         "question": "Mac에서도 실행되나요?",
-        "answer": "이번 베타 다운로드는 Windows x64 전용입니다. macOS 실행 파일은 제공하지 않습니다."
+        "answer": "다운로드는 Windows x64 전용입니다. macOS 실행 파일은 제공하지 않습니다."
       },
       {
         "question": "실행 시 게시자를 확인할 수 없다고 나와요.",
-        "answer": "현재 GitHub Actions에서 빌드한 베타 EXE는 코드 서명되지 않았습니다. 공식 릴리스의 SHA256SUMS.txt로 파일 해시를 확인할 수 있습니다."
+        "answer": "현재 GitHub Actions에서 빌드한 EXE는 코드 서명되지 않았습니다. 공식 릴리스의 SHA256SUMS.txt로 파일 해시를 확인할 수 있습니다."
       }
     ],
     "preview_lines": [
@@ -147,9 +146,59 @@
     "showcase_note": "실제 Windows 앱 화면",
     "features_eyebrow": "SKILL INVENTORY",
     "install_eyebrow": "GET READY",
-    "screens_title": "테스트 월드를 직접 설계하세요.",
-    "screens_intro": "값이 어떻게 움직일지 정하고, 가상 Slave에서 확인하세요.",
-    "faq_title": "시작 전, 궁금한 것들."
+    "screens_title": "세 가지 Role, 세 가지 작업 방식.",
+    "screens_intro": "1.0.0의 실제 앱 화면입니다. 예제 데이터로 촬영했으며, 이미지를 누르면 크게 볼 수 있습니다.",
+    "faq_title": "시작 전, 궁금한 것들.",
+    "release_label": "정식 버전",
+    "roles": [
+      {
+        "id": "master",
+        "name": "Master",
+        "title": "장치의 값을 읽고, 필요한 값을 쓰세요.",
+        "body": "여러 포트의 Slave ID와 주소를 직접 입력하거나 CSV로 가져오세요. 같은 표에서 주소를 편집하고 수신값을 확인할 수 있습니다.",
+        "points": [
+          "FC01·02·03·04 읽기 / FC05·06·15·16 쓰기",
+          "주소와 통신 설정을 함께 저장·불러오기",
+          "UInt16·Int16·HEX·해석 값과 클릭 시점의 CSV 저장"
+        ],
+        "image": "master.png",
+        "alt": "Doro Modbus 1.0.0 Master의 주소 편집 표와 수신값"
+      },
+      {
+        "id": "slave",
+        "name": "Slave Simulator",
+        "title": "장비가 없어도, 원하는 응답을 만드세요.",
+        "body": "여러 Slave ID와 메모리 영역을 구성하고 시험할 값을 생성합니다. 표의 주소를 더블클릭하면 생성 방식과 파라미터를 바로 편집할 수 있습니다.",
+        "points": [
+          "수동·고정·랜덤·증가/감소·사인파·시간별 시나리오",
+          "응답 지연·누락·강제 예외로 오류 상황 시험",
+          "프로필 JSON 저장·불러오기와 실시간 그래프"
+        ],
+        "image": "slave.png",
+        "alt": "Doro Modbus 1.0.0 Slave Simulator의 주소 및 값 생성 표"
+      },
+      {
+        "id": "simple",
+        "name": "간이 Slave",
+        "title": "4채널 시험은 가볍게 시작하세요.",
+        "body": "기존 4채널 DAQ 응답을 간단한 화면에서 시험합니다. 채널 값과 Status·Type, 환산 온도, 통신 프레임을 함께 확인합니다.",
+        "points": [
+          "FC03 · 시작 주소 0 · 13개 레지스터",
+          "고정값 또는 랜덤값과 갱신 간격 설정",
+          "4채널 온도 그래프와 TX/RX 복사"
+        ],
+        "image": "simple-slave.png",
+        "alt": "Doro Modbus 1.0.0 간이 Slave의 4채널 값과 온도 그래프"
+      }
+    ],
+    "multiport_title": "여러 포트를 한 화면에서.",
+    "multiport_body": "Master에서 포트마다 플랫폼·시리얼 설정·FC·조회 주기·Slave 주소를 독립적으로 관리합니다. 최근 60초를 기록하고 포트별 최대 10개 채널을 표시합니다. 그래프와 결과표를 더블클릭해 확대하고, 표에서는 Ctrl+휠로 글씨 크기를 조절하세요.",
+    "multiport_alt": "두 포트의 수신값과 포트별 10채널 그래프",
+    "graph_caption": "포트별 탭과 Y축 · 최근 60초 · 크기 조절이 가능한 확대 창",
+    "graph_alt": "다중 포트 COM7의 10채널 확대 그래프",
+    "download_language_note": "앱과 도움말: 한국어 · English · 日本語 · 简体中文 · Español",
+    "table_caption": "결과표 확대 · 실시간 값 갱신 · Ctrl+휠로 글씨 크기 조절",
+    "table_alt": "글씨와 행 높이를 키운 Doro Modbus 결과표 확대 창"
   },
   "en": {
     "likes": {
@@ -186,14 +235,13 @@
     "hero_title": "Your Modbus tests.<br>Now with <span>Doro</span><br>in the party.",
     "intro": "Read, write, simulate.<br>A capable RTU toolkit. One very cute companion.<br>Choose Master or Slave and get started.",
     "windows_download": "Download for Windows",
-    "beta": "Beta version",
     "chart_alt": "Doro Modbus Master running on Windows",
     "features_title": "Cute companion. Serious skill set.",
     "features_intro": "The tools for your next Modbus RTU test. Pick a role and bring Doro along.",
     "features": [
       {
-        "title": "Master and Slave in one app",
-        "body": "Choose RTU Master or generic Slave. Disconnect before switching roles or Win/WSL serial modes.",
+        "title": "Three roles in one app",
+        "body": "Choose Master, Slave Simulator or Simple Slave. Disconnect before changing roles or Win/WSL mode.",
         "badge": "ROLE SELECT"
       },
       {
@@ -203,7 +251,7 @@
       },
       {
         "title": "A simple CSV address library",
-        "body": "Manage addresses with just Slave ID and Device Address columns. Save, select, and delete files in a dedicated CSV folder.",
+        "body": "Edit manual and CSV addresses in the same table. Save addresses with communication settings and export received values with capture timestamps.",
         "badge": "ADDRESS LIBRARY"
       },
       {
@@ -218,12 +266,12 @@
       },
       {
         "title": "Graphs and frame inspection",
-        "body": "Plot up to four values and click TX/RX frames to copy them. Save dedicated settings and profiles, with Doro alongside your work.",
+        "body": "Graph up to ten values and click TX/RX to copy frames. Master includes per-port 60-second history and enlarged graphs.",
         "badge": "FRAME VIEWER"
       }
     ],
     "download_title": "Your party is ready.<br>Connect with Doro.",
-    "download_language_note": "This website is available in English. The app currently uses a mix of Korean and English labels.",
+    "download_language_note": "App and help: 한국어 · English · 日本語 · 简体中文 · Español",
     "windows_platform": "Windows 64-bit",
     "installer_download": "Download Windows EXE",
     "installer_detail": "Portable executable · No Python required",
@@ -231,17 +279,17 @@
     "archive_detail": "Extract and run · Korean-language app",
     "release_notes": "release notes",
     "version_downloads": "All versions",
-    "windows_pending": "Your download is on its way.",
-    "windows_pending_detail": "The Windows 64-bit portable executable is being prepared.",
+    "windows_pending": "Version 1.0.0 download coming soon",
+    "windows_pending_detail": "The new executable will be published after review. Earlier versions remain available below.",
     "install_title": "Three quests to your first connection.",
     "install_steps": [
       {
         "title": "Download the EXE",
-        "body": "Download the Windows 64-bit executable. Check the release page for the beta version and changes."
+        "body": "Download the Windows 64-bit executable. Check the release page for the version and changes."
       },
       {
         "title": "Run and choose a role",
-        "body": "Run the EXE and select Master or Slave. No Python installation is required."
+        "body": "Run the EXE and choose Master, Slave Simulator or Simple Slave. No Python installation is required."
       },
       {
         "title": "Configure and connect",
@@ -251,7 +299,7 @@
     "faq": [
       {
         "question": "Does it support Modbus TCP?",
-        "answer": "This beta supports Modbus RTU only. TCP, ASCII, FC22/23, and device discovery are not included."
+        "answer": "This release supports Modbus RTU only. TCP, ASCII, FC22/23, and device discovery are not included."
       },
       {
         "question": "Should I enter address 40001?",
@@ -271,11 +319,11 @@
       },
       {
         "question": "Can I run it on a Mac?",
-        "answer": "This beta download is for Windows x64. No macOS executable is provided."
+        "answer": "This download is for Windows x64. No macOS executable is provided."
       },
       {
         "question": "Why does Windows show an unknown publisher?",
-        "answer": "The current beta EXE is built with GitHub Actions and is unsigned. You can check the file hash against SHA256SUMS.txt in the official release."
+        "answer": "The current EXE is built with GitHub Actions and is unsigned. You can check the file hash against SHA256SUMS.txt in the official release."
       }
     ],
     "preview_lines": [
@@ -300,9 +348,58 @@
     "showcase_note": "Actual Windows app screens",
     "features_eyebrow": "SKILL INVENTORY",
     "install_eyebrow": "GET READY",
-    "screens_title": "Build your own test world.",
-    "screens_intro": "Choose how values change, then try them in a simulated Slave.",
-    "faq_title": "Before you start your quest."
+    "screens_title": "Three roles. Three ways to work.",
+    "screens_intro": "Actual screens from version 1.0.0, captured with example data. Select an image to view it at full size.",
+    "faq_title": "Before you start your quest.",
+    "release_label": "Stable release",
+    "roles": [
+      {
+        "id": "master",
+        "name": "Master",
+        "title": "Read your device. Write when you need to.",
+        "body": "Enter Slave IDs and addresses across multiple ports or import a CSV. Edit the same table while inspecting received values.",
+        "points": [
+          "Read FC01·02·03·04 / write FC05·06·15·16",
+          "Save and reload addresses with communication settings",
+          "UInt16, Int16, HEX, decoded values and timestamped CSV snapshots"
+        ],
+        "image": "master.png",
+        "alt": "Doro Modbus 1.0.0 Master address table and received values"
+      },
+      {
+        "id": "slave",
+        "name": "Slave Simulator",
+        "title": "Create the responses your test needs.",
+        "body": "Configure multiple Slave IDs and memory banks without a physical device. Double-click an address to edit its generator and parameters.",
+        "points": [
+          "Manual, constant, random, ramp, sine and timed sequences",
+          "Test response delays, dropped replies and forced exceptions",
+          "Import/export JSON profiles and view live graphs"
+        ],
+        "image": "slave.png",
+        "alt": "Doro Modbus 1.0.0 Slave Simulator address and generator table"
+      },
+      {
+        "id": "simple",
+        "name": "Simple Slave",
+        "title": "Start a four-channel test in moments.",
+        "body": "Test the original four-channel DAQ response in a compact view. See channel values, Status, Type, converted temperatures and communication frames together.",
+        "points": [
+          "FC03 · start address 0 · 13 registers",
+          "Fixed or random values with a configurable update interval",
+          "Four-channel temperature graph and TX/RX copying"
+        ],
+        "image": "simple-slave.png",
+        "alt": "Doro Modbus 1.0.0 Simple Slave channel values and temperature graph"
+      }
+    ],
+    "multiport_title": "Several ports. One workspace.",
+    "multiport_body": "Master manages platform, serial settings, function, polling interval and Slave addresses independently for each port. Keep 60 seconds of history and show up to 10 channels per port. Double-click a graph or the result table to enlarge it; use Ctrl+wheel to resize table text.",
+    "multiport_alt": "Two ports with received values and a ten-channel graph per port",
+    "graph_caption": "Per-port tabs and Y ranges · 60-second history · Resizable enlarged view",
+    "graph_alt": "Enlarged ten-channel graph for port COM7",
+    "table_caption": "Enlarged live table · Ctrl+wheel adjusts text size",
+    "table_alt": "Doro Modbus result table with larger text and rows"
   },
   "ja": {
     "likes": {
@@ -339,14 +436,13 @@
     "hero_title": "Modbusのテストに。<br>頼れる仲間、<br><span>Doro</span>と一緒に。",
     "intro": "読み取り、書き込み、シミュレーション。<br>便利なRTUツールと、小さな相棒。<br>MasterかSlaveを選んで始めましょう。",
     "windows_download": "Windows版をダウンロード",
-    "beta": "ベータ版",
     "chart_alt": "Windowsで動作するDoro Modbus Master",
     "features_title": "かわいい相棒。頼れる機能。",
     "features_intro": "次のModbus RTUテストに必要なツールをひとつに。役割を選んでDoroと始めましょう。",
     "features": [
       {
-        "title": "MasterとSlaveをひとつのアプリで",
-        "body": "RTU Masterまたは汎用Slaveを選択できます。役割やWin/WSLシリアルモードの切り替え前には切断してください。",
+        "title": "3つのRoleを切り替え",
+        "body": "Master・Slave Simulator・簡易Slaveを選べます。切断してからRoleやWin/WSLモードを変更します。",
         "badge": "役割を選択"
       },
       {
@@ -356,7 +452,7 @@
       },
       {
         "title": "シンプルなCSVアドレス管理",
-        "body": "Slave IDとDevice Addressの2列でアドレスを管理します。専用CSVフォルダ内のファイルを保存・選択・削除できます。",
+        "body": "手入力とCSVを同じ表で編集。アドレスと通信設定を保存し、受信値と取得時刻をCSVに書き出せます。",
         "badge": "アドレスライブラリ"
       },
       {
@@ -371,12 +467,12 @@
       },
       {
         "title": "グラフと通信フレームを確認",
-        "body": "最大4つの値をグラフに表示し、TX/RXフレームをクリックしてコピーできます。専用の設定とプロファイルを保存でき、作業中はDoroがそばにいます。",
+        "body": "最大10個の値をグラフ化し、TX/RXをクリックしてコピー。Masterはポート別の直近60秒履歴と拡大表示に対応します。",
         "badge": "フレームビューアー"
       }
     ],
     "download_title": "準備ができたら、<br>Doroと接続。",
-    "download_language_note": "このページは日本語版です。アプリ内のラベルには現在、韓国語と英語が使われています。",
+    "download_language_note": "アプリとヘルプ：韓国語・English・日本語・简体中文・Español",
     "windows_platform": "Windows 64ビット",
     "installer_download": "Windows用EXEをダウンロード",
     "installer_detail": "インストール不要 · Python不要",
@@ -384,17 +480,17 @@
     "archive_detail": "展開して実行 · 韓国語のアプリ",
     "release_notes": "リリースノート",
     "version_downloads": "すべてのバージョン",
-    "windows_pending": "ダウンロードを準備中です。",
-    "windows_pending_detail": "Windows 64ビット用のポータブル実行ファイルを準備しています。",
+    "windows_pending": "1.0.0のダウンロードを準備中",
+    "windows_pending_detail": "新しい実行ファイルは確認後に公開します。以前のバージョンは下のリンクから入手できます。",
     "install_title": "接続までの3つのクエスト。",
     "install_steps": [
       {
         "title": "EXEをダウンロード",
-        "body": "Windows 64ビット用実行ファイルをダウンロードします。ベータ版のバージョンと変更内容はリリースページで確認できます。"
+        "body": "Windows 64ビット用実行ファイルをダウンロードします。バージョンと変更内容はリリースページで確認できます。"
       },
       {
         "title": "起動して役割を選ぶ",
-        "body": "EXEを実行し、MasterまたはSlaveを選びます。Pythonのインストールは不要です。"
+        "body": "EXEを実行し、Master・Slave Simulator・簡易Slaveを選びます。Pythonのインストールは不要です。"
       },
       {
         "title": "通信条件を設定して接続",
@@ -404,7 +500,7 @@
     "faq": [
       {
         "question": "Modbus TCPに対応していますか？",
-        "answer": "このベータ版はModbus RTUのみ対応しています。TCP、ASCII、FC22/23、機器の自動検出は含まれていません。"
+        "answer": "このバージョンはModbus RTUのみ対応しています。TCP、ASCII、FC22/23、機器の自動検出は含まれていません。"
       },
       {
         "question": "アドレスは40001と入力しますか？",
@@ -424,11 +520,11 @@
       },
       {
         "question": "Macでも使えますか？",
-        "answer": "このベータ版の配布ファイルはWindows x64用です。macOS用の実行ファイルはありません。"
+        "answer": "配布ファイルはWindows x64用です。macOS用の実行ファイルはありません。"
       },
       {
         "question": "Windowsで発行元が不明と表示されるのはなぜですか？",
-        "answer": "現在のベータ版EXEはGitHub Actionsでビルドした署名なしのファイルです。公式リリースのSHA256SUMS.txtとファイルのハッシュ値を照合できます。"
+        "answer": "現在のEXEはGitHub Actionsでビルドした署名なしのファイルです。公式リリースのSHA256SUMS.txtとファイルのハッシュ値を照合できます。"
       }
     ],
     "preview_lines": [
@@ -453,8 +549,57 @@
     "showcase_note": "実際のWindowsアプリ画面",
     "features_eyebrow": "機能一覧",
     "install_eyebrow": "準備を始めよう",
-    "screens_title": "自分だけのテスト環境を。",
-    "screens_intro": "値の変化を設定し、シミュレーション用Slaveで試せます。",
-    "faq_title": "冒険を始める前に。"
+    "screens_title": "3つのRole、3つの使い方。",
+    "screens_intro": "1.0.0の実際のアプリ画面です。サンプルデータで撮影しています。画像を選ぶと原寸で表示できます。",
+    "faq_title": "冒険を始める前に。",
+    "release_label": "正式版",
+    "roles": [
+      {
+        "id": "master",
+        "name": "Master",
+        "title": "装置の値を読み、必要な値を書き込む。",
+        "body": "複数ポートのSlave IDとアドレスを手入力するかCSVから読み込みます。同じ表でアドレスを編集し、受信値を確認できます。",
+        "points": [
+          "FC01・02・03・04の読取 / FC05・06・15・16の書込",
+          "アドレスと通信設定をまとめて保存・読込",
+          "UInt16・Int16・HEX・変換値と時刻付きCSVキャプチャ"
+        ],
+        "image": "master.png",
+        "alt": "Doro Modbus 1.0.0 Masterのアドレス表と受信値"
+      },
+      {
+        "id": "slave",
+        "name": "Slave Simulator",
+        "title": "実機なしで、必要な応答を作る。",
+        "body": "複数のSlave IDとメモリー領域を構成します。アドレスをダブルクリックすると、生成方式とパラメーターを編集できます。",
+        "points": [
+          "手動・固定・ランダム・ランプ・正弦波・時系列シナリオ",
+          "応答遅延・応答省略・強制例外でエラーを試験",
+          "JSONプロファイルの入出力とリアルタイムグラフ"
+        ],
+        "image": "slave.png",
+        "alt": "Doro Modbus 1.0.0 Slave Simulatorのアドレスと値生成表"
+      },
+      {
+        "id": "simple",
+        "name": "簡易Slave",
+        "title": "4チャンネルの試験を手軽に。",
+        "body": "従来の4チャンネルDAQ応答をコンパクトな画面で試験します。値、Status、Type、換算温度と通信フレームを同時に確認できます。",
+        "points": [
+          "FC03 · 開始アドレス0 · 13レジスター",
+          "固定値またはランダム値と更新間隔を設定",
+          "4チャンネル温度グラフとTX/RXのコピー"
+        ],
+        "image": "simple-slave.png",
+        "alt": "Doro Modbus 1.0.0 簡易Slaveの値と温度グラフ"
+      }
+    ],
+    "multiport_title": "複数のポートを、ひとつの画面で。",
+    "multiport_body": "Masterでプラットフォーム、通信条件、FC、照会周期、Slaveアドレスをポート別に管理します。直近60秒の履歴と各ポート最大10チャンネルを表示。グラフや結果表をダブルクリックすると拡大でき、表ではCtrl＋ホイールで文字サイズを調節できます。",
+    "multiport_alt": "2ポートの受信値とポート別10チャンネルのグラフ",
+    "graph_caption": "ポート別タブ・Y軸 · 直近60秒 · サイズ変更できる拡大窓",
+    "graph_alt": "COM7の10チャンネル拡大グラフ",
+    "table_caption": "結果表を拡大 · ライブ更新 · Ctrl＋ホイールで文字サイズを変更",
+    "table_alt": "文字と行の高さを大きくしたDoro Modbusの結果表"
   }
 }
