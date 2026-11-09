@@ -1,6 +1,7 @@
 {% assign language = page.lang | default: 'ko' %}
 {% assign copy = site.data.doro_modbus_copy[language] %}
 {% assign release = site.data.doro_modbus %}
+{% assign monitor = site.data.modbus_monitor %}
 <a class="skip" href="#main">{{ copy.skip | escape }}</a>
 <header class="product-topbar wrap">
   <a class="doro-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}" aria-label="Duki Lab"><span aria-hidden="true">←</span> DUKI LAB</a>
@@ -103,7 +104,14 @@
         <a class="release-notes" href="{{ release.releases_url | escape }}">{{ copy.version_downloads | escape }} <span aria-hidden="true">↗</span></a>
         {% endif %}
       </div>
-
+      {% if monitor.published %}
+      <div class="download-panel" id="download-monitor">
+        <div class="release-heading"><strong>Modbus Monitor</strong><span>v{{ monitor.version | escape }}</span></div>
+        <p class="platform-label">Windows · x64</p>
+        <a class="button download-button" href="{{ monitor.url | escape }}" id="monitor-download-link">{{ copy.monitor_download | escape }} <span aria-hidden="true">↓</span></a>
+        <p class="download-file">{{ monitor.size | divided_by: 1000000.0 | round: 1 }} MB · {{ copy.monitor_detail | escape }}</p>
+      </div>
+      {% endif %}
     </div>
   </section>
   <section aria-labelledby="install-title" class="install wrap" id="install">
