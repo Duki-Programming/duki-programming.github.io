@@ -18,7 +18,7 @@
   {% if page.cover %}<meta property="og:image" content="{{ page.cover | absolute_url }}">{% endif %}
   <title>{{ page.title | escape }} — {{ page.tagline | escape }}</title>
   <link rel="canonical" href="{{ page.url | absolute_url }}">
-  {% if page.product == 'market-peek' or page.product == 'doro-modbus' or page.product == 'bitbox' or page.product == 'talkey' or page.product == 'chatville' %}
+  {% if page.product == 'market-peek' or page.product == 'doro-modbus' or page.product == 'bitbox' or page.product == 'talkey' or page.product == 'chatville' or page.product == 'btcoffice' %}
   <link rel="alternate" hreflang="ko" href="{{ '/' | append: page.product | append: '/' | absolute_url }}">
   <link rel="alternate" hreflang="en" href="{{ '/' | append: page.product | append: '/en/' | absolute_url }}">
   <link rel="alternate" hreflang="ja" href="{{ '/' | append: page.product | append: '/ja/' | absolute_url }}">
@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/languages.css' | relative_url }}">
 </head>
 <body>
-  <template data-product-stats-template>{% include program-stats.html %}</template>
+  {% unless page.product == 'btcoffice' %}<template data-product-stats-template>{% include program-stats.html %}</template>{% endunless %}
   {% include site-ad.html %}
   {% include content-with-ads.html %}
 </body>

@@ -9,7 +9,7 @@
   {% if include.preview %}
   <div class="program-link{% if include.cube %} program-link--cube{% endif %}" tabindex="0" role="group" aria-label="{{ banner_style.title | escape }} 미리보기"
   {% else %}
-  <a class="program-link{% if include.cube %} program-link--cube{% endif %}{% if banner_program.featured %} program-link--featured{% endif %}{% if banner_program.id == 'chatville' %} program-link--chatville{% endif %}" href="{{ banner_url | escape }}"
+  <a class="program-link{% if include.cube %} program-link--cube{% endif %}{% if banner_program.featured %} program-link--featured{% endif %}{% if banner_program.id == 'chatville' %} program-link--chatville{% endif %}{% if banner_program.id == 'btcoffice' %} program-link--btcoffice{% endif %}" href="{{ banner_url | escape }}"
   {% endif %}
     data-holo-tilt data-tilt-x="12" data-tilt-y="10"
     data-banner-mode="{{ include.mode | default: 'fixed' | escape }}" data-banner-style="{{ banner_style.id | escape }}" data-palette="{{ banner_style.palette | escape }}" data-foil="{{ banner_style.foil | escape }}">
@@ -17,6 +17,7 @@
     <span class="program-foil program-foil--texture" aria-hidden="true"></span>
     <span class="program-foil program-foil--glare" aria-hidden="true"></span>
     {% if banner_program.id == 'chatville' %}<span class="program-twinkles" aria-hidden="true">{% for i in (1..6) %}<i>✦</i>{% endfor %}</span>{% endif %}
+    {% if banner_program.id == 'btcoffice' %}<span class="office-banner-market" aria-hidden="true"><svg viewBox="0 0 420 180" fill="none"><path d="M0 150H35V130H65V145H95V95H125V110H155V65H185V83H215V45H245V70H280V25H315V49H350V10H385V24H420" stroke="currentColor" stroke-width="3"/></svg></span>{% endif %}
     {% if include.cube %}
     <span class="program-cube-stage" aria-hidden="true">
       <span class="program-cube-lift">
@@ -38,7 +39,7 @@
       <strong>{{ banner_program.title | escape }}</strong>
       {% if banner_program.description %}<span>{{ banner_program.description | escape }}</span>{% endif %}
       {% if banner_program.platform %}<span class="program-platform">{{ banner_program.platform | escape }}</span>{% endif %}
-      {% unless include.preview %}{% if site.notifier_api_url and site.notifier_api_url != '' %}
+      {% unless include.preview or banner_program.id == 'btcoffice' %}{% if site.notifier_api_url and site.notifier_api_url != '' %}
       {% assign stats_id = banner_program.id | default: banner_program.product %}
       {% unless stats_id %}{% assign stats_id = banner_program.url | remove_first: '/' | split: '/' | first %}{% endunless %}
       <span class="program-card-stat" data-program-stats="{{ stats_id | escape }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg><span>{{ site.data.ui[page.lang].downloads }}</span><b data-program-stat="downloads">—</b></span>

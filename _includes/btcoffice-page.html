@@ -1,0 +1,44 @@
+{% assign copy = site.data.btcoffice_copy[page.lang] %}
+<header class="office-topbar office-wrap">
+  <a class="office-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}">← DUKI LAB</a>
+  {% include language-switch.html class="product-language" %}
+</header>
+<main id="main" class="office-page">
+  <section class="office-hero office-wrap" aria-labelledby="office-title">
+    <div class="office-hero-copy">
+      <p class="office-eyebrow"><span class="office-live-dot" aria-hidden="true"></span>{{ copy.eyebrow }}</p>
+      <p class="office-wordmark"><img src="{{ page.icon | relative_url }}" width="52" height="52" alt="">BTC <span>Office</span></p>
+      <h1 id="office-title">{{ copy.headline }}</h1>
+      <p class="office-intro">{{ copy.intro }}</p>
+      <div class="office-actions">
+        <a class="office-play" href="{{ '/btcoffice/game/' | relative_url }}"><span aria-hidden="true">▶</span> {{ copy.play }} <span aria-hidden="true">↗</span></a>
+        <a class="office-explore" href="#the-office">{{ copy.explore }} ↓</a>
+      </div>
+      <p class="office-availability">{{ copy.availability }}</p>
+    </div>
+    <div class="office-market-art" aria-hidden="true">
+      <div class="office-market-art__grid"></div>
+      <span class="office-market-art__label">BTC / OFFICE<br>THE MARKET NEVER SLEEPS.</span>
+      <svg class="office-market-art__chart" viewBox="0 0 420 220" fill="none"><path d="M0 181H35V164H65V180H95V132H125V143H150V94H185V111H210V68H242V90H274V46H308V64H344V22H380V36H420" stroke="currentColor" stroke-width="4"/><path d="M0 203H420M0 155H420M0 107H420M0 59H420" stroke="currentColor" stroke-opacity=".12"/></svg>
+      <span class="office-market-art__coin">₿</span>
+      <span class="office-market-art__status">OPEN OFFICE / 24:7</span>
+    </div>
+  </section>
+  <figure class="office-showcase office-wrap">
+    <div class="office-windowbar"><span aria-hidden="true">● ● ●</span><span>BTC OFFICE · IN THE BROWSER</span><span aria-hidden="true">↗</span></div>
+    <img src="{{ '/assets/programs/btcoffice/office.png' | relative_url }}" width="1440" height="1000" alt="{{ copy.screenshot_alt | escape }}" fetchpriority="high">
+    <figcaption>{{ copy.screenshot_caption }}</figcaption>
+  </figure>
+  <section id="the-office" class="office-story office-wrap" aria-labelledby="office-floor-title">
+    <div class="office-story__copy"><p class="office-eyebrow">{{ copy.floor_label }}</p><h2 id="office-floor-title">{{ copy.floor_title }}</h2><p>{{ copy.floor_body }}</p></div>
+    <div class="office-desk" aria-hidden="true"><div class="office-desk__monitor"><span>BTC OFFICE</span><svg viewBox="0 0 240 80"><path d="M0 62H22V49H45V56H70V32H95V39H120V19H147V31H172V13H201V20H240" fill="none" stroke="currentColor" stroke-width="3"/></svg></div><div class="office-desk__stand"></div><div class="office-desk__table"></div><span>01 / YOUR DESK IS WAITING</span></div>
+  </section>
+  <section class="office-story office-story--hall office-wrap" aria-labelledby="office-hall-title">
+    <div class="office-floor-sign" aria-hidden="true"><span>HALL OF FAME</span><strong>★</strong><div><span>↑ UP</span><span>DOWN ↓</span></div></div>
+    <div class="office-story__copy"><p class="office-eyebrow">{{ copy.hall_label }}</p><h2 id="office-hall-title">{{ copy.hall_title }}</h2><p>{{ copy.hall_body }}</p></div>
+  </section>
+  <section class="office-character office-wrap" aria-labelledby="office-character-title"><p class="office-eyebrow">{{ copy.character_label }}</p><h2 id="office-character-title">{{ copy.character_title }}</h2><p>{{ copy.character_body }}</p></section>
+  <section class="office-controls office-wrap" aria-labelledby="office-controls-title"><h2 id="office-controls-title">{{ copy.controls_title }}</h2><dl>{% for control in copy.controls %}<div><dt><kbd>{{ control.key }}</kbd></dt><dd>{{ control.action }}</dd></div>{% endfor %}</dl></section>
+  <section class="office-preview office-wrap" aria-labelledby="office-preview-title"><span class="office-eyebrow">PUBLIC PREVIEW</span><h2 id="office-preview-title">{{ copy.preview_title }}</h2><p>{{ copy.preview_body }}</p><p class="office-preview__note">{{ copy.preview_note }}</p><a class="office-play" href="{{ '/btcoffice/game/' | relative_url }}"><span aria-hidden="true">▶</span> {{ copy.play }} <span aria-hidden="true">↗</span></a></section>
+</main>
+<footer class="office-footer office-wrap"><div><strong>BTC Office</strong><p>{{ copy.footer_line }}</p></div><div class="business-footer">{% include business-footer.html %}</div></footer>
