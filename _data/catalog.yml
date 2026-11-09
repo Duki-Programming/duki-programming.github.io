@@ -7,6 +7,15 @@ ko:
   navigation: 언어 선택
   creator: 개발·제작
   programs:
+    - id: btcoffice
+      title: BTC Office
+      description: "비트코인 전광판 아래, 나만의 캐릭터로 걷는 작은 픽셀 오피스. 설치 없이 브라우저에서 둘러보세요."
+      platform: "브라우저 게임 · 공개 미리보기"
+      icon: /assets/programs/btcoffice/icon.svg
+      url: /btcoffice/
+      featured: true
+      banner_style: aurora-rainbow
+      spotlight: "↗ PLAY NOW · 브라우저에서 출근하기"
     - id: "chatville"
       title: "ChatVille"
       description: "일곱 주민이 일하고 쉬며 오늘을 기억하는 AI 픽셀 마을. 카페와 강변을 걷고, 이웃에게 말을 걸어보세요."
@@ -54,6 +63,15 @@ en:
   navigation: Choose a language
   creator: Created by
   programs:
+    - id: btcoffice
+      title: BTC Office
+      description: "A little pixel office beneath the Bitcoin ticker. Walk in with your own character and play in your browser."
+      platform: "Browser game · Public preview"
+      icon: /assets/programs/btcoffice/icon.svg
+      url: /btcoffice/en/
+      featured: true
+      banner_style: aurora-rainbow
+      spotlight: "↗ PLAY NOW · Your desk is waiting"
     - id: "chatville"
       title: "ChatVille"
       description: "An AI pixel village where seven neighbors work, rest, and remember. Explore the café and riverside, and say hello."
@@ -102,6 +120,15 @@ ja:
   navigation: 言語を選択
   creator: 開発・制作
   programs:
+  - id: btcoffice
+    title: BTC Office
+    description: "ビットコインの電光掲示板の下を歩く、小さなピクセルオフィス。インストールせずブラウザーで体験できます。"
+    platform: "ブラウザーゲーム · 公開プレビュー"
+    icon: /assets/programs/btcoffice/icon.svg
+    url: /btcoffice/ja/
+    featured: true
+    banner_style: aurora-rainbow
+    spotlight: "↗ PLAY NOW · あなたの席へ"
   - id: "chatville"
     title: "ChatVille"
     description: "7人の住民が働き、休み、今日を覚えていくAIピクセルの村。カフェや川辺を歩き、話しかけてみましょう。"

@@ -1,0 +1,108 @@
+ko:
+  tagline: 시세가 흐르는 작은 픽셀 오피스
+  description: 비트코인 전광판 아래, 나만의 캐릭터로 걷는 작은 오피스. 설치 없이 브라우저에서 BTC Office를 둘러보세요.
+  eyebrow: BROWSER GAME · PUBLIC PREVIEW
+  headline: 오늘의 시세 아래,<br>당신의 자리가 있어요.
+  intro: 바쁘게 움직이는 트레이더들, 커다란 시세 전광판, 위층의 명예의 전당. 작은 픽셀 오피스에 들어와 잠깐 머물러 보세요.
+  play: 브라우저에서 플레이
+  explore: 오피스 둘러보기
+  availability: 설치 없이 실행 · PC 키보드와 마우스 권장
+  screenshot_alt: 시세 전광판과 책상 앞 픽셀 캐릭터가 있는 BTC Office의 실제 게임 화면
+  screenshot_caption: 실제 게임 화면 · 공개 시세와 예시 트레이더가 함께 표시됩니다.
+  floor_label: 01 / THE OFFICE
+  floor_title: 차트를 보다가,<br>이웃 책상에도 들러요.
+  floor_body: BTC, ETH, SOL, XRP와 NASDAQ 전광판을 살펴보고 오피스를 자유롭게 걸어보세요. 움직임에 따라 화면이 따라오고, 가까운 자리에서는 캐릭터의 작은 행동도 보입니다.
+  hall_label: 02 / HALL OF FAME
+  hall_title: 엘리베이터를 타고,<br>명예의 전당으로.
+  hall_body: 상행과 하행이 나뉜 엘리베이터로 층을 오가세요. 별과 명패로 꾸민 공간에서 순위별 캐릭터를 만날 수 있습니다. 현재 웹 미리보기의 순위는 저장된 스냅샷입니다.
+  character_label: YOUR CHARACTER
+  character_title: 큰 캐릭터도, 작은 캐릭터도.
+  character_body: 설정에서 캐릭터 모드를 골라보세요. 가까이에서는 표정과 행동을, 멀리에서는 오피스 전체의 풍경을 즐길 수 있습니다.
+  controls_title: 첫 출근, 이것만 기억하세요.
+  controls:
+    - key: WASD / ↑↓←→
+      action: 이동
+    - key: Shift
+      action: 달리기
+    - key: E
+      action: 가까운 대상과 상호작용
+    - key: MOUSE DRAG
+      action: 화면 둘러보기
+    - key: + / −
+      action: 화면 배율 조절
+  preview_title: 지금은 오피스를 먼저 둘러보세요.
+  preview_body: 게임 실행과 공개 시세 조회는 바로 이용할 수 있습니다. Google 로그인, 계정 연동 채팅과 다른 이용자의 위치 표시는 설정을 마무리하는 중입니다.
+  preview_note: NASDAQ은 지연 시세이며, 예시 트레이더와 저장된 순위는 실제 이용자의 현재 수익을 뜻하지 않습니다.
+  footer_line: 작은 자리에서 만나는, 커다란 시장.
+en:
+  tagline: A little pixel office with a view of the market
+  description: Walk beneath the Bitcoin ticker in your own pixel character. Explore BTC Office in your browser, with no installation.
+  eyebrow: BROWSER GAME · PUBLIC PREVIEW
+  headline: A little desk.<br>A world of moving numbers.
+  intro: Busy traders, a big market board, and a Hall of Fame upstairs. Step into a little pixel office and stay a while.
+  play: Play in your browser
+  explore: Explore the office
+  availability: No installation · PC keyboard and mouse recommended
+  screenshot_alt: An actual BTC Office game screen with the market board and pixel characters at their desks
+  screenshot_caption: Actual gameplay · Public market quotes appear alongside example traders.
+  floor_label: 01 / THE OFFICE
+  floor_title: Watch the board.<br>Visit the next desk.
+  floor_body: Check BTC, ETH, SOL, XRP, and NASDAQ on the board, then take a walk around the office. The camera follows your character, and nearby desks reveal little character animations.
+  hall_label: 02 / HALL OF FAME
+  hall_title: Take the elevator.<br>Meet the Hall of Fame.
+  hall_body: Travel between floors in separate up and down elevators. Discover ranked characters among stars and nameplates. Rankings in the web preview currently use a saved snapshot.
+  character_label: YOUR CHARACTER
+  character_title: Big characters. Little characters. Your choice.
+  character_body: Choose a character mode in settings. Zoom in to enjoy their expressions and actions, or zoom out for a wider view of the office.
+  controls_title: Your first day, in five controls.
+  controls:
+    - key: WASD / ↑↓←→
+      action: Move
+    - key: Shift
+      action: Run
+    - key: E
+      action: Interact with something nearby
+    - key: MOUSE DRAG
+      action: Look around
+    - key: + / −
+      action: Adjust zoom
+  preview_title: Come in and explore.
+  preview_body: The game and public market quotes are available now. Google sign-in, account-linked chat, and other players’ positions are still being set up.
+  preview_note: NASDAQ quotes are delayed. Example traders and saved rankings do not represent users’ current returns.
+  footer_line: A little desk. A big market.
+ja:
+  tagline: 相場が流れる、小さなピクセルオフィス
+  description: ビットコインの電光掲示板の下を、自分のキャラクターで歩くオフィス。インストールせず、ブラウザーでBTC Officeを体験できます。
+  eyebrow: BROWSER GAME · PUBLIC PREVIEW
+  headline: 今日の相場の下に、<br>あなたの席があります。
+  intro: 忙しく働くトレーダー、大きな相場ボード、上の階の殿堂。小さなピクセルオフィスで、少し過ごしてみませんか。
+  play: ブラウザーでプレイ
+  explore: オフィスを見てみる
+  availability: インストール不要 · PCのキーボードとマウスを推奨
+  screenshot_alt: 相場ボードと机に座るピクセルキャラクターが見える、BTC Officeの実際のゲーム画面
+  screenshot_caption: 実際のゲーム画面 · 公開相場とサンプルトレーダーが表示されます。
+  floor_label: 01 / THE OFFICE
+  floor_title: 相場を見ながら、<br>隣のデスクにも。
+  floor_body: BTC、ETH、SOL、XRP、NASDAQのボードを眺めて、オフィスを自由に歩きましょう。カメラがキャラクターを追い、近くの席では小さな仕草が見られます。
+  hall_label: 02 / HALL OF FAME
+  hall_title: エレベーターに乗って、<br>殿堂へ。
+  hall_body: 上りと下りが分かれたエレベーターで階を移動できます。星とネームプレートに囲まれた空間で、順位ごとのキャラクターに出会えます。現在のウェブ版の順位は保存済みのスナップショットです。
+  character_label: YOUR CHARACTER
+  character_title: 大きくても、小さくても。
+  character_body: 設定からキャラクターモードを選べます。近くで表情や仕草を楽しんだり、離れてオフィス全体を眺めたりしてみましょう。
+  controls_title: 最初の出勤に、5つの操作。
+  controls:
+    - key: WASD / ↑↓←→
+      action: 移動
+    - key: Shift
+      action: 走る
+    - key: E
+      action: 近くのものを調べる
+    - key: MOUSE DRAG
+      action: 画面を見回す
+    - key: + / −
+      action: 表示倍率を調整
+  preview_title: まずはオフィスを歩いてみましょう。
+  preview_body: ゲームと公開相場はすぐに利用できます。Googleログイン、アカウントに連動するチャット、ほかの利用者の位置表示は準備中です。
+  preview_note: NASDAQは遅延相場です。サンプルトレーダーと保存された順位は、利用者の現在の利益を示すものではありません。
+  footer_line: 小さな席から、大きな市場へ。
