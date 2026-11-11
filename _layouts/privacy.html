@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="{{ page.lang | default: 'ko' | escape }}">
+<html data-theme="dark" data-default-theme="dark" data-product="privacy" lang="{{ page.lang | default: 'ko' | escape }}">
 {% assign copy = site.data.privacy[page.lang] %}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% include theme-bootstrap.html %}
   {% include site-fonts.html %}
   <title>{{ copy.title | escape }} — Duki Lab</title>
   <meta name="description" content="{{ copy.description | escape }}">
@@ -17,11 +18,13 @@
   <link rel="stylesheet" href="{{ '/assets/css/privacy.css' | relative_url }}">
   {% include google-site-verification.html %}
   <link rel="stylesheet" href="{{ '/assets/css/languages.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/site-theme.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <script src="{{ '/assets/js/site-theme.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </head>
 <body>
   <header class="catalog-header shell">
     <a class="catalog-brand" href="{{ site.data.ui[page.lang].home_url | relative_url }}"><img src="{{ '/assets/brand.svg' | relative_url }}" width="32" height="32" alt="">Duki Lab<span aria-hidden="true">.</span></a>
-    {% include language-switch.html class="company-language" %}
+    {% include appearance-controls.html class="company-language" %}
   </header>
   {{ content }}
   <footer class="catalog-footer shell business-footer">{% include business-footer.html %}</footer>

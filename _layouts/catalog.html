@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="{{ page.lang | default: 'ko' }}">
+<html data-theme="dark" data-default-theme="dark" data-product="catalog" lang="{{ page.lang | default: 'ko' }}">
 {% assign copy = site.data.catalog[page.lang] %}
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% include theme-bootstrap.html %}
   {% include site-fonts.html %}
   {% include google-site-verification.html %}
   <title>{% if page.title %}{{ page.title | escape }} — {% endif %}Duki Lab</title>
@@ -28,6 +29,8 @@
   <link rel="stylesheet" href="{{ '/assets/css/business-footer.css' | relative_url }}">
   {% include advertising-head.html %}
   <link rel="stylesheet" href="{{ '/assets/css/languages.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/site-theme.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <script src="{{ '/assets/js/site-theme.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </head>
 <body class="catalog-page">
   <header class="catalog-header shell">
