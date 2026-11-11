@@ -1,108 +1,216 @@
 ko:
-  tagline: 시세가 흐르는 작은 픽셀 오피스
-  description: 비트코인 전광판 아래, 나만의 캐릭터로 걷는 작은 오피스. 설치 없이 브라우저에서 BTC Office를 둘러보세요.
-  eyebrow: BROWSER GAME · PUBLIC PREVIEW
-  headline: 오늘의 시세 아래,<br>당신의 자리가 있어요.
-  intro: 바쁘게 움직이는 트레이더들, 커다란 시세 전광판, 위층의 명예의 전당. 작은 픽셀 오피스에 들어와 잠깐 머물러 보세요.
-  play: 브라우저에서 플레이
-  explore: 오피스 둘러보기
-  availability: 설치 없이 실행 · PC 키보드와 마우스 권장
-  screenshot_alt: 시세 전광판과 책상 앞 픽셀 캐릭터가 있는 BTC Office의 실제 게임 화면
-  screenshot_caption: 실제 게임 화면 · 공개 시세와 예시 트레이더가 함께 표시됩니다.
-  floor_label: 01 / THE OFFICE
-  floor_title: 차트를 보다가,<br>이웃 책상에도 들러요.
-  floor_body: BTC, ETH, SOL, XRP와 NASDAQ 전광판을 살펴보고 오피스를 자유롭게 걸어보세요. 움직임에 따라 화면이 따라오고, 가까운 자리에서는 캐릭터의 작은 행동도 보입니다.
-  hall_label: 02 / HALL OF FAME
+  skip: 본문으로 건너뛰기
+  navigation: 게임 소개
+  nav_office: 오피스 생활
+  nav_character: 캐릭터 꾸미기
+  nav_hall: 명예의 전당
+  eyebrow: A LITTLE PIXEL OFFICE · BROWSER GAME
+  headline: 출근은 가볍게,<br>캐릭터는 나답게.
+  intro: 시세가 흐르는 작은 오피스에서 걷고, 쉬고, 이야기를 나눠요. 커피 한 잔 마시는 동료들 사이에 당신의 캐릭터도 앉을 자리가 있어요.
+  play: 지금 게임 시작
+  hall_link: 명예의 전당 구경하기
+  availability: 설치 없이 브라우저에서 · PC 키보드와 마우스 권장
+  entry_alt: 오피스 빌딩과 시작하기·계정 설정 버튼이 있는 현재 BTC Office 시작 화면
+  entry_caption: 바뀐 시작 화면에서, 오늘의 오피스 생활을 시작해요.
+  facts:
+    - {title: 바로 입장, body: 로그인 없이 먼저 둘러보기}
+    - {title: 12가지 캐릭터, body: 큰 모습도 작은 모습도}
+    - {title: 함께 채팅, body: Google 로그인 후 이야기 나누기}
+    - {title: 명예의 전당, body: 엘리베이터 너머 두 개의 전당}
+  floor_title: 차트도 보고,<br>옆자리에도 놀러 가요.
+  floor_body: 전광판 아래를 산책하고, 가까운 책상에서 동료들의 작은 행동을 구경해 보세요. 일하다 커피를 마시고, 잠깐 쉬기도 하는 픽셀 오피스. 로그인하면 같은 방의 친구들과 채팅도 할 수 있어요.
+  screenshot_alt: 보정된 큰 캐릭터와 전광판, 책상, 휴식 공간이 보이는 현재 오피스 게임 장면
+  screenshot_caption: 현재 게임의 실제 장면 · 미연결 자리에는 예시 트레이더 데이터가 표시됩니다.
+  break_body: 커피 마시기, 담배 피우기, 기뻐하기, 걸어 다니기. 가만히 지켜봐도 저마다 바쁜 하루를 보내고 있어요.
+  character_title: 오늘은 어떤 모습으로<br>출근할까요?
+  character_body: 회사원부터 마법사까지, 마음에 드는 캐릭터를 골라보세요. 큰 캐릭터와 작은 캐릭터를 바꾸고, 모자와 옷 색도 직접 정할 수 있어요.
+  character_points: [캐릭터 12종과 두 가지 크기, 모자·상의·하의 색상 선택, 앞·옆·뒤 모습과 걷기 미리보기]
+  character_note: Google 로그인 → 계정 설정 → 캐릭터 꾸미기 → 저장하고 입장
+  character_modes: 캐릭터 크기 미리보기
+  large: 큰 캐릭터
+  small: 작은 캐릭터
+  character_alt: 12종 캐릭터, 크기, 모자와 옷 색상을 고르는 실제 캐릭터 설정 화면
+  small_alt: 같은 캐릭터를 작은 모드로 선택한 실제 설정 화면
+  character_caption: 실제 설정 화면 · 선택한 모습은 계정에 저장돼요.
+  small_caption: 작은 캐릭터도 표정과 동작을 그대로 즐길 수 있어요.
+  cast_alt: 회사원, 캐주얼, 도인, 마법사 등 현재 게임의 12가지 캐릭터
   hall_title: 엘리베이터를 타고,<br>명예의 전당으로.
-  hall_body: 상행과 하행이 나뉜 엘리베이터로 층을 오가세요. 별과 명패로 꾸민 공간에서 순위별 캐릭터를 만날 수 있습니다. 현재 웹 미리보기의 순위는 저장된 스냅샷입니다.
-  character_label: YOUR CHARACTER
-  character_title: 큰 캐릭터도, 작은 캐릭터도.
-  character_body: 설정에서 캐릭터 모드를 골라보세요. 가까이에서는 표정과 행동을, 멀리에서는 오피스 전체의 풍경을 즐길 수 있습니다.
-  controls_title: 첫 출근, 이것만 기억하세요.
+  hall_body: 오피스 북쪽 엘리베이터를 타면 최상층에 도착해요. 별과 명패가 늘어선 로비를 지나, 왼쪽 수익률 전당과 오른쪽 수익금 전당을 둘러보세요.
+  hall_gallery: 명예의 전당 게임 장면
+  lobby: 중앙 로비
+  roi: 수익률 전당 · ROI
+  pnl: 수익금 전당 · PNL
+  hall_alt: 수익률과 수익금 상위 캐릭터들이 별 모양 순위 명패 위에 서 있는 명예의 전당 로비
+  roi_alt: 수익률 순위의 캐릭터와 자리가 펼쳐진 수익률 명예의 전당
+  pnl_alt: 수익금 순위의 캐릭터와 자리가 펼쳐진 수익금 명예의 전당
+  lobby_caption: 실제 명예의 전당 로비 · 수익률과 수익금 순위가 각각 전시됩니다.
+  roi_caption: 왼쪽 문 너머, 수익률 순위 11~60위를 만나는 전당.
+  pnl_caption: 오른쪽 문 너머, 수익금 순위 11~60위를 만나는 전당.
+  ranks:
+    - {label: LOBBY · TOP 10, title: 별 아래의 주인공들, body: 중앙 로비에서 수익률·수익금 각 1~10위 캐릭터와 명패를 만나요.}
+    - {label: LEFT · ROI, title: 수익률 명예의 전당, body: 왼쪽 문 앞에서 E를 누르면 수익률 11~60위가 있는 공간으로 이동해요.}
+    - {label: RIGHT · PNL, title: 수익금 명예의 전당, body: 오른쪽 문 앞에서 E를 누르면 수익금 11~60위가 있는 공간으로 이동해요.}
+  hall_note: 현재 웹 버전은 저장된 순위 스냅샷을 전시합니다. 실시간 이용자 순위가 아닙니다.
+  start_title: 첫 방문이라면,<br>이렇게 시작해요.
+  start_body: 먼저 가볍게 둘러봐도 좋아요. 내 캐릭터와 채팅을 쓰고 싶어지면 첫 화면의 계정 설정에서 로그인하세요.
+  start_options:
+    - {label: GUEST PLAY, title: 일단 구경하러 왔어요, body: 시작하기를 누르고 로그인 없이 입장하세요. 오피스와 명예의 전당을 자유롭게 걸어볼 수 있어요. 게스트는 채팅과 캐릭터 선택을 이용할 수 없어요., route: 시작하기 → 로그인 없이 시작}
+    - {label: MY CHARACTER, title: 내 캐릭터로 함께 놀래요, body: Google로 로그인하고 캐릭터를 골라 저장하세요. 선택한 모습으로 다시 입장하고 같은 방의 다른 플레이어와 이야기할 수 있어요., route: 계정 설정 → Google 로그인 → 캐릭터 꾸미기 → 입장}
+  controls_title: 이 키들만 알면 출근 준비 끝.
   controls:
-    - key: WASD / ↑↓←→
-      action: 이동
-    - key: Shift
-      action: 달리기
-    - key: E
-      action: 가까운 대상과 상호작용
-    - key: MOUSE DRAG
-      action: 화면 둘러보기
-    - key: + / −
-      action: 화면 배율 조절
-  preview_title: 지금은 오피스를 먼저 둘러보세요.
-  preview_body: 게임 실행과 공개 시세 조회는 바로 이용할 수 있습니다. Google 로그인, 계정 연동 채팅과 다른 이용자의 위치 표시는 설정을 마무리하는 중입니다.
-  preview_note: NASDAQ은 지연 시세이며, 예시 트레이더와 저장된 순위는 실제 이용자의 현재 수익을 뜻하지 않습니다.
-  footer_line: 작은 자리에서 만나는, 커다란 시장.
+    - {key: WASD / ↑↓←→, action: 오피스 돌아다니기}
+    - {key: Shift, action: 달리기}
+    - {key: E, action: 가까운 문·대상과 상호작용}
+    - {key: Enter, action: 채팅 입력·전송 · 로그인 필요}
+    - {key: MOUSE DRAG, action: 화면 둘러보기}
+    - {key: + / −, action: 화면 배율 조절}
+  account_title: 내 거래소 정보를 오피스에 연결하고 싶다면?
+  account_body: 계정 설정의 거래소 연결에서 Binance, Bitget, Bybit, Upbit, OKX를 연결할 수 있어요. 읽기 전용 API 정보를 입력하고 연결 버튼을 눌러 확인하세요. 거래소마다 표시할 수 있는 자산·포지션 정보가 다릅니다.
+  data_note: 전광판은 공개 시세를 사용하며 NASDAQ은 지연 시세입니다. 예시 트레이더와 저장된 순위는 현재 이용자의 수익을 뜻하지 않습니다.
+  outro_title: 자리는 비워 뒀어요.
+  outro_body: 오늘도 작은 오피스에서 만나요. 게스트로 바로 들어올 수 있어요.
+  footer_line: 작은 오피스에서 만나는 우리들의 하루.
 en:
-  tagline: A little pixel office with a view of the market
-  description: Walk beneath the Bitcoin ticker in your own pixel character. Explore BTC Office in your browser, with no installation.
-  eyebrow: BROWSER GAME · PUBLIC PREVIEW
-  headline: A little desk.<br>A world of moving numbers.
-  intro: Busy traders, a big market board, and a Hall of Fame upstairs. Step into a little pixel office and stay a while.
-  play: Play in your browser
-  explore: Explore the office
-  availability: No installation · PC keyboard and mouse recommended
-  screenshot_alt: An actual BTC Office game screen with the market board and pixel characters at their desks
-  screenshot_caption: Actual gameplay · Public market quotes appear alongside example traders.
-  floor_label: 01 / THE OFFICE
+  skip: Skip to content
+  navigation: Explore the game
+  nav_office: Office life
+  nav_character: Your character
+  nav_hall: Hall of Fame
+  eyebrow: A LITTLE PIXEL OFFICE · BROWSER GAME
+  headline: Clock in lightly.<br>Show up as yourself.
+  intro: Walk, take a break, and chat in a little office with a view of the market. There is room for your character among the coffee-sipping coworkers.
+  play: Play now
+  hall_link: Visit the Hall of Fame
+  availability: Play in your browser · PC keyboard and mouse recommended
+  entry_alt: Current BTC Office title screen with office buildings and Start and Account Settings buttons
+  entry_caption: Your day begins on the new title screen.
+  facts:
+    - {title: Walk right in, body: Explore as a guest}
+    - {title: 12 characters, body: Pick a big or small look}
+    - {title: Chat together, body: Sign in with Google}
+    - {title: Hall of Fame, body: Two halls upstairs}
   floor_title: Watch the board.<br>Visit the next desk.
-  floor_body: Check BTC, ETH, SOL, XRP, and NASDAQ on the board, then take a walk around the office. The camera follows your character, and nearby desks reveal little character animations.
-  hall_label: 02 / HALL OF FAME
-  hall_title: Take the elevator.<br>Meet the Hall of Fame.
-  hall_body: Travel between floors in separate up and down elevators. Discover ranked characters among stars and nameplates. Rankings in the web preview currently use a saved snapshot.
-  character_label: YOUR CHARACTER
-  character_title: Big characters. Little characters. Your choice.
-  character_body: Choose a character mode in settings. Zoom in to enjoy their expressions and actions, or zoom out for a wider view of the office.
-  controls_title: Your first day, in five controls.
+  floor_body: Stroll beneath the market board and watch your coworkers at their desks. Work, coffee, and little breaks give this pixel office its rhythm. Sign in to chat with other players in the same room.
+  screenshot_alt: Current office gameplay with updated large characters, desks, a market board, and a lounge
+  screenshot_caption: Actual game scene · Unconnected desks show example trader data.
+  break_body: Coffee breaks, smoke breaks, celebrations, and walks around the office. Everyone has a little routine of their own.
+  character_title: Who will you be<br>at work today?
+  character_body: Pick a coworker or a wizard, choose a big or small character, then give your hat and clothes their own colors.
+  character_points: [12 characters and two sizes, Separate hat and clothing colors, Front and side views plus walking previews]
+  character_note: Google sign-in → Account Settings → Customize → Save and enter
+  character_modes: Character size preview
+  large: Big character
+  small: Small character
+  character_alt: Actual character settings with twelve characters, two sizes, and hat and clothing palettes
+  small_alt: The same character selected in small mode in the actual settings screen
+  character_caption: Actual settings screen · Your appearance is saved to your account.
+  small_caption: Little characters have expressions and animations, too.
+  cast_alt: The twelve current game characters, including a coworker, wizard, and adventurer
+  hall_title: Take the elevator.<br>Enter the Hall of Fame.
+  hall_body: Ride the elevator at the north end of the office to the top floor. Walk through a lobby of stars and nameplates, then explore the ROI hall on the left and the PNL hall on the right.
+  hall_gallery: Hall of Fame game scenes
+  lobby: Central lobby
+  roi: ROI hall
+  pnl: PNL hall
+  hall_alt: Hall of Fame lobby with ranked characters and star-shaped nameplates for ROI and PNL
+  roi_alt: Characters and desks in the return-on-investment Hall of Fame
+  pnl_alt: Characters and desks in the profit-and-loss Hall of Fame
+  lobby_caption: Actual Hall of Fame lobby · Separate displays for ROI and PNL rankings.
+  roi_caption: Through the left door, meet ROI ranks 11–60.
+  pnl_caption: Through the right door, meet PNL ranks 11–60.
+  ranks:
+    - {label: LOBBY · TOP 10, title: Stars of the lobby, body: Meet characters representing the top ten in each of the ROI and PNL rankings.}
+    - {label: LEFT · ROI, title: Return on investment, body: Press E at the left door to visit the hall displaying ROI ranks 11–60.}
+    - {label: RIGHT · PNL, title: Profit and loss, body: Press E at the right door to visit the hall displaying PNL ranks 11–60.}
+  hall_note: The current web version displays saved ranking snapshots, not live player rankings.
+  start_title: Your first day?<br>Start here.
+  start_body: Take a look around first. When you want your own character and chat, open Account Settings on the title screen and sign in.
+  start_options:
+    - {label: GUEST PLAY, title: Just looking around, body: Choose Start and continue without signing in. Explore the office and Hall of Fame freely. Chat and character selection are unavailable to guests., route: Start → Continue as a guest}
+    - {label: MY CHARACTER, title: Here to join in, body: Sign in with Google and save your character. Enter with your chosen appearance and chat with other players in the same room., route: Account Settings → Google → Customize → Enter}
+  controls_title: A few keys for your first day.
   controls:
-    - key: WASD / ↑↓←→
-      action: Move
-    - key: Shift
-      action: Run
-    - key: E
-      action: Interact with something nearby
-    - key: MOUSE DRAG
-      action: Look around
-    - key: + / −
-      action: Adjust zoom
-  preview_title: Come in and explore.
-  preview_body: The game and public market quotes are available now. Google sign-in, account-linked chat, and other players’ positions are still being set up.
-  preview_note: NASDAQ quotes are delayed. Example traders and saved rankings do not represent users’ current returns.
-  footer_line: A little desk. A big market.
+    - {key: WASD / ↑↓←→, action: Move around}
+    - {key: Shift, action: Run}
+    - {key: E, action: Interact with nearby doors and objects}
+    - {key: Enter, action: Type and send chat · Sign-in required}
+    - {key: MOUSE DRAG, action: Look around}
+    - {key: + / −, action: Adjust zoom}
+  account_title: Want to connect your exchange account?
+  account_body: In Account Settings, open Exchange Connections for Binance, Bitget, Bybit, Upbit, or OKX. Enter read-only API credentials and use the Connect button to check them. Available asset and position information varies by exchange.
+  data_note: The board uses public market feeds; NASDAQ quotes are delayed. Example traders and saved rankings do not show players’ current returns.
+  outro_title: We saved you a spot.
+  outro_body: See you in the little office. Guests can walk right in.
+  footer_line: A little office. A day together.
 ja:
-  tagline: 相場が流れる、小さなピクセルオフィス
-  description: ビットコインの電光掲示板の下を、自分のキャラクターで歩くオフィス。インストールせず、ブラウザーでBTC Officeを体験できます。
-  eyebrow: BROWSER GAME · PUBLIC PREVIEW
-  headline: 今日の相場の下に、<br>あなたの席があります。
-  intro: 忙しく働くトレーダー、大きな相場ボード、上の階の殿堂。小さなピクセルオフィスで、少し過ごしてみませんか。
-  play: ブラウザーでプレイ
-  explore: オフィスを見てみる
+  skip: 本文へ移動
+  navigation: ゲーム紹介
+  nav_office: オフィス生活
+  nav_character: キャラクター
+  nav_hall: 殿堂
+  eyebrow: A LITTLE PIXEL OFFICE · BROWSER GAME
+  headline: 気軽に出勤。<br>自分らしい姿で。
+  intro: 相場が流れる小さなオフィスで、歩いて、休んで、おしゃべり。コーヒーを飲む仲間たちの間に、あなたのキャラクターの席もあります。
+  play: 今すぐプレイ
+  hall_link: 殿堂を見てみる
   availability: インストール不要 · PCのキーボードとマウスを推奨
-  screenshot_alt: 相場ボードと机に座るピクセルキャラクターが見える、BTC Officeの実際のゲーム画面
-  screenshot_caption: 実際のゲーム画面 · 公開相場とサンプルトレーダーが表示されます。
-  floor_label: 01 / THE OFFICE
+  entry_alt: オフィスビルと開始・アカウント設定ボタンがある現在のBTC Officeタイトル画面
+  entry_caption: 新しいタイトル画面から、今日のオフィス生活を。
+  facts:
+    - {title: すぐに入場, body: ゲストで見学できます}
+    - {title: 12人のキャラクター, body: 大きな姿も小さな姿も}
+    - {title: 一緒にチャット, body: Googleログインで参加}
+    - {title: 殿堂へ, body: 上の階に二つの殿堂}
   floor_title: 相場を見ながら、<br>隣のデスクにも。
-  floor_body: BTC、ETH、SOL、XRP、NASDAQのボードを眺めて、オフィスを自由に歩きましょう。カメラがキャラクターを追い、近くの席では小さな仕草が見られます。
-  hall_label: 02 / HALL OF FAME
-  hall_title: エレベーターに乗って、<br>殿堂へ。
-  hall_body: 上りと下りが分かれたエレベーターで階を移動できます。星とネームプレートに囲まれた空間で、順位ごとのキャラクターに出会えます。現在のウェブ版の順位は保存済みのスナップショットです。
-  character_label: YOUR CHARACTER
-  character_title: 大きくても、小さくても。
-  character_body: 設定からキャラクターモードを選べます。近くで表情や仕草を楽しんだり、離れてオフィス全体を眺めたりしてみましょう。
-  controls_title: 最初の出勤に、5つの操作。
+  floor_body: 相場ボードの下を歩き、仲間たちの小さな仕草を眺めましょう。仕事にコーヒー、ときどき休憩。ログインすると、同じ部屋のプレイヤーとチャットできます。
+  screenshot_alt: 更新された大きなキャラクター、デスク、相場ボード、休憩スペースが見える現在のゲーム画面
+  screenshot_caption: 実際のゲームシーン · 未接続の席にはサンプルトレーダーの情報が表示されます。
+  break_body: コーヒー、たばこ、喜ぶ仕草、オフィスの散歩。眺めているだけでも、それぞれの一日が見えてきます。
+  character_title: 今日はどんな姿で<br>出勤しますか？
+  character_body: 会社員から魔法使いまで、お気に入りを選びましょう。大きな姿と小さな姿を切り替え、帽子や服の色も自分好みにできます。
+  character_points: [12人のキャラクターと二つのサイズ, 帽子・トップス・ボトムスの色選択, 前後左右の姿と歩行プレビュー]
+  character_note: Googleログイン → アカウント設定 → 着せ替え → 保存して入場
+  character_modes: キャラクターサイズのプレビュー
+  large: 大きなキャラクター
+  small: 小さなキャラクター
+  character_alt: 12人のキャラクター、サイズ、帽子と服の色を選ぶ実際の設定画面
+  small_alt: 同じキャラクターを小さいモードにした実際の設定画面
+  character_caption: 実際の設定画面 · 選んだ姿はアカウントに保存されます。
+  small_caption: 小さなキャラクターにも、表情や動きがあります。
+  cast_alt: 会社員、魔法使い、冒険家など現在の12人のキャラクター
+  hall_title: エレベーターで、<br>殿堂へ。
+  hall_body: オフィス北側のエレベーターで最上階へ。星とネームプレートのロビーを抜け、左の収益率の殿堂と右の損益額の殿堂を歩いてみましょう。
+  hall_gallery: 殿堂のゲームシーン
+  lobby: 中央ロビー
+  roi: 収益率の殿堂 · ROI
+  pnl: 損益額の殿堂 · PNL
+  hall_alt: 収益率と損益額の上位キャラクターが星形の順位プレートに並ぶ殿堂のロビー
+  roi_alt: 収益率ランキングのキャラクターとデスクが並ぶ殿堂
+  pnl_alt: 損益額ランキングのキャラクターとデスクが並ぶ殿堂
+  lobby_caption: 実際の殿堂ロビー · 収益率と損益額をそれぞれ展示しています。
+  roi_caption: 左の扉の先に、収益率11〜60位の殿堂。
+  pnl_caption: 右の扉の先に、損益額11〜60位の殿堂。
+  ranks:
+    - {label: LOBBY · TOP 10, title: 星の下の主役たち, body: 中央ロビーでは収益率・損益額それぞれ1〜10位のキャラクターと名札に出会えます。}
+    - {label: LEFT · ROI, title: 収益率の殿堂, body: 左の扉の前でEを押すと、収益率11〜60位の展示へ移動できます。}
+    - {label: RIGHT · PNL, title: 損益額の殿堂, body: 右の扉の前でEを押すと、損益額11〜60位の展示へ移動できます。}
+  hall_note: 現在のウェブ版は保存されたランキングを展示しています。リアルタイムのプレイヤー順位ではありません。
+  start_title: 初めての訪問なら、<br>ここから。
+  start_body: まずは気軽に見学しましょう。自分のキャラクターとチャットを使いたくなったら、タイトル画面のアカウント設定からログインできます。
+  start_options:
+    - {label: GUEST PLAY, title: まずは見学したい, body: 開始を選び、ログインせずに入場できます。オフィスと殿堂を自由に歩けます。ゲストはチャットとキャラクター選択を利用できません。, route: 開始 → ゲストで入場}
+    - {label: MY CHARACTER, title: 自分の姿で参加したい, body: Googleでログインしてキャラクターを保存しましょう。選んだ姿で入場し、同じ部屋のプレイヤーとチャットできます。, route: アカウント設定 → Google → 着せ替え → 入場}
+  controls_title: このキーで出勤準備は完了。
   controls:
-    - key: WASD / ↑↓←→
-      action: 移動
-    - key: Shift
-      action: 走る
-    - key: E
-      action: 近くのものを調べる
-    - key: MOUSE DRAG
-      action: 画面を見回す
-    - key: + / −
-      action: 表示倍率を調整
-  preview_title: まずはオフィスを歩いてみましょう。
-  preview_body: ゲームと公開相場はすぐに利用できます。Googleログイン、アカウントに連動するチャット、ほかの利用者の位置表示は準備中です。
-  preview_note: NASDAQは遅延相場です。サンプルトレーダーと保存された順位は、利用者の現在の利益を示すものではありません。
-  footer_line: 小さな席から、大きな市場へ。
+    - {key: WASD / ↑↓←→, action: 移動}
+    - {key: Shift, action: 走る}
+    - {key: E, action: 近くの扉や対象を操作}
+    - {key: Enter, action: チャット入力・送信 · ログインが必要}
+    - {key: MOUSE DRAG, action: 画面を見渡す}
+    - {key: + / −, action: 表示倍率を調整}
+  account_title: 取引所の情報を接続するには？
+  account_body: アカウント設定の取引所接続で、Binance・Bitget・Bybit・Upbit・OKXを接続できます。読み取り専用API情報を入力し、接続ボタンで確認してください。表示できる資産やポジション情報は取引所によって異なります。
+  data_note: 相場ボードは公開情報を使用し、NASDAQは遅延相場です。サンプルトレーダーや保存された順位は、現在の利用者の収益を表すものではありません。
+  outro_title: 席を空けておきました。
+  outro_body: 今日も小さなオフィスで。ゲストですぐに入れます。
+  footer_line: 小さなオフィスで、一緒に過ごす一日。

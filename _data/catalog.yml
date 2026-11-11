@@ -9,7 +9,7 @@ ko:
   programs:
     - id: btcoffice
       title: BTC Office
-      description: "비트코인 전광판 아래, 나만의 캐릭터로 걷는 작은 픽셀 오피스. 설치 없이 브라우저에서 둘러보세요."
+      description: "내 캐릭터를 꾸미고, 친구들과 채팅하고, 명예의 전당까지. 브라우저로 들어가는 작은 픽셀 오피스."
       platform: "브라우저 게임 · 공개 미리보기"
       icon: /assets/programs/btcoffice/icon.svg
       url: /btcoffice/
