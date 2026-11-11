@@ -25,7 +25,7 @@ test('every published page has reciprocal language routes and fonts stay within 
  const sitemap=read(path.join(build,'sitemap.xml'));
  for(const family of families) for(const lang of ['ko','en','ja']){
   const url=route(family,lang), html=read(output(url));
-  assert.match(html,new RegExp(`<html lang="${lang}">`));
+  assert.match(html,new RegExp(`<html\\b[^>]*\\blang="${lang}"[\\s>]`));
   assert.doesNotMatch(html,/Liquid (?:Exception|error)|<h1[^>]*>\s*<\/h1>/);
   for(const other of ['ko','en','ja']){
    const otherUrl=route(family,other);

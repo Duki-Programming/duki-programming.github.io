@@ -5,7 +5,7 @@
 <a class="skip" href="#main">{{ copy.skip | escape }}</a>
 <header class="product-topbar wrap">
   <a class="doro-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}" aria-label="Duki Lab"><span aria-hidden="true">←</span> DUKI LAB</a>
-  {% include language-switch.html class="product-language" %}
+  {% include appearance-controls.html class="product-language" %}
 </header>
 <main id="main" class="market-peek-page doro-modbus-page" data-release-version="v{{ release.version | escape }}">
   <section aria-labelledby="hero-title" class="hero wrap">

@@ -1,4 +1,7 @@
 ko:
+  dark_mode: 다크 모드
+  switch_dark: 다크 모드로 전환
+  switch_light: 라이트 모드로 전환
   language: 언어 선택
   home_url: /
   privacy_url: /privacy/
@@ -19,6 +22,9 @@ ko:
   quest: QUEST
   work_in_progress: WORK IN PROGRESS
 en:
+  dark_mode: Dark mode
+  switch_dark: Switch to dark mode
+  switch_light: Switch to light mode
   language: Choose a language
   home_url: /en/
   privacy_url: /privacy/en/
@@ -39,6 +45,9 @@ en:
   quest: QUEST
   work_in_progress: WORK IN PROGRESS
 ja:
+  dark_mode: ダークモード
+  switch_dark: ダークモードに切り替え
+  switch_light: ライトモードに切り替え
   language: 言語を選択
   home_url: /ja/
   privacy_url: /privacy/ja/

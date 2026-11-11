@@ -172,3 +172,14 @@ node --test tests/*.test.mjs
 - 소개 문구는 `_data/btcoffice_copy.yml`, 본문은 `_includes/btcoffice-page.html`, 스타일은 `assets/css/btcoffice.css`입니다. 실제 게임 스크린샷은 `assets/programs/btcoffice/office.png`에 있습니다.
 - `_data/catalog.yml`의 세 언어 목록에 `btcoffice`를 등록합니다. 전용 배너는 `assets/css/btcoffice-spectrum.css`에서 색상이 계속 순환하는 테두리와 시장 보드 스캔을 사용합니다. 움직임 줄이기 설정에서는 애니메이션을 멈춥니다.
 - 게임 API는 별도 `btc-office-core` Cloudflare Worker입니다. `duki-notifier`의 기존 설정은 변경하지 않습니다. Google 로그인 키 설정 전까지 소개 페이지에 로그인·채팅 준비 상태를 표시합니다.
+
+## Shared light and dark themes
+
+All six product introductions, the catalog, and the privacy pages share the
+sun/moon switch in the upper-right header. `appearance-controls.html` renders
+localized controls; `theme-bootstrap.html` restores `duki-site-theme` before
+styles paint, and `site-theme.js` persists the choice across pages and tabs.
+Blocked browser storage still allows switching within the page. BTC Office
+keeps its cream/mint light default; other pages retain their dark default until
+a choice is saved. `assets/css/site-theme.css` contains theme surfaces and text
+colors; screenshots, character artwork, and device previews keep their colors.
