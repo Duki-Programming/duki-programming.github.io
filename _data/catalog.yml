@@ -14,7 +14,6 @@ ko:
       icon: /assets/programs/btcoffice/icon.svg
       url: /btcoffice/
       featured: true
-      banner_style: aurora-rainbow
       spotlight: "↗ PLAY NOW · 브라우저에서 출근하기"
     - id: "chatville"
       title: "ChatVille"
@@ -70,7 +69,6 @@ en:
       icon: /assets/programs/btcoffice/icon.svg
       url: /btcoffice/en/
       featured: true
-      banner_style: aurora-rainbow
       spotlight: "↗ PLAY NOW · Your desk is waiting"
     - id: "chatville"
       title: "ChatVille"
@@ -127,7 +125,6 @@ ja:
     icon: /assets/programs/btcoffice/icon.svg
     url: /btcoffice/ja/
     featured: true
-    banner_style: aurora-rainbow
     spotlight: "↗ PLAY NOW · あなたの席へ"
   - id: "chatville"
     title: "ChatVille"
