@@ -170,7 +170,7 @@ node --test tests/*.test.mjs
 - 소개: `https://duki-programming.github.io/btcoffice/` (한국어), `/btcoffice/en/`, `/btcoffice/ja/`.
 - 게임 실행: `https://duki-programming.github.io/btcoffice/game/`. `btcoffice/game/`의 Godot Web 산출물은 front matter 없이 그대로 게시합니다. 재빌드할 때는 BTC 프로젝트의 `tools/export_web.py`와 `tools/package_pages.py`를 사용합니다.
 - 소개 문구는 `_data/btcoffice_copy.yml`, 본문은 `_includes/btcoffice-page.html`, 스타일은 `assets/css/btcoffice.css`입니다. 실제 게임 스크린샷은 `assets/programs/btcoffice/office.png`에 있습니다.
-- `_data/catalog.yml`의 세 언어 목록에 `btcoffice`를 등록합니다. 전용 배너는 `assets/css/btcoffice-spectrum.css`에서 색상이 계속 순환하는 테두리와 시장 보드 스캔을 사용합니다. 움직임 줄이기 설정에서는 애니메이션을 멈춥니다.
+- `_data/catalog.yml`의 세 언어 목록에 `btcoffice`를 등록합니다. 배너는 다른 프로그램처럼 방문·새로고침마다 공통 10개 색상·포일 조합을 무작위로 고르고, 같은 세션에서는 직전 조합을 피합니다. `assets/css/btcoffice-spectrum.css`의 배경·테두리·시장 보드는 선택된 팔레트를 따르며, 시장 보드 스캔과 큐브 회전을 유지합니다. 움직임 줄이기 설정에서는 애니메이션을 멈춥니다.
 - 게임 API는 별도 `btc-office-core` Cloudflare Worker입니다. `duki-notifier`의 기존 설정은 변경하지 않습니다. Google 로그인 키 설정 전까지 소개 페이지에 로그인·채팅 준비 상태를 표시합니다.
 
 ## Shared light and dark themes
