@@ -24,7 +24,7 @@ ko:
   break_body: 커피 마시기, 담배 피우기, 기뻐하기, 걸어 다니기. 가만히 지켜봐도 저마다 바쁜 하루를 보내고 있어요.
   character_title: 오늘은 어떤 모습으로<br>출근할까요?
   character_body: 회사원부터 마법사까지, 마음에 드는 캐릭터를 골라보세요. 큰 캐릭터와 작은 캐릭터를 바꾸고, 모자와 옷 색도 직접 정할 수 있어요.
-  character_points: [캐릭터 12종과 두 가지 크기, 모자·상의·하의 색상 선택, 앞·옆·뒤 모습과 걷기 미리보기]
+  character_points: [캐릭터 12종과 두 가지 크기, 상의·하의 색상과 모자 착용 캐릭터의 모자 색상, 앞·옆·뒤 모습과 걷기 미리보기]
   character_note: Google 로그인 → 계정 설정 → 캐릭터 꾸미기 → 저장하고 입장
   character_modes: 캐릭터 크기 미리보기
   large: 큰 캐릭터
@@ -96,7 +96,7 @@ en:
   break_body: Coffee breaks, smoke breaks, celebrations, and walks around the office. Everyone has a little routine of their own.
   character_title: Who will you be<br>at work today?
   character_body: Pick a coworker or a wizard, choose a big or small character, then give your hat and clothes their own colors.
-  character_points: [12 characters and two sizes, Separate hat and clothing colors, Front and side views plus walking previews]
+  character_points: [12 characters and two sizes, Clothing colors plus hat colors for characters with hats, Front and side views plus walking previews]
   character_note: Google sign-in → Account Settings → Customize → Save and enter
   character_modes: Character size preview
   large: Big character
@@ -168,7 +168,7 @@ ja:
   break_body: コーヒー、たばこ、喜ぶ仕草、オフィスの散歩。眺めているだけでも、それぞれの一日が見えてきます。
   character_title: 今日はどんな姿で<br>出勤しますか？
   character_body: 会社員から魔法使いまで、お気に入りを選びましょう。大きな姿と小さな姿を切り替え、帽子や服の色も自分好みにできます。
-  character_points: [12人のキャラクターと二つのサイズ, 帽子・トップス・ボトムスの色選択, 前後左右の姿と歩行プレビュー]
+  character_points: [12人のキャラクターと二つのサイズ, 服の色と帽子を着用するキャラクターの帽子の色, 前後左右の姿と歩行プレビュー]
   character_note: Googleログイン → アカウント設定 → 着せ替え → 保存して入場
   character_modes: キャラクターサイズのプレビュー
   large: 大きなキャラクター
