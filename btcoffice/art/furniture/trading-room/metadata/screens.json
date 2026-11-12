@@ -1,0 +1,140 @@
+{
+  "version": 2,
+  "data_source": "deterministic example data; not live market prices",
+  "renderer": "previews/trading-screens.js",
+  "projection": "projective homography from screen UV to screen_quad, then screen mask, housing drawn last",
+  "panels": {
+    "left": "market watchlist and BTC trend",
+    "center": "BTC/USDT 15m OHLC candles, MA 7/25, volume, axes, latest price",
+    "right": "order book, cumulative depth, spread, recent trades"
+  },
+  "files": [
+    {
+      "file": "screens/Monitor_Trading_Angled_SE_Display.png",
+      "width": 224,
+      "height": 192,
+      "texture_scale": 4,
+      "logical_size": [
+        56,
+        48
+      ],
+      "screen_quad": [
+        [
+          7,
+          9
+        ],
+        [
+          47,
+          14
+        ],
+        [
+          47,
+          37
+        ],
+        [
+          7,
+          33
+        ]
+      ]
+    },
+    {
+      "file": "screens/Monitor_Trading_Angled_SW_Display.png",
+      "width": 224,
+      "height": 192,
+      "texture_scale": 4,
+      "logical_size": [
+        56,
+        48
+      ],
+      "screen_quad": [
+        [
+          10,
+          14
+        ],
+        [
+          50,
+          9
+        ],
+        [
+          50,
+          33
+        ],
+        [
+          10,
+          37
+        ]
+      ]
+    },
+    {
+      "file": "screens/Monitor_Trading_Front_Display.png",
+      "width": 256,
+      "height": 192,
+      "texture_scale": 4,
+      "logical_size": [
+        64,
+        48
+      ],
+      "screen_quad": [
+        [
+          7,
+          8
+        ],
+        [
+          58,
+          8
+        ],
+        [
+          58,
+          35
+        ],
+        [
+          7,
+          35
+        ]
+      ]
+    },
+    {
+      "file": "screens/Monitor_Trading_Wide_Front_Display.png",
+      "width": 384,
+      "height": 192,
+      "texture_scale": 4,
+      "logical_size": [
+        96,
+        48
+      ],
+      "screen_quad": [
+        [
+          6,
+          8
+        ],
+        [
+          91,
+          8
+        ],
+        [
+          91,
+          35
+        ],
+        [
+          6,
+          35
+        ]
+      ]
+    },
+    {
+      "file": "screens/Screen_BTC_Candles.png",
+      "width": 680,
+      "height": 216
+    },
+    {
+      "file": "screens/Screen_Market_Overview.png",
+      "width": 320,
+      "height": 224
+    },
+    {
+      "file": "screens/Screen_OrderBook.png",
+      "width": 320,
+      "height": 224
+    }
+  ]
+}
