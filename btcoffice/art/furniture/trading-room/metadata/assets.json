@@ -10,6 +10,7 @@
       "height": 128,
       "id": "TR_Desk_Trading_N_Full",
       "origin": "image_gen",
+      "preview_only": true,
       "source": "source/Desk_Trading_N_Full.png",
       "source_crop": [
         20,
@@ -17,8 +18,7 @@
         1731,
         598
       ],
-      "width": 256,
-      "preview_only": true
+      "width": 256
     },
     {
       "anchor": [
@@ -30,6 +30,7 @@
       "height": 88,
       "id": "TR_Chair_Trading_N_Full",
       "origin": "image_gen",
+      "preview_only": true,
       "source": "source/Chair_Trading_N_Full.png",
       "source_crop": [
         233,
@@ -37,8 +38,7 @@
         603,
         789
       ],
-      "width": 64,
-      "preview_only": true
+      "width": 64
     },
     {
       "anchor": [
@@ -50,6 +50,7 @@
       "height": 88,
       "id": "TR_Chair_Visitor_N_Full",
       "origin": "image_gen",
+      "preview_only": true,
       "source": "source/Chair_Visitor_N_Full.png",
       "source_crop": [
         143,
@@ -57,8 +58,7 @@
         782,
         773
       ],
-      "width": 64,
-      "preview_only": true
+      "width": 64
     },
     {
       "anchor": [
@@ -75,20 +75,20 @@
       "screen_mask": "monitors/Monitor_Trading_Front_ScreenMask.png",
       "screen_quad": [
         [
-          7,
-          8
+          6,
+          7
         ],
         [
           58,
-          8
+          7
         ],
         [
           58,
-          35
+          34
         ],
         [
-          7,
-          35
+          6,
+          34
         ]
       ],
       "width": 64
@@ -108,19 +108,19 @@
       "screen_mask": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
       "screen_quad": [
         [
-          6,
-          8
+          5,
+          7
         ],
         [
           91,
-          8
+          7
         ],
         [
           91,
           35
         ],
         [
-          6,
+          5,
           35
         ]
       ],
@@ -141,20 +141,20 @@
       "screen_mask": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
       "screen_quad": [
         [
-          7,
-          9
+          6,
+          8.026
         ],
         [
           47,
-          14
+          13.633
         ],
         [
           47,
-          37
+          36.867
         ],
         [
-          7,
-          33
+          6,
+          32.596
         ]
       ],
       "width": 56
@@ -174,20 +174,20 @@
       "screen_mask": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
       "screen_quad": [
         [
-          10,
-          14
+          9,
+          13.283
         ],
         [
           50,
-          9
+          8.083
         ],
         [
           50,
-          33
+          32.572
         ],
         [
-          10,
-          37
+          9,
+          36.843
         ]
       ],
       "width": 56
@@ -716,20 +716,20 @@
       "screen_mask": "monitors/Monitor_Trading_Front_ScreenMask.png",
       "screen_quad": [
         [
-          7,
-          8
+          6,
+          7
         ],
         [
           58,
-          8
+          7
         ],
         [
           58,
-          35
+          34
         ],
         [
-          7,
-          35
+          6,
+          34
         ]
       ]
     },
@@ -743,19 +743,19 @@
       "screen_mask": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
       "screen_quad": [
         [
-          6,
-          8
+          5,
+          7
         ],
         [
           91,
-          8
+          7
         ],
         [
           91,
           35
         ],
         [
-          6,
+          5,
           35
         ]
       ]
@@ -770,20 +770,20 @@
       "screen_mask": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
       "screen_quad": [
         [
-          7,
-          9
+          6,
+          8.026
         ],
         [
           47,
-          14
+          13.633
         ],
         [
           47,
-          37
+          36.867
         ],
         [
-          7,
-          33
+          6,
+          32.596
         ]
       ]
     },
@@ -797,20 +797,20 @@
       "screen_mask": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
       "screen_quad": [
         [
-          10,
-          14
+          9,
+          13.283
         ],
         [
           50,
-          9
+          8.083
         ],
         [
           50,
-          33
+          32.572
         ],
         [
-          10,
-          37
+          9,
+          36.843
         ]
       ]
     },

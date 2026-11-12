@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "data_source": "deterministic example data; not live market prices",
   "renderer": "previews/trading-screens.js",
   "projection": "projective homography from screen UV to screen_quad, then screen mask, housing drawn last",
@@ -28,20 +28,20 @@
       ],
       "screen_quad": [
         [
-          7,
-          9
+          6,
+          8.026
         ],
         [
           47,
-          14
+          13.633
         ],
         [
           47,
-          37
+          36.867
         ],
         [
-          7,
-          33
+          6,
+          32.596
         ]
       ]
     },
@@ -56,20 +56,20 @@
       ],
       "screen_quad": [
         [
-          10,
-          14
+          9,
+          13.283
         ],
         [
           50,
-          9
+          8.083
         ],
         [
           50,
-          33
+          32.572
         ],
         [
-          10,
-          37
+          9,
+          36.843
         ]
       ]
     },
@@ -84,20 +84,20 @@
       ],
       "screen_quad": [
         [
-          7,
-          8
+          6,
+          7
         ],
         [
           58,
-          8
+          7
         ],
         [
           58,
-          35
+          34
         ],
         [
-          7,
-          35
+          6,
+          34
         ]
       ]
     },
@@ -112,19 +112,19 @@
       ],
       "screen_quad": [
         [
-          6,
-          8
+          5,
+          7
         ],
         [
           91,
-          8
+          7
         ],
         [
           91,
           35
         ],
         [
-          6,
+          5,
           35
         ]
       ]

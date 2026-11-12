@@ -1,0 +1,14 @@
+{
+  "asset_png_count": 37,
+  "checked_at": "2026-11-13",
+  "checks": 315,
+  "failures": [],
+  "layer_groups": 8,
+  "not_verified": [
+    "North-facing seated animation",
+    "Large/small seated hand contacts",
+    "TradingRoom gameplay integration"
+  ],
+  "passed": true,
+  "scope": "Static furniture sprites, dimensions, transparency, shared anchors, exact layer recomposition and screen masks"
+}
