@@ -1,12 +1,20 @@
 {
-  "version": 2,
+  "version": 3,
   "data_source": "deterministic example data; not live market prices",
   "renderer": "previews/trading-screens.js",
   "projection": "projective homography from screen UV to screen_quad, then screen mask, housing drawn last",
   "panels": {
     "left": "market watchlist and BTC trend",
     "center": "BTC/USDT 15m OHLC candles, MA 7/25, volume, axes, latest price",
-    "right": "order book, cumulative depth, spread, recent trades"
+    "right": "order book, cumulative depth, spread, recent trades",
+    "six": {
+      "upper_left": "open positions, unrealized PNL and margin",
+      "upper_center": "BTC market depth with cumulative bid/ask size",
+      "upper_right": "BTC recent trade tape",
+      "lower_left": "market watchlist and BTC trend",
+      "lower_center": "BTC/USDT 15m OHLC candles, MA 7/25, volume, axes, latest price",
+      "lower_right": "order book, cumulative depth, spread, recent trades"
+    }
   },
   "files": [
     {
@@ -135,6 +143,22 @@
       "file": "screens/Screen_OrderBook.png",
       "width": 320,
       "height": 224
+    },
+    {
+      "file": "screens/Screen_Market_Depth.png",
+      "width": 680,
+      "height": 216
+    },
+    {
+      "file": "screens/Screen_Positions.png",
+      "width": 320,
+      "height": 224
+    },
+    {
+      "file": "screens/Screen_Recent_Trades.png",
+      "width": 320,
+      "height": 224
     }
-  ]
+  ],
+  "multi_monitor": "metadata/multi_monitor.json"
 }

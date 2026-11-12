@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "arrangement": "3 columns × 2 rows",
+  "facing": "N",
+  "renderer": "previews/trading-rig.js",
+  "construction": "Existing monitor panels attached to a code-native SVG rack; original furniture PNGs remain unchanged.",
+  "rack": {
+    "file": "monitor_rigs/MonitorRack_3x2.svg",
+    "position": [
+      0,
+      -36
+    ],
+    "size": [
+      256,
+      112
+    ],
+    "png": "monitor_rigs/MonitorRack_3x2.png"
+  },
+  "array": {
+    "logical_size": [
+      256,
+      112
+    ],
+    "origin_offset_from_desk": [
+      0,
+      -36
+    ],
+    "blank": "monitor_rigs/MonitorArray_3x2_Blank.png",
+    "display": "monitor_rigs/MonitorArray_3x2_Display.png",
+    "display_texture_scale": 4
+  },
+  "slots": [
+    {
+      "id": "upper-left",
+      "file": "monitors/Monitor_Trading_Angled_SW_Housing.png",
+      "position": [
+        24,
+        -31
+      ],
+      "kind": "positions",
+      "title": "위 왼쪽 · 포지션",
+      "screen_base": "monitors/Monitor_Trading_Angled_SW_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
+      "screen_quad": [
+        [
+          10,
+          14
+        ],
+        [
+          50,
+          9
+        ],
+        [
+          50,
+          33
+        ],
+        [
+          10,
+          37
+        ]
+      ],
+      "logical_size": [
+        56,
+        48
+      ],
+      "mounted": true,
+      "clip_bottom": 40
+    },
+    {
+      "id": "upper-center",
+      "file": "monitors/Monitor_Trading_Wide_Front_Housing.png",
+      "position": [
+        80,
+        -34
+      ],
+      "kind": "depth",
+      "title": "위 가운데 · 호가 심도",
+      "screen_base": "monitors/Monitor_Trading_Wide_Front_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
+      "screen_quad": [
+        [
+          6,
+          8
+        ],
+        [
+          91,
+          8
+        ],
+        [
+          91,
+          35
+        ],
+        [
+          6,
+          35
+        ]
+      ],
+      "logical_size": [
+        96,
+        48
+      ],
+      "mounted": true,
+      "clip_bottom": 38
+    },
+    {
+      "id": "upper-right",
+      "file": "monitors/Monitor_Trading_Angled_SE_Housing.png",
+      "position": [
+        176,
+        -31
+      ],
+      "kind": "tape",
+      "title": "위 오른쪽 · 체결 내역",
+      "screen_base": "monitors/Monitor_Trading_Angled_SE_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
+      "screen_quad": [
+        [
+          7,
+          9
+        ],
+        [
+          47,
+          14
+        ],
+        [
+          47,
+          37
+        ],
+        [
+          7,
+          33
+        ]
+      ],
+      "logical_size": [
+        56,
+        48
+      ],
+      "mounted": true,
+      "clip_bottom": 40
+    },
+    {
+      "id": "lower-left",
+      "file": "monitors/Monitor_Trading_Angled_SW_Housing.png",
+      "position": [
+        24,
+        5
+      ],
+      "kind": "markets",
+      "title": "아래 왼쪽 · 시장 현황",
+      "screen_base": "monitors/Monitor_Trading_Angled_SW_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
+      "screen_quad": [
+        [
+          10,
+          14
+        ],
+        [
+          50,
+          9
+        ],
+        [
+          50,
+          33
+        ],
+        [
+          10,
+          37
+        ]
+      ],
+      "logical_size": [
+        56,
+        48
+      ],
+      "mounted": true,
+      "clip_bottom": 40
+    },
+    {
+      "id": "lower-center",
+      "file": "monitors/Monitor_Trading_Wide_Front_Housing.png",
+      "position": [
+        80,
+        3
+      ],
+      "kind": "chart",
+      "title": "아래 가운데 · BTC 15분봉",
+      "screen_base": "monitors/Monitor_Trading_Wide_Front_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
+      "screen_quad": [
+        [
+          6,
+          8
+        ],
+        [
+          91,
+          8
+        ],
+        [
+          91,
+          35
+        ],
+        [
+          6,
+          35
+        ]
+      ],
+      "logical_size": [
+        96,
+        48
+      ],
+      "mounted": true,
+      "clip_bottom": 38
+    },
+    {
+      "id": "lower-right",
+      "file": "monitors/Monitor_Trading_Angled_SE_Housing.png",
+      "position": [
+        176,
+        5
+      ],
+      "kind": "book",
+      "title": "아래 오른쪽 · 호가창",
+      "screen_base": "monitors/Monitor_Trading_Angled_SE_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
+      "screen_quad": [
+        [
+          7,
+          9
+        ],
+        [
+          47,
+          14
+        ],
+        [
+          47,
+          37
+        ],
+        [
+          7,
+          33
+        ]
+      ],
+      "logical_size": [
+        56,
+        48
+      ],
+      "mounted": true,
+      "clip_bottom": 40
+    }
+  ],
+  "draw_order": [
+    "rack behind desk",
+    "desk layers",
+    "mounted ScreenBase + perspective-mapped content + Housing, cropped at clip_bottom",
+    "input devices",
+    "actor and chair layers as defined in workstation_assembly.json"
+  ],
+  "mounting": "Crop individual desk stands after the bottom bezel; the shared rack supports both rows. Slot positions are relative to desk top-left.",
+  "review": {
+    "overlap": 0,
+    "strayStand": 0,
+    "rackLoaded": true
+  }
+}

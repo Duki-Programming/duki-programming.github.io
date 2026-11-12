@@ -65,7 +65,34 @@
     const mid=start+count*row+2;rule(c,6,mid-3,w-12);text(c,latest.toLocaleString('en-US')+'.0',10,mid,17,colors.up);text(c,'0.4 spread',w-8,mid+3,10,colors.muted,'right');
     if(h>=220){rule(c,6,175,w-12);text(c,'RECENT TRADES',9,181,10,colors.muted);text(c,'18:00:02   73841.0   0.120',9,195,11,colors.up);text(c,'18:00:01   73840.8   0.284',9,208,11,colors.down);}
   }
-  function createTexture(kind,w,h){const canvas=makeCanvas(w,h),c=canvas.getContext('2d');c.fillStyle=colors.bg;c.fillRect(0,0,w,h);({chart,markets:watchlist,book:orderbook}[kind]||chart)(c,w,h);return canvas;}
+  function positions(c,w,h){
+    c.fillStyle=colors.panel;c.fillRect(0,0,w,29);text(c,'OPEN POSITIONS',9,7,14);text(c,'DEMO',w-8,8,11,colors.muted,'right');
+    const rows=[['BTC','LONG',.2,73640,latest,20],['ETH','SHORT',.5,2696.8,2684.37,10],['SOL','LONG',1,184.10,183.42,5]];let pnl=0,margin=0;
+    rows.forEach(([symbol,side,qty,entry,price,leverage],i)=>{const y=42+i*48,profit=(price-entry)*qty*(side==='LONG'?1:-1),used=entry*qty/leverage,color=profit>=0?colors.up:colors.down;pnl+=profit;margin+=used;
+      text(c,symbol+'/USDT',9,y,13);text(c,side,116,y+1,11,side==='LONG'?colors.up:colors.down);text(c,(profit>=0?'+':'')+profit.toFixed(2),w-8,y,14,color,'right');
+      text(c,qty.toFixed(3)+' @ '+entry.toLocaleString('en-US'),9,y+18,11,colors.muted);text(c,(profit>=0?'+':'')+(profit/used*100).toFixed(2)+'%',w-8,y+18,11,color,'right');rule(c,8,y+39,w-16);
+    });
+    text(c,'TOTAL uPNL',9,188,12,colors.muted);text(c,'+'+pnl.toFixed(2)+' USDT',w-8,186,15,colors.up,'right');text(c,'Margin '+margin.toFixed(2)+' USDT',9,h-15,11,colors.muted);
+  }
+  function tape(c,w,h){
+    c.fillStyle=colors.panel;c.fillRect(0,0,w,29);text(c,'RECENT TRADES',9,7,14);text(c,'BTC',w-8,8,11,colors.muted,'right');
+    text(c,'TIME',9,34,11,colors.muted);text(c,'PRICE',w*.64,34,11,colors.muted,'right');text(c,'SIZE',w-8,34,11,colors.muted,'right');
+    const sizes=[.120,.284,.083,.176,.032,.410,.192,.068,.250,.097];let bought=0,sold=0;
+    sizes.forEach((size,i)=>{const buy=i%3!==1,seconds=18*3600+2-i,time=[Math.floor(seconds/3600),Math.floor(seconds/60)%60,seconds%60].map(v=>String(v).padStart(2,'0')).join(':'),y=51+i*14,price=latest+(buy?1:-1)*(i%5)*.2;
+      if(buy)bought+=size;else sold+=size;
+      if(i%2===0){c.fillStyle='#111c27';c.fillRect(4,y-1,w-8,13);}text(c,time,9,y,11,colors.muted);text(c,price.toFixed(1),w*.64,y,12,buy?colors.up:colors.down,'right');text(c,size.toFixed(3),w-8,y,11,colors.text,'right');
+    });rule(c,8,194,w-16);text(c,'BUY '+bought.toFixed(3),9,203,11,colors.up);text(c,'SELL '+sold.toFixed(3),w-8,203,11,colors.down,'right');
+  }
+  function depth(c,w,h){
+    c.fillStyle=colors.panel;c.fillRect(0,0,w,30);text(c,'BTC/USDT  MARKET DEPTH',10,7,15);text(c,'10 USDT / BIN',w-10,9,11,colors.muted,'right');
+    const x=48,y=52,pw=w-66,ph=h-90,mid=x+pw/2,max=36;
+    for(let i=0;i<=3;i++){const yy=y+i*ph/3;rule(c,x,yy,pw);text(c,String(max-i*max/3),x-8,yy-5,11,colors.muted,'right');}
+    for(let i=0;i<=4;i++){const xx=x+i*pw/4;line(c,[[xx,y],[xx,y+ph]],colors.line);text(c,String(latest-160+i*80),xx,h-22,11,colors.muted,i===0?'left':i===4?'right':'center');}
+    for(const [side,color]of[[-1,colors.up],[1,colors.down]]){let total=0;const pts=[[mid,y+ph]];for(let i=1;i<=16;i++){const xx=mid+side*i*pw/32;pts.push([xx,y+ph-total/max*ph]);total+=.8+(i*7%11)/5+(side===1?.12:0);pts.push([xx,y+ph-total/max*ph]);}
+      c.save();c.beginPath();pts.forEach(([xx,yy],i)=>i?c.lineTo(xx,yy):c.moveTo(xx,yy));c.lineTo(pts.at(-1)[0],y+ph);c.closePath();c.globalAlpha=.18;c.fillStyle=color;c.fill();c.restore();line(c,pts,color,2);}
+    c.setLineDash([3,4]);line(c,[[mid,y],[mid,y+ph]],colors.muted);c.setLineDash([]);text(c,'BIDS',x+8,y+8,12,colors.up);text(c,'ASKS',x+pw-8,y+8,12,colors.down,'right');text(c,'SIZE / BTC',8,35,10,colors.muted);
+  }
+  function createTexture(kind,w,h){const canvas=makeCanvas(w,h),c=canvas.getContext('2d');c.fillStyle=colors.bg;c.fillRect(0,0,w,h);({chart,markets:watchlist,book:orderbook,positions,tape,depth}[kind]||chart)(c,w,h);return canvas;}
 
   // Unit rectangle -> measured screen quadrilateral, including perspective.
   function homography(q){

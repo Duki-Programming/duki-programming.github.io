@@ -1,0 +1,53 @@
+{
+  "checks": [
+    {
+      "ok": true,
+      "message": "All 37 PNGs and the reference character load"
+    },
+    {
+      "ok": true,
+      "message": "11 furniture designs appear in the main gallery"
+    },
+    {
+      "ok": true,
+      "message": "26 component layers and masks appear in the parts gallery"
+    },
+    {
+      "ok": true,
+      "message": "Six mounted monitors have distinct panels and downloadable assemblies"
+    },
+    {
+      "ok": true,
+      "message": "Shared rack loads at the intended native size"
+    },
+    {
+      "ok": true,
+      "message": "Mounted panels do not overlap or retain individual desktop stands"
+    },
+    {
+      "ok": true,
+      "message": "All four projected screens stay inside their bezels"
+    },
+    {
+      "ok": true,
+      "message": "Reference character changes the actual assembly"
+    },
+    {
+      "ok": true,
+      "message": "Front and angled layouts produce different assemblies"
+    },
+    {
+      "ok": true,
+      "message": "Demo screen contents toggle correctly"
+    },
+    {
+      "ok": true,
+      "message": "Background contrast toggle works"
+    },
+    {
+      "ok": true,
+      "message": "No browser runtime or missing-image errors"
+    }
+  ],
+  "errors": []
+}
