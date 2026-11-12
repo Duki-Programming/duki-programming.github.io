@@ -107,7 +107,7 @@
   function project(texture,asset,mask,scale){
     const out=makeCanvas(asset.width*scale,asset.height*scale),c=out.getContext('2d'),pixels=c.createImageData(out.width,out.height),input=texture.getContext('2d').getImageData(0,0,texture.width,texture.height),map=inverse(homography(asset.screen_quad));
     for(let y=0;y<out.height;y++)for(let x=0;x<out.width;x++){
-      const[u,v]=point(map,(x+.5)/scale,(y+.5)/scale);if(u<0||u>=1||v<0||v>=1)continue;
+      const[px,py]=point(map,(x+.5)/scale,(y+.5)/scale),u=Math.max(0,Math.min(1,px)),v=Math.max(0,Math.min(1,py));
       const sx=Math.min(texture.width-1,Math.floor(u*texture.width)),sy=Math.min(texture.height-1,Math.floor(v*texture.height)),from=(sy*texture.width+sx)*4,to=(y*out.width+x)*4;
       pixels.data[to]=input.data[from];pixels.data[to+1]=input.data[from+1];pixels.data[to+2]=input.data[from+2];pixels.data[to+3]=255;
     }
