@@ -1,0 +1,209 @@
+{
+  "version": 2,
+  "coordinate_system": "Godot 2D, north is negative Y; all positions relative to desk top-left",
+  "work_facing": "N",
+  "shared_parts": [
+    {
+      "file": "desks/Desk_Trading_N_Full.png",
+      "position": [
+        0,
+        0
+      ],
+      "use": "preview only; runtime uses Legs, FrontPanel, Desktop"
+    },
+    {
+      "file": "input_devices/Keyboard_Trading_N.png",
+      "position": [
+        96,
+        43
+      ]
+    },
+    {
+      "file": "input_devices/Mousepad_Trading.png",
+      "position": [
+        164,
+        46
+      ]
+    },
+    {
+      "file": "input_devices/Mouse_Trading_N.png",
+      "position": [
+        169,
+        47
+      ]
+    },
+    {
+      "file": "chairs/Chair_Trading_N_Full.png",
+      "position": [
+        96,
+        50
+      ],
+      "use": "preview only; runtime uses Frame, Cushion, Backrest, Armrests"
+    }
+  ],
+  "monitor_layouts": {
+    "angled": [
+      {
+        "housing": "monitors/Monitor_Trading_Angled_SW_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Angled_SW_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
+        "position": [
+          24,
+          10
+        ]
+      },
+      {
+        "housing": "monitors/Monitor_Trading_Wide_Front_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Wide_Front_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
+        "position": [
+          80,
+          8
+        ]
+      },
+      {
+        "housing": "monitors/Monitor_Trading_Angled_SE_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Angled_SE_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
+        "position": [
+          176,
+          10
+        ]
+      }
+    ],
+    "front": [
+      {
+        "housing": "monitors/Monitor_Trading_Front_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Front_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Front_ScreenMask.png",
+        "position": [
+          28,
+          9
+        ]
+      },
+      {
+        "housing": "monitors/Monitor_Trading_Front_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Front_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Front_ScreenMask.png",
+        "position": [
+          96,
+          9
+        ]
+      },
+      {
+        "housing": "monitors/Monitor_Trading_Front_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Front_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Front_ScreenMask.png",
+        "position": [
+          164,
+          9
+        ]
+      }
+    ],
+    "six": [
+      {
+        "id": "upper-left",
+        "housing": "monitors/Monitor_Trading_Angled_SW_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Angled_SW_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
+        "position": [
+          24,
+          -31
+        ],
+        "kind": "positions",
+        "mounted": true,
+        "clip_bottom": 40
+      },
+      {
+        "id": "upper-center",
+        "housing": "monitors/Monitor_Trading_Wide_Front_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Wide_Front_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
+        "position": [
+          80,
+          -34
+        ],
+        "kind": "depth",
+        "mounted": true,
+        "clip_bottom": 38
+      },
+      {
+        "id": "upper-right",
+        "housing": "monitors/Monitor_Trading_Angled_SE_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Angled_SE_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
+        "position": [
+          176,
+          -31
+        ],
+        "kind": "tape",
+        "mounted": true,
+        "clip_bottom": 40
+      },
+      {
+        "id": "lower-left",
+        "housing": "monitors/Monitor_Trading_Angled_SW_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Angled_SW_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
+        "position": [
+          24,
+          5
+        ],
+        "kind": "markets",
+        "mounted": true,
+        "clip_bottom": 40
+      },
+      {
+        "id": "lower-center",
+        "housing": "monitors/Monitor_Trading_Wide_Front_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Wide_Front_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
+        "position": [
+          80,
+          3
+        ],
+        "kind": "chart",
+        "mounted": true,
+        "clip_bottom": 38
+      },
+      {
+        "id": "lower-right",
+        "housing": "monitors/Monitor_Trading_Angled_SE_Housing.png",
+        "screen_base": "monitors/Monitor_Trading_Angled_SE_ScreenBase.png",
+        "screen_mask": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
+        "position": [
+          176,
+          5
+        ],
+        "kind": "book",
+        "mounted": true,
+        "clip_bottom": 40
+      }
+    ]
+  },
+  "draw_order": [
+    "desk Legs",
+    "chair Frame + Cushion",
+    "desk FrontPanel + Desktop",
+    "monitor ScreenBase + masked content + Housing",
+    "input devices",
+    "actor body (future north-facing seated clip)",
+    "chair Backrest + Armrests",
+    "actor hands at validated keyboard contacts (future)"
+  ],
+  "animation_status": "No north-facing seated clips delivered in this furniture pack; character preview uses existing standing art only.",
+  "racks": {
+    "six": {
+      "file": "monitor_rigs/MonitorRack_3x2.svg",
+      "position": [
+        0,
+        -36
+      ],
+      "size": [
+        256,
+        112
+      ],
+      "draw_before": "desk layers"
+    }
+  }
+}
