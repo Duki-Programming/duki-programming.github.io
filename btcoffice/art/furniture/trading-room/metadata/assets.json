@@ -1,0 +1,848 @@
+{
+  "assets": [
+    {
+      "anchor": [
+        128,
+        126
+      ],
+      "facing": "N",
+      "file": "desks/Desk_Trading_N_Full.png",
+      "height": 128,
+      "id": "TR_Desk_Trading_N_Full",
+      "origin": "image_gen",
+      "source": "source/Desk_Trading_N_Full.png",
+      "source_crop": [
+        20,
+        178,
+        1731,
+        598
+      ],
+      "width": 256,
+      "preview_only": true
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "facing": "N",
+      "file": "chairs/Chair_Trading_N_Full.png",
+      "height": 88,
+      "id": "TR_Chair_Trading_N_Full",
+      "origin": "image_gen",
+      "source": "source/Chair_Trading_N_Full.png",
+      "source_crop": [
+        233,
+        630,
+        603,
+        789
+      ],
+      "width": 64,
+      "preview_only": true
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "facing": "N",
+      "file": "chairs/Chair_Visitor_N_Full.png",
+      "height": 88,
+      "id": "TR_Chair_Visitor_N_Full",
+      "origin": "image_gen",
+      "source": "source/Chair_Visitor_N_Full.png",
+      "source_crop": [
+        143,
+        612,
+        782,
+        773
+      ],
+      "width": 64,
+      "preview_only": true
+    },
+    {
+      "anchor": [
+        32,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Front",
+      "facing": "S",
+      "file": "monitors/Monitor_Trading_Front_Housing.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Front_Housing",
+      "layer": "Housing",
+      "screen_base": "monitors/Monitor_Trading_Front_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Front_ScreenMask.png",
+      "screen_quad": [
+        [
+          7,
+          8
+        ],
+        [
+          58,
+          8
+        ],
+        [
+          58,
+          35
+        ],
+        [
+          7,
+          35
+        ]
+      ],
+      "width": 64
+    },
+    {
+      "anchor": [
+        48,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Wide_Front",
+      "facing": "S",
+      "file": "monitors/Monitor_Trading_Wide_Front_Housing.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Wide_Front_Housing",
+      "layer": "Housing",
+      "screen_base": "monitors/Monitor_Trading_Wide_Front_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
+      "screen_quad": [
+        [
+          6,
+          8
+        ],
+        [
+          91,
+          8
+        ],
+        [
+          91,
+          35
+        ],
+        [
+          6,
+          35
+        ]
+      ],
+      "width": 96
+    },
+    {
+      "anchor": [
+        28,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Angled_SE",
+      "facing": "SE",
+      "file": "monitors/Monitor_Trading_Angled_SE_Housing.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Angled_SE_Housing",
+      "layer": "Housing",
+      "screen_base": "monitors/Monitor_Trading_Angled_SE_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
+      "screen_quad": [
+        [
+          7,
+          9
+        ],
+        [
+          47,
+          14
+        ],
+        [
+          47,
+          37
+        ],
+        [
+          7,
+          33
+        ]
+      ],
+      "width": 56
+    },
+    {
+      "anchor": [
+        28,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Angled_SW",
+      "facing": "SW",
+      "file": "monitors/Monitor_Trading_Angled_SW_Housing.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Angled_SW_Housing",
+      "layer": "Housing",
+      "screen_base": "monitors/Monitor_Trading_Angled_SW_ScreenBase.png",
+      "screen_mask": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
+      "screen_quad": [
+        [
+          10,
+          14
+        ],
+        [
+          50,
+          9
+        ],
+        [
+          50,
+          33
+        ],
+        [
+          10,
+          37
+        ]
+      ],
+      "width": 56
+    },
+    {
+      "anchor": [
+        32,
+        22
+      ],
+      "facing": "N",
+      "file": "input_devices/Keyboard_Trading_N.png",
+      "height": 24,
+      "id": "TR_Keyboard_Trading_N",
+      "origin": "image_gen",
+      "source": "source/Keyboard_Trading_N.png",
+      "source_crop": [
+        191,
+        168,
+        1602,
+        513
+      ],
+      "width": 64
+    },
+    {
+      "anchor": [
+        320,
+        222
+      ],
+      "canvas_group": "TR_NewsWall",
+      "facing": "S",
+      "file": "wall/NewsWall_Frame.png",
+      "height": 224,
+      "id": "TR_NewsWall_Frame",
+      "layer": "Frame",
+      "screen_base": "wall/NewsWall_ScreenBase.png",
+      "screen_mask": "wall/NewsWall_ScreenMask.png",
+      "screen_quad": [
+        [
+          24,
+          32
+        ],
+        [
+          616,
+          32
+        ],
+        [
+          616,
+          185
+        ],
+        [
+          24,
+          185
+        ]
+      ],
+      "width": 640
+    },
+    {
+      "anchor": [
+        128,
+        126
+      ],
+      "canvas_group": "TR_DESK_N",
+      "facing": "N",
+      "file": "desks/Desk_Trading_N_Desktop.png",
+      "height": 128,
+      "id": "TR_Desk_Trading_N_Desktop",
+      "layer": "Desktop",
+      "width": 256
+    },
+    {
+      "anchor": [
+        128,
+        126
+      ],
+      "canvas_group": "TR_DESK_N",
+      "facing": "N",
+      "file": "desks/Desk_Trading_N_FrontPanel.png",
+      "height": 128,
+      "id": "TR_Desk_Trading_N_FrontPanel",
+      "layer": "FrontPanel",
+      "width": 256
+    },
+    {
+      "anchor": [
+        128,
+        126
+      ],
+      "canvas_group": "TR_DESK_N",
+      "facing": "N",
+      "file": "desks/Desk_Trading_N_Legs.png",
+      "height": 128,
+      "id": "TR_Desk_Trading_N_Legs",
+      "layer": "Legs",
+      "width": 256
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "canvas_group": "TR_Chair_Trading_N",
+      "facing": "N",
+      "file": "chairs/Chair_Trading_N_Frame.png",
+      "height": 88,
+      "id": "TR_Chair_Trading_N_Frame",
+      "layer": "Frame",
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "canvas_group": "TR_Chair_Trading_N",
+      "facing": "N",
+      "file": "chairs/Chair_Trading_N_Cushion.png",
+      "height": 88,
+      "id": "TR_Chair_Trading_N_Cushion",
+      "layer": "Cushion",
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "canvas_group": "TR_Chair_Trading_N",
+      "facing": "N",
+      "file": "chairs/Chair_Trading_N_Backrest.png",
+      "height": 88,
+      "id": "TR_Chair_Trading_N_Backrest",
+      "layer": "Backrest",
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "canvas_group": "TR_Chair_Trading_N",
+      "facing": "N",
+      "file": "chairs/Chair_Trading_N_Armrests.png",
+      "height": 88,
+      "id": "TR_Chair_Trading_N_Armrests",
+      "layer": "Armrests",
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "canvas_group": "TR_Chair_Visitor_N",
+      "facing": "N",
+      "file": "chairs/Chair_Visitor_N_Frame.png",
+      "height": 88,
+      "id": "TR_Chair_Visitor_N_Frame",
+      "layer": "Frame",
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "canvas_group": "TR_Chair_Visitor_N",
+      "facing": "N",
+      "file": "chairs/Chair_Visitor_N_Cushion.png",
+      "height": 88,
+      "id": "TR_Chair_Visitor_N_Cushion",
+      "layer": "Cushion",
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "canvas_group": "TR_Chair_Visitor_N",
+      "facing": "N",
+      "file": "chairs/Chair_Visitor_N_Backrest.png",
+      "height": 88,
+      "id": "TR_Chair_Visitor_N_Backrest",
+      "layer": "Backrest",
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        86
+      ],
+      "canvas_group": "TR_Chair_Visitor_N",
+      "facing": "N",
+      "file": "chairs/Chair_Visitor_N_Armrests.png",
+      "height": 88,
+      "id": "TR_Chair_Visitor_N_Armrests",
+      "layer": "Armrests",
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        46
+      ],
+      "facing": "S",
+      "file": "monitors/Monitor_Trading_Front_Full.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Front_Full",
+      "origin": "image_gen",
+      "preview_only": true,
+      "source": "source/Monitor_Trading_Front_Housing.png",
+      "source_crop": [
+        104,
+        115,
+        1240,
+        873
+      ],
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Front",
+      "facing": "S",
+      "file": "monitors/Monitor_Trading_Front_ScreenMask.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Front_ScreenMask",
+      "layer": "ScreenMask",
+      "mask": true,
+      "width": 64
+    },
+    {
+      "anchor": [
+        32,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Front",
+      "facing": "S",
+      "file": "monitors/Monitor_Trading_Front_ScreenBase.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Front_ScreenBase",
+      "layer": "ScreenBase",
+      "width": 64
+    },
+    {
+      "anchor": [
+        48,
+        46
+      ],
+      "facing": "S",
+      "file": "monitors/Monitor_Trading_Wide_Front_Full.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Wide_Front_Full",
+      "origin": "image_gen",
+      "preview_only": true,
+      "source": "source/Monitor_Trading_Wide_Front_Housing.png",
+      "source_crop": [
+        48,
+        125,
+        1678,
+        685
+      ],
+      "width": 96
+    },
+    {
+      "anchor": [
+        48,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Wide_Front",
+      "facing": "S",
+      "file": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Wide_Front_ScreenMask",
+      "layer": "ScreenMask",
+      "mask": true,
+      "width": 96
+    },
+    {
+      "anchor": [
+        48,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Wide_Front",
+      "facing": "S",
+      "file": "monitors/Monitor_Trading_Wide_Front_ScreenBase.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Wide_Front_ScreenBase",
+      "layer": "ScreenBase",
+      "width": 96
+    },
+    {
+      "anchor": [
+        28,
+        46
+      ],
+      "facing": "SE",
+      "file": "monitors/Monitor_Trading_Angled_SE_Full.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Angled_SE_Full",
+      "origin": "image_gen",
+      "preview_only": true,
+      "source": "source/Monitor_Trading_Angled_SE_Housing.png",
+      "source_crop": [
+        153,
+        143,
+        1051,
+        905
+      ],
+      "width": 56
+    },
+    {
+      "anchor": [
+        28,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Angled_SE",
+      "facing": "SE",
+      "file": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Angled_SE_ScreenMask",
+      "layer": "ScreenMask",
+      "mask": true,
+      "width": 56
+    },
+    {
+      "anchor": [
+        28,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Angled_SE",
+      "facing": "SE",
+      "file": "monitors/Monitor_Trading_Angled_SE_ScreenBase.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Angled_SE_ScreenBase",
+      "layer": "ScreenBase",
+      "width": 56
+    },
+    {
+      "anchor": [
+        28,
+        46
+      ],
+      "facing": "SW",
+      "file": "monitors/Monitor_Trading_Angled_SW_Full.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Angled_SW_Full",
+      "origin": "image_gen",
+      "preview_only": true,
+      "source": "source/Monitor_Trading_Angled_SW_Housing.png",
+      "source_crop": [
+        155,
+        145,
+        1045,
+        904
+      ],
+      "width": 56
+    },
+    {
+      "anchor": [
+        28,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Angled_SW",
+      "facing": "SW",
+      "file": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Angled_SW_ScreenMask",
+      "layer": "ScreenMask",
+      "mask": true,
+      "width": 56
+    },
+    {
+      "anchor": [
+        28,
+        46
+      ],
+      "canvas_group": "TR_Monitor_Trading_Angled_SW",
+      "facing": "SW",
+      "file": "monitors/Monitor_Trading_Angled_SW_ScreenBase.png",
+      "height": 48,
+      "id": "TR_Monitor_Trading_Angled_SW_ScreenBase",
+      "layer": "ScreenBase",
+      "width": 56
+    },
+    {
+      "anchor": [
+        320,
+        222
+      ],
+      "facing": "S",
+      "file": "wall/NewsWall_Full.png",
+      "height": 224,
+      "id": "TR_NewsWall_Full",
+      "origin": "image_gen",
+      "preview_only": true,
+      "source": "source/NewsWall_Frame.png",
+      "source_crop": [
+        49,
+        100,
+        2022,
+        542
+      ],
+      "width": 640
+    },
+    {
+      "anchor": [
+        320,
+        222
+      ],
+      "canvas_group": "TR_NewsWall",
+      "facing": "S",
+      "file": "wall/NewsWall_ScreenMask.png",
+      "height": 224,
+      "id": "TR_NewsWall_ScreenMask",
+      "layer": "ScreenMask",
+      "mask": true,
+      "width": 640
+    },
+    {
+      "anchor": [
+        320,
+        222
+      ],
+      "canvas_group": "TR_NewsWall",
+      "facing": "S",
+      "file": "wall/NewsWall_ScreenBase.png",
+      "height": 224,
+      "id": "TR_NewsWall_ScreenBase",
+      "layer": "ScreenBase",
+      "width": 640
+    },
+    {
+      "anchor": [
+        6,
+        14
+      ],
+      "facing": "N",
+      "file": "input_devices/Mouse_Trading_N.png",
+      "height": 16,
+      "id": "TR_Mouse_Trading_N",
+      "origin": "reused",
+      "source": "res://assets/sprites/props/Mouse_South_Default.png",
+      "width": 12
+    },
+    {
+      "anchor": [
+        12,
+        18
+      ],
+      "facing": "N",
+      "file": "input_devices/Mousepad_Trading.png",
+      "height": 20,
+      "id": "TR_Mousepad_Trading",
+      "origin": "reused",
+      "source": "res://assets/sprites/props/Mousepad_Top_Default.png",
+      "width": 24
+    }
+  ],
+  "filter": "nearest",
+  "layer_groups": [
+    {
+      "full": "desks/Desk_Trading_N_Full.png",
+      "id": "TR_DESK_N",
+      "layers": [
+        "desks/Desk_Trading_N_Desktop.png",
+        "desks/Desk_Trading_N_FrontPanel.png",
+        "desks/Desk_Trading_N_Legs.png"
+      ]
+    },
+    {
+      "behind_actor": [
+        "chairs/Chair_Trading_N_Frame.png",
+        "chairs/Chair_Trading_N_Cushion.png"
+      ],
+      "facing": "N",
+      "full": "chairs/Chair_Trading_N_Full.png",
+      "id": "TR_Chair_Trading_N",
+      "in_front_of_actor": [
+        "chairs/Chair_Trading_N_Backrest.png",
+        "chairs/Chair_Trading_N_Armrests.png"
+      ],
+      "layers": [
+        "chairs/Chair_Trading_N_Frame.png",
+        "chairs/Chair_Trading_N_Cushion.png",
+        "chairs/Chair_Trading_N_Backrest.png",
+        "chairs/Chair_Trading_N_Armrests.png"
+      ],
+      "seat_anchor": [
+        32,
+        10
+      ]
+    },
+    {
+      "behind_actor": [
+        "chairs/Chair_Visitor_N_Frame.png",
+        "chairs/Chair_Visitor_N_Cushion.png"
+      ],
+      "facing": "N",
+      "full": "chairs/Chair_Visitor_N_Full.png",
+      "id": "TR_Chair_Visitor_N",
+      "in_front_of_actor": [
+        "chairs/Chair_Visitor_N_Backrest.png",
+        "chairs/Chair_Visitor_N_Armrests.png"
+      ],
+      "layers": [
+        "chairs/Chair_Visitor_N_Frame.png",
+        "chairs/Chair_Visitor_N_Cushion.png",
+        "chairs/Chair_Visitor_N_Backrest.png",
+        "chairs/Chair_Visitor_N_Armrests.png"
+      ],
+      "seat_anchor": [
+        32,
+        30
+      ]
+    },
+    {
+      "full": "monitors/Monitor_Trading_Front_Full.png",
+      "id": "TR_Monitor_Trading_Front",
+      "layers": [
+        "monitors/Monitor_Trading_Front_Housing.png",
+        "monitors/Monitor_Trading_Front_ScreenBase.png"
+      ],
+      "screen_mask": "monitors/Monitor_Trading_Front_ScreenMask.png",
+      "screen_quad": [
+        [
+          7,
+          8
+        ],
+        [
+          58,
+          8
+        ],
+        [
+          58,
+          35
+        ],
+        [
+          7,
+          35
+        ]
+      ]
+    },
+    {
+      "full": "monitors/Monitor_Trading_Wide_Front_Full.png",
+      "id": "TR_Monitor_Trading_Wide_Front",
+      "layers": [
+        "monitors/Monitor_Trading_Wide_Front_Housing.png",
+        "monitors/Monitor_Trading_Wide_Front_ScreenBase.png"
+      ],
+      "screen_mask": "monitors/Monitor_Trading_Wide_Front_ScreenMask.png",
+      "screen_quad": [
+        [
+          6,
+          8
+        ],
+        [
+          91,
+          8
+        ],
+        [
+          91,
+          35
+        ],
+        [
+          6,
+          35
+        ]
+      ]
+    },
+    {
+      "full": "monitors/Monitor_Trading_Angled_SE_Full.png",
+      "id": "TR_Monitor_Trading_Angled_SE",
+      "layers": [
+        "monitors/Monitor_Trading_Angled_SE_Housing.png",
+        "monitors/Monitor_Trading_Angled_SE_ScreenBase.png"
+      ],
+      "screen_mask": "monitors/Monitor_Trading_Angled_SE_ScreenMask.png",
+      "screen_quad": [
+        [
+          7,
+          9
+        ],
+        [
+          47,
+          14
+        ],
+        [
+          47,
+          37
+        ],
+        [
+          7,
+          33
+        ]
+      ]
+    },
+    {
+      "full": "monitors/Monitor_Trading_Angled_SW_Full.png",
+      "id": "TR_Monitor_Trading_Angled_SW",
+      "layers": [
+        "monitors/Monitor_Trading_Angled_SW_Housing.png",
+        "monitors/Monitor_Trading_Angled_SW_ScreenBase.png"
+      ],
+      "screen_mask": "monitors/Monitor_Trading_Angled_SW_ScreenMask.png",
+      "screen_quad": [
+        [
+          10,
+          14
+        ],
+        [
+          50,
+          9
+        ],
+        [
+          50,
+          33
+        ],
+        [
+          10,
+          37
+        ]
+      ]
+    },
+    {
+      "full": "wall/NewsWall_Full.png",
+      "id": "TR_NewsWall",
+      "layers": [
+        "wall/NewsWall_Frame.png",
+        "wall/NewsWall_ScreenBase.png"
+      ],
+      "screen_mask": "wall/NewsWall_ScreenMask.png",
+      "screen_quad": [
+        [
+          24,
+          32
+        ],
+        [
+          616,
+          32
+        ],
+        [
+          616,
+          185
+        ],
+        [
+          24,
+          185
+        ]
+      ]
+    }
+  ],
+  "mipmaps": false,
+  "pack": "Trading Room",
+  "version": 1
+}
