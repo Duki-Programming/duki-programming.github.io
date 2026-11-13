@@ -12,6 +12,8 @@ figure,p { margin:0; } figure[hidden] { display:none; }
 .office-nav a:hover,.office-explore:hover { color:#aa7131; }
 .office-topbar .product-language { display:flex; align-items:center; gap:3px; margin:0; padding:0; font-size:11px; } .office-topbar .product-language__globe { width:18px; height:18px; margin-right:4px; flex-shrink:0; } .office-topbar .product-language a { padding:7px 8px; border:1px solid #d5ddce; border-radius:4px; color:#687568; background:#f6f5ec; } .office-topbar .product-language a[aria-current] { background:#e2e9d9; color:#334e3c; border-color:#91a587; }
 .office-hero { display:grid; grid-template-columns:.92fr 1.2fr; align-items:center; gap:56px; padding-block:76px 66px; }
+.office-product-heading { grid-column:1/-1; }
+.office-product-heading .office-wordmark { margin:0; }
 .office-eyebrow { margin:0 0 22px; font:11px/1.6 ui-monospace,monospace; letter-spacing:1.8px; color:#6a806e; }
 .office-live-dot { display:inline-block; width:6px; height:6px; background:#71945f; box-shadow:0 0 0 3px #71945f18; margin-right:9px; vertical-align:1px; }
 .office-wordmark { display:flex; align-items:center; gap:11px; margin-bottom:28px; font:900 28px/1.2 ui-monospace,monospace; letter-spacing:1px; } .office-wordmark img { border-radius:9px; }
