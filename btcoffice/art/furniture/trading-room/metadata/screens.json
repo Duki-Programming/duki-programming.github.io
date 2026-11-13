@@ -1,164 +1,164 @@
 {
-  "version": 5,
   "data_source": "deterministic example data; not live market prices",
-  "renderer": "previews/trading-screens.js",
-  "projection": "display rows parallel to the lower edge of screen_quad; contentQuad insets the top to fit, screen mask fills the pixel opening, housing drawn last",
-  "panels": {
-    "left": "market watchlist and BTC trend",
-    "center": "BTC/USDT 15m OHLC candles, MA 7/25, volume, axes, latest price",
-    "right": "order book, cumulative depth, spread, recent trades",
-    "six": {
-      "upper_left": "open positions, unrealized PNL and margin",
-      "upper_center": "BTC market depth with cumulative bid/ask size",
-      "upper_right": "BTC recent trade tape",
-      "lower_left": "market watchlist and BTC trend",
-      "lower_center": "BTC/USDT 15m OHLC candles, MA 7/25, volume, axes, latest price",
-      "lower_right": "order book, cumulative depth, spread, recent trades"
-    }
-  },
   "files": [
     {
       "file": "screens/Monitor_Trading_Angled_SE_Display.png",
-      "width": 224,
-      "height": 192,
-      "texture_scale": 4,
+      "height": 192.0,
       "logical_size": [
-        56,
-        48
+        56.0,
+        48.0
       ],
       "screen_quad": [
         [
           6,
-          8.026
+          8
         ],
         [
-          47,
-          13.633
+          46,
+          13
         ],
         [
-          47,
-          36.867
+          46,
+          37
         ],
         [
           6,
-          32.596
+          32
         ]
-      ]
+      ],
+      "texture_scale": 4.0,
+      "width": 224.0
     },
     {
       "file": "screens/Monitor_Trading_Angled_SW_Display.png",
-      "width": 224,
-      "height": 192,
-      "texture_scale": 4,
+      "height": 192.0,
       "logical_size": [
-        56,
-        48
+        56.0,
+        48.0
       ],
       "screen_quad": [
         [
-          9,
-          13.283
+          10,
+          13
         ],
         [
           50,
-          8.083
+          8
         ],
         [
           50,
-          32.572
+          32
         ],
         [
-          9,
-          36.843
+          10,
+          37
         ]
-      ]
+      ],
+      "texture_scale": 4.0,
+      "width": 224.0
     },
     {
       "file": "screens/Monitor_Trading_Front_Display.png",
-      "width": 256,
-      "height": 192,
-      "texture_scale": 4,
+      "height": 192.0,
       "logical_size": [
-        64,
-        48
+        64.0,
+        48.0
       ],
       "screen_quad": [
         [
-          6,
-          7
+          6.0,
+          7.0
         ],
         [
-          58,
-          7
+          58.0,
+          7.0
         ],
         [
-          58,
-          34
+          58.0,
+          34.0
         ],
         [
-          6,
-          34
+          6.0,
+          34.0
         ]
-      ]
+      ],
+      "texture_scale": 4.0,
+      "width": 256.0
     },
     {
       "file": "screens/Monitor_Trading_Wide_Front_Display.png",
-      "width": 384,
-      "height": 192,
-      "texture_scale": 4,
+      "height": 192.0,
       "logical_size": [
-        96,
-        48
+        96.0,
+        48.0
       ],
       "screen_quad": [
         [
-          5,
-          7
+          5.0,
+          7.0
         ],
         [
-          91,
-          7
+          91.0,
+          7.0
         ],
         [
-          91,
-          35
+          91.0,
+          35.0
         ],
         [
-          5,
-          35
+          5.0,
+          35.0
         ]
-      ]
+      ],
+      "texture_scale": 4.0,
+      "width": 384.0
     },
     {
       "file": "screens/Screen_BTC_Candles.png",
-      "width": 680,
-      "height": 216
+      "height": 216.0,
+      "width": 680.0
     },
     {
       "file": "screens/Screen_Market_Overview.png",
-      "width": 320,
-      "height": 224
+      "height": 224.0,
+      "width": 320.0
     },
     {
       "file": "screens/Screen_OrderBook.png",
-      "width": 320,
-      "height": 224
+      "height": 224.0,
+      "width": 320.0
     },
     {
       "file": "screens/Screen_Market_Depth.png",
-      "width": 680,
-      "height": 216
+      "height": 216.0,
+      "width": 680.0
     },
     {
       "file": "screens/Screen_Positions.png",
-      "width": 320,
-      "height": 224
+      "height": 224.0,
+      "width": 320.0
     },
     {
       "file": "screens/Screen_Recent_Trades.png",
-      "width": 320,
-      "height": 224
+      "height": 224.0,
+      "width": 320.0
     }
   ],
-  "multi_monitor": "metadata/multi_monitor.json"
+  "multi_monitor": "metadata/multi_monitor.json",
+  "panels": {
+    "center": "BTC/USDT 15m OHLC candles, MA 7/25, volume, axes, latest price",
+    "left": "market watchlist and BTC trend",
+    "right": "order book, cumulative depth, spread, recent trades",
+    "six": {
+      "lower_center": "BTC/USDT 15m OHLC candles, MA 7/25, volume, axes, latest price",
+      "lower_left": "market watchlist and BTC trend",
+      "lower_right": "order book, cumulative depth, spread, recent trades",
+      "upper_center": "BTC market depth with cumulative bid/ask size",
+      "upper_left": "open positions, unrealized PNL and margin",
+      "upper_right": "BTC recent trade tape"
+    }
+  },
+  "projection": "Frame, screen opening and content share one 1:8 shear; mounted panels use stand-free PanelHousing layers.",
+  "renderer": "previews/trading-screens.js",
+  "version": 6
 }

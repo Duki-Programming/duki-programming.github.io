@@ -23,6 +23,9 @@
       "coverage": 1
     }
   ],
-  "visual_review": "Reviewed left/right display renders; every display row is parallel to the lower bezel, with full pixel-mask coverage.",
-  "passed": true
+  "visual_review": "Reviewed enlarged left/right displays and the six-monitor assembly. Top and bottom frame pixels share the screen mask steps (3px top inset, 2px bottom inset); screen rows follow the same 1:8 shear.",
+  "passed": true,
+  "frame_pixel_checks": 160,
+  "mounted_overlap_pixels": 0,
+  "baked_render_matches": 3
 }
