@@ -1,0 +1,28 @@
+{
+  "geometry_checks": 139,
+  "browser_checks": 4,
+  "projection": [
+    {
+      "file": "monitors/Monitor_Trading_Front_Housing.png",
+      "leak": 0,
+      "coverage": 1
+    },
+    {
+      "file": "monitors/Monitor_Trading_Wide_Front_Housing.png",
+      "leak": 0,
+      "coverage": 1
+    },
+    {
+      "file": "monitors/Monitor_Trading_Angled_SE_Housing.png",
+      "leak": 0,
+      "coverage": 1
+    },
+    {
+      "file": "monitors/Monitor_Trading_Angled_SW_Housing.png",
+      "leak": 0,
+      "coverage": 1
+    }
+  ],
+  "visual_review": "Reviewed left/right display renders; every display row is parallel to the lower bezel, with full pixel-mask coverage.",
+  "passed": true
+}
