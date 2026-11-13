@@ -8,9 +8,12 @@
 </header>
 <main id="main" class="office-page">
   <section class="office-hero office-wrap" aria-labelledby="office-title">
+    <div class="office-product-heading product-identity__row">
+      <p class="office-wordmark"><img src="{{ page.icon | relative_url }}" width="42" height="42" alt="">BTC OFFICE</p>
+      {% include program-stats.html %}
+    </div>
     <div class="office-hero-copy">
       <p class="office-eyebrow"><span class="office-live-dot" aria-hidden="true"></span>{{ copy.eyebrow }}</p>
-      <p class="office-wordmark"><img src="{{ page.icon | relative_url }}" width="42" height="42" alt="">BTC OFFICE</p>
       <h1 id="office-title">{{ copy.headline }}</h1>
       <p class="office-intro">{{ copy.intro }}</p>
       <div class="office-actions"><a class="office-play" href="{{ '/btcoffice/game/' | relative_url }}"><span aria-hidden="true">▶</span>{{ copy.play }}<span aria-hidden="true">→</span></a><a class="office-explore" href="#hall-of-fame">{{ copy.hall_link }} ↓</a></div>
