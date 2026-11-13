@@ -104,8 +104,14 @@
   }
   function inverse(m){const[a,b,c,d,e,f,g,h,i]=m,det=a*(e*i-f*h)-b*(d*i-f*g)+c*(d*h-e*g);if(Math.abs(det)<1e-12)throw Error('Singular screen transform');return[(e*i-f*h)/det,(c*h-b*i)/det,(b*f-c*e)/det,(f*g-d*i)/det,(a*i-c*g)/det,(c*d-a*f)/det,(d*h-e*g)/det,(b*g-a*h)/det,(a*e-b*d)/det];}
   function point(m,x,y){const den=m[6]*x+m[7]*y+m[8];return[(m[0]*x+m[1]*y+m[2])/den,(m[3]*x+m[4]*y+m[5])/den];}
+  // The painted top bezel tapers more than the bottom. Keep all display rows
+  // parallel to the lower bezel; the pixel mask still defines the full opening.
+  function contentQuad(q){
+    const [tl,tr,br,bl]=q,height=Math.min(bl[1]-tl[1],br[1]-tr[1]);
+    return [[bl[0],bl[1]-height],[br[0],br[1]-height],[...br],[...bl]];
+  }
   function project(texture,asset,mask,scale){
-    const out=makeCanvas(asset.width*scale,asset.height*scale),c=out.getContext('2d'),pixels=c.createImageData(out.width,out.height),input=texture.getContext('2d').getImageData(0,0,texture.width,texture.height),map=inverse(homography(asset.screen_quad));
+    const out=makeCanvas(asset.width*scale,asset.height*scale),c=out.getContext('2d'),pixels=c.createImageData(out.width,out.height),input=texture.getContext('2d').getImageData(0,0,texture.width,texture.height),map=inverse(homography(contentQuad(asset.screen_quad)));
     for(let y=0;y<out.height;y++)for(let x=0;x<out.width;x++){
       const[px,py]=point(map,(x+.5)/scale,(y+.5)/scale),u=Math.max(0,Math.min(1,px)),v=Math.max(0,Math.min(1,py));
       const sx=Math.min(texture.width-1,Math.floor(u*texture.width)),sy=Math.min(texture.height-1,Math.floor(v*texture.height)),from=(sy*texture.width+sx)*4,to=(y*out.width+x)*4;
@@ -113,6 +119,6 @@
     }
     c.putImageData(pixels,0,0);c.imageSmoothingEnabled=false;c.globalCompositeOperation='destination-in';c.drawImage(mask,0,0,out.width,out.height);c.globalCompositeOperation='source-over';return out;
   }
-  const api={candles,closes,ma7,ma25,latest,createTexture,homography,inverse,point,project};
+  const api={candles,closes,ma7,ma25,latest,createTexture,homography,inverse,point,contentQuad,project};
   root.TradingScreens=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

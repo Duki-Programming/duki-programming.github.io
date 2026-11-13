@@ -1,8 +1,8 @@
 {
-  "version": 4,
+  "version": 5,
   "data_source": "deterministic example data; not live market prices",
   "renderer": "previews/trading-screens.js",
-  "projection": "projective homography from screen UV to screen_quad, then screen mask, housing drawn last",
+  "projection": "display rows parallel to the lower edge of screen_quad; contentQuad insets the top to fit, screen mask fills the pixel opening, housing drawn last",
   "panels": {
     "left": "market watchlist and BTC trend",
     "center": "BTC/USDT 15m OHLC candles, MA 7/25, volume, axes, latest price",
