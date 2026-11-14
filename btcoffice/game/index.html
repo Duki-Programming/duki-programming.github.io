@@ -2,7 +2,7 @@
 <html lang="ko">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, interactive-widget=resizes-visual">
 		<title>BTC Office</title>
 		<style>
 html, body, #canvas {
@@ -94,7 +94,7 @@ body {
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="BTC OFFICE">
 <meta name="theme-color" content="#101914">
-	<meta name="btc-build-id" content="20261114-c694e00202">
+	<meta name="btc-build-id" content="20261114-91257266ac">
 <script src="./config.js"></script>
 </head>
 	<body>
@@ -107,14 +107,14 @@ body {
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261114-c694e00202.png" alt="">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261114-91257266ac.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="./game-20261114-c694e00202.js"></script>
+		<script src="./game-20261114-91257266ac.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261114-c694e00202","experimentalVK":false,"fileSizes":{"game-20261114-c694e00202.pck":34295496,"game-20261114-c694e00202.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261114-91257266ac","experimentalVK":false,"fileSizes":{"game-20261114-91257266ac.pck":34296760,"game-20261114-91257266ac.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -218,6 +218,66 @@ const engine = new Engine(GODOT_CONFIG);
 	}
 }());
 		</script>
-	</body>
+	<script>
+/* The map keeps its viewport while a soft keyboard covers the screen.
+ * Godot uses canvasResizePolicy=0; only this controller resizes its canvas. */
+(() => {
+  function mount() {
+    const canvas = document.getElementById('canvas');
+    if (!canvas) return;
+    let locked = null;
+    let releasing = false;
+    let releaseTimer;
+    const visual = window.visualViewport;
+    const viewport = {
+      lock() {
+        if (!locked) locked = { width: innerWidth, height: innerHeight };
+        releasing = false;
+        clearTimeout(releaseTimer);
+        sync();
+      },
+      release() {
+        releasing = true;
+        // The blur event precedes the keyboard's closing animation.
+        clearTimeout(releaseTimer);
+        releaseTimer = setTimeout(sync, 450);
+        sync();
+      },
+      get locked() { return !!locked; },
+      get size() { return { width: canvas.width, height: canvas.height }; }
+    };
+    function sync() {
+      // A width change is a real orientation/window change, not a keyboard.
+      if (locked && Math.abs(innerWidth - locked.width) > 2) locked = null;
+      if (locked && releasing && innerHeight >= locked.height - 48 &&
+          (!visual || visual.height >= locked.height - 48)) locked = null;
+      const width = locked ? locked.width : innerWidth;
+      const height = locked ? locked.height : innerHeight;
+      const scale = window.devicePixelRatio || 1;
+      const pixelsX = Math.max(1, Math.round(width * scale));
+      const pixelsY = Math.max(1, Math.round(height * scale));
+      if (canvas.width !== pixelsX) canvas.width = pixelsX;
+      if (canvas.height !== pixelsY) canvas.height = pixelsY;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      // iOS can pan the visual viewport to the focused input. Counter that
+      // pan for the map; the chat input separately follows visible bounds.
+      canvas.style.transform = locked && visual
+        ? `translate(${visual.offsetLeft}px, ${visual.offsetTop}px)` : '';
+    }
+    Object.assign(canvas.style, { position: 'fixed', left: '0', top: '0' });
+    Object.assign(document.body.style, { position: 'fixed', inset: '0', overflow: 'hidden' });
+    window.btcGameViewport = viewport;
+    window.addEventListener('resize', sync);
+    visual?.addEventListener('resize', sync);
+    visual?.addEventListener('scroll', sync);
+    sync();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, { once: true });
+  else mount();
+})();
+
+</script>
+</body>
 </html>
 
