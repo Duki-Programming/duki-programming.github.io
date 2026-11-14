@@ -1,0 +1,24 @@
+.price-scale-controls{position:absolute;inset:0;pointer-events:none;z-index:5}
+.price-scale-buttons{position:absolute;display:flex;gap:3px;padding:2px;background:var(--bg);border-radius:3px;opacity:0;pointer-events:none}
+.price-scale-buttons.axis-hovered,.price-scale-buttons:focus-within{opacity:1;pointer-events:auto}
+.price-scale-buttons button{width:21px;height:21px;font-size:12px;font-weight:600;border:1px solid #536477;border-radius:3px;color:#fff;background:#1c2834;line-height:19px;padding:0}
+.price-scale-buttons button.active{color:#fff;background:#405367}
+.price-scale-buttons button[data-action=log].active{border-color:var(--accent)}
+.price-scale-buttons button:hover{border-color:#fff;color:#fff}
+.price-scale-menu{position:fixed;z-index:100;min-width:256px;max-width:calc(100vw - 10px);padding:5px 0;background:var(--panel);border:1px solid var(--line);border-radius:5px;box-shadow:0 5px 20px #0006;font-size:12px;color:var(--text)}
+.price-scale-menu button{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;font-size:11px;color:inherit;text-align:left;white-space:nowrap}
+.price-scale-menu button:hover,.price-scale-menu button:focus-visible{background:var(--raised)}
+.price-scale-menu button:disabled{opacity:.4;cursor:default}
+.scale-menu-check{width:14px;flex-shrink:0}.scale-menu-label{flex:1}.scale-menu-detail{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums}
+.price-scale-menu .scale-mode-start{border-top:1px solid var(--line);margin-top:4px;padding-top:11px}
+.indicator-legend{display:inline-flex;align-items:center;gap:8px;min-width:0;max-width:100%;pointer-events:auto}
+.pane-header>.indicator-legend{flex:0 1 auto}.indicator-legend .pane-values,.indicator-legend-value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.indicator-controls{display:inline-flex;align-items:center;gap:2px;opacity:0;flex-shrink:0;pointer-events:none}
+.indicator-legend:hover .indicator-controls,.indicator-legend:focus-within .indicator-controls{opacity:1;pointer-events:auto}
+.indicator-controls button{width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:#fff;background:#1c2834;border-radius:4px}
+.indicator-controls button:hover,.indicator-controls button:focus-visible{color:#fff;background:#405367}
+.indicator-controls svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.indicator-controls [data-action=remove]:hover{background:#a62f40}
+.indicator-hidden>.pane-title,.indicator-hidden>.pane-values,.indicator-hidden>.indicator-legend-value{opacity:.45}
+.overlay-indicator.indicator-legend{right:auto;max-width:calc(100% - 100px)}
+.indicator-legend-value{color:var(--muted)}
