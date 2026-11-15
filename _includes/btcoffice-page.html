@@ -11,7 +11,7 @@
     <div class="bb-city" aria-hidden="true"><img src="{{ art | append: 'city-night.webp' | relative_url }}" width="1536" height="1024" alt="" fetchpriority="high"></div>
     <div class="bb-hero-shade"></div><canvas aria-hidden="true" width="1536" height="1024" data-traffic data-assets="{{ art | relative_url }}"></canvas>
     <div class="bb-hero-copy bb-wrap"><p class="bb-eyebrow">{{ copy.eyebrow }}</p>
-      <h1 id="bb-title">BULLS &amp; BEAR<span lang="ko">불스 엔 베어</span></h1>
+      <h1 id="bb-title">Bulls &amp; Bears<span lang="ko">불스 엔 베어스</span></h1>
       <p class="bb-tagline">{{ copy.headline }}</p><p class="bb-intro">{{ copy.intro }}</p>
       {% include program-stats.html %}
       <div class="bb-actions"><a class="bb-play" data-lounge-entry href="{{ '/btcoffice/game/' | relative_url }}">{{ copy.play }} <span aria-hidden="true">↗</span></a><a class="bb-explore" href="#spaces">{{ copy.explore }} <span aria-hidden="true">↓</span></a></div>
@@ -46,7 +46,7 @@
   </section>
   <section class="bb-outro"><div class="bb-wrap"><p class="bb-eyebrow">TAKE YOUR SEAT</p><h2>{{ copy.outro | newline_to_br }}</h2><a class="bb-play" data-lounge-entry href="{{ '/btcoffice/game/' | relative_url }}">{{ copy.play }} <span aria-hidden="true">↗</span></a></div></section>
 </main>
-<footer class="bb-footer bb-wrap"><div><strong class="bb-footer-brand">BULLS &amp; BEAR</strong><p>{{ copy.footer }}</p><small>{{ copy.updated }}</small></div><div><div class="business-footer">{% include business-footer.html %}</div></div></footer>
+<footer class="bb-footer bb-wrap"><div><strong class="bb-footer-brand">Bulls &amp; Bears</strong><p>{{ copy.footer }}</p><small>{{ copy.updated }}</small></div><div><div class="business-footer">{% include business-footer.html %}</div></div></footer>
 <dialog class="bb-lightbox" aria-label="{{ copy.gallery }}"><button type="button" class="bb-lightbox-close" aria-label="{{ copy.close }}">{{ copy.close }} ×</button><img alt=""><p></p></dialog>
 <script src="{{ '/assets/js/btcoffice.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 
