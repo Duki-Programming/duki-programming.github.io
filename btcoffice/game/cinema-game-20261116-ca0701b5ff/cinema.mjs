@@ -54,7 +54,9 @@ class Cinema {
     if(!this.active)return;
     this.socket=new WebSocket(this.origin.replace(/^http/,'ws')+'/api/cinema');
     this.socket.onmessage=e=>{if(e.data==='pong')return;try{this.receive(JSON.parse(e.data));}catch(error){console.error('Cinema packet',error);this.notice('차트를 표시하지 못했습니다. 다시 연결합니다.');}};
-    this.socket.onclose=()=>{if(!this.active)return;this.notice('연결이 끊어져 다시 연결합니다.');this.state=null;this.drawings.history.reset();this.drawings.permission();this.emit();this.reconnect=setTimeout(()=>this.connect(),Math.min(15000,1000*2**this.retries++));};
+    this.socket.onclose=event=>{if(!this.active)return;this.state=null;this.drawings.history.reset();this.drawings.permission();this.emit();
+      if([1008,4001,4401,4403].includes(event.code)){this.notice('로그인이 변경되거나 연결이 종료되었습니다. 다시 입장해 주세요.');return;}
+      this.notice('연결이 끊어져 다시 연결합니다.');this.reconnect=setTimeout(()=>this.connect(),Math.min(15000,1000*2**this.retries++));};
     this.socket.onerror=()=>{};
   }
   receive(data){
