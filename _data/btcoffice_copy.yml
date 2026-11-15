@@ -1,216 +1,521 @@
-ko:
-  skip: 본문으로 건너뛰기
-  navigation: 게임 소개
-  nav_office: 오피스 생활
-  nav_character: 캐릭터 꾸미기
-  nav_hall: 명예의 전당
-  eyebrow: A LITTLE PIXEL OFFICE · BROWSER GAME
-  headline: 출근은 가볍게,<br>캐릭터는 나답게.
-  intro: 시세가 흐르는 작은 오피스에서 걷고, 쉬고, 이야기를 나눠요. 커피 한 잔 마시는 동료들 사이에 당신의 캐릭터도 앉을 자리가 있어요.
-  play: 지금 게임 시작
-  hall_link: 명예의 전당 구경하기
-  availability: 설치 없이 브라우저에서 · PC 키보드와 마우스 권장
-  entry_alt: 오피스 빌딩과 시작하기·계정 설정 버튼이 있는 현재 Bull & Bear 시작 화면
-  entry_caption: 바뀐 시작 화면에서, 오늘의 오피스 생활을 시작해요.
-  facts:
-    - {title: 바로 입장, body: 로그인 없이 먼저 둘러보기}
-    - {title: 12가지 캐릭터, body: 큰 모습도 작은 모습도}
-    - {title: 함께 채팅, body: Google 로그인 후 이야기 나누기}
-    - {title: 명예의 전당, body: 엘리베이터 너머 두 개의 전당}
-  floor_title: 차트도 보고,<br>옆자리에도 놀러 가요.
-  floor_body: 전광판 아래를 산책하고, 가까운 책상에서 동료들의 작은 행동을 구경해 보세요. 일하다 커피를 마시고, 잠깐 쉬기도 하는 픽셀 오피스. 로그인하면 같은 방의 친구들과 채팅도 할 수 있어요.
-  screenshot_alt: 보정된 큰 캐릭터와 전광판, 책상, 휴식 공간이 보이는 현재 오피스 게임 장면
-  screenshot_caption: 현재 게임의 실제 장면 · 미연결 자리에는 예시 트레이더 데이터가 표시됩니다.
-  break_body: 커피 마시기, 담배 피우기, 기뻐하기, 걸어 다니기. 가만히 지켜봐도 저마다 바쁜 하루를 보내고 있어요.
-  character_title: 오늘은 어떤 모습으로<br>출근할까요?
-  character_body: 회사원부터 마법사까지, 마음에 드는 캐릭터를 골라보세요. 큰 캐릭터와 작은 캐릭터를 바꾸고, 모자와 옷 색도 직접 정할 수 있어요.
-  character_points: [캐릭터 12종과 두 가지 크기, 상의·하의 색상과 모자 착용 캐릭터의 모자 색상, 앞·옆·뒤 모습과 걷기 미리보기]
-  character_note: Google 로그인 → 계정 설정 → 캐릭터 꾸미기 → 저장하고 입장
-  character_modes: 캐릭터 크기 미리보기
-  large: 큰 캐릭터
-  small: 작은 캐릭터
-  character_alt: 12종 캐릭터, 크기, 모자와 옷 색상을 고르는 실제 캐릭터 설정 화면
-  small_alt: 같은 캐릭터를 작은 모드로 선택한 실제 설정 화면
-  character_caption: 실제 설정 화면 · 선택한 모습은 계정에 저장돼요.
-  small_caption: 작은 캐릭터도 표정과 동작을 그대로 즐길 수 있어요.
-  cast_alt: 회사원, 캐주얼, 도인, 마법사 등 현재 게임의 12가지 캐릭터
-  hall_title: 엘리베이터를 타고,<br>명예의 전당으로.
-  hall_body: 오피스 북쪽 엘리베이터를 타면 최상층에 도착해요. 별과 명패가 늘어선 로비를 지나, 왼쪽 수익률 전당과 오른쪽 수익금 전당을 둘러보세요.
-  hall_gallery: 명예의 전당 게임 장면
-  lobby: 중앙 로비
-  roi: 수익률 전당 · ROI
-  pnl: 수익금 전당 · PNL
-  hall_alt: 수익률과 수익금 상위 캐릭터들이 별 모양 순위 명패 위에 서 있는 명예의 전당 로비
-  roi_alt: 수익률 순위의 캐릭터와 자리가 펼쳐진 수익률 명예의 전당
-  pnl_alt: 수익금 순위의 캐릭터와 자리가 펼쳐진 수익금 명예의 전당
-  lobby_caption: 실제 명예의 전당 로비 · 수익률과 수익금 순위가 각각 전시됩니다.
-  roi_caption: 왼쪽 문 너머, 수익률 순위 11~60위를 만나는 전당.
-  pnl_caption: 오른쪽 문 너머, 수익금 순위 11~60위를 만나는 전당.
-  ranks:
-    - {label: LOBBY · TOP 10, title: 별 아래의 주인공들, body: 중앙 로비에서 수익률·수익금 각 1~10위 캐릭터와 명패를 만나요.}
-    - {label: LEFT · ROI, title: 수익률 명예의 전당, body: 왼쪽 문 앞에서 E를 누르면 수익률 11~60위가 있는 공간으로 이동해요.}
-    - {label: RIGHT · PNL, title: 수익금 명예의 전당, body: 오른쪽 문 앞에서 E를 누르면 수익금 11~60위가 있는 공간으로 이동해요.}
-  hall_note: 현재 웹 버전은 저장된 순위 스냅샷을 전시합니다. 실시간 이용자 순위가 아닙니다.
-  start_title: 첫 방문이라면,<br>이렇게 시작해요.
-  start_body: 먼저 가볍게 둘러봐도 좋아요. 내 캐릭터와 채팅을 쓰고 싶어지면 첫 화면의 계정 설정에서 로그인하세요.
-  start_options:
-    - {label: GUEST PLAY, title: 일단 구경하러 왔어요, body: 시작하기를 누르고 로그인 없이 입장하세요. 오피스와 명예의 전당을 자유롭게 걸어볼 수 있어요. 게스트는 채팅과 캐릭터 선택을 이용할 수 없어요., route: 시작하기 → 로그인 없이 시작}
-    - {label: MY CHARACTER, title: 내 캐릭터로 함께 놀래요, body: Google로 로그인하고 캐릭터를 골라 저장하세요. 선택한 모습으로 다시 입장하고 같은 방의 다른 플레이어와 이야기할 수 있어요., route: 계정 설정 → Google 로그인 → 캐릭터 꾸미기 → 입장}
-  controls_title: 이 키들만 알면 출근 준비 끝.
-  controls:
-    - {key: WASD / ↑↓←→, action: 오피스 돌아다니기}
-    - {key: Shift, action: 달리기}
-    - {key: E, action: 가까운 문·대상과 상호작용}
-    - {key: Enter, action: 채팅 입력·전송 · 로그인 필요}
-    - {key: MOUSE DRAG, action: 화면 둘러보기}
-    - {key: + / −, action: 화면 배율 조절}
-  account_title: 내 거래소 정보를 오피스에 연결하고 싶다면?
-  account_body: 계정 설정의 거래소 연결에서 Binance, Bitget, Bybit, Upbit, OKX를 연결할 수 있어요. 읽기 전용 API 정보를 입력하고 연결 버튼을 눌러 확인하세요. 거래소마다 표시할 수 있는 자산·포지션 정보가 다릅니다.
-  data_note: 전광판은 공개 시세를 사용하며 NASDAQ은 지연 시세입니다. 예시 트레이더와 저장된 순위는 현재 이용자의 수익을 뜻하지 않습니다.
-  outro_title: 자리는 비워 뒀어요.
-  outro_body: 오늘도 작은 오피스에서 만나요. 게스트로 바로 들어올 수 있어요.
-  footer_line: 작은 오피스에서 만나는 우리들의 하루.
-en:
-  skip: Skip to content
-  navigation: Explore the game
-  nav_office: Office life
-  nav_character: Your character
-  nav_hall: Hall of Fame
-  eyebrow: A LITTLE PIXEL OFFICE · BROWSER GAME
-  headline: Clock in lightly.<br>Show up as yourself.
-  intro: Walk, take a break, and chat in a little office with a view of the market. There is room for your character among the coffee-sipping coworkers.
-  play: Play now
-  hall_link: Visit the Hall of Fame
-  availability: Play in your browser · PC keyboard and mouse recommended
-  entry_alt: Current Bull & Bear title screen with office buildings and Start and Account Settings buttons
-  entry_caption: Your day begins on the new title screen.
-  facts:
-    - {title: Walk right in, body: Explore as a guest}
-    - {title: 12 characters, body: Pick a big or small look}
-    - {title: Chat together, body: Sign in with Google}
-    - {title: Hall of Fame, body: Two halls upstairs}
-  floor_title: Watch the board.<br>Visit the next desk.
-  floor_body: Stroll beneath the market board and watch your coworkers at their desks. Work, coffee, and little breaks give this pixel office its rhythm. Sign in to chat with other players in the same room.
-  screenshot_alt: Current office gameplay with updated large characters, desks, a market board, and a lounge
-  screenshot_caption: Actual game scene · Unconnected desks show example trader data.
-  break_body: Coffee breaks, smoke breaks, celebrations, and walks around the office. Everyone has a little routine of their own.
-  character_title: Who will you be<br>at work today?
-  character_body: Pick a coworker or a wizard, choose a big or small character, then give your hat and clothes their own colors.
-  character_points: [12 characters and two sizes, Clothing colors plus hat colors for characters with hats, Front and side views plus walking previews]
-  character_note: Google sign-in → Account Settings → Customize → Save and enter
-  character_modes: Character size preview
-  large: Big character
-  small: Small character
-  character_alt: Actual character settings with twelve characters, two sizes, and hat and clothing palettes
-  small_alt: The same character selected in small mode in the actual settings screen
-  character_caption: Actual settings screen · Your appearance is saved to your account.
-  small_caption: Little characters have expressions and animations, too.
-  cast_alt: The twelve current game characters, including a coworker, wizard, and adventurer
-  hall_title: Take the elevator.<br>Enter the Hall of Fame.
-  hall_body: Ride the elevator at the north end of the office to the top floor. Walk through a lobby of stars and nameplates, then explore the ROI hall on the left and the PNL hall on the right.
-  hall_gallery: Hall of Fame game scenes
-  lobby: Central lobby
-  roi: ROI hall
-  pnl: PNL hall
-  hall_alt: Hall of Fame lobby with ranked characters and star-shaped nameplates for ROI and PNL
-  roi_alt: Characters and desks in the return-on-investment Hall of Fame
-  pnl_alt: Characters and desks in the profit-and-loss Hall of Fame
-  lobby_caption: Actual Hall of Fame lobby · Separate displays for ROI and PNL rankings.
-  roi_caption: Through the left door, meet ROI ranks 11–60.
-  pnl_caption: Through the right door, meet PNL ranks 11–60.
-  ranks:
-    - {label: LOBBY · TOP 10, title: Stars of the lobby, body: Meet characters representing the top ten in each of the ROI and PNL rankings.}
-    - {label: LEFT · ROI, title: Return on investment, body: Press E at the left door to visit the hall displaying ROI ranks 11–60.}
-    - {label: RIGHT · PNL, title: Profit and loss, body: Press E at the right door to visit the hall displaying PNL ranks 11–60.}
-  hall_note: The current web version displays saved ranking snapshots, not live player rankings.
-  start_title: Your first day?<br>Start here.
-  start_body: Take a look around first. When you want your own character and chat, open Account Settings on the title screen and sign in.
-  start_options:
-    - {label: GUEST PLAY, title: Just looking around, body: Choose Start and continue without signing in. Explore the office and Hall of Fame freely. Chat and character selection are unavailable to guests., route: Start → Continue as a guest}
-    - {label: MY CHARACTER, title: Here to join in, body: Sign in with Google and save your character. Enter with your chosen appearance and chat with other players in the same room., route: Account Settings → Google → Customize → Enter}
-  controls_title: A few keys for your first day.
-  controls:
-    - {key: WASD / ↑↓←→, action: Move around}
-    - {key: Shift, action: Run}
-    - {key: E, action: Interact with nearby doors and objects}
-    - {key: Enter, action: Type and send chat · Sign-in required}
-    - {key: MOUSE DRAG, action: Look around}
-    - {key: + / −, action: Adjust zoom}
-  account_title: Want to connect your exchange account?
-  account_body: In Account Settings, open Exchange Connections for Binance, Bitget, Bybit, Upbit, or OKX. Enter read-only API credentials and use the Connect button to check them. Available asset and position information varies by exchange.
-  data_note: The board uses public market feeds; NASDAQ quotes are delayed. Example traders and saved rankings do not show players’ current returns.
-  outro_title: We saved you a spot.
-  outro_body: See you in the little office. Guests can walk right in.
-  footer_line: A little office. A day together.
-ja:
-  skip: 本文へ移動
-  navigation: ゲーム紹介
-  nav_office: オフィス生活
-  nav_character: キャラクター
-  nav_hall: 殿堂
-  eyebrow: A LITTLE PIXEL OFFICE · BROWSER GAME
-  headline: 気軽に出勤。<br>自分らしい姿で。
-  intro: 相場が流れる小さなオフィスで、歩いて、休んで、おしゃべり。コーヒーを飲む仲間たちの間に、あなたのキャラクターの席もあります。
-  play: 今すぐプレイ
-  hall_link: 殿堂を見てみる
-  availability: インストール不要 · PCのキーボードとマウスを推奨
-  entry_alt: オフィスビルと開始・アカウント設定ボタンがある現在のBull & Bearタイトル画面
-  entry_caption: 新しいタイトル画面から、今日のオフィス生活を。
-  facts:
-    - {title: すぐに入場, body: ゲストで見学できます}
-    - {title: 12人のキャラクター, body: 大きな姿も小さな姿も}
-    - {title: 一緒にチャット, body: Googleログインで参加}
-    - {title: 殿堂へ, body: 上の階に二つの殿堂}
-  floor_title: 相場を見ながら、<br>隣のデスクにも。
-  floor_body: 相場ボードの下を歩き、仲間たちの小さな仕草を眺めましょう。仕事にコーヒー、ときどき休憩。ログインすると、同じ部屋のプレイヤーとチャットできます。
-  screenshot_alt: 更新された大きなキャラクター、デスク、相場ボード、休憩スペースが見える現在のゲーム画面
-  screenshot_caption: 実際のゲームシーン · 未接続の席にはサンプルトレーダーの情報が表示されます。
-  break_body: コーヒー、たばこ、喜ぶ仕草、オフィスの散歩。眺めているだけでも、それぞれの一日が見えてきます。
-  character_title: 今日はどんな姿で<br>出勤しますか？
-  character_body: 会社員から魔法使いまで、お気に入りを選びましょう。大きな姿と小さな姿を切り替え、帽子や服の色も自分好みにできます。
-  character_points: [12人のキャラクターと二つのサイズ, 服の色と帽子を着用するキャラクターの帽子の色, 前後左右の姿と歩行プレビュー]
-  character_note: Googleログイン → アカウント設定 → 着せ替え → 保存して入場
-  character_modes: キャラクターサイズのプレビュー
-  large: 大きなキャラクター
-  small: 小さなキャラクター
-  character_alt: 12人のキャラクター、サイズ、帽子と服の色を選ぶ実際の設定画面
-  small_alt: 同じキャラクターを小さいモードにした実際の設定画面
-  character_caption: 実際の設定画面 · 選んだ姿はアカウントに保存されます。
-  small_caption: 小さなキャラクターにも、表情や動きがあります。
-  cast_alt: 会社員、魔法使い、冒険家など現在の12人のキャラクター
-  hall_title: エレベーターで、<br>殿堂へ。
-  hall_body: オフィス北側のエレベーターで最上階へ。星とネームプレートのロビーを抜け、左の収益率の殿堂と右の損益額の殿堂を歩いてみましょう。
-  hall_gallery: 殿堂のゲームシーン
-  lobby: 中央ロビー
-  roi: 収益率の殿堂 · ROI
-  pnl: 損益額の殿堂 · PNL
-  hall_alt: 収益率と損益額の上位キャラクターが星形の順位プレートに並ぶ殿堂のロビー
-  roi_alt: 収益率ランキングのキャラクターとデスクが並ぶ殿堂
-  pnl_alt: 損益額ランキングのキャラクターとデスクが並ぶ殿堂
-  lobby_caption: 実際の殿堂ロビー · 収益率と損益額をそれぞれ展示しています。
-  roi_caption: 左の扉の先に、収益率11〜60位の殿堂。
-  pnl_caption: 右の扉の先に、損益額11〜60位の殿堂。
-  ranks:
-    - {label: LOBBY · TOP 10, title: 星の下の主役たち, body: 中央ロビーでは収益率・損益額それぞれ1〜10位のキャラクターと名札に出会えます。}
-    - {label: LEFT · ROI, title: 収益率の殿堂, body: 左の扉の前でEを押すと、収益率11〜60位の展示へ移動できます。}
-    - {label: RIGHT · PNL, title: 損益額の殿堂, body: 右の扉の前でEを押すと、損益額11〜60位の展示へ移動できます。}
-  hall_note: 現在のウェブ版は保存されたランキングを展示しています。リアルタイムのプレイヤー順位ではありません。
-  start_title: 初めての訪問なら、<br>ここから。
-  start_body: まずは気軽に見学しましょう。自分のキャラクターとチャットを使いたくなったら、タイトル画面のアカウント設定からログインできます。
-  start_options:
-    - {label: GUEST PLAY, title: まずは見学したい, body: 開始を選び、ログインせずに入場できます。オフィスと殿堂を自由に歩けます。ゲストはチャットとキャラクター選択を利用できません。, route: 開始 → ゲストで入場}
-    - {label: MY CHARACTER, title: 自分の姿で参加したい, body: Googleでログインしてキャラクターを保存しましょう。選んだ姿で入場し、同じ部屋のプレイヤーとチャットできます。, route: アカウント設定 → Google → 着せ替え → 入場}
-  controls_title: このキーで出勤準備は完了。
-  controls:
-    - {key: WASD / ↑↓←→, action: 移動}
-    - {key: Shift, action: 走る}
-    - {key: E, action: 近くの扉や対象を操作}
-    - {key: Enter, action: チャット入力・送信 · ログインが必要}
-    - {key: MOUSE DRAG, action: 画面を見渡す}
-    - {key: + / −, action: 表示倍率を調整}
-  account_title: 取引所の情報を接続するには？
-  account_body: アカウント設定の取引所接続で、Binance・Bitget・Bybit・Upbit・OKXを接続できます。読み取り専用API情報を入力し、接続ボタンで確認してください。表示できる資産やポジション情報は取引所によって異なります。
-  data_note: 相場ボードは公開情報を使用し、NASDAQは遅延相場です。サンプルトレーダーや保存された順位は、現在の利用者の収益を表すものではありません。
-  outro_title: 席を空けておきました。
-  outro_body: 今日も小さなオフィスで。ゲストですぐに入れます。
-  footer_line: 小さなオフィスで、一緒に過ごす一日。
+{
+  "ko": {
+    "skip": "본문 바로가기",
+    "navigation": "주요 공간",
+    "nav_floor": "트레이딩룸",
+    "nav_hall": "명예의 전당",
+    "nav_lounge": "차트 라운지",
+    "eyebrow": "THE TRADER’S AFTER HOURS",
+    "headline": "수익으로 증명하는 사람들의 휴식처",
+    "intro": "시장을 떠나지 않고도, 잠깐 쉬어갈 수 있는 곳. 포지션을 공유하고 차트를 함께 그리며 다른 트레이더들과 만나요.",
+    "play": "라운지 입장",
+    "explore": "공간 둘러보기",
+    "availability": "설치 없이 · PC와 모바일 브라우저",
+    "city_alt": "불 켜진 뉴욕의 오피스와 밤거리를 지나는 노란 택시",
+    "pause": "배경 움직임 멈추기",
+    "resume": "배경 움직임 재생",
+    "facts": [
+      {
+        "title": "포지션 공유",
+        "body": "읽기 전용 거래소 연결"
+      },
+      {
+        "title": "공개 트레이더 순위",
+        "body": "Binance · Bybit · OKX"
+      },
+      {
+        "title": "차트 | 유튜브",
+        "body": "같은 화면에서 함께 보기"
+      },
+      {
+        "title": "나만의 캐릭터",
+        "body": "12종 · 두 가지 크기"
+      }
+    ],
+    "spaces_title": "각자의 매매, 하나의 라운지.",
+    "spaces_body": "1층에서 이야기를 나누고, 명예의 전당에서 시장의 방향을 살펴보세요. 다음 아이디어는 함께 보는 차트에서 시작됩니다.",
+    "floor_title": "포지션은 공유하고,\n대화는 편하게.",
+    "floor_body": "내 캐릭터 곁에 현재 포지션을 표시하고 동료들과 대화하세요. 시세와 거래량 상위 종목은 옆에서 확인하고, 가운데 전광판에서는 오피스의 수익 순위를 볼 수 있어요.",
+    "floor_points": [
+      "코인·국내·해외 주식 검색과 즐겨찾기",
+      "평가손익 / 참여 동의한 계정의 30일 수익률 순위",
+      "로그인 채팅 · 입장 전 최근 30분 대화 확인"
+    ],
+    "floor_images": [
+      {
+        "id": "trading",
+        "file": "office-20261116.webp",
+        "label": "트레이딩룸",
+        "alt": "캐릭터의 포지션과 중앙 바닥 전광판이 있는 현재 1층 트레이딩룸",
+        "caption": "1F 트레이딩룸 · 실제 게임 화면, 소개용 예시 포지션"
+      },
+      {
+        "id": "busy",
+        "file": "busy-office-20261116.webp",
+        "label": "오피스",
+        "alt": "밤에도 불이 켜진 책상들과 움직이는 캐릭터가 있는 오피스",
+        "caption": "왼쪽 오피스 · 잠깐 들러 쉬어갈 수 있는 공간"
+      }
+    ],
+    "hall_title": "수익금과 수익률,\n두 방향으로 읽는 시장.",
+    "hall_body": "왼쪽은 수익금, 오른쪽은 수익률. 거래소별 방에서 공개 포지션을 보유한 트레이더들을 만나고, 중앙 화면에서 롱·숏 포지션과 규모를 비교하세요.",
+    "hall_points": [
+      "Binance · Bybit · OKX, 거래소별 수익금 / 수익률 방",
+      "90일 · 30일 · 7일, 기간별 공개 포지션 보유자 최대 10명",
+      "사람 수 기준과 포지션 규모 가중 기준의 롱·숏 비율"
+    ],
+    "hall_images": [
+      {
+        "id": "hall-lobby",
+        "file": "hall-lobby-20261116.webp",
+        "label": "통합 로비",
+        "alt": "수익금과 수익률 상위 캐릭터, 롱숏 집계 화면이 있는 명예의 전당",
+        "caption": "통합 로비 · 실제 UI에 소개용 예시 데이터를 표시했습니다."
+      },
+      {
+        "id": "hall-pnl",
+        "file": "hall-pnl-20261116.webp",
+        "label": "수익금 방",
+        "alt": "90일 30일 7일 순으로 배치된 공개 포지션 보유 트레이더들",
+        "caption": "거래소별 수익금 방 · 순위와 포지션 데이터는 공개 상태에 따라 달라집니다."
+      },
+      {
+        "id": "hall-roi",
+        "file": "hall-roi-20261116.webp",
+        "label": "수익률 방",
+        "alt": "수익률 순으로 줄지어 선 트레이더들과 포지션 명패",
+        "caption": "거래소별 수익률 방 · 소개용 예시 데이터"
+      }
+    ],
+    "lounge_title": "같은 차트 위에서,\n다른 관점을 만나다.",
+    "lounge_body": "빨간 극장 의자에 앉아 차트를 함께 보고, 선을 그어 생각을 나누세요. 유튜브로 전환하면 영상도 같은 방에서 함께 볼 수 있습니다.",
+    "lounge_points": [
+      "추세선·레이·평행채널·피치포크·피보나치 그리기",
+      "방장이 종목·시간봉·공용 재생을 제어하고 권한 위임",
+      "개인 음량과 시청 여부는 각자 자유롭게"
+    ],
+    "lounge_images": [
+      {
+        "id": "chart",
+        "file": "chart-lounge-20261116.webp",
+        "label": "차트",
+        "alt": "추세선과 피보나치를 그릴 수 있는 공용 차트와 빨간 극장 의자",
+        "caption": "공유 차트 · 실제 차트 화면과 소개용 참여자"
+      },
+      {
+        "id": "youtube",
+        "file": "youtube-lounge-20261116.webp",
+        "label": "유튜브",
+        "alt": "링크 입력과 영상 검색을 제공하는 라운지의 유튜브 화면",
+        "caption": "유튜브 함께 보기 · 링크 또는 검색으로 선택하고 방장이 공용 재생을 제어합니다."
+      }
+    ],
+    "character_title": "매매 스타일만큼,\n캐릭터도 나답게.",
+    "character_body": "12가지 캐릭터에서 시작해 머리·상의·하의 색을 골라보세요. 큰 캐릭터와 작은 캐릭터 중 원하는 모습을 고르고 저장하면 바로 입장할 수 있어요.",
+    "character_images": [
+      {
+        "id": "character",
+        "file": "character-20261116.webp",
+        "label": "큰 캐릭터",
+        "alt": "캐릭터와 의상 색을 고르는 계정 설정 화면",
+        "caption": "계정 설정 · 캐릭터와 의상 색 선택"
+      },
+      {
+        "id": "character-small",
+        "file": "character-small-20261116.webp",
+        "label": "작은 캐릭터",
+        "alt": "작은 픽셀 캐릭터를 선택한 설정 화면",
+        "caption": "같은 캐릭터, 다른 크기"
+      }
+    ],
+    "start_title": "입장부터 첫 포지션까지.",
+    "steps": [
+      {
+        "title": "먼저 둘러보기",
+        "body": "방문자로 공간을 둘러보고, 마음에 들면 로그인하세요."
+      },
+      {
+        "title": "내 자리 만들기",
+        "body": "닉네임과 캐릭터를 정하고 채팅에 참여하세요."
+      },
+      {
+        "title": "연결은 선택",
+        "body": "읽기 전용 거래소 API를 연결하면 내 포지션을 공유할 수 있어요."
+      }
+    ],
+    "exchanges": "연결 지원",
+    "account_note": "Binance · Bybit · OKX · Bitget · Upbit. 거래소별 지원 계정과 공개 가능한 데이터는 다릅니다. 게임 안에서 주문하거나 출금하지 않습니다.",
+    "data_note": "순위는 조회 가능한 공개 포지션을 기준으로 하며 전체 시장을 대표하지 않습니다. 주식 시세와 외부 데이터에는 지연이 있을 수 있습니다.",
+    "controls": [
+      {
+        "key": "WASD / ↑↓←→",
+        "action": "이동"
+      },
+      {
+        "key": "SHIFT",
+        "action": "달리기"
+      },
+      {
+        "key": "E",
+        "action": "상호작용"
+      },
+      {
+        "key": "ENTER",
+        "action": "채팅"
+      }
+    ],
+    "mobile_controls": "모바일에서는 화면의 이동·상호작용 버튼을 사용하세요.",
+    "outro": "시장은 계속됩니다.\n당신의 자리는 여기.",
+    "footer": "수익으로 증명하는 사람들의 휴식처",
+    "enlarge": "화면 크게 보기",
+    "close": "닫기",
+    "gallery": "게임 화면",
+    "updated": "현재 게임 화면 기준 · 2026.11"
+  },
+  "en": {
+    "skip": "Skip to content",
+    "navigation": "Explore the spaces",
+    "nav_floor": "Trading floor",
+    "nav_hall": "Hall of Fame",
+    "nav_lounge": "Chart lounge",
+    "eyebrow": "THE TRADER’S AFTER HOURS",
+    "headline": "A place to unwind for those who let their returns speak.",
+    "intro": "Stay close to the markets. Share your positions, draw on a chart together, and meet the people behind the trades.",
+    "play": "Enter the lounge",
+    "explore": "Explore the spaces",
+    "availability": "No install · Desktop and mobile browsers",
+    "city_alt": "A lit New York office and yellow taxis crossing the street at night",
+    "pause": "Pause background motion",
+    "resume": "Play background motion",
+    "facts": [
+      {
+        "title": "Share positions",
+        "body": "Read-only exchange connections"
+      },
+      {
+        "title": "Public trader rankings",
+        "body": "Binance · Bybit · OKX"
+      },
+      {
+        "title": "Charts | YouTube",
+        "body": "A shared screen for the room"
+      },
+      {
+        "title": "Your own character",
+        "body": "12 characters · Two sizes"
+      }
+    ],
+    "spaces_title": "Your own trades. A shared place.",
+    "spaces_body": "Talk on the trading floor, explore public positions in the Hall of Fame, then find your next idea on a shared chart.",
+    "floor_title": "Share your positions.\nStay for the conversation.",
+    "floor_body": "Show current positions beside your character and talk with other traders. Keep quotes and high-volume markets nearby, with office rankings on the central floor display.",
+    "floor_points": [
+      "Search crypto and global stocks, and save favorites",
+      "Unrealized P&L and opt-in 30-day return rankings",
+      "Signed-in chat with the last 30 minutes of history"
+    ],
+    "floor_images": [
+      {
+        "id": "trading",
+        "file": "office-20261116.webp",
+        "label": "Trading floor",
+        "alt": "Current trading floor with character positions and a central ranking display",
+        "caption": "1F trading floor · Actual game UI with example positions"
+      },
+      {
+        "id": "busy",
+        "file": "busy-office-20261116.webp",
+        "label": "Office",
+        "alt": "A late-night office with lit desks and pixel characters",
+        "caption": "The office next door · A place to take a break"
+      }
+    ],
+    "hall_title": "Profit on the left.\nReturns on the right.",
+    "hall_body": "Explore traders with public open positions in exchange-specific rooms. The central screens bring their long and short positions and sizes into one view.",
+    "hall_points": [
+      "Separate P&L and return rooms for Binance, Bybit and OKX",
+      "Up to 10 public position holders per 90-day, 30-day and 7-day period",
+      "Long/short bars by trader count and position-size weighting"
+    ],
+    "hall_images": [
+      {
+        "id": "hall-lobby",
+        "file": "hall-lobby-20261116.webp",
+        "label": "Central lobby",
+        "alt": "Hall of Fame podiums and aggregated long and short position screens",
+        "caption": "Central lobby · Actual UI with illustrative trader data"
+      },
+      {
+        "id": "hall-pnl",
+        "file": "hall-pnl-20261116.webp",
+        "label": "Profit room",
+        "alt": "Public position holders arranged by ranking period",
+        "caption": "Exchange profit room · Availability depends on publicly shared data"
+      },
+      {
+        "id": "hall-roi",
+        "file": "hall-roi-20261116.webp",
+        "label": "Return room",
+        "alt": "Ranked traders and position nameplates in the return room",
+        "caption": "Exchange return room · Illustrative data"
+      }
+    ],
+    "lounge_title": "One chart.\nMore than one perspective.",
+    "lounge_body": "Take a red theater seat, follow a chart together, and draw to explain an idea. Switch to YouTube to watch a video with the same room.",
+    "lounge_points": [
+      "Trend lines, rays, parallel channels, pitchforks and Fibonacci",
+      "The host controls symbols, intervals and shared playback, and can hand over hosting",
+      "Personal volume and viewing stay under your control"
+    ],
+    "lounge_images": [
+      {
+        "id": "chart",
+        "file": "chart-lounge-20261116.webp",
+        "label": "Chart",
+        "alt": "A shared chart with drawing tools and red theater seats",
+        "caption": "Shared chart · Actual chart UI with example participants"
+      },
+      {
+        "id": "youtube",
+        "file": "youtube-lounge-20261116.webp",
+        "label": "YouTube",
+        "alt": "YouTube link and keyword search in the shared lounge",
+        "caption": "Watch together · Select a link or search result, then let the host control shared playback"
+      }
+    ],
+    "character_title": "Your style,\nbeyond the trade.",
+    "character_body": "Start with one of 12 characters. Pick colors for your hair or hat, top and trousers, choose a large or small character, and save your look.",
+    "character_images": [
+      {
+        "id": "character",
+        "file": "character-20261116.webp",
+        "label": "Large characters",
+        "alt": "Account settings with character and clothing color options",
+        "caption": "Account settings · Choose a character and colors"
+      },
+      {
+        "id": "character-small",
+        "file": "character-small-20261116.webp",
+        "label": "Small characters",
+        "alt": "Account settings showing the smaller pixel character style",
+        "caption": "The same character, in a smaller size"
+      }
+    ],
+    "start_title": "From first visit to first position.",
+    "steps": [
+      {
+        "title": "Take a look",
+        "body": "Explore as a guest. Sign in when you are ready to join in."
+      },
+      {
+        "title": "Make it yours",
+        "body": "Choose your nickname and character, then join the chat."
+      },
+      {
+        "title": "Connect if you want",
+        "body": "Link a read-only exchange API to share your positions."
+      }
+    ],
+    "exchanges": "Supported connections",
+    "account_note": "Binance · Bybit · OKX · Bitget · Upbit. Supported account types and available data vary. The game does not place orders or make withdrawals.",
+    "data_note": "Rankings cover available public positions, not the entire market. Stock quotes and external data may be delayed.",
+    "controls": [
+      {
+        "key": "WASD / ↑↓←→",
+        "action": "Move"
+      },
+      {
+        "key": "SHIFT",
+        "action": "Run"
+      },
+      {
+        "key": "E",
+        "action": "Interact"
+      },
+      {
+        "key": "ENTER",
+        "action": "Chat"
+      }
+    ],
+    "mobile_controls": "On mobile, use the on-screen movement and interaction controls.",
+    "outro": "The market keeps moving.\nYour seat is here.",
+    "footer": "A place to unwind for those who let their returns speak.",
+    "enlarge": "Enlarge screenshot",
+    "close": "Close",
+    "gallery": "Game screenshots",
+    "updated": "Current game screens · November 2026"
+  },
+  "ja": {
+    "skip": "本文へ移動",
+    "navigation": "各エリア",
+    "nav_floor": "トレーディングルーム",
+    "nav_hall": "殿堂",
+    "nav_lounge": "チャートラウンジ",
+    "eyebrow": "THE TRADER’S AFTER HOURS",
+    "headline": "利益で実力を示す人たちの、憩いの場。",
+    "intro": "相場のそばで、ひと息。ポジションを共有し、同じチャートに線を引き、トレーダー仲間と話せる場所です。",
+    "play": "ラウンジに入る",
+    "explore": "エリアを見る",
+    "availability": "インストール不要 · PC・モバイルブラウザ",
+    "city_alt": "明かりの灯ったニューヨークのオフィスと夜道を走る黄色いタクシー",
+    "pause": "背景の動きを止める",
+    "resume": "背景の動きを再生",
+    "facts": [
+      {
+        "title": "ポジション共有",
+        "body": "読み取り専用APIで接続"
+      },
+      {
+        "title": "公開トレーダー順位",
+        "body": "Binance · Bybit · OKX"
+      },
+      {
+        "title": "チャート | YouTube",
+        "body": "同じ画面を一緒に見る"
+      },
+      {
+        "title": "自分だけのキャラクター",
+        "body": "12種類 · 2つのサイズ"
+      }
+    ],
+    "spaces_title": "それぞれの取引、ひとつのラウンジ。",
+    "spaces_body": "1階で会話し、殿堂で公開ポジションを眺める。次のアイデアは、一緒に見るチャートから。",
+    "floor_title": "ポジションを共有して、\n気軽に話そう。",
+    "floor_body": "キャラクターのそばに現在のポジションを表示し、仲間と会話。相場や出来高上位の銘柄を確認しながら、中央の床面ボードでオフィス内の順位も見られます。",
+    "floor_points": [
+      "暗号資産・世界の株式を検索してお気に入り登録",
+      "評価損益と、参加に同意したアカウントの30日収益率順位",
+      "ログインしてチャット · 直近30分の履歴を表示"
+    ],
+    "floor_images": [
+      {
+        "id": "trading",
+        "file": "office-20261116.webp",
+        "label": "トレーディングルーム",
+        "alt": "ポジション表示と中央ランキング画面がある現在の1階",
+        "caption": "1F · 実際のゲームUIと紹介用のサンプルポジション"
+      },
+      {
+        "id": "busy",
+        "file": "busy-office-20261116.webp",
+        "label": "オフィス",
+        "alt": "夜でも明かりの灯るデスクとピクセルキャラクター",
+        "caption": "隣のオフィス · ひと息つける場所"
+      }
+    ],
+    "hall_title": "左に利益額、\n右に収益率。",
+    "hall_body": "取引所別の部屋で、ポジションを公開しているトレーダーをチェック。中央画面ではロング・ショートとその規模をまとめて比較できます。",
+    "hall_points": [
+      "Binance・Bybit・OKXの利益額 / 収益率ルーム",
+      "90日・30日・7日ごとに公開ポジション保有者を最大10人表示",
+      "人数基準とポジション規模加重のロング・ショート比率"
+    ],
+    "hall_images": [
+      {
+        "id": "hall-lobby",
+        "file": "hall-lobby-20261116.webp",
+        "label": "中央ロビー",
+        "alt": "上位トレーダーとロングショート集計画面がある殿堂",
+        "caption": "中央ロビー · 実際のUIに紹介用データを表示"
+      },
+      {
+        "id": "hall-pnl",
+        "file": "hall-pnl-20261116.webp",
+        "label": "利益額ルーム",
+        "alt": "期間別に並ぶ公開ポジション保有トレーダー",
+        "caption": "取引所別の利益額ルーム · 公開状況により表示は変わります"
+      },
+      {
+        "id": "hall-roi",
+        "file": "hall-roi-20261116.webp",
+        "label": "収益率ルーム",
+        "alt": "収益率順に並ぶトレーダーとポジションの名札",
+        "caption": "取引所別の収益率ルーム · 紹介用データ"
+      }
+    ],
+    "lounge_title": "同じチャートに、\n違う視点を。",
+    "lounge_body": "赤いシアター席に座り、同じチャートを見ながら線でアイデアを伝えよう。YouTubeに切り替えれば、同じ部屋で動画も一緒に楽しめます。",
+    "lounge_points": [
+      "トレンドライン・レイ・平行チャネル・ピッチフォーク・フィボナッチ",
+      "ホストが銘柄・時間足・共通再生を操作し、ホスト権限を委任",
+      "音量と視聴への参加は各自で操作"
+    ],
+    "lounge_images": [
+      {
+        "id": "chart",
+        "file": "chart-lounge-20261116.webp",
+        "label": "チャート",
+        "alt": "描画ツール付きの共有チャートと赤いシアター席",
+        "caption": "共有チャート · 実際の画面と紹介用の参加者"
+      },
+      {
+        "id": "youtube",
+        "file": "youtube-lounge-20261116.webp",
+        "label": "YouTube",
+        "alt": "共有ラウンジのYouTubeリンク入力とキーワード検索画面",
+        "caption": "一緒に視聴 · リンクや検索結果を選び、ホストが共通再生を操作"
+      }
+    ],
+    "character_title": "トレード以外にも、\n自分らしさを。",
+    "character_body": "12種類のキャラクターから、髪や帽子・上着・ボトムスの色を選択。大小2つのサイズから好みの姿を選び、保存して入場できます。",
+    "character_images": [
+      {
+        "id": "character",
+        "file": "character-20261116.webp",
+        "label": "大きいキャラクター",
+        "alt": "キャラクターと服の色を選ぶアカウント設定",
+        "caption": "アカウント設定 · キャラクターと服の色を選択"
+      },
+      {
+        "id": "character-small",
+        "file": "character-small-20261116.webp",
+        "label": "小さいキャラクター",
+        "alt": "小さいピクセルキャラクターの設定画面",
+        "caption": "同じキャラクター、違うサイズ"
+      }
+    ],
+    "start_title": "最初の訪問から、ポジション共有まで。",
+    "steps": [
+      {
+        "title": "まず見てみる",
+        "body": "ゲストとして見学。参加したくなったらログイン。"
+      },
+      {
+        "title": "自分の居場所をつくる",
+        "body": "ニックネームとキャラクターを決めてチャットに参加。"
+      },
+      {
+        "title": "接続は自由",
+        "body": "読み取り専用の取引所APIを接続するとポジションを共有できます。"
+      }
+    ],
+    "exchanges": "対応する接続先",
+    "account_note": "Binance · Bybit · OKX · Bitget · Upbit。対応アカウントと取得できるデータは異なります。ゲーム内で注文・出金は行いません。",
+    "data_note": "順位は取得可能な公開ポジションを対象とし、市場全体を表すものではありません。株価や外部データには遅延が生じる場合があります。",
+    "controls": [
+      {
+        "key": "WASD / ↑↓←→",
+        "action": "移動"
+      },
+      {
+        "key": "SHIFT",
+        "action": "走る"
+      },
+      {
+        "key": "E",
+        "action": "操作"
+      },
+      {
+        "key": "ENTER",
+        "action": "チャット"
+      }
+    ],
+    "mobile_controls": "モバイルでは画面上の移動・操作ボタンを使います。",
+    "outro": "相場は動き続ける。\nあなたの席は、ここに。",
+    "footer": "利益で実力を示す人たちの、憩いの場。",
+    "enlarge": "画面を拡大",
+    "close": "閉じる",
+    "gallery": "ゲーム画面",
+    "updated": "現在のゲーム画面 · 2026年11月"
+  }
+}

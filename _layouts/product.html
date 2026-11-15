@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-theme="{% if page.product == 'btcoffice' %}light{% else %}dark{% endif %}" data-default-theme="{% if page.product == 'btcoffice' %}light{% else %}dark{% endif %}" data-product="{{ page.product | default: 'catalog' | escape }}" lang="{{ page.lang | default: 'ko' | escape }}">
+<html data-theme="{{ page.default_theme | default: 'dark' }}" data-default-theme="{{ page.default_theme | default: 'dark' }}" data-product="{{ page.product | default: 'catalog' | escape }}" lang="{{ page.lang | default: 'ko' | escape }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

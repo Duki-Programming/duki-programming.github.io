@@ -1,0 +1,9 @@
+<div class="bb-gallery" data-gallery>
+  <div class="bb-gallery-top"><div class="bb-tabs" role="group" aria-label="{{ copy.gallery }}">
+    {% for shot in include.images %}<button type="button" data-panel="{{ shot.id }}" aria-controls="{{ shot.id }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ shot.label }}</button>{% endfor %}
+  </div><span class="bb-capture-label">IN GAME</span></div>
+  {% for shot in include.images %}<figure id="{{ shot.id }}"{% unless forloop.first %} hidden{% endunless %}>
+    <button class="bb-image-button" type="button" data-enlarge aria-label="{{ copy.enlarge }}: {{ shot.label }}"><img src="{{ art | append: shot.file | relative_url }}" width="1440" height="1000" alt="{{ shot.alt | escape }}" loading="lazy"><span aria-hidden="true">↗</span></button>
+    <figcaption>{{ shot.caption }}</figcaption>
+  </figure>{% endfor %}
+</div>

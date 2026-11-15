@@ -1,65 +1,50 @@
 {% assign copy = site.data.btcoffice_copy[page.lang] %}
 {% assign art = '/assets/programs/btcoffice/' %}
-<a class="office-skip" href="#main">{{ copy.skip }}</a>
-<header class="office-topbar office-wrap">
-  <a class="office-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}">← DUKI LAB</a>
-  <nav class="office-nav" aria-label="{{ copy.navigation }}"><a href="#the-office">{{ copy.nav_office }}</a><a href="#your-character">{{ copy.nav_character }}</a><a href="#hall-of-fame">{{ copy.nav_hall }}</a></nav>
+<a class="bb-skip" href="#main">{{ copy.skip }}</a>
+<header class="bb-topbar bb-wrap">
+  <a class="bb-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}">← DUKI LAB</a>
+  <nav class="bb-nav" aria-label="{{ copy.navigation }}"><a href="#trading-floor">{{ copy.nav_floor }}</a><a href="#hall-of-fame">{{ copy.nav_hall }}</a><a href="#chart-lounge">{{ copy.nav_lounge }}</a></nav>
   {% include appearance-controls.html class="product-language" %}
 </header>
-<main id="main" class="office-page">
-  <section class="office-hero office-wrap" aria-labelledby="office-title">
-    <div class="office-product-heading product-identity__row">
-      <p class="office-wordmark"><img src="{{ page.icon | relative_url }}" width="42" height="42" alt="">BULL &amp; BEAR</p>
-      {% include program-stats.html %}
+<main id="main" class="bb-page">
+  <section class="bb-hero" aria-labelledby="bb-title">
+    <div class="bb-city" aria-hidden="true"><img src="{{ art | append: 'city-night.webp' | relative_url }}" width="1536" height="1024" alt="" fetchpriority="high"></div>
+    <div class="bb-hero-shade"></div><canvas aria-hidden="true" width="1536" height="1024" data-traffic data-assets="{{ art | relative_url }}"></canvas>
+    <div class="bb-hero-copy bb-wrap"><p class="bb-eyebrow">{{ copy.eyebrow }}</p>
+      <h1 id="bb-title">BULLS &amp; BEAR<span lang="ko">불스 엔 베어</span></h1>
+      <p class="bb-tagline">{{ copy.headline }}</p><p class="bb-intro">{{ copy.intro }}</p>
+      <div class="bb-actions"><a class="bb-play" href="{{ '/btcoffice/game/' | relative_url }}">{{ copy.play }} <span aria-hidden="true">↗</span></a><a class="bb-explore" href="#spaces">{{ copy.explore }} <span aria-hidden="true">↓</span></a></div>
+      <p class="bb-availability">{{ copy.availability }}</p>
     </div>
-    <div class="office-hero-copy">
-      <p class="office-eyebrow"><span class="office-live-dot" aria-hidden="true"></span>{{ copy.eyebrow }}</p>
-      <h1 id="office-title">{{ copy.headline }}</h1>
-      <p class="office-intro">{{ copy.intro }}</p>
-      <div class="office-actions"><a class="office-play" href="{{ '/btcoffice/game/' | relative_url }}"><span aria-hidden="true">▶</span>{{ copy.play }}<span aria-hidden="true">→</span></a><a class="office-explore" href="#hall-of-fame">{{ copy.hall_link }} ↓</a></div>
-      <p class="office-availability">{{ copy.availability }}</p>
-    </div>
-    <figure class="office-hero-art office-frame">
-      <div class="office-windowbar"><span aria-hidden="true">● ● ●</span><span>BULL &amp; BEAR · START HERE</span><span aria-hidden="true">↗</span></div>
-      <img src="{{ art | append: 'entry.webp' | relative_url }}" width="1440" height="960" alt="{{ copy.entry_alt | escape }}" fetchpriority="high">
-      <figcaption><span class="office-live-dot" aria-hidden="true"></span>{{ copy.entry_caption }}</figcaption>
-    </figure>
+    <button class="bb-motion" type="button" data-pause-label="{{ copy.pause }}" data-resume-label="{{ copy.resume }}" aria-label="{{ copy.pause }}" aria-pressed="false" hidden><span aria-hidden="true">Ⅱ</span></button>
+    <span class="bb-city-caption" aria-hidden="true">NEW YORK · AFTER HOURS</span>
   </section>
-  <div class="office-facts office-wrap">{% for fact in copy.facts %}<div><strong>{{ fact.title }}</strong><span>{{ fact.body }}</span></div>{% endfor %}</div>
-  <section id="the-office" class="office-floor office-wrap" aria-labelledby="office-floor-title">
-    <div class="office-section-heading"><div><p class="office-eyebrow">01 / A DAY AT THE OFFICE</p><h2 id="office-floor-title">{{ copy.floor_title }}</h2></div><p>{{ copy.floor_body }}</p></div>
-    <figure class="office-showcase office-frame"><div class="office-windowbar"><span aria-hidden="true">● ● ●</span><span>1F · THE OFFICE</span><span>COFFEE BREAK?</span></div><img src="{{ art | append: 'office.webp' | relative_url }}" width="1440" height="960" alt="{{ copy.screenshot_alt | escape }}" loading="lazy"><figcaption>{{ copy.screenshot_caption }}</figcaption></figure>
-    <div class="office-break"><img src="{{ art | append: 'coffee-break.webp' | relative_url }}" width="200" height="200" alt="" loading="lazy"><p>{{ copy.break_body }}</p><span aria-hidden="true">☕</span></div>
+  <div class="bb-facts bb-wrap">{% for fact in copy.facts %}<div><span class="bb-fact-number">0{{ forloop.index }}</span><strong>{{ fact.title }}</strong><span>{{ fact.body }}</span></div>{% endfor %}</div>
+  <section id="spaces" class="bb-introduction bb-wrap"><p class="bb-eyebrow">INSIDE THE LOUNGE</p><h2>{{ copy.spaces_title }}</h2><p>{{ copy.spaces_body }}</p></section>
+  <section id="trading-floor" class="bb-feature bb-wrap" aria-labelledby="bb-floor-title">
+    <div class="bb-section-copy"><div><p class="bb-eyebrow">01 / TRADING FLOOR</p><h2 id="bb-floor-title">{{ copy.floor_title | newline_to_br }}</h2></div><div><p>{{ copy.floor_body }}</p><ul class="bb-points">{% for point in copy.floor_points %}<li>{{ point }}</li>{% endfor %}</ul></div></div>
+    {% include btcoffice-gallery.html images=copy.floor_images %}
   </section>
-  <section id="your-character" class="office-character office-wrap" aria-labelledby="office-character-title">
-    <div class="office-character-copy"><p class="office-eyebrow">02 / MAKE IT YOURS</p><h2 id="office-character-title">{{ copy.character_title }}</h2><p>{{ copy.character_body }}</p><ul>{% for item in copy.character_points %}<li>{{ item }}</li>{% endfor %}</ul><p class="office-note">{{ copy.character_note }}</p></div>
-    <div class="office-character-gallery" data-gallery>
-      <div class="office-tabs" role="group" aria-label="{{ copy.character_modes }}"><button type="button" data-panel="character-large" aria-controls="character-large" aria-pressed="true">{{ copy.large }}</button><button type="button" data-panel="character-small" aria-controls="character-small" aria-pressed="false">{{ copy.small }}</button></div>
-      <figure class="office-frame" id="character-large"><img src="{{ art | append: 'character.webp' | relative_url }}" width="1440" height="960" loading="lazy" alt="{{ copy.character_alt | escape }}"><figcaption>{{ copy.character_caption }}</figcaption></figure>
-      <figure class="office-frame" id="character-small" hidden><img src="{{ art | append: 'character-small.webp' | relative_url }}" width="1440" height="960" loading="lazy" alt="{{ copy.small_alt | escape }}"><figcaption>{{ copy.small_caption }}</figcaption></figure>
-    </div>
-    <img class="office-cast" src="{{ art | append: 'characters.webp' | relative_url }}" width="1536" height="160" loading="lazy" alt="{{ copy.cast_alt | escape }}">
+  <section id="hall-of-fame" class="bb-feature bb-wrap" aria-labelledby="bb-hall-title">
+    <div class="bb-section-copy"><div><p class="bb-eyebrow">02 / HALL OF FAME</p><h2 id="bb-hall-title">{{ copy.hall_title | newline_to_br }}</h2></div><div><p>{{ copy.hall_body }}</p><ul class="bb-points">{% for point in copy.hall_points %}<li>{{ point }}</li>{% endfor %}</ul></div></div>
+    {% include btcoffice-gallery.html images=copy.hall_images %}
+    <p class="bb-note">{{ copy.data_note }}</p>
   </section>
-  <section id="hall-of-fame" class="office-hall" aria-labelledby="office-hall-title">
-    <div class="office-wrap">
-      <div class="office-section-heading"><div><p class="office-eyebrow">03 / HALL OF FAME</p><h2 id="office-hall-title">{{ copy.hall_title }}</h2></div><p>{{ copy.hall_body }}</p></div>
-      <div class="office-hall-gallery" data-gallery>
-        <div class="office-tabs" role="group" aria-label="{{ copy.hall_gallery }}"><button type="button" data-panel="hall-lobby" aria-controls="hall-lobby" aria-pressed="true">{{ copy.lobby }}</button><button type="button" data-panel="hall-roi" aria-controls="hall-roi" aria-pressed="false">{{ copy.roi }}</button><button type="button" data-panel="hall-pnl" aria-controls="hall-pnl" aria-pressed="false">{{ copy.pnl }}</button></div>
-        <figure class="office-frame" id="hall-lobby"><img src="{{ art | append: 'hall-lobby.webp' | relative_url }}" width="1440" height="960" loading="lazy" alt="{{ copy.hall_alt | escape }}"><figcaption>{{ copy.lobby_caption }}</figcaption></figure>
-        <figure class="office-frame" id="hall-roi" hidden><img src="{{ art | append: 'hall-roi.webp' | relative_url }}" width="1440" height="960" loading="lazy" alt="{{ copy.roi_alt | escape }}"><figcaption>{{ copy.roi_caption }}</figcaption></figure>
-        <figure class="office-frame" id="hall-pnl" hidden><img src="{{ art | append: 'hall-pnl.webp' | relative_url }}" width="1440" height="960" loading="lazy" alt="{{ copy.pnl_alt | escape }}"><figcaption>{{ copy.pnl_caption }}</figcaption></figure>
-      </div>
-      <div class="office-ranks">{% for rank in copy.ranks %}<div><span>{{ rank.label }}</span><h3>{{ rank.title }}</h3><p>{{ rank.body }}</p></div>{% endfor %}</div>
-      <p class="office-note office-hall-note">{{ copy.hall_note }}</p>
-    </div>
+  <section id="chart-lounge" class="bb-feature bb-wrap" aria-labelledby="bb-lounge-title">
+    <div class="bb-section-copy"><div><p class="bb-eyebrow">03 / CHART CINEMA</p><h2 id="bb-lounge-title">{{ copy.lounge_title | newline_to_br }}</h2></div><div><p>{{ copy.lounge_body }}</p><ul class="bb-points">{% for point in copy.lounge_points %}<li>{{ point }}</li>{% endfor %}</ul></div></div>
+    {% include btcoffice-gallery.html images=copy.lounge_images %}
   </section>
-  <section class="office-start office-wrap" aria-labelledby="office-start-title">
-    <div class="office-section-heading"><div><p class="office-eyebrow">04 / YOUR FIRST DAY</p><h2 id="office-start-title">{{ copy.start_title }}</h2></div><p>{{ copy.start_body }}</p></div>
-    <div class="office-start-options">{% for option in copy.start_options %}<article><span class="office-eyebrow">{{ option.label }}</span><h3>{{ option.title }}</h3><p>{{ option.body }}</p><span class="office-route">{{ option.route }}</span></article>{% endfor %}</div>
-    <div class="office-controls"><h3>{{ copy.controls_title }}</h3><dl>{% for control in copy.controls %}<div><dt><kbd>{{ control.key }}</kbd></dt><dd>{{ control.action }}</dd></div>{% endfor %}</dl></div>
-    <details class="office-account-note"><summary>{{ copy.account_title }}</summary><p>{{ copy.account_body }}</p><p class="office-note">{{ copy.data_note }}</p></details>
+  <section id="your-character" class="bb-feature bb-wrap bb-character" aria-labelledby="bb-character-title">
+    <div class="bb-section-copy"><div><p class="bb-eyebrow">04 / MAKE IT YOURS</p><h2 id="bb-character-title">{{ copy.character_title | newline_to_br }}</h2></div><p>{{ copy.character_body }}</p></div>
+    {% include btcoffice-gallery.html images=copy.character_images %}
   </section>
-  <section class="office-outro office-wrap" aria-labelledby="office-outro-title"><img src="{{ art | append: 'coffee-break.webp' | relative_url }}" width="160" height="160" alt="" loading="lazy"><div><p class="office-eyebrow">YOUR DESK IS WAITING</p><h2 id="office-outro-title">{{ copy.outro_title }}</h2><p>{{ copy.outro_body }}</p></div><a class="office-play" href="{{ '/btcoffice/game/' | relative_url }}"><span aria-hidden="true">▶</span>{{ copy.play }}<span aria-hidden="true">→</span></a></section>
+  <section class="bb-start bb-wrap" aria-labelledby="bb-start-title"><p class="bb-eyebrow">YOUR FIRST VISIT</p><h2 id="bb-start-title">{{ copy.start_title }}</h2>
+    <div class="bb-steps">{% for step in copy.steps %}<article><span>0{{ forloop.index }}</span><h3>{{ step.title }}</h3><p>{{ step.body }}</p></article>{% endfor %}</div>
+    <div class="bb-connections"><strong>{{ copy.exchanges }}</strong><p>{{ copy.account_note }}</p></div>
+    <dl class="bb-controls">{% for control in copy.controls %}<div><dt><kbd>{{ control.key }}</kbd></dt><dd>{{ control.action }}</dd></div>{% endfor %}</dl><p class="bb-note">{{ copy.mobile_controls }}</p>
+  </section>
+  <section class="bb-outro"><div class="bb-wrap"><p class="bb-eyebrow">TAKE YOUR SEAT</p><h2>{{ copy.outro | newline_to_br }}</h2><a class="bb-play" href="{{ '/btcoffice/game/' | relative_url }}">{{ copy.play }} <span aria-hidden="true">↗</span></a></div></section>
 </main>
-<footer class="office-footer office-wrap"><div><strong>BULL &amp; BEAR</strong><p>{{ copy.footer_line }}</p></div><div class="business-footer">{% include business-footer.html %}</div></footer>
-<script src="{{ '/assets/js/btcoffice.js' | relative_url }}" defer></script>
+<footer class="bb-footer bb-wrap"><div><strong class="bb-footer-brand">BULLS &amp; BEAR</strong><p>{{ copy.footer }}</p><small>{{ copy.updated }}</small></div><div>{% include program-stats.html %}<div class="business-footer">{% include business-footer.html %}</div></div></footer>
+<dialog class="bb-lightbox" aria-label="{{ copy.gallery }}"><button type="button" class="bb-lightbox-close" aria-label="{{ copy.close }}">{{ copy.close }} ×</button><img alt=""><p></p></dialog>
+<script src="{{ '/assets/js/btcoffice.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
