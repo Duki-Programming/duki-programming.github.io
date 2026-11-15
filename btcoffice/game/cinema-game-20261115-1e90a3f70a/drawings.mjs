@@ -1,6 +1,7 @@
 import {TOOLS,POINTS,DEFAULT_STYLE,geometry,logicalToTime,timeToLogical} from './drawing-geometry.mjs';
 import {DrawingHistory} from './drawing-history.mjs';
 const NS='http://www.w3.org/2000/svg';
+const TOUCH_SLOP=8; // CSS pixels, independent of device pixel ratio and chart zoom.
 const svg=(tag,attrs={})=>{const el=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,String(v));return el;};
 const element=(tag,text,attrs={})=>{const el=document.createElement(tag);if(text)el.textContent=text;Object.assign(el,attrs);return el;};
 export class Drawings {
@@ -25,7 +26,8 @@ export class Drawings {
       const clear=element('button','모두 지우기',{type:'button'});clear.onclick=()=>{this.room.send({type:'drawing_clear'});this.room.closeDialog();};actions.prepend(clear);dialog.append(actions);dialog.showModal();
     };
     this.svg.addEventListener('pointerdown',e=>this.down(e));this.svg.addEventListener('pointermove',e=>this.move(e));this.svg.addEventListener('pointerup',e=>this.up(e));
-    this.svg.addEventListener('pointercancel',()=>this.cancel());
+    this.svg.addEventListener('pointercancel',e=>this.cancelPointer(e));
+    this.svg.addEventListener('lostpointercapture',e=>this.cancelPointer(e));
     this.svg.addEventListener('dblclick',e=>{if(this.tool!=='select')return;const d=this.items.get(e.target.closest('[data-drawing]')?.dataset.drawing||this.selected);if(d){e.preventDefault();e.stopPropagation();this.cancel();this.settings(d);}});
     this.key=e=>{if(!this.room.active||this.room.root.hidden||this.room.gameTyping||this.room.state?.media?.tab!=='chart'||e.isComposing||e.target.closest?.('input,select,textarea,dialog,[contenteditable="true"]')||document.querySelector('dialog[open]'))return;
       if((e.ctrlKey||e.metaKey)&&!e.altKey&&e.key.toLowerCase()==='z'){e.preventDefault();e.stopPropagation();if(!e.repeat)this.undo(e.shiftKey);return;}
@@ -40,7 +42,7 @@ export class Drawings {
   editable(d){return this.allowed&&(this.room.host||this.owns(d));}
   setTool(tool){if(tool!=='select'&&!this.allowed){this.room.notice('방장만 그릴 수 있습니다.');return;}this.cancel();this.tool=tool;
     this.svg.classList.toggle('drawing-active',tool!=='select');for(const [name,b] of this.buttons)b.classList.toggle('active',name===tool);
-    this.room.hint.textContent=tool==='select'?'도형 더블클릭 · 설정  /  모서리 점 · 이동':tool==='brush'?'드래그해서 그리기 · Esc 취소':`${TOOLS[tool]} · ${POINTS[tool]}개의 점을 차례로 선택 · Esc 취소`;
+    this.room.hint.textContent=tool==='select'?'도형 더블클릭 · 설정  /  모서리 점 · 이동':tool==='brush'?'드래그해서 그리기 · Esc 취소':`${TOOLS[tool]} · ${POINTS[tool]}점 · 탭: 점 찍기 / 드래그: 위치 확인`;
     this.room.pens?.toolChanged();
   }
   permission(){for(const [key,b] of this.buttons)b.disabled=key!=='select'&&!this.allowed;this.clearButton.hidden=this.clearButton.disabled=!this.room.host;if(!this.allowed){this.setTool('select');this.closeDialog();}this.historyButtons();this.render();}
@@ -68,7 +70,9 @@ export class Drawings {
   project(p){const chart=this.room.chart;if(!chart?.candles)return null;const logical=timeToLogical(p.time,chart.bars,this.step());if(logical===null)return null;
     return {x:chart.chart.timeScale().logicalToCoordinate(logical),y:chart.candles.priceToCoordinate(p.price)};
   }
-  down(e){if(e.button!==0)return;const p=this.point(e);if(!p)return;
+  down(e){if(e.button!==0)return;
+    if(e.isPrimary===false){if(this.touch)this.touch.moved=true;return;}
+    if(this.pointerId!==undefined)return;const p=this.point(e);if(!p)return;
     const id=e.target.closest('[data-drawing]')?.dataset.drawing;
     if(this.tool==='select'){
       if(!id)return;this.selected=id;const d=this.items.get(id),now=performance.now();
@@ -78,15 +82,26 @@ export class Drawings {
         this.lastTap=null;this.cancel();this.settings(d);e.preventDefault();e.stopPropagation();return;
       }
       this.lastTap={id,at:now,x:e.clientX,y:e.clientY};this.render();
-      if(this.editable(d)&&!d.locked){this.drag={id,original:structuredClone(d),point:p,handle:e.target.dataset.handle===undefined?null:+e.target.dataset.handle,moved:false};this.svg.setPointerCapture(e.pointerId);}
+      if(this.editable(d)&&!d.locked){this.drag={id,original:structuredClone(d),point:p,handle:e.target.dataset.handle===undefined?null:+e.target.dataset.handle,moved:false};this.holdPointer(e);}
       e.stopPropagation();e.preventDefault();return;
     }
     if(!this.allowed)return;e.preventDefault();e.stopPropagation();
-    if(this.tool==='brush'){this.anchors=[p];this.drag={brush:true};this.svg.setPointerCapture(e.pointerId);}
-    else {this.anchors.push(p);if(this.anchors.length===POINTS[this.tool])this.finish();else this.preview={...this.style,kind:this.tool,points:[...this.anchors,p]};}
+    if(this.tool==='brush'){this.anchors=[p];this.drag={brush:true};this.holdPointer(e);}
+    else if(e.pointerType==='touch'){
+      // A touch becomes an anchor only on release, provided it never became a drag.
+      this.touch={x:e.clientX,y:e.clientY,moved:false};this.holdPointer(e);this.aimAt(p);
+    }
+    else this.place(p);
     this.render();
   }
-  move(e){const p=this.point(e);if(!p)return;
+  holdPointer(e){this.pointerId=e.pointerId;this.svg.setPointerCapture(e.pointerId);}
+  releasePointer(){const id=this.pointerId;this.pointerId=undefined;if(id!==undefined&&this.svg.hasPointerCapture(id))this.svg.releasePointerCapture(id);}
+  place(p){this.anchors.push(p);if(this.anchors.length===POINTS[this.tool])this.finish();else this.preview={...this.style,kind:this.tool,points:[...this.anchors,p]};}
+  aimAt(p){this.aim=p;if(this.anchors.length)this.preview={...this.style,kind:this.tool,points:[...this.anchors,p]};this.render();}
+  move(e){if(this.pointerId!==undefined&&e.pointerId!==this.pointerId)return;
+    if(this.touch&&Math.hypot(e.clientX-this.touch.x,e.clientY-this.touch.y)>TOUCH_SLOP)this.touch.moved=true;
+    const p=this.point(e);if(!p)return;
+    if(this.touch){e.preventDefault();e.stopPropagation();this.aimAt(p);return;}
     if(this.drag?.brush){if(this.anchors.length<200)this.anchors.push(p);this.preview={...this.style,kind:'brush',points:[...this.anchors]};this.render();return;}
     if(this.drag){const d=structuredClone(this.drag.original),delta={time:p.time-this.drag.point.time,price:p.price-this.drag.point.price};
       this.drag.moved=Math.abs(delta.time)>.1||Math.abs(delta.price)>.000001;
@@ -95,19 +110,28 @@ export class Drawings {
     }
     if(this.anchors.length){this.preview={...this.style,kind:this.tool,points:[...this.anchors,p]};this.render();}
   }
-  up(e){if(!this.drag)return;if(this.svg.hasPointerCapture(e.pointerId))this.svg.releasePointerCapture(e.pointerId);
+  up(e){if(e.pointerId!==this.pointerId)return;
+    if(this.touch){
+      const p=this.point(e),tap=!this.touch.moved&&Math.hypot(e.clientX-this.touch.x,e.clientY-this.touch.y)<=TOUCH_SLOP;
+      this.touch=null;this.releasePointer();e.preventDefault();e.stopPropagation();
+      if(p){this.aimAt(p);if(tap)this.place(p);}this.render();return;
+    }
+    this.releasePointer();if(!this.drag)return;
     if(this.drag.brush){if(this.anchors.length>1)this.finish();else this.cancel();}
     else {if(this.drag.moved&&this.preview)this.history.submit('drawing_update',{id:this.drag.id,revision:this.drag.original.revision,drawing:this.preview},this.drag.original);this.preview=null;this.drag=null;this.render();}
   }
   finish(){const drawing={...this.style,kind:this.tool,points:[...this.anchors],extend_right:['ray','pitchfork'].includes(this.tool)};
     this.history.submit('drawing_create',{drawing});this.cancel();
   }
-  cancel(){this.anchors=[];this.preview=null;this.drag=null;this.render();}
+  cancelPointer(e){if(e.pointerId!==this.pointerId)return;
+    if(this.touch){this.touch=null;this.releasePointer();this.render();}else this.cancel();
+  }
+  cancel(){this.touch=null;this.aim=null;this.releasePointer();this.anchors=[];this.preview=null;this.drag=null;this.render();}
   render(){
     if(this.room.state?.media?.tab==='youtube'||document.hidden)return;
     const chart=this.room.chart;if(!chart?.chart||!chart.candles)return;
     const pane=chart.chart.panes()[0];this.width=Math.max(0,this.plot.clientWidth-chart.chart.priceScale('right').width());this.height=pane.getHeight();
-    const scale=chart.chart.priceScale('right'),signature=JSON.stringify([this.width,this.height,this.selected,this.preview,this.allowed,this.room.host,[...this.items.values()].map(d=>[d.id,d.revision]),chart.firstTime,chart.chart.timeScale().getVisibleLogicalRange(),scale.getVisibleRange(),scale.options().mode,scale.options().invertScale]);
+    const scale=chart.chart.priceScale('right'),signature=JSON.stringify([this.width,this.height,this.selected,this.preview,this.aim,this.allowed,this.room.host,[...this.items.values()].map(d=>[d.id,d.revision]),chart.firstTime,chart.chart.timeScale().getVisibleLogicalRange(),scale.getVisibleRange(),scale.options().mode,scale.options().invertScale]);
     if(signature===this.renderSignature)return;this.renderSignature=signature;
     this.svg.style.width=this.width+'px';this.svg.style.height=this.height+'px';this.svg.setAttribute('viewBox',`0 0 ${this.width} ${this.height}`);this.svg.replaceChildren();
     this.selectionActions.hidden=true;
@@ -126,6 +150,10 @@ export class Drawings {
         if(right>=0&&Math.min(...xs)<=this.width&&Math.max(...ys)>=0&&top<=this.height){this.selectionActions.hidden=false;this.selectionDelete.hidden=!this.editable(d);Object.assign(this.selectionActions.style,{left:Math.max(4,Math.min(this.width-82,right+10))+'px',top:Math.max(4,Math.min(this.height-36,top))+'px'});}
       }
     }
+    if(this.aim){const p=this.project(this.aim);if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y)){
+      const cross=svg('g',{class:'cinema-touch-aim',stroke:this.style.color,'stroke-width':1,fill:'none','pointer-events':'none'});
+      cross.append(svg('path',{d:`M0 ${p.y}H${this.width}M${p.x} 0V${this.height}`,'stroke-dasharray':'4 4',opacity:.7}),svg('circle',{cx:p.x,cy:p.y,r:8,'stroke-width':2}));this.svg.append(cross);
+    }}
   }
   closeDialog(){this.dialog?.remove();this.dialog=null;this.room.capture(false);}
   settings(d){
@@ -146,5 +174,5 @@ export class Drawings {
       this.history.submit('drawing_update',{id:d.id,revision:d.revision,drawing:{...d,color:fields.color.value,width:+fields.width.value,dash:fields.dash.value,extend_left:fields.extend_left?.checked||false,extend_right:fields.extend_right?.checked||false,locked:fields.locked.checked,levels}},d);this.closeDialog();};
     dialog.addEventListener('cancel',()=>this.closeDialog());dialog.append(form);document.body.append(dialog);this.dialog=dialog;this.room.capture(true);dialog.showModal();
   }
-  destroy(){this.closeDialog();this.unbindSeries();this.history.reset();this.items.clear();this.selected=null;this.preview=null;document.removeEventListener('keydown',this.key,true);this.selectionActions.remove();this.svg.remove();}
+  destroy(){this.cancel();this.closeDialog();this.unbindSeries();this.history.reset();this.items.clear();this.selected=null;document.removeEventListener('keydown',this.key,true);this.selectionActions.remove();this.svg.remove();}
 }
