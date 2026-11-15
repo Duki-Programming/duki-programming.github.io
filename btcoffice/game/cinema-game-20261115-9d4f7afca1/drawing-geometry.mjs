@@ -2,6 +2,8 @@
 export const TOOLS = { select:'선택 / 이동', trend:'추세선', ray:'레이', channel:'평행 채널', pitchfork:'피치포크', fibonacci:'피보나치 되돌림', brush:'자유 그리기' };
 export const POINTS = {trend:2,ray:2,channel:3,pitchfork:3,fibonacci:2};
 export const DEFAULT_STYLE = {color:'#e9c46a',width:2,dash:'solid',extend_left:false,extend_right:false,levels:[0,.236,.382,.5,.618,.786,1],locked:false};
+const FIB_COLORS=[[0,'#787b86'],[.236,'#f44336'],[.382,'#81c784'],[.5,'#4caf50'],[.618,'#26a69a'],[.786,'#64b5f6'],[1,'#787b86'],[1.618,'#2196f3'],[2.618,'#f44336']];
+const fibColor=level=>FIB_COLORS.reduce((best,item)=>Math.abs(item[0]-level)<Math.abs(best[0]-level)?item:best)[1];
 // Disjoint slabs prevent overlapping HUD cutouts from canceling each other under even-odd clipping.
 export function unionRectangles(rects) {
   const xs=[...new Set(rects.flatMap(r=>[r[0],r[2]]))].sort((a,b)=>a-b),result=[];
@@ -48,11 +50,20 @@ export function geometry(d,project,width,height) {
     const [a,b,c]=p;
     if(d.kind==='trend'||d.kind==='ray')line(a,b,d.extend_left,d.kind==='ray'||d.extend_right);
     if(d.kind==='fibonacci') {
-      const x1=d.extend_left?0:Math.min(a.x,b.x),x2=d.extend_right?width:Math.max(a.x,b.x);
-      for(const level of d.levels){const y=b.y+(a.y-b.y)*level;if(y<0||y>height)continue;
-        line({x:x1,y},{x:x2,y},false,false);
+      // Existing drawings may have the old extend_right default. Retracements
+      // are bounded by their two time anchors, including their colored bands.
+      const x1=Math.max(0,Math.min(a.x,b.x)),x2=Math.min(width,Math.max(a.x,b.x));
+      const levels=[...new Set(d.levels)].sort((x,y)=>x-y),at=level=>b.y+(a.y-b.y)*level;
+      if(x2>x1)for(let i=1;i<levels.length;i++){
+        const lo=Math.max(0,Math.min(at(levels[i-1]),at(levels[i]))),hi=Math.min(height,Math.max(at(levels[i-1]),at(levels[i])));
+        if(hi>lo)fills.push({points:[{x:x1,y:lo},{x:x2,y:lo},{x:x2,y:hi},{x:x1,y:hi}],color:fibColor(levels[i]),opacity:.15});
+      }
+      line(a,b,false,false,true);
+      for(const level of levels){const y=at(level);if(y<0||y>height||x2<=x1)continue;
+        if(line({x:x1,y},{x:x2,y},false,false))lines.at(-1).color=fibColor(level);
         const price=d.points[1].price+(d.points[0].price-d.points[1].price)*level;
-        labels.push({x:Math.max(4,Math.min(width-120,x1+5)),y:Math.max(13,y-4),text:`${+(level*100).toFixed(2)}%  ${price.toLocaleString('en-US',{maximumFractionDigits:Math.abs(price)<1?6:Math.abs(price)<10?4:2})}`});
+        const text=`${level} (${price.toLocaleString('en-US',{maximumFractionDigits:Math.abs(price)<1?6:Math.abs(price)<10?4:2})})`,outside=x1>text.length*7+12;
+        labels.push({x:outside?x1-8:x1+5,y:Math.max(13,y-5),text,color:fibColor(level),align:outside?'end':'start'});
       }
     }
     if(d.kind==='channel'&&c){
@@ -60,7 +71,7 @@ export function geometry(d,project,width,height) {
       if(len>0){const t=((c.x-a.x)*dx+(c.y-a.y)*dy)/len,offset={x:c.x-a.x-t*dx,y:c.y-a.y-t*dy};
         const add=(q,k=1)=>({x:q.x+offset.x*k,y:q.y+offset.y*k});
         const one=line(a,b),two=line(add(a),add(b));line(add(a,.5),add(b,.5),d.extend_left,d.extend_right,true);
-        if(one&&two)fills.push([one[0],one[1],two[1],two[0]]);
+        if(one&&two)fills.push({points:[one[0],one[1],two[1],two[0]],color:d.color,opacity:.09});
       }
     }
     if(d.kind==='pitchfork'&&c){const mid={x:(b.x+c.x)/2,y:(b.y+c.y)/2},delta={x:mid.x-a.x,y:mid.y-a.y};

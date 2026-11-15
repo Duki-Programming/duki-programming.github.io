@@ -22,7 +22,8 @@ class Cinema {
     this.interval=element('select',null,{ariaLabel:'차트 주기'});for(const [value,label] of [['1m','1분'],['5m','5분'],['15m','15분'],['30m','30분'],['1h','1시간'],['4h','4시간'],['1d','일봉'],['1w','주봉']])this.interval.add(new Option(label,value));
     this.interval.onchange=()=>this.send({type:'configure',instrument:this.state.instrument,interval:this.interval.value});
     this.policy=element('button','모두 그리기');this.policy.onclick=()=>this.send({type:'drawing_policy',everyone:!this.state.everyone});
-    this.role=element('span','연결 중…',{className:'cinema-role'});header.append(this.symbol,this.searchButton,this.interval,this.policy,this.role);
+    this.clearButton=element('button','전체 지우기',{title:'현재 차트의 도형 전체 지우기 · 방장 전용',hidden:true});
+    this.role=element('span','연결 중…',{className:'cinema-role'});header.append(this.symbol,this.searchButton,this.interval,this.policy,this.clearButton,this.role);
     const body=element('div',null,{className:'cinema-body'}),toolbar=element('nav',null,{className:'cinema-tools'});toolbar.setAttribute('aria-label','차트 그리기 도구');
     this.plot=element('div',null,{className:'cinema-plot'});this.container=element('div',null,{className:'cinema-chart'});this.plot.append(this.container);body.append(toolbar,this.plot);
     const footer=element('div',null,{className:'cinema-footer'});this.hint=element('span','',{className:'cinema-hint'});this.source=element('span','Binance · 데이터 연결 중',{className:'cinema-source'});footer.append(this.hint,this.source);
@@ -33,7 +34,7 @@ class Cinema {
     this.pens=new Pens(this,this.plot);
     this.resize=new ResizeObserver(()=>this.drawings.render());this.resize.observe(this.plot);
     this.viewDirty=false;this.chartPointer=false;
-    this.viewTimer=setInterval(()=>{if(document.hidden||this.state?.media?.tab!=='chart')return;if(this.host&&this.viewDirty&&!this.suppressView)this.publishView();this.drawings.render();},200);
+    this.viewTimer=setInterval(()=>{if(document.hidden||this.state?.media?.tab!=='chart')return;if(this.host&&this.viewDirty&&!this.suppressView)this.publishView();},200);
     // Market ticks and automatic price scaling never generate room traffic. Only
     // actual chart gestures make the viewport dirty, capped at five updates/sec.
     this.viewInput=e=>{
@@ -47,7 +48,7 @@ class Cinema {
     this.visibility=()=>{if(document.hidden)this.pens.leave();this.send({type:'watching',value:!document.hidden});this.feed?.pause(document.hidden||this.state?.media?.tab!=='chart');this.youtube.visibility();if(!document.hidden)this.send({type:'clock',client_time:Date.now()});};document.addEventListener('visibilitychange',this.visibility);
     this.keyGuard=e=>{if(this.captured||e.target.closest('#btc-cinema, .cinema-dialog'))e.stopPropagation();};
     this.root.addEventListener('keydown',this.keyGuard);this.root.addEventListener('keyup',this.keyGuard);
-    this.focusChange=()=>{const soft=this.root.contains(document.activeElement)&&document.activeElement.matches('input,textarea')&&matchMedia('(pointer:coarse)').matches;if(soft&&!this.viewportLocked){window.btcGameViewport?.lock();this.viewportLocked=true;}else if(!soft&&this.viewportLocked){window.btcGameViewport?.release();this.viewportLocked=false;}clearTimeout(this.focusTimer);this.focusTimer=setTimeout(()=>{if(!this.active)return;this.inputFocused=this.root.contains(document.activeElement)&&document.activeElement.matches('input,select,textarea,iframe');this.capture(this.dialogCapture);},0);};
+    this.focusChange=()=>{const soft=this.root.contains(document.activeElement)&&document.activeElement.matches('input,textarea')&&matchMedia('(pointer:coarse)').matches;if(soft&&!this.viewportLocked){window.btcGameViewport?.lock('cinema');this.viewportLocked=true;}else if(!soft&&this.viewportLocked){window.btcGameViewport?.release('cinema');this.viewportLocked=false;}clearTimeout(this.focusTimer);this.focusTimer=setTimeout(()=>{if(!this.active)return;this.inputFocused=this.root.contains(document.activeElement)&&document.activeElement.matches('input,select,textarea,iframe');this.capture(this.dialogCapture);},0);};
     this.root.addEventListener('focusin',this.focusChange);this.root.addEventListener('focusout',this.focusChange);window.addEventListener('blur',this.focusChange);window.addEventListener('focus',this.focusChange);
     this.connect();
   }
@@ -55,7 +56,7 @@ class Cinema {
     if(!this.active)return;
     this.socket=new WebSocket(this.origin.replace(/^http/,'ws')+'/api/cinema');
     this.socket.onmessage=e=>{if(e.data==='pong')return;try{this.receive(JSON.parse(e.data));}catch(error){console.error('Cinema packet',error);this.notice('차트를 표시하지 못했습니다. 다시 연결합니다.');}};
-    this.socket.onclose=()=>{if(!this.active)return;this.notice('연결이 끊어져 다시 연결합니다.');this.state=null;this.emit();this.reconnect=setTimeout(()=>this.connect(),Math.min(15000,1000*2**this.retries++));};
+    this.socket.onclose=()=>{if(!this.active)return;this.notice('연결이 끊어져 다시 연결합니다.');this.state=null;this.drawings.history.reset();this.drawings.permission();this.emit();this.reconnect=setTimeout(()=>this.connect(),Math.min(15000,1000*2**this.retries++));};
     this.socket.onerror=()=>{};
   }
   receive(data){
@@ -72,10 +73,10 @@ class Cinema {
     if(data.type==='bars_delta'){if(data.context===this.state?.context){const removed=new Set(data.removed);this.bars({...data,bars:mergeCandles(this.chart.bars.filter(b=>!removed.has(b.time)),data.upsert)},false);}return;}
     if(data.type==='view'){if(data.context===this.state?.context&&data.by!==this.id)this.applyView(data.view);return;}
     if(data.type==='cursor'){if(data.context===this.state?.context)this.pens.receive(data);return;}
-    if(data.type==='drawing'){if(data.context===this.state?.context)this.drawings.update(data.drawing);return;}
-    if(data.type==='drawing_deleted'){if(data.context===this.state?.context)this.drawings.delete(data.id);return;}
+    if(data.type==='drawing'){if(data.context===this.state?.context)this.drawings.update(data.drawing,data);return;}
+    if(data.type==='drawing_deleted'){if(data.context===this.state?.context)this.drawings.delete(data.id,data);return;}
     if(data.type==='drawings'){if(data.context===this.state?.context)this.drawings.replace(data.drawings);return;}
-    if(data.type==='error'||data.type==='chart_error'){this.youtube.receive(data);this.notice(data.message);if(data.type==='chart_error')this.source.textContent='데이터 지연 · 자동 재연결';}
+    if(data.type==='error'||data.type==='chart_error'){this.drawings.history.reject(data.request_id);this.youtube.receive(data);this.notice(data.message);if(data.type==='chart_error')this.source.textContent='데이터 지연 · 자동 재연결';}
   }
   applyRoom(data){
     const changed=this.state?.context!==data.context,wasHost=this.host;this.state=data;
@@ -90,7 +91,7 @@ class Cinema {
       const settings={...structuredClone(DEFAULTS),interval:data.interval,cryptoMarket:data.instrument.venue==='futures'?'futures':'spot',cryptoExchange:'binance',theme:'dark',showVolume:true};
       // Retain Market Peek's candlestick/volume renderer; the cinema owns shared navigation.
       for(const indicator of Object.values(settings.indicators))indicator.enabled=false;
-      this.chart.configure(settings,instrument);this.chart.setData([],true);this.configureControls();
+      this.chart.configure(settings,instrument);this.drawings.bindSeries();this.chart.setData([],true);this.configureControls();
       if(data.instrument.venue!=='yahoo'){
         const context=data.context;
         this.feed=new CryptoFeed(data.instrument,data.interval,(bars,reset,incremental)=>{if(this.state?.context===context)this.bars({bars},reset,incremental);},status=>{
@@ -138,7 +139,7 @@ class Cinema {
     this.lastView=JSON.stringify(view);this.drawings.render();requestAnimationFrame(()=>{this.suppressView=false;});
   }
   command(json){this.send(JSON.parse(json));}
-  send(data){if(this.socket?.readyState===WebSocket.OPEN)this.socket.send(JSON.stringify({context:this.state?.context,...data}));}
+  send(data){if(this.socket?.readyState!==WebSocket.OPEN)return false;this.socket.send(JSON.stringify({context:this.state?.context,...data}));return true;}
   emit(){if(this.callback)this.callback(JSON.stringify({id:this.id,host:this.host,state:this.state,captured:this.captured}));}
   capture(value){this.dialogCapture=!!value;this.captured=this.dialogCapture||!!this.inputFocused;if(this.captured)this.pens?.leave();this.emit();}
   notice(message){if(!this.toast)return;this.toast.textContent=message;clearTimeout(this.toastTimer);this.toastTimer=setTimeout(()=>{if(this.toast)this.toast.textContent='';},5000);}
@@ -161,15 +162,16 @@ class Cinema {
     if(!list.children.length)list.append(element('p','방에 다른 이용자가 들어오면 임명할 수 있습니다.'));dialog.append(element('p','종목 변경과 차트 조작 권한을 넘깁니다.'),list,actions);dialog.showModal();
   }
   geometry(json){if(!this.active||!this.root)return;if(json===this.lastGeometry)return;this.lastGeometry=json;const g=typeof json==='string'?JSON.parse(json):json,canvas=document.getElementById('canvas'),r=canvas.getBoundingClientRect(),sx=r.width/g.viewport[0],sy=r.height/g.viewport[1];
+    this.gameTyping=g.typing===true;
     const [x,y,w,h]=g.rect;Object.assign(this.root.style,{left:r.left+x*sx+'px',top:r.top+y*sy+'px',width:w*sx+'px',height:h*sy+'px'});const hiddenChanged=this.root.hidden!==!!g.hidden;this.root.hidden=!!g.hidden;
     // Godot draws its menus into one canvas. Cut holes in the DOM chart so movable chat,
     // market windows and touch controls always remain above it without moving the map.
     const width=w*sx,height=h*sy;let path=`M0 0H${width}V${height}H0Z`;
     const holes=(g.holes||[]).map(rect=>[Math.max(0,(rect[0]-x)*sx),Math.max(0,(rect[1]-y)*sy),Math.min(width,(rect[0]+rect[2]-x)*sx),Math.min(height,(rect[1]+rect[3]-y)*sy)]).filter(r=>r[2]>r[0]&&r[3]>r[1]);
-    this.screenHoles=holes.map(h=>[h[0]+r.left+x*sx,h[1]+r.top+y*sy,h[2]+r.left+x*sx,h[3]+r.top+y*sy]);if(hiddenChanged)this.youtube.visibility();this.youtube.fit();
+    if(hiddenChanged)this.youtube.visibility();
     for(const [ax,ay,bx,by] of unionRectangles(holes))path+=`M${ax} ${ay}V${by}H${bx}V${ay}Z`;
     this.root.style.clipPath=`path(evenodd, "${path}")`;
   }
-  destroy(){this.active=false;if(this.viewportLocked)window.btcGameViewport?.release();this.viewportLocked=false;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearTimeout(this.focusTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);window.removeEventListener('blur',this.focusChange);window.removeEventListener('focus',this.focusChange);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.capture(false);}
+  destroy(){this.active=false;if(this.viewportLocked)window.btcGameViewport?.release('cinema');this.viewportLocked=false;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearTimeout(this.focusTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);window.removeEventListener('blur',this.focusChange);window.removeEventListener('focus',this.focusChange);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.capture(false);}
 }
 window.BTCCinema=new Cinema();
