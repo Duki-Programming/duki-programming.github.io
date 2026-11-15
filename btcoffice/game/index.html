@@ -94,11 +94,11 @@ body {
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="BTC OFFICE">
 <meta name="theme-color" content="#101914">
-	<meta name="btc-build-id" content="20261115-7dc658f6a3">
+	<meta name="btc-build-id" content="20261115-730a447eee">
 <script src="./config.js"></script>
-<link rel="stylesheet" href="./cinema-game-20261115-7dc658f6a3/cinema.css">
-<script src="./cinema-game-20261115-7dc658f6a3/lightweight-charts.js"></script>
-<script type="module" src="./cinema-game-20261115-7dc658f6a3/cinema.mjs"></script>
+<link rel="stylesheet" href="./cinema-game-20261115-730a447eee/cinema.css">
+<script src="./cinema-game-20261115-730a447eee/lightweight-charts.js"></script>
+<script type="module" src="./cinema-game-20261115-730a447eee/cinema.mjs"></script>
 </head>
 	<body>
 		<canvas id="canvas">
@@ -110,14 +110,14 @@ body {
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261115-7dc658f6a3.png" alt="">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261115-730a447eee.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="./game-20261115-7dc658f6a3.js"></script>
+		<script src="./game-20261115-730a447eee.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261115-7dc658f6a3","experimentalVK":false,"fileSizes":{"game-20261115-7dc658f6a3.pck":36473296,"game-20261115-7dc658f6a3.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261115-730a447eee","experimentalVK":false,"fileSizes":{"game-20261115-730a447eee.pck":37464488,"game-20261115-730a447eee.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -231,6 +231,7 @@ const engine = new Engine(GODOT_CONFIG);
     let locked = null;
     let releasing = false;
     let releaseTimer;
+    const owners = new Set();
     const visual = window.visualViewport;
     const keyboard = navigator.virtualKeyboard;
     // Supported Android browsers can overlay the keyboard without resizing or
@@ -242,13 +243,16 @@ const engine = new Engine(GODOT_CONFIG);
       return rect?.height > 0 ? Math.min(height, rect.top) : height;
     }
     const viewport = {
-      lock() {
+      lock(owner = 'default') {
+        owners.add(owner);
         if (!locked) locked = { width: innerWidth, height: innerHeight };
         releasing = false;
         clearTimeout(releaseTimer);
         sync();
       },
-      release() {
+      release(owner = 'default') {
+        owners.delete(owner);
+        if (owners.size || !locked) return;
         releasing = true;
         settleRelease();
       },
@@ -257,10 +261,13 @@ const engine = new Engine(GODOT_CONFIG);
     };
     function settleRelease() {
       clearTimeout(releaseTimer);
-      // Wait for the animation to finish. Releasing while still 48px short
-      // caused the engine to resize twice and visibly reframe the whole map.
+      // iOS can pause near the end of keyboard dismissal, then reopen from
+      // that partial height. Keep the original size through the entire cycle.
       releaseTimer = setTimeout(() => {
-        if (releasing && locked && visibleHeight() >= locked.height * 0.85 &&
+        const editing = document.activeElement?.matches?.('input,textarea,[contenteditable="true"]');
+        if (releasing && locked && !owners.size && !editing &&
+            innerHeight >= locked.height - 1 && visibleHeight() >= locked.height - 1 &&
+            Math.abs(visual?.offsetTop || 0) <= 1 &&
             !(keyboard?.boundingRect?.height > 0)) {
           locked = null;
           releasing = false;
@@ -269,7 +276,10 @@ const engine = new Engine(GODOT_CONFIG);
       }, 350);
     }
     function sync() {
-      if (locked && Math.abs(innerWidth - locked.width) > 2) locked = null;
+      if (locked && Math.abs(innerWidth - locked.width) > 2) {
+        locked = owners.size ? { width: innerWidth, height: innerHeight } : null;
+        if (!locked) releasing = false;
+      }
       const width = locked ? locked.width : innerWidth;
       const height = locked ? locked.height : innerHeight;
       const scale = window.devicePixelRatio || 1;
@@ -279,18 +289,25 @@ const engine = new Engine(GODOT_CONFIG);
       if (canvas.height !== pixelsY) canvas.height = pixelsY;
       canvas.style.width = width + 'px';
       canvas.style.height = height + 'px';
+      // The document itself must not shrink behind the fixed canvas on iOS.
+      document.documentElement.style.height = height + 'px';
+      document.body.style.width = width + 'px';
+      document.body.style.height = height + 'px';
+      pinScroll();
       // Do not translate the entire rendered map in response to keyboard pan.
       if (releasing) settleRelease();
+    }
+    function pinScroll() {
+      if (locked && (scrollX || scrollY)) window.scrollTo(0, 0);
     }
     Object.assign(canvas.style, { position: 'fixed', left: '0', top: '0', transform: 'none' });
     Object.assign(document.documentElement.style, { overflow: 'hidden', overscrollBehavior: 'none' });
     Object.assign(document.body.style, { position: 'fixed', inset: '0', overflow: 'hidden', overscrollBehavior: 'none' });
     window.btcGameViewport = viewport;
     window.addEventListener('resize', sync);
-    window.addEventListener('scroll', () => {
-      if (locked && (scrollX || scrollY)) window.scrollTo(0, 0);
-    });
+    window.addEventListener('scroll', pinScroll);
     visual?.addEventListener('resize', sync);
+    visual?.addEventListener('scroll', sync);
     keyboard?.addEventListener('geometrychange', sync);
     sync();
   }
