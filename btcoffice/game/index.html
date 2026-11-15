@@ -94,11 +94,11 @@ body {
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="BTC OFFICE">
 <meta name="theme-color" content="#101914">
-	<meta name="btc-build-id" content="20261115-9d4f7afca1">
+	<meta name="btc-build-id" content="20261115-8c748d957a">
 <script src="./config.js"></script>
-<link rel="stylesheet" href="./cinema-game-20261115-9d4f7afca1/cinema.css">
-<script src="./cinema-game-20261115-9d4f7afca1/lightweight-charts.js"></script>
-<script type="module" src="./cinema-game-20261115-9d4f7afca1/cinema.mjs"></script>
+<link rel="stylesheet" href="./cinema-game-20261115-8c748d957a/cinema.css">
+<script src="./cinema-game-20261115-8c748d957a/lightweight-charts.js"></script>
+<script type="module" src="./cinema-game-20261115-8c748d957a/cinema.mjs"></script>
 </head>
 	<body>
 		<canvas id="canvas">
@@ -110,14 +110,14 @@ body {
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261115-9d4f7afca1.png" alt="">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261115-8c748d957a.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="./game-20261115-9d4f7afca1.js"></script>
+		<script src="./game-20261115-8c748d957a.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261115-9d4f7afca1","experimentalVK":false,"fileSizes":{"game-20261115-9d4f7afca1.pck":37464472,"game-20261115-9d4f7afca1.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261115-8c748d957a","experimentalVK":false,"fileSizes":{"game-20261115-8c748d957a.pck":37609784,"game-20261115-8c748d957a.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -313,6 +313,31 @@ const engine = new Engine(GODOT_CONFIG);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, { once: true });
   else mount();
+})();
+
+(function () {
+  if (window.btcStreetClock) return;
+  let zone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+  let formatter, serverTime = null, acceptedAt = 0;
+  const format = value => new Intl.DateTimeFormat('en-GB', {timeZone: value, hour: '2-digit', hourCycle: 'h23'});
+  formatter = format(zone);
+  window.btcStreetClock = {
+    configure(context) {
+      if (!context || typeof context !== 'object') return;
+      if (typeof context.time_zone === 'string') {
+        try { const next = format(context.time_zone); formatter = next; zone = context.time_zone; } catch { /* Use the device zone when GeoIP is unavailable. */ }
+      }
+      if (Number.isFinite(context.server_time) && context.server_time > 0) {
+        serverTime = context.server_time; acceptedAt = Date.now();
+      }
+    },
+    now() { return serverTime === null ? Date.now() : serverTime + Date.now() - acceptedAt; },
+    isDay(at) {
+      const hour = Number(formatter.format(new Date(at ?? this.now())));
+      return hour >= 6 && hour < 18;
+    },
+    get timeZone() { return zone; }
+  };
 })();
 
 </script>

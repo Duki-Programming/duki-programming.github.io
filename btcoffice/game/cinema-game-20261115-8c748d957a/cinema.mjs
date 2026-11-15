@@ -6,6 +6,7 @@ import {CryptoFeed,mergeCandles} from './crypto-feed.mjs';
 import {sharedView,localRange} from './view-state.mjs';
 import {Pens} from './pens.mjs';
 import {YoutubeScreen} from './youtube.mjs';
+import {GameKeyboard} from './keyboard.mjs';
 const element=(tag,text,attrs={})=>{const el=document.createElement(tag);if(text)el.textContent=text;Object.assign(el,attrs);return el;};
 class Cinema {
   constructor(){this.active=false;this.state=null;this.id='';this.callback=null;this.captured=false;this.chart=null;this.lastView='';this.suppressView=false;this.retries=0;this.lastGeometry='';this.serverOffset=0;}
@@ -46,10 +47,7 @@ class Cinema {
     for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.addEventListener(type,this.viewInput,{capture:true,passive:true});
     this.heartbeat=setInterval(()=>{if(this.socket?.readyState===WebSocket.OPEN)this.socket.send('ping');},25000);
     this.visibility=()=>{if(document.hidden)this.pens.leave();this.send({type:'watching',value:!document.hidden});this.feed?.pause(document.hidden||this.state?.media?.tab!=='chart');this.youtube.visibility();if(!document.hidden)this.send({type:'clock',client_time:Date.now()});};document.addEventListener('visibilitychange',this.visibility);
-    this.keyGuard=e=>{if(this.captured||e.target.closest('#btc-cinema, .cinema-dialog'))e.stopPropagation();};
-    this.root.addEventListener('keydown',this.keyGuard);this.root.addEventListener('keyup',this.keyGuard);
-    this.focusChange=()=>{const soft=this.root.contains(document.activeElement)&&document.activeElement.matches('input,textarea')&&matchMedia('(pointer:coarse)').matches;if(soft&&!this.viewportLocked){window.btcGameViewport?.lock();this.viewportLocked=true;}else if(!soft&&this.viewportLocked){window.btcGameViewport?.release();this.viewportLocked=false;}clearTimeout(this.focusTimer);this.focusTimer=setTimeout(()=>{if(!this.active)return;this.inputFocused=this.root.contains(document.activeElement)&&document.activeElement.matches('input,select,textarea,iframe');this.capture(this.dialogCapture);},0);};
-    this.root.addEventListener('focusin',this.focusChange);this.root.addEventListener('focusout',this.focusChange);window.addEventListener('blur',this.focusChange);window.addEventListener('focus',this.focusChange);
+    this.keyboard=new GameKeyboard(this);
     this.connect();
   }
   connect(){
@@ -113,7 +111,7 @@ class Cinema {
     for(const part of this.chartParts)part.hidden=!chart;
     for(const [name,button] of this.tabButtons){button.disabled=!this.host;button.classList.toggle('active',name===media.tab);button.setAttribute('aria-pressed',String(name===media.tab));}
     this.root.classList.toggle('youtube-active',!chart);this.feed?.pause(document.hidden||!chart);
-    if(!chart)this.pens.leave();this.youtube.apply(media);
+    if(!chart){this.pens.leave();this.drawings.cancel();}this.youtube.apply(media);
     if(chart)requestAnimationFrame(()=>this.drawings.render());
   }
   mediaCommand(command,extra={}){if(!this.host||!this.state?.media)return;const media=this.state.media;this.send({type:'media_command',command,...extra,generation:media.generation,version:media.version,playback_id:media.playback_id,request_id:crypto.randomUUID()});}
@@ -141,7 +139,7 @@ class Cinema {
   command(json){this.send(JSON.parse(json));}
   send(data){if(this.socket?.readyState!==WebSocket.OPEN)return false;this.socket.send(JSON.stringify({context:this.state?.context,...data}));return true;}
   emit(){if(this.callback)this.callback(JSON.stringify({id:this.id,host:this.host,state:this.state,captured:this.captured}));}
-  capture(value){this.dialogCapture=!!value;this.captured=this.dialogCapture||!!this.inputFocused;if(this.captured)this.pens?.leave();this.emit();}
+  capture(){this.keyboard?.refresh();}
   notice(message){if(!this.toast)return;this.toast.textContent=message;clearTimeout(this.toastTimer);this.toastTimer=setTimeout(()=>{if(this.toast)this.toast.textContent='';},5000);}
   closeDialog(){this.dialog?.remove();this.dialog=null;this.searchAbort?.abort();clearTimeout(this.searchTimer);this.capture(false);}
   dialogBox(title){this.closeDialog();this.drawings.closeDialog();const dialog=element('dialog',null,{className:'cinema-dialog'});dialog.append(element('h3',title));
@@ -172,6 +170,6 @@ class Cinema {
     for(const [ax,ay,bx,by] of unionRectangles(holes))path+=`M${ax} ${ay}V${by}H${bx}V${ay}Z`;
     this.root.style.clipPath=`path(evenodd, "${path}")`;
   }
-  destroy(){this.active=false;if(this.viewportLocked)window.btcGameViewport?.release();this.viewportLocked=false;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearTimeout(this.focusTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);window.removeEventListener('blur',this.focusChange);window.removeEventListener('focus',this.focusChange);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.capture(false);}
+  destroy(){this.active=false;this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
 }
 window.BTCCinema=new Cinema();
