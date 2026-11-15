@@ -9,6 +9,8 @@ ko:
   stats: 앱 통계
   visitors: 방문자 수
   downloads: 누적 다운로드
+  plays: 누적 플레이 수
+  unique_plays: 라운지 입장 기준 · 같은 IP는 누적 1회
   apps_tools: APPS & TOOLS
   role_select: PLAYER SELECT
   function_codes: Modbus function codes
@@ -32,6 +34,8 @@ en:
   stats: App statistics
   visitors: Visitors
   downloads: Total downloads
+  plays: Total plays
+  unique_plays: Lounge entries · each IP counted once
   apps_tools: APPS & TOOLS
   role_select: PLAYER SELECT
   function_codes: Modbus function codes
@@ -55,6 +59,8 @@ ja:
   stats: アプリの統計
   visitors: 訪問者数
   downloads: 累計ダウンロード数
+  plays: 累計プレイ数
+  unique_plays: ラウンジ入場時に集計・同じIPは1回のみ
   apps_tools: アプリとツール
   role_select: 役割を選択
   function_codes: Modbusファンクションコード
