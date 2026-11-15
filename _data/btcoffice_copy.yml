@@ -10,7 +10,7 @@ ko:
   play: 지금 게임 시작
   hall_link: 명예의 전당 구경하기
   availability: 설치 없이 브라우저에서 · PC 키보드와 마우스 권장
-  entry_alt: 오피스 빌딩과 시작하기·계정 설정 버튼이 있는 현재 BTC Office 시작 화면
+  entry_alt: 오피스 빌딩과 시작하기·계정 설정 버튼이 있는 현재 Bull & Bear 시작 화면
   entry_caption: 바뀐 시작 화면에서, 오늘의 오피스 생활을 시작해요.
   facts:
     - {title: 바로 입장, body: 로그인 없이 먼저 둘러보기}
@@ -82,7 +82,7 @@ en:
   play: Play now
   hall_link: Visit the Hall of Fame
   availability: Play in your browser · PC keyboard and mouse recommended
-  entry_alt: Current BTC Office title screen with office buildings and Start and Account Settings buttons
+  entry_alt: Current Bull & Bear title screen with office buildings and Start and Account Settings buttons
   entry_caption: Your day begins on the new title screen.
   facts:
     - {title: Walk right in, body: Explore as a guest}
@@ -154,7 +154,7 @@ ja:
   play: 今すぐプレイ
   hall_link: 殿堂を見てみる
   availability: インストール不要 · PCのキーボードとマウスを推奨
-  entry_alt: オフィスビルと開始・アカウント設定ボタンがある現在のBTC Officeタイトル画面
+  entry_alt: オフィスビルと開始・アカウント設定ボタンがある現在のBull & Bearタイトル画面
   entry_caption: 新しいタイトル画面から、今日のオフィス生活を。
   facts:
     - {title: すぐに入場, body: ゲストで見学できます}

@@ -8,7 +8,7 @@ ko:
   creator: 개발·제작
   programs:
     - id: btcoffice
-      title: BTC Office
+      title: Bull & Bear
       description: "내 캐릭터를 꾸미고, 친구들과 채팅하고, 명예의 전당까지. 브라우저로 들어가는 작은 픽셀 오피스."
       platform: "브라우저 게임 · 공개 미리보기"
       icon: /assets/programs/btcoffice/icon-office-worker-small.png
@@ -63,7 +63,7 @@ en:
   creator: Created by
   programs:
     - id: btcoffice
-      title: BTC Office
+      title: Bull & Bear
       description: "A little pixel office beneath the Bitcoin ticker. Walk in with your own character and play in your browser."
       platform: "Browser game · Public preview"
       icon: /assets/programs/btcoffice/icon-office-worker-small.png
@@ -119,7 +119,7 @@ ja:
   creator: 開発・制作
   programs:
   - id: btcoffice
-    title: BTC Office
+    title: Bull & Bear
     description: "ビットコインの電光掲示板の下を歩く、小さなピクセルオフィス。インストールせずブラウザーで体験できます。"
     platform: "ブラウザーゲーム · 公開プレビュー"
     icon: /assets/programs/btcoffice/icon-office-worker-small.png

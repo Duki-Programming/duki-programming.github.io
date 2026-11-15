@@ -9,7 +9,7 @@
 <main id="main" class="office-page">
   <section class="office-hero office-wrap" aria-labelledby="office-title">
     <div class="office-product-heading product-identity__row">
-      <p class="office-wordmark"><img src="{{ page.icon | relative_url }}" width="42" height="42" alt="">BTC OFFICE</p>
+      <p class="office-wordmark"><img src="{{ page.icon | relative_url }}" width="42" height="42" alt="">BULL &amp; BEAR</p>
       {% include program-stats.html %}
     </div>
     <div class="office-hero-copy">
@@ -20,7 +20,7 @@
       <p class="office-availability">{{ copy.availability }}</p>
     </div>
     <figure class="office-hero-art office-frame">
-      <div class="office-windowbar"><span aria-hidden="true">● ● ●</span><span>BTC OFFICE · START HERE</span><span aria-hidden="true">↗</span></div>
+      <div class="office-windowbar"><span aria-hidden="true">● ● ●</span><span>BULL &amp; BEAR · START HERE</span><span aria-hidden="true">↗</span></div>
       <img src="{{ art | append: 'entry.webp' | relative_url }}" width="1440" height="960" alt="{{ copy.entry_alt | escape }}" fetchpriority="high">
       <figcaption><span class="office-live-dot" aria-hidden="true"></span>{{ copy.entry_caption }}</figcaption>
     </figure>
@@ -61,5 +61,5 @@
   </section>
   <section class="office-outro office-wrap" aria-labelledby="office-outro-title"><img src="{{ art | append: 'coffee-break.webp' | relative_url }}" width="160" height="160" alt="" loading="lazy"><div><p class="office-eyebrow">YOUR DESK IS WAITING</p><h2 id="office-outro-title">{{ copy.outro_title }}</h2><p>{{ copy.outro_body }}</p></div><a class="office-play" href="{{ '/btcoffice/game/' | relative_url }}"><span aria-hidden="true">▶</span>{{ copy.play }}<span aria-hidden="true">→</span></a></section>
 </main>
-<footer class="office-footer office-wrap"><div><strong>BTC OFFICE</strong><p>{{ copy.footer_line }}</p></div><div class="business-footer">{% include business-footer.html %}</div></footer>
+<footer class="office-footer office-wrap"><div><strong>BULL &amp; BEAR</strong><p>{{ copy.footer_line }}</p></div><div class="business-footer">{% include business-footer.html %}</div></footer>
 <script src="{{ '/assets/js/btcoffice.js' | relative_url }}" defer></script>
