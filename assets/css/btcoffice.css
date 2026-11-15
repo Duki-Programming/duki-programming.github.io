@@ -13,3 +13,6 @@ html[data-product=btcoffice][data-theme=light]{--bb-bg:#f3f1eb;--bb-panel:#e8e9e
 .bb-topbar .product-language{display:flex;align-items:center;gap:3px;padding:4px 8px;border:1px solid var(--bb-line);border-radius:4px;background:var(--bb-panel);margin:0}.bb-topbar .product-language__globe{width:18px;height:18px;flex:0 0 18px;margin-right:5px;color:var(--bb-muted)}.bb-topbar .product-language a{padding:5px 7px;color:var(--bb-muted);font-size:12px}.bb-topbar .product-language a[aria-current]{color:var(--bb-gold);background:var(--bb-tab);border-radius:2px}.bb-topbar .product-language__divider{height:12px;width:1px;background:var(--bb-line)}
 @media(max-width:480px){.bb-topbar .product-language{padding:3px}.bb-topbar .product-language a{font-size:10px;padding:5px 4px}.bb-topbar .product-language__globe{display:none}.bb-topbar .site-appearance{gap:5px}.bb-topbar .site-theme-toggle{transform:scale(.86);transform-origin:right center;width:78px;margin-left:-9px}}
 html[data-product=btcoffice]{--surface:var(--bb-panel);--panel:var(--bb-panel);--muted:var(--bb-muted);--line:var(--bb-line)}
+
+/* The existing compact stats box sits above the lounge entry, in both themes. */
+.bb-hero .product-stats{margin:0 0 24px;background:#0e1d2be6;border-color:#52626c;--line:#52626c;--muted:#c0cbd1;--accent:#dfc38e;--text:#f3f5f4}
