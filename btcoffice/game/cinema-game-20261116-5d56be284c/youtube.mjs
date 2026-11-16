@@ -16,6 +16,7 @@ function loadAPI(signal){
 export class YoutubeScreen {
   constructor(room){
     this.room=room;this.joined=true;this.browsing=false;this.manualPaused=false;this.destroyed=false;this.ready=false;this.media=null;this.round='';this.error='';this.volume=70;this.muted=false;this.generation=0;
+    this.audioVisibility=()=>this.visibility();window.addEventListener('btc-audio-visibility',this.audioVisibility);
     this.root=el('section',null,{className:'cinema-youtube'});this.root.hidden=true;
     this.link=el('input',null,{type:'url',placeholder:'YouTube 영상 링크 붙여넣기',ariaLabel:'유튜브 영상 링크',autocomplete:'off',maxLength:2000});this.link.name='youtube-video-url';
     this.load=el('button','불러오기',{type:'submit'});const address=el('form',null,{className:'yt-address',noValidate:true});address.append(this.link,this.load);address.onsubmit=e=>{e.preventDefault();this.previewLink();};submitOnEnter(this.link,address);this.root.append(address);
@@ -28,7 +29,7 @@ export class YoutubeScreen {
     this.backButton=el('button','함께 보기로 돌아가기',{type:'button'});this.backButton.onclick=()=>{this.browsing=false;this.manualPaused=false;this.update();this.sync(true);};
     this.joinButton=el('button','함께 보기',{type:'button'});this.joinButton.onclick=()=>{this.joined=true;this.blocked=false;this.manualPaused=false;this.error='';this.browsing=false;this.update();this.sync(true);};
     this.leaveButton=el('button','내 시청 종료',{type:'button'});this.leaveButton.onclick=()=>{this.joined=false;this.disposePlayer();this.update();};
-    this.muteButton=el('button','내 음소거',{type:'button'});this.muteButton.onclick=()=>{this.muted=!this.muted;this.player?.[this.muted?'mute':'unMute']?.();this.update();};
+    this.muteButton=el('button','내 음소거',{type:'button'});this.muteButton.onclick=()=>{this.muted=!this.muted;this.syncSound();this.update();};
     this.volumeInput=el('input',null,{type:'range',min:0,max:100,value:this.volume,ariaLabel:'내 음량',title:'내 음량'});this.volumeInput.oninput=()=>{this.volume=+this.volumeInput.value;this.player?.setVolume?.(this.volume);};
     this.personal.append(this.findButton,this.backButton,this.joinButton,this.leaveButton,this.muteButton,this.volumeInput);this.root.append(this.personal);
     this.message=el('p','',{className:'yt-message',role:'status'});this.root.append(this.message);
@@ -41,7 +42,7 @@ export class YoutubeScreen {
     const note=el('p','광고·네트워크 환경에 따라 재생에 시차가 생길 수 있습니다. 개인 플레이어 조작은 다른 사람에게 전달되지 않습니다.',{className:'yt-sync-note'});this.root.append(note);
     room.root.append(this.root);this.observer=new ResizeObserver(()=>this.fit());this.observer.observe(this.stage);
   }
-  get visible(){return this.media?.tab==='youtube'&&!this.browsing&&this.joined&&!document.hidden&&!this.room.root.hidden&&!!this.media.video_id&&this.fits!==false;}
+  get visible(){return this.media?.tab==='youtube'&&!this.browsing&&this.joined&&!document.hidden&&!window.btcAudio?.hidden&&!this.room.root.hidden&&!!this.media.video_id&&this.fits!==false;}
   apply(media){
     const changed=this.media?.generation!==media.generation||this.media?.playback_id!==media.playback_id;
     const advanced=changed||this.media?.version!==media.version;
@@ -88,8 +89,8 @@ export class YoutubeScreen {
     try{const YT=await loadAPI(this.apiAbort.signal);if(this.destroyed||generation!==this.generation||!this.visible)return;
       const target=el('div');this.playerBox.replaceChildren(target);
       this.player=new YT.Player(target,{width:'100%',height:'100%',videoId:this.media.video_id,playerVars:{playsinline:1,controls:1,origin:location.origin,rel:0},events:{
-        onReady:e=>{if(this.destroyed||generation!==this.generation){e.target.destroy();return;}this.ready=true;e.target.setVolume(this.volume);if(this.muted)e.target.mute();this.sync(true);this.fit();},
-        onStateChange:e=>{if(this.destroyed||generation!==this.generation)return;this.buffering=e.data===3;if(e.data===2&&Date.now()>this.applyingUntil&&this.visible){this.manualPaused=true;this.update();}if(e.data===1){clearTimeout(this.autoplayTimer);const update=this.blocked||this.manualPaused;this.blocked=false;this.manualPaused=false;if(update)this.update();}},
+        onReady:e=>{if(this.destroyed||generation!==this.generation){e.target.destroy();return;}this.ready=true;this.syncSound();this.sync(true);this.fit();},
+        onStateChange:e=>{if(this.destroyed||generation!==this.generation)return;if(e.data===1&&!this.visible){this.syncSound();this.pausePersonal();return;}this.buffering=e.data===3;if(e.data===2&&Date.now()>this.applyingUntil&&this.visible){this.manualPaused=true;this.update();}if(e.data===1){clearTimeout(this.autoplayTimer);const update=this.blocked||this.manualPaused;this.blocked=false;this.manualPaused=false;if(update)this.update();}},
         onAutoplayBlocked:()=>{if(this.destroyed)return;this.blocked=true;this.update();},
         onError:e=>{if(this.destroyed)return;this.error=({2:'영상 주소가 올바르지 않습니다.',5:'이 브라우저에서 영상을 재생하지 못했습니다.',100:'비공개이거나 삭제된 영상입니다.',101:'외부 재생이 허용되지 않는 영상입니다.',150:'외부 재생이 허용되지 않는 영상입니다.',153:'유튜브가 이 페이지의 재생 요청을 확인하지 못했습니다.'})[e.data]||'유튜브 재생 중 오류가 발생했습니다.';this.stopSync();this.update();}
       }});
@@ -115,7 +116,8 @@ export class YoutubeScreen {
   pausePersonal(){clearTimeout(this.autoplayTimer);if(this.ready){this.applyingUntil=Date.now()+2500;this.player?.pauseVideo?.();}}
   startSync(){if(!this.syncTimer&&this.visible&&!this.error&&!this.manualPaused&&!this.blocked)this.syncTimer=setInterval(()=>this.sync(),10000);}
   stopSync(){clearInterval(this.syncTimer);this.syncTimer=null;}
-  visibility(){if(!document.hidden){this.update();this.sync(true);}else{this.pausePersonal();this.stopSync();}}
+  syncSound(){if(!this.ready)return;this.player?.setVolume?.(this.volume);this.player?.[this.muted||document.hidden||window.btcAudio?.hidden?'mute':'unMute']?.();}
+  visibility(){this.syncSound();if(!document.hidden&&!window.btcAudio?.hidden){this.update();this.sync(true);}else{this.pausePersonal();this.stopSync();}}
   fit(){
     if(this.destroyed||this.root.hidden||this.watch.hidden)return;const r=this.watch.getBoundingClientRect();
     // Chat and game menus overlay this viewport; they never resize or reposition it.
@@ -125,5 +127,5 @@ export class YoutubeScreen {
     if(this.visible&&!this.player&&!this.creating&&!this.error)queueMicrotask(()=>this.ensurePlayer());
   }
   disposePlayer(){this.generation++;this.apiAbort?.abort();this.creating=false;this.stopSync();this.pausePersonal();this.player?.destroy?.();this.player=null;this.ready=false;this.round='';this.playerBox.replaceChildren();}
-  destroy(){this.destroyed=true;this.disposePlayer();this.observer.disconnect();this.root.remove();}
+  destroy(){this.destroyed=true;window.removeEventListener('btc-audio-visibility',this.audioVisibility);this.disposePlayer();this.observer.disconnect();this.root.remove();}
 }
