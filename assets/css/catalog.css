@@ -23,7 +23,9 @@ img { max-width: 100%; }
 .catalog-section-heading { display: flex; gap: 12px; align-items: center; margin: 0 0 24px; }
 .catalog-section-heading h2 { margin: 0; font-size: 20px; font-weight: 650; }
 .catalog-section-heading > span { display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--muted); font-size: 12px; }
-.catalog-programs .program-link { min-height: 180px; }
+.catalog-programs .program-links { display: grid; grid-auto-rows: 1fr; }
+.catalog-programs .program-link { min-height: 180px; height: 100%; }
+.catalog-footer .trading-room-link { align-self: flex-start; padding-block: 10px; color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
 .catalog-footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px 0 32px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 .product-about { padding: 70px 0 90px; }
 .product-about .catalog-intro { padding: 0 0 36px; }

@@ -1,6 +1,5 @@
 /* ChatVille shares the shuffled palettes while retaining its sparkle effects. */
 .catalog-programs .program-link--chatville {
-  min-height:216px;
   border:2px solid transparent;
   background:linear-gradient(115deg,var(--p-start),var(--p-mid) 52%,var(--p-end)) padding-box,linear-gradient(120deg,var(--p-edge),var(--s2),var(--s3),var(--s4),var(--p-edge)) border-box;
   box-shadow:0 0 28px color-mix(in srgb,var(--p-edge) 13%,transparent),0 0 3px color-mix(in srgb,var(--p-edge) 55%,transparent),inset 0 0 32px color-mix(in srgb,var(--p-edge) 4%,transparent);
