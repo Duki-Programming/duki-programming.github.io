@@ -2,6 +2,10 @@
 export const TOOLS = { select:'선택 / 이동', trend:'추세선', ray:'레이', channel:'평행 채널', pitchfork:'피치포크', fibonacci:'피보나치 되돌림', brush:'자유 그리기' };
 export const POINTS = {trend:2,ray:2,channel:3,pitchfork:3,fibonacci:2};
 export const DEFAULT_STYLE = {color:'#e9c46a',width:2,dash:'solid',extend_left:false,extend_right:false,levels:[0,.236,.382,.5,.618,.786,1],locked:false};
+export const PITCHFORK_LEVELS = [[.25,'#957039'],[.382,'#527954'],[.5,'#009688'],[.618,'#009688'],[.75,'#167b80'],[1,'#2962ff'],[1.5,'#793b88'],[1.75,'#a33658'],[2,'#955558']];
+export function pitchforkStyle(d) {
+  return d.pitchfork || {levels:PITCHFORK_LEVELS.map(([value,color])=>({value,color,enabled:[.5,.618,1].includes(value)})),background:true,opacity:.15,single_color:false};
+}
 const FIB_COLORS=[[0,'#787b86'],[.236,'#f44336'],[.382,'#81c784'],[.5,'#4caf50'],[.618,'#26a69a'],[.786,'#64b5f6'],[1,'#787b86'],[1.618,'#2196f3'],[2.618,'#f44336']];
 const fibColor=level=>FIB_COLORS.reduce((best,item)=>Math.abs(item[0]-level)<Math.abs(best[0]-level)?item:best)[1];
 // Disjoint slabs prevent overlapping HUD cutouts from canceling each other under even-odd clipping.
@@ -41,6 +45,27 @@ export function clipLine(a,b,width,height,left=false,right=false) {
   }
   return low<=high?[{x:a.x+low*dx,y:a.y+low*dy},{x:a.x+high*dx,y:a.y+high*dy}]:null;
 }
+// Clip the band itself, not just its edges: a band can cover the viewport
+// even when neither parallel boundary crosses it.
+function pitchforkBand(start,end,delta,width,height,extendLeft) {
+  let polygon=[{x:0,y:0},{x:width,y:0},{x:width,y:height},{x:0,y:height}];
+  const cross=(a,b)=>a.x*b.y-a.y*b.x,sub=(a,b)=>({x:a.x-b.x,y:a.y-b.y});
+  const clip=distance=>{
+    const result=[];
+    for(let i=0;i<polygon.length;i++){
+      const a=polygon[i],b=polygon[(i+1)%polygon.length],da=distance(a),db=distance(b);
+      if(da>=0)result.push(a);
+      if((da>=0)!==(db>=0)){const t=da/(da-db);result.push({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t});}
+    }
+    polygon=result;
+  };
+  const edge=sub(end,start),side=Math.sign(cross(delta,edge));
+  if(!side)return [];
+  clip(p=>side*cross(delta,sub(p,start)));
+  clip(p=>-side*cross(delta,sub(p,end)));
+  if(!extendLeft)clip(p=>-side*cross(edge,sub(p,start)));
+  return polygon;
+}
 export function geometry(d,project,width,height) {
   const p=d.points.map(project),lines=[],labels=[],fills=[];
   if(p.some(v=>!v||!Number.isFinite(v.x)||!Number.isFinite(v.y)))return {lines,labels,fills,points:[]};
@@ -75,7 +100,18 @@ export function geometry(d,project,width,height) {
       }
     }
     if(d.kind==='pitchfork'&&c){const mid={x:(b.x+c.x)/2,y:(b.y+c.y)/2},delta={x:mid.x-a.x,y:mid.y-a.y};
-      line(a,mid,d.extend_left,true);line(b,{x:b.x+delta.x,y:b.y+delta.y},d.extend_left,true);line(c,{x:c.x+delta.x,y:c.y+delta.y},d.extend_left,true);line(b,c,false,false,true);
+      const style=pitchforkStyle(d),levels=style.levels.filter(l=>l.enabled).sort((x,y)=>x.value-y.value);
+      const at=(level,side)=>({x:mid.x+(side===1?b.x-mid.x:c.x-mid.x)*level,y:mid.y+(side===1?b.y-mid.y:c.y-mid.y)*level});
+      line(a,mid,d.extend_left,true);
+      for(const side of [1,-1])for(let i=0;i<levels.length;i++){
+        const level=levels[i],start=at(level.value,side),color=style.single_color?d.color:level.color;
+        if(line(start,{x:start.x+delta.x,y:start.y+delta.y},d.extend_left,true))lines.at(-1).color=color;
+        if(style.background&&style.opacity>0){
+          const points=pitchforkBand(at(i?levels[i-1].value:0,side),start,delta,width,height,d.extend_left);
+          if(points.length>=3)fills.push({points,color,opacity:style.opacity});
+        }
+      }
+      line(b,c,false,false);
     }
   }
   return {lines,labels,fills,points:p};
