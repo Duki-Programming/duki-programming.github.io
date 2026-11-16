@@ -6,7 +6,8 @@ import {CryptoFeed,mergeCandles} from './crypto-feed.mjs';
 import {sharedView,localRange} from './view-state.mjs';
 import {Pens} from './pens.mjs';
 import {YoutubeScreen} from './youtube.mjs';
-import {GameKeyboard} from './keyboard.mjs';
+import {GameKeyboard,prepareRoomTransition} from './keyboard.mjs';
+import {DrawingPermissions} from './drawing-permissions.mjs';
 const element=(tag,text,attrs={})=>{const el=document.createElement(tag);if(text)el.textContent=text;Object.assign(el,attrs);return el;};
 class Cinema {
   constructor(){this.active=false;this.state=null;this.id='';this.callback=null;this.captured=false;this.chart=null;this.lastView='';this.suppressView=false;this.retries=0;this.lastGeometry='';this.serverOffset=0;}
@@ -22,9 +23,11 @@ class Cinema {
     this.searchButton=element('button','⌕ 종목 검색',{title:'코인 · 미국 · 한국 · 중국 · 일본 주식'});this.searchButton.onclick=()=>this.search();
     this.interval=element('select',null,{ariaLabel:'차트 주기'});for(const [value,label] of [['1m','1분'],['5m','5분'],['15m','15분'],['30m','30분'],['1h','1시간'],['4h','4시간'],['1d','일봉'],['1w','주봉']])this.interval.add(new Option(label,value));
     this.interval.onchange=()=>this.send({type:'configure',instrument:this.state.instrument,interval:this.interval.value});
-    this.policy=element('button','모두 그리기');this.policy.onclick=()=>this.send({type:'drawing_policy',everyone:!this.state.everyone});
+    this.permissions=new DrawingPermissions(this);
+    this.policy=element('button','함께 그리기',{hidden:true});this.policy.onclick=()=>this.permissions.open();
+    this.deleteButton=element('button','지우기',{title:'선택한 내 도형 지우기',disabled:true});
     this.clearButton=element('button','전체 지우기',{title:'현재 차트의 도형 전체 지우기 · 방장 전용',hidden:true});
-    this.role=element('span','연결 중…',{className:'cinema-role'});header.append(this.symbol,this.searchButton,this.interval,this.policy,this.clearButton,this.role);
+    this.role=element('span','연결 중…',{className:'cinema-role'});header.append(this.symbol,this.searchButton,this.interval,this.policy,this.deleteButton,this.clearButton,this.role);
     const body=element('div',null,{className:'cinema-body'}),toolbar=element('nav',null,{className:'cinema-tools'});toolbar.setAttribute('aria-label','차트 그리기 도구');
     this.plot=element('div',null,{className:'cinema-plot'});this.container=element('div',null,{className:'cinema-chart'});this.plot.append(this.container);body.append(toolbar,this.plot);
     const footer=element('div',null,{className:'cinema-footer'});this.hint=element('span','',{className:'cinema-hint'});this.source=element('span','Binance · 데이터 연결 중',{className:'cinema-source'});footer.append(this.hint,this.source);
@@ -54,12 +57,14 @@ class Cinema {
     if(!this.active)return;
     this.socket=new WebSocket(this.origin.replace(/^http/,'ws')+'/api/cinema');
     this.socket.onmessage=e=>{if(e.data==='pong')return;try{this.receive(JSON.parse(e.data));}catch(error){console.error('Cinema packet',error);this.notice('차트를 표시하지 못했습니다. 다시 연결합니다.');}};
-    this.socket.onclose=event=>{if(!this.active)return;this.state=null;this.drawings.history.reset();this.drawings.permission();this.emit();
+    this.socket.onclose=event=>{if(!this.active)return;this.state=null;this.policy.hidden=true;this.permissions.update();this.configureControls();this.drawings.history.reset();this.drawings.permission();this.emit();
       if([1008,4001,4401,4403].includes(event.code)){this.notice('로그인이 변경되거나 연결이 종료되었습니다. 다시 입장해 주세요.');return;}
       this.notice('연결이 끊어져 다시 연결합니다.');this.reconnect=setTimeout(()=>this.connect(),Math.min(15000,1000*2**this.retries++));};
     this.socket.onerror=()=>{};
   }
   receive(data){
+    this.permissions.receive(data);
+    if(data.type==='drawing_permissions_saved')return;
     if(data.type==='clock'){if(Number.isFinite(data.server_time)&&Number.isFinite(data.client_time))this.serverOffset=data.server_time-(Date.now()+data.client_time)/2;return;}
     if(data.type==='media'){if(this.state){this.state.media=data.media;this.applyMedia();}return;}
     if(data.type==='youtube_results'){this.youtube.receive(data);return;}
@@ -83,7 +88,7 @@ class Cinema {
     this.root.classList.toggle('guest',!this.host);this.searchButton.disabled=this.interval.disabled=this.policy.disabled=!this.host;
     this.interval.value=data.interval;this.interval.querySelector('option[value="4h"]').disabled=data.instrument.venue==='yahoo';
     this.symbol.textContent=data.instrument.symbol+(data.instrument.venue==='futures'?'.P':'');this.symbol.title=data.instrument.label;
-    this.policy.textContent=data.everyone?'✎ 모두 그리기':'✎ 방장만 그리기';
+    this.policy.hidden=!this.host;this.permissions.update();
     const host=data.participants.find(p=>p.id===data.host);this.role.textContent=`${this.host?'★ 내가 방장':'방장 '+(host?.nickname||'없음')} · ${data.participants.length}명`;
     if(changed){
       this.pens.reset();
@@ -128,7 +133,7 @@ class Cinema {
   }
   markViewDirty(){if(this.host)this.viewDirty=true;}
   publishView(){
-    if(!this.chart?.bars.length)return;const range=this.chart.chart.timeScale().getVisibleLogicalRange(),scale=this.chart.chart.priceScale('right');if(!range)return;
+    if(!this.host||!this.chart?.bars.length)return;const range=this.chart.chart.timeScale().getVisibleLogicalRange(),scale=this.chart.chart.priceScale('right');if(!range)return;
     const p=scale.getVisibleRange(),view=sharedView(range,p?{from:p.from,to:p.to}:null,scale.options(),this.chart.bars);this.viewDirty=false;
     const serial=JSON.stringify(view);if(serial===this.lastView)return;this.lastView=serial;this.state.view=view;this.send({type:'view',view});
   }
@@ -157,10 +162,7 @@ class Cinema {
       }catch(error){if(error.name!=='AbortError')results.replaceChildren(element('p','검색 연결이 지연되고 있습니다. 다시 입력해 주세요.'));}
     };input.oninput=()=>{clearTimeout(this.searchTimer);this.searchTimer=setTimeout(lookup,350);};dialog.append(input,results,actions);dialog.showModal();input.focus();lookup();
   }
-  nominate(){if(!this.host){this.notice('방장만 다른 사람을 임명할 수 있습니다.');return;}const {dialog,actions}=this.dialogBox('방장 임명'),list=element('div',null,{className:'cinema-results'});
-    for(const person of this.state.participants.filter(p=>p.id!==this.id)){const button=element('button',person.nickname);button.onclick=()=>{this.send({type:'nominate',id:person.id});this.closeDialog();};list.append(button);}
-    if(!list.children.length)list.append(element('p','방에 다른 이용자가 들어오면 임명할 수 있습니다.'));dialog.append(element('p','종목 변경과 차트 조작 권한을 넘깁니다.'),list,actions);dialog.showModal();
-  }
+  nominate(){this.permissions.open();}
   geometry(json){if(!this.active||!this.root)return;if(json===this.lastGeometry)return;this.lastGeometry=json;const g=typeof json==='string'?JSON.parse(json):json,canvas=document.getElementById('canvas'),r=canvas.getBoundingClientRect(),sx=r.width/g.viewport[0],sy=r.height/g.viewport[1];
     this.gameTyping=g.typing===true;
     const [x,y,w,h]=g.rect;Object.assign(this.root.style,{left:r.left+x*sx+'px',top:r.top+y*sy+'px',width:w*sx+'px',height:h*sy+'px'});const hiddenChanged=this.root.hidden!==!!g.hidden;this.root.hidden=!!g.hidden;
@@ -175,3 +177,4 @@ class Cinema {
   destroy(){this.active=false;this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
 }
 window.BTCCinema=new Cinema();
+window.btcPrepareRoomTransition=prepareRoomTransition;

@@ -47,7 +47,10 @@
     });
     const top=171; if(h-top<28)return;
     text(c,'BTC  1H',9,top,11,colors.muted);const x0=92,x1=w-10,y0=top+3,y1=h-9;
-    rule(c,x0,y1,x1-x0);const points=closes.map((v,i)=>[x0+i*(x1-x0)/(closes.length-1),y1-(v-73100)/950*(y1-y0)]);line(c,points,colors.fast,2);
+    // A quiet ticker trace follows the lower bezel instead of adding a second steep diagonal.
+    const residual=closes.map((value,i)=>value-(closes[0]+(closes.at(-1)-closes[0])*i/(closes.length-1)));
+    const amplitude=Math.max(1,...residual.map(Math.abs)),baseline=(y0+y1)/2;
+    rule(c,x0,y1,x1-x0);const points=residual.map((value,i)=>[x0+i*(x1-x0)/(closes.length-1),baseline-value/amplitude*2]);line(c,points,colors.fast,2);
   }
   function orderbook(c,w,h){
     c.fillStyle=colors.panel;c.fillRect(0,0,w,28);text(c,'BTC / USDT',9,6,14);text(c,'ORDER BOOK',w-8,8,10,colors.muted,'right');
