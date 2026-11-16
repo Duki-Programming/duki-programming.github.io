@@ -94,7 +94,7 @@ body {
 <meta name="apple-mobile-web-app-capable" content="yes">
 
 <meta name="theme-color" content="#101914">
-	<meta name="btc-build-id" content="20261116-5d56be284c">
+	<meta name="btc-build-id" content="20261116-b1b2b5090b">
 <title>Bulls &amp; Bears</title>
 <meta name="apple-mobile-web-app-title" content="Bulls &amp; Bears">
 <script>
@@ -187,9 +187,9 @@ body {
 
 </script>
 <script src="./config.js"></script>
-<link rel="stylesheet" href="./cinema-game-20261116-5d56be284c/cinema.css">
-<script src="./cinema-game-20261116-5d56be284c/lightweight-charts.js"></script>
-<script type="module" src="./cinema-game-20261116-5d56be284c/cinema.mjs"></script>
+<link rel="stylesheet" href="./cinema-game-20261116-b1b2b5090b/cinema.css">
+<script src="./cinema-game-20261116-b1b2b5090b/lightweight-charts.js"></script>
+<script type="module" src="./cinema-game-20261116-b1b2b5090b/cinema.mjs"></script>
 </head>
 	<body>
 		<canvas id="canvas">
@@ -201,14 +201,14 @@ body {
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261116-5d56be284c.png" alt="">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261116-b1b2b5090b.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="./game-20261116-5d56be284c.js"></script>
+		<script src="./game-20261116-b1b2b5090b.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261116-5d56be284c","experimentalVK":false,"fileSizes":{"game-20261116-5d56be284c.pck":40019800,"game-20261116-5d56be284c.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261116-b1b2b5090b","experimentalVK":false,"fileSizes":{"game-20261116-b1b2b5090b.pck":40025912,"game-20261116-b1b2b5090b.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -429,6 +429,35 @@ const engine = new Engine(GODOT_CONFIG);
     },
     get timeZone() { return zone; }
   };
+})();
+
+// The persistent canvas needs focus cleanup in every room, including rooms
+// without the cinema's DOM keyboard router. A missing OS keyup must not move it.
+(() => {
+  const keys=new Map(Object.entries({KeyW:'w',KeyA:'a',KeyS:'s',KeyD:'d',ArrowUp:'ArrowUp',ArrowDown:'ArrowDown',ArrowLeft:'ArrowLeft',ArrowRight:'ArrowRight',ShiftLeft:'Shift',ShiftRight:'Shift',KeyE:'e',KeyP:'p',KeyR:'r',F3:'F3'}));
+  const held=new Set();
+  const bridge={callback:null,focused:!document.hidden&&document.hasFocus()};
+  const editing=target=>target?.isContentEditable||/^(INPUT|TEXTAREA)$/.test(target?.tagName||'');
+  function release(){
+    held.clear();
+    const canvas=document.getElementById('canvas');
+    for(const [code,key] of keys)canvas?.dispatchEvent(new KeyboardEvent('keyup',{code,key,bubbles:true,cancelable:true}));
+  }
+  function focus(value){bridge.focused=value;release();bridge.callback?.(value);}
+  document.addEventListener('keydown',event=>{
+    if(!keys.has(event.code)||editing(event.target))return;
+    if(!bridge.focused||document.hidden||event.repeat&&!held.has(event.code)){
+      event.preventDefault();event.stopImmediatePropagation();return;
+    }
+    held.add(event.code);
+  },true);
+  document.addEventListener('keyup',event=>held.delete(event.code),true);
+  window.addEventListener('blur',()=>focus(false));
+  window.addEventListener('focus',()=>focus(!document.hidden));
+  window.addEventListener('pagehide',()=>focus(false));
+  window.addEventListener('pageshow',()=>focus(!document.hidden&&document.hasFocus()));
+  document.addEventListener('visibilitychange',()=>focus(!document.hidden&&document.hasFocus()));
+  window.btcGameInput=bridge;
 })();
 
 </script>
