@@ -27,3 +27,5 @@ html[data-product=btcoffice]{--surface:var(--bb-panel);--panel:var(--bb-panel);-
 /* The existing compact stats box sits above the lounge entry, in both themes. */
 .bb-hero .product-stats{margin:0 0 24px;background:#0e1d2be6;border-color:#52626c;--line:#52626c;--muted:#c0cbd1;--accent:#dfc38e;--text:#f3f5f4}
 @media(max-width:480px){.bb-hero .product-stats{width:fit-content;max-width:100%;margin:0 auto 24px}}
+
+.bb-footer .trading-room-link { display:inline-block; padding-block:10px; margin-top:8px; font-size:12px; color:var(--bb-gold); text-decoration:underline; text-underline-offset:4px; }
