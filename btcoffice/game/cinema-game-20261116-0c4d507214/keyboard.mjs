@@ -32,7 +32,7 @@ export class GameKeyboard {
     document.addEventListener('visibilitychange',this.visibility);
     this.refresh();
   }
-  owns(node){return !!node&&(this.room.root?.contains(node)||!!node.closest?.('.cinema-dialog,.price-scale-menu'));}
+  owns(node){return !!node&&(this.room.root?.contains(node)||!!node.closest?.('.cinema-dialog,.price-scale-menu,.cinema-host-controls'));}
   refresh(){
     const node=document.activeElement,typing=hasTextCaret(node),captured=this.room.active&&this.owns(node)&&typing;
     if(typing)this.release();

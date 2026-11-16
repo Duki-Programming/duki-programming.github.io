@@ -8,6 +8,7 @@ import {Pens} from './pens.mjs';
 import {YoutubeScreen} from './youtube.mjs';
 import {GameKeyboard,prepareRoomTransition} from './keyboard.mjs';
 import {DrawingPermissions} from './drawing-permissions.mjs';
+import {HostRequests} from './host-requests.mjs';
 const element=(tag,text,attrs={})=>{const el=document.createElement(tag);if(text)el.textContent=text;Object.assign(el,attrs);return el;};
 class Cinema {
   constructor(){this.active=false;this.state=null;this.id='';this.callback=null;this.captured=false;this.chart=null;this.lastView='';this.suppressView=false;this.retries=0;this.lastGeometry='';this.serverOffset=0;}
@@ -15,7 +16,7 @@ class Cinema {
   get me(){return this.state?.participants.find(p=>p.id===this.id);}
   mount(options={}) {
     if(this.active)return;this.active=true;this.options=typeof options==='string'?JSON.parse(options):options;this.origin=this.options.api_origin||window.BTC_OFFICE_CONFIG?.api_origin;
-    if(!this.origin)return;this.state=null;this.id='';this.lastView='';this.lastGeometry='';
+    if(!this.origin)return;this.state=null;this.id='';this.lastView='';this.lastGeometry='';this.backgrounded=false;this.resumeSeat=null;
     this.root=element('section',null,{id:'btc-cinema'});this.root.setAttribute('aria-label','공유 차트 시네마');
     const tabs=element('nav',null,{className:'cinema-tabs',ariaLabel:'공용 화면'});this.tabButtons=new Map();
     for(const [tab,title] of [['chart','차트'],['youtube','유튜브']]){const button=element('button',title,{type:'button'});button.dataset.tab=tab;button.onclick=()=>this.mediaCommand('tab',{tab});tabs.append(button);this.tabButtons.set(tab,button);}this.root.append(tabs);
@@ -24,6 +25,7 @@ class Cinema {
     this.interval=element('select',null,{ariaLabel:'차트 주기'});for(const [value,label] of [['1m','1분'],['5m','5분'],['15m','15분'],['30m','30분'],['1h','1시간'],['4h','4시간'],['1d','일봉'],['1w','주봉']])this.interval.add(new Option(label,value));
     this.interval.onchange=()=>this.send({type:'configure',instrument:this.state.instrument,interval:this.interval.value});
     this.permissions=new DrawingPermissions(this);
+    this.hostRequests=new HostRequests(this);
     this.policy=element('button','함께 그리기',{hidden:true});this.policy.onclick=()=>this.permissions.open();
     this.deleteButton=element('button','지우기',{title:'선택한 내 도형 지우기',disabled:true});
     this.clearButton=element('button','전체 지우기',{title:'현재 차트의 도형 전체 지우기 · 방장 전용',hidden:true});
@@ -48,29 +50,42 @@ class Cinema {
       if(e.type==='pointerup'||e.type==='pointercancel')this.chartPointer=false;
     };
     for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.addEventListener(type,this.viewInput,{capture:true,passive:true});
-    this.heartbeat=setInterval(()=>{if(this.socket?.readyState===WebSocket.OPEN)this.socket.send('ping');},25000);
-    this.visibility=()=>{if(document.hidden)this.pens.leave();this.send({type:'watching',value:!document.hidden});this.feed?.pause(document.hidden||this.state?.media?.tab!=='chart');this.youtube.visibility();if(!document.hidden)this.send({type:'clock',client_time:Date.now()});};document.addEventListener('visibilitychange',this.visibility);
+    this.heartbeat=setInterval(()=>{if(!this.backgrounded&&!document.hidden&&this.socket?.readyState===WebSocket.OPEN)this.socket.send('ping');},10000);
+    this.setVisibility=hidden=>{
+      this.backgrounded=hidden;
+      if(hidden){this.resumeSeat=this.me?.seat??this.resumeSeat;clearTimeout(this.reconnect);this.pens.leave();this.send({type:'watching',value:false});}
+      else if(this.socket?.readyState===WebSocket.OPEN){this.send({type:'watching',value:true});this.send({type:'clock',client_time:Date.now()});}
+      else if(!this.socket||this.socket.readyState>=WebSocket.CLOSING)this.connect();
+      this.feed?.pause(hidden||this.state?.media?.tab!=='chart');this.youtube.visibility();
+    };
+    this.visibility=()=>this.setVisibility(document.hidden);this.pagehide=()=>this.setVisibility(true);
+    document.addEventListener('visibilitychange',this.visibility);window.addEventListener('pagehide',this.pagehide);window.addEventListener('pageshow',this.visibility);
     this.keyboard=new GameKeyboard(this);
-    this.connect();
+    this.visibility();
   }
   connect(){
-    if(!this.active)return;
+    if(!this.active||document.hidden||this.backgrounded)return;
     this.socket=new WebSocket(this.origin.replace(/^http/,'ws')+'/api/cinema');
+    const socket=this.socket;
     this.socket.onmessage=e=>{if(e.data==='pong')return;try{this.receive(JSON.parse(e.data));}catch(error){console.error('Cinema packet',error);this.notice('차트를 표시하지 못했습니다. 다시 연결합니다.');}};
-    this.socket.onclose=event=>{if(!this.active)return;this.state=null;this.policy.hidden=true;this.permissions.update();this.configureControls();this.drawings.history.reset();this.drawings.permission();this.emit();
+    this.socket.onclose=event=>{if(!this.active||this.socket!==socket)return;this.resumeSeat=this.me?.seat??this.resumeSeat;this.state=null;this.policy.hidden=true;this.permissions.update();this.hostRequests.update();this.configureControls();this.drawings.history.reset();this.drawings.permission();this.feed?.pause(true);this.emit();
       if([1008,4001,4401,4403].includes(event.code)){this.notice('로그인이 변경되거나 연결이 종료되었습니다. 다시 입장해 주세요.');return;}
+      if(this.backgrounded||document.hidden)return;
       this.notice('연결이 끊어져 다시 연결합니다.');this.reconnect=setTimeout(()=>this.connect(),Math.min(15000,1000*2**this.retries++));};
     this.socket.onerror=()=>{};
   }
   receive(data){
     this.permissions.receive(data);
+    this.hostRequests.receive(data);
     if(data.type==='drawing_permissions_saved')return;
     if(data.type==='clock'){if(Number.isFinite(data.server_time)&&Number.isFinite(data.client_time))this.serverOffset=data.server_time-(Date.now()+data.client_time)/2;return;}
     if(data.type==='media'){if(this.state){this.state.media=data.media;this.applyMedia();}return;}
     if(data.type==='youtube_results'){this.youtube.receive(data);return;}
-    if(data.type==='welcome'){
+    if(data.type==='welcome'||data.type==='resume'){
       this.retries=0;this.id=data.id;this.serverOffset=data.server_time-Date.now();this.applyRoom(data);this.drawings.replace(data.drawings);if(this.state.instrument.venue==='yahoo')this.bars(data,true);
-      if(this.options.avatar?.character)this.send({type:'avatar',avatar:this.options.avatar});this.visibility();return;
+      if(this.options.avatar?.character)this.send({type:'avatar',avatar:this.options.avatar});
+      if(this.resumeSeat!=null){const seat=this.resumeSeat;this.resumeSeat=null;if(this.me?.seat==null&&!data.participants.some(p=>p.seat===seat))this.send({type:'seat',seat});}
+      this.visibility();return;
     }
     if(data.type==='room'){this.applyRoom(data);return;}
     if(data.type==='context'){if(data.context!==this.state?.context)return;this.drawings.closeDialog();this.drawings.replace(data.drawings);if(this.state.instrument.venue==='yahoo')this.bars(data,true);return;}
@@ -88,7 +103,7 @@ class Cinema {
     this.root.classList.toggle('guest',!this.host);this.searchButton.disabled=this.interval.disabled=this.policy.disabled=!this.host;
     this.interval.value=data.interval;this.interval.querySelector('option[value="4h"]').disabled=data.instrument.venue==='yahoo';
     this.symbol.textContent=data.instrument.symbol+(data.instrument.venue==='futures'?'.P':'');this.symbol.title=data.instrument.label;
-    this.policy.hidden=!this.host;this.permissions.update();
+    this.policy.hidden=!this.host;this.permissions.update();this.hostRequests.update();
     const host=data.participants.find(p=>p.id===data.host);this.role.textContent=`${this.host?'★ 내가 방장':'방장 '+(host?.nickname||'없음')} · ${data.participants.length}명`;
     if(changed){
       this.pens.reset();
@@ -102,7 +117,7 @@ class Cinema {
         this.feed=new CryptoFeed(data.instrument,data.interval,(bars,reset,incremental)=>{if(this.state?.context===context)this.bars({bars},reset,incremental);},status=>{
           if(this.state?.context===context)this.source.textContent='Binance · '+(data.instrument.venue==='futures'?'무기한 선물':'현물')+' · '+(status==='live'?'실시간':'재연결 중');
         });
-        this.feed.suspended=document.hidden||data.media?.tab!=='chart';if(!this.feed.suspended)this.feed.start();
+        this.feed.suspended=this.backgrounded||document.hidden||data.media?.tab!=='chart';if(!this.feed.suspended)this.feed.start();
       }
     } else if(wasHost!==this.host)this.configureControls();
     this.drawings.permission();this.pens.render();this.applyMedia();this.emit();if(this.host&&!data.view&&this.chart.bars.length>=20)this.markViewDirty();
@@ -117,7 +132,7 @@ class Cinema {
     const media=this.state?.media;if(!media)return;const chart=media.tab==='chart';
     for(const part of this.chartParts)part.hidden=!chart;
     for(const [name,button] of this.tabButtons){button.disabled=!this.host;button.classList.toggle('active',name===media.tab);button.setAttribute('aria-pressed',String(name===media.tab));}
-    this.root.classList.toggle('youtube-active',!chart);this.feed?.pause(document.hidden||!chart);
+    this.root.classList.toggle('youtube-active',!chart);this.feed?.pause(this.backgrounded||document.hidden||!chart);
     if(!chart){this.pens.leave();this.drawings.cancel();}this.youtube.apply(media);
     if(chart)requestAnimationFrame(()=>this.drawings.render());
   }
@@ -166,6 +181,7 @@ class Cinema {
   geometry(json){if(!this.active||!this.root)return;if(json===this.lastGeometry)return;this.lastGeometry=json;const g=typeof json==='string'?JSON.parse(json):json,canvas=document.getElementById('canvas'),r=canvas.getBoundingClientRect(),sx=r.width/g.viewport[0],sy=r.height/g.viewport[1];
     this.gameTyping=g.typing===true;
     const [x,y,w,h]=g.rect;Object.assign(this.root.style,{left:r.left+x*sx+'px',top:r.top+y*sy+'px',width:w*sx+'px',height:h*sy+'px'});const hiddenChanged=this.root.hidden!==!!g.hidden;this.root.hidden=!!g.hidden;
+    this.hostRequests.geometry(g,r,sx,sy);
     // Godot draws its menus into one canvas. Cut holes in the DOM chart so movable chat,
     // market windows and touch controls always remain above it without moving the map.
     const width=w*sx,height=h*sy;let path=`M0 0H${width}V${height}H0Z`;
@@ -174,7 +190,7 @@ class Cinema {
     for(const [ax,ay,bx,by] of unionRectangles(holes))path+=`M${ax} ${ay}V${by}H${bx}V${ay}Z`;
     this.root.style.clipPath=`path(evenodd, "${path}")`;
   }
-  destroy(){this.active=false;this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
+  destroy(){this.active=false;this.hostRequests?.destroy();window.removeEventListener('pagehide',this.pagehide);window.removeEventListener('pageshow',this.visibility);this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
 }
 window.BTCCinema=new Cinema();
 window.btcPrepareRoomTransition=prepareRoomTransition;
