@@ -44,7 +44,6 @@
     <div class="bb-connections"><strong>{{ copy.exchanges }}</strong><p>{{ copy.account_note }}</p></div>
     <dl class="bb-controls">{% for control in copy.controls %}<div><dt><kbd>{{ control.key }}</kbd></dt><dd>{{ control.action }}</dd></div>{% endfor %}</dl><p class="bb-note">{{ copy.mobile_controls }}</p>
   </section>
-  <section class="bb-outro"><div class="bb-wrap"><p class="bb-eyebrow">TAKE YOUR SEAT</p><h2>{{ copy.outro | newline_to_br }}</h2><a class="bb-play" data-lounge-entry href="{{ '/btcoffice/game/' | relative_url }}">{{ copy.play }} <span aria-hidden="true">↗</span></a></div></section>
 </main>
 <footer class="bb-footer bb-wrap"><div><strong class="bb-footer-brand">Bulls &amp; Bears</strong><p>{{ copy.footer }}</p><small>{{ copy.updated }}</small></div><div><div class="business-footer">{% include business-footer.html %}</div></div></footer>
 <dialog class="bb-lightbox" aria-label="{{ copy.gallery }}"><button type="button" class="bb-lightbox-close" aria-label="{{ copy.close }}">{{ copy.close }} ×</button><img alt=""><p></p></dialog>
