@@ -55,4 +55,21 @@ img { max-width: 100%; }
   .catalog-footer { flex-direction: column; gap: 10px; }
   .catalog-main { padding-bottom: 54px; }
 }
+/* Compact phone cards: larger cube beside the title, with details below. */
+@media (max-width: 520px) {
+  .catalog-programs .program-links { gap: 18px; }
+  .catalog-programs .program-link { grid-template-columns: 72px minmax(0, 1fr); grid-template-rows: auto auto auto; min-height: 246px; padding: 16px; gap: 8px 14px; align-content: center; }
+  .catalog-programs .program-cube-stage { --cube-size: 52px; --cube-half: 26px; width: 72px; height: 72px; grid-area: 1 / 1; }
+  .catalog-programs .program-link__text { display: contents; }
+  .catalog-programs .program-link__text > strong { grid-area: 1 / 2; padding-right: 14px; font-size: clamp(20px, 5.6vw, 24px); line-height: 1.4; }
+  .catalog-programs .program-link__text > span { grid-column: 1 / -1; font-size: 13px; line-height: 1.55; }
+  .catalog-programs .program-link__text > .program-platform { grid-area: 3 / 1 / 4 / -1; justify-self: start; margin-top: 0; font-size: 11px; }
+  .catalog-programs .program-link__text > .program-card-stat { grid-area: 3 / 1 / 4 / -1; justify-self: end; margin-top: 0; padding: 5px 8px; font-size: 10px; }
+  .catalog-programs .program-link__text > span:not(.program-platform):not(.program-card-stat) { grid-row: 2; }
+  .catalog-programs .program-link:has(.program-spotlight) .program-link__text > span:not(.program-spotlight):not(.program-platform):not(.program-card-stat) { grid-row: 3; }
+  .catalog-programs .program-link:has(.program-spotlight) :is(.program-platform, .program-card-stat) { grid-row: 4; }
+  .catalog-programs .program-link__text > .program-spotlight { margin: 0; padding-block: 3px; }
+  .catalog-programs .program-link__arrow { position: absolute; right: 12px; top: 12px; width: 24px; height: 24px; font-size: 18px; }
+}
+@media (max-width: 360px) { .catalog-programs .program-link { min-height: 262px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

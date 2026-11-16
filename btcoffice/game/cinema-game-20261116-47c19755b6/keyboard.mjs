@@ -1,12 +1,26 @@
 // Godot listens on its canvas, while the cinema uses sibling DOM controls.
 // Only a text editing caret owns game keys; chart tools and video controls do not.
 const GAME_KEYS=new Set(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ShiftRight','KeyE','KeyP','KeyR','F3']);
+const MOVEMENT_KEYS=new Set(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ShiftRight']);
+let activeKeyboard=null;
+// Every room transition returns key-up delivery to the persistent game canvas.
+// Keep physical movement held; only typing, focus loss, or a real release stops it.
+export function prepareRoomTransition(){
+  const canvas=document.getElementById('canvas');
+  if(!canvas||document.hidden||hasTextCaret(document.activeElement)){activeKeyboard?.release();return;}
+  canvas.focus({preventScroll:true});
+  if(activeKeyboard){
+    for(const data of activeKeyboard.held.values())if(!MOVEMENT_KEYS.has(data.code))activeKeyboard.dispatch('keyup',{...data,repeat:false});
+    activeKeyboard.held.clear();
+  }
+}
 export function hasTextCaret(node){
   if(!node||node.disabled||node.readOnly)return false;
   return node.isContentEditable||node.tagName==='TEXTAREA'||node.tagName==='INPUT'&&['text','search','url','email','tel','password','number'].includes(node.type);
 }
 export class GameKeyboard {
   constructor(room){
+    activeKeyboard=this;
     this.room=room;this.held=new Map();this.forwarding=false;this.viewportLocked=false;
     this.key=e=>this.route(e);
     this.focus=()=>{this.refresh();clearTimeout(this.focusTimer);this.focusTimer=setTimeout(()=>this.refresh(),0);};
@@ -58,6 +72,7 @@ export class GameKeyboard {
   }
   destroy(){
     this.release();clearTimeout(this.focusTimer);clearTimeout(this.frameTimer);
+    if(activeKeyboard===this)activeKeyboard=null;
     document.removeEventListener('keydown',this.key);document.removeEventListener('keyup',this.key);
     document.removeEventListener('focusin',this.focus);document.removeEventListener('focusout',this.focus);
     window.removeEventListener('blur',this.blur);window.removeEventListener('focus',this.focus);
