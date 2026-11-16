@@ -94,13 +94,102 @@ body {
 <meta name="apple-mobile-web-app-capable" content="yes">
 
 <meta name="theme-color" content="#101914">
-	<meta name="btc-build-id" content="20261116-47c19755b6">
+	<meta name="btc-build-id" content="20261116-b291f9a130">
 <title>Bulls &amp; Bears</title>
 <meta name="apple-mobile-web-app-title" content="Bulls &amp; Bears">
+<script>
+/* Run before the engine creates AudioContexts. Browser lifecycle events must
+ * silence audio even while Godot's render loop is suspended in the background. */
+(() => {
+  if (window.btcAudio) return;
+  const contexts = new Map(), patched = new Map();
+  let pageAway = false, frozen = false, musicActive = false;
+  const hidden = () => document.hidden || pageAway || frozen;
+  let lastHidden = hidden();
+  function audioSession() {
+    try {
+      const session = navigator.audioSession, type = musicActive && !hidden() ? 'playback' : 'auto';
+      if (session && session.type !== type) session.type = type;
+    } catch (_) {}
+  }
+  function suspend(context, record) {
+    if (record.pausing || context.state === 'suspended' || context.state === 'closed') return;
+    record.pausing = record.native.suspend.call(context).catch(() => {}).finally(() => {
+      record.pausing = null;
+      if (!hidden() && record.wanted) resume(context, record);
+    });
+  }
+  function resume(context, record) {
+    if (hidden() || !record.wanted || context.state === 'closed' || context.state === 'running') return Promise.resolve();
+    if (record.pausing) return record.pausing;
+    return record.native.resume.call(context).catch(() => {});
+  }
+  function track(context, native) {
+    if (contexts.has(context)) return contexts.get(context);
+    const record = { native, wanted: context.state === 'running', pausing: null };
+    contexts.set(context, record);
+    context.addEventListener('statechange', () => {
+      if (context.state === 'closed') contexts.delete(context);
+      else if (hidden() && context.state === 'running') suspend(context, record);
+    });
+    if (hidden()) suspend(context, record);
+    return record;
+  }
+  for (const name of ['AudioContext', 'webkitAudioContext']) {
+    const Constructor = window[name];
+    if (!Constructor) continue;
+    let native = patched.get(Constructor.prototype);
+    if (!native) {
+      native = { resume: Constructor.prototype.resume, suspend: Constructor.prototype.suspend };
+      patched.set(Constructor.prototype, native);
+      Constructor.prototype.resume = function () {
+        const record = track(this, native);
+        record.wanted = true;
+        if (hidden()) { suspend(this, record); return Promise.resolve(); }
+        return resume(this, record);
+      };
+      Constructor.prototype.suspend = function () {
+        track(this, native).wanted = false;
+        return native.suspend.call(this);
+      };
+    }
+    window[name] = new Proxy(Constructor, { construct(target, args, newTarget) {
+      const context = Reflect.construct(target, args, newTarget);
+      track(context, native);
+      return context;
+    } });
+  }
+  function sync() {
+    audioSession();
+    for (const [context, record] of contexts) {
+      if (hidden()) suspend(context, record);
+      else if (record.wanted) resume(context, record);
+    }
+    if (lastHidden !== hidden()) {
+      lastHidden = hidden();
+      window.dispatchEvent(new CustomEvent('btc-audio-visibility', { detail: { hidden: lastHidden } }));
+    }
+  }
+  window.btcAudio = Object.freeze({
+    get hidden() { return hidden(); },
+    setMusicActive(value) { musicActive = !!value; audioSession(); }
+  });
+  document.addEventListener('visibilitychange', sync);
+  window.addEventListener('pagehide', () => { pageAway = true; sync(); });
+  window.addEventListener('pageshow', () => { pageAway = false; frozen = false; sync(); });
+  document.addEventListener('freeze', () => { frozen = true; sync(); });
+  document.addEventListener('resume', () => { frozen = false; sync(); });
+  // A Safari interruption may require another gesture to resume. Only resume
+  // contexts that the engine wanted running; this never changes Music OFF.
+  document.addEventListener('pointerdown', () => { if (!hidden()) sync(); }, { passive: true });
+  document.addEventListener('keydown', () => { if (!hidden()) sync(); });
+})();
+
+</script>
 <script src="./config.js"></script>
-<link rel="stylesheet" href="./cinema-game-20261116-47c19755b6/cinema.css">
-<script src="./cinema-game-20261116-47c19755b6/lightweight-charts.js"></script>
-<script type="module" src="./cinema-game-20261116-47c19755b6/cinema.mjs"></script>
+<link rel="stylesheet" href="./cinema-game-20261116-b291f9a130/cinema.css">
+<script src="./cinema-game-20261116-b291f9a130/lightweight-charts.js"></script>
+<script type="module" src="./cinema-game-20261116-b291f9a130/cinema.mjs"></script>
 </head>
 	<body>
 		<canvas id="canvas">
@@ -112,14 +201,14 @@ body {
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261116-47c19755b6.png" alt="">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261116-b291f9a130.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="./game-20261116-47c19755b6.js"></script>
+		<script src="./game-20261116-b291f9a130.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261116-47c19755b6","experimentalVK":false,"fileSizes":{"game-20261116-47c19755b6.pck":40010360,"game-20261116-47c19755b6.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261116-b291f9a130","experimentalVK":false,"fileSizes":{"game-20261116-b291f9a130.pck":40019752,"game-20261116-b291f9a130.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

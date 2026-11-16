@@ -1,11 +1,11 @@
 // Per-browser history. Only acknowledged edits to the author's own drawings enter it.
 export class DrawingHistory {
-  constructor({send,owns,allowed,notice,changed=()=>{}}){Object.assign(this,{send,owns,allowed,notice,changed});this.undoStack=[];this.redoStack=[];this.pending=new Map();this.records=new Map();}
+  constructor({send,owns,allowed,notice,canDelete=()=>false,changed=()=>{}}){Object.assign(this,{send,owns,allowed,notice,canDelete,changed});this.undoStack=[];this.redoStack=[];this.pending=new Map();this.records=new Map();}
   get canUndo(){return this.allowed()&&!this.pending.size&&!!this.undoStack.length;}
   get canRedo(){return this.allowed()&&!this.pending.size&&!!this.redoStack.length;}
   reset(){this.undoStack=[];this.redoStack=[];this.pending.clear();this.records.clear();this.changed();}
   submit(type,fields={},before=null){
-    if(!this.allowed())return false;
+    if(!this.allowed()&&!(type==='drawing_delete'&&this.canDelete(before)))return false;
     if([...this.pending.values()].some(p=>p.mode!=='edit')){this.notice('되돌리기가 적용된 뒤 다시 그려 주세요.');return false;}
     return this.dispatch(type,fields,{mode:'edit',before:before?structuredClone(before):null,record:before?this.records.get(before.id):null});
   }
