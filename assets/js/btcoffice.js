@@ -1,4 +1,11 @@
 (() => {
+  const install=document.querySelector('[data-app-install]');
+  if(install){
+    const ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),android=/Android/.test(navigator.userAgent),lang=document.documentElement.lang;
+    const labels={ko:ios?'아이폰 설치 안내':android?'안드로이드 앱 다운로드':'앱 다운로드',en:ios?'Install on iPhone':android?'Download Android app':'Download app',ja:ios?'iPhoneのインストール案内':android?'Androidアプリをダウンロード':'アプリをダウンロード'};
+    install.textContent=labels[lang]||labels.en;
+    if(android)install.href='https://github.com/Duki-Programming/duki-programming.github.io/releases/download/chart-club-v1.0.8/Chart-Club-1.0.8-Android.apk';
+  }
   document.querySelectorAll('[data-gallery]').forEach(gallery => {
     const buttons=[...gallery.querySelectorAll('[data-panel]')];
     const select=button=>buttons.forEach(tab=>{const selected=tab===button;tab.setAttribute('aria-pressed',String(selected));document.getElementById(tab.dataset.panel).hidden=!selected;});

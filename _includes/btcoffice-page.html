@@ -14,7 +14,7 @@
       <h1 id="bb-title">Chart Club<span lang="ko">차트 클럽</span></h1>
       <p class="bb-tagline">{{ copy.headline }}</p><p class="bb-intro">{{ copy.intro }}</p>
       {% include program-stats.html %}
-      <div class="bb-actions"><a class="bb-play" data-lounge-entry href="{{ '/btcoffice/game/' | relative_url }}"><span class="bb-play-label">{{ copy.play }}</span></a><a class="bb-explore" href="#spaces">{{ copy.explore }} <span aria-hidden="true">↓</span></a></div>
+      <div class="bb-actions"><a class="bb-play" data-lounge-entry href="{{ '/btcoffice/game/' | relative_url }}"><span class="bb-play-label">{{ copy.play }}</span></a><a class="bb-install" data-app-install href="{{ '/btcoffice/app/' | relative_url }}{% if page.lang != 'ko' %}{{ page.lang }}/{% endif %}">{% if page.lang == 'ko' %}앱 다운로드{% elsif page.lang == 'ja' %}アプリをダウンロード{% else %}Download app{% endif %}</a><a class="bb-explore" href="#spaces">{{ copy.explore }} <span aria-hidden="true">↓</span></a></div>
       <p class="bb-availability">{{ copy.availability }}</p>
     </div>
     <button class="bb-motion" type="button" data-pause-label="{{ copy.pause }}" data-resume-label="{{ copy.resume }}" aria-label="{{ copy.pause }}" aria-pressed="false" hidden><span aria-hidden="true">Ⅱ</span></button>

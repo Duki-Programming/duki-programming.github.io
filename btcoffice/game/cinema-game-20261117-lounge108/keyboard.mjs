@@ -34,9 +34,9 @@ export class GameKeyboard {
   }
   owns(node){return !!node&&(this.room.root?.contains(node)||!!node.closest?.('.cinema-dialog,.price-scale-menu'));}
   refresh(){
-    const node=document.activeElement,typing=hasTextCaret(node),captured=this.room.active&&this.owns(node)&&typing;
-    if(typing)this.release();
-    const soft=captured&&matchMedia('(pointer:coarse)').matches;
+    const node=document.activeElement,typing=hasTextCaret(node),modal=!!document.querySelector('dialog[open]'),captured=this.room.active&&(modal||this.owns(node)&&typing);
+    if(typing||modal)this.release();
+    const soft=typing&&captured&&matchMedia('(pointer:coarse)').matches;
     if(soft&&!this.viewportLocked)window.btcGameViewport?.lock('cinema');
     else if(!soft&&this.viewportLocked)window.btcGameViewport?.release('cinema');
     this.viewportLocked=soft;this.room.inputFocused=captured;
@@ -57,7 +57,7 @@ export class GameKeyboard {
       if(e.target!==canvas){this.dispatch('keyup',data);e.preventDefault();}
       return;
     }
-    if(e.isComposing||e.ctrlKey||e.metaKey||e.altKey||this.room.gameTyping||hasTextCaret(e.target)||hasTextCaret(document.activeElement))return;
+    if(e.isComposing||e.ctrlKey||e.metaKey||e.altKey||this.room.gameTyping||document.querySelector('dialog[open]')||hasTextCaret(e.target)||hasTextCaret(document.activeElement))return;
     if(down)this.held.set(e.code,data);
     if(e.target!==canvas){this.dispatch(e.type,data);e.preventDefault();}
   }
