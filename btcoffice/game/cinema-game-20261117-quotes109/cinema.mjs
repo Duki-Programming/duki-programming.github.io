@@ -194,11 +194,11 @@ class Cinema {
       if(holes.some(r=>r[0]<bounds[2]&&r[2]>bounds[0]&&r[1]<bounds[3]&&r[3]>bounds[1]))holes.push(bounds);
       else path+='M'+hand.map(p=>p.join(' ')).join('L')+'Z';
     }
-    if(hiddenChanged)this.youtube.visibility();
+    if(hiddenChanged){this.youtube.visibility();document.body.classList.toggle('btc-game-popup-open',!!g.hidden);if(g.hidden){this.closeDialog();this.drawings.closeDialog();}}
     for(const [ax,ay,bx,by] of unionRectangles(holes))path+=`M${ax} ${ay}V${by}H${bx}V${ay}Z`;
     this.root.style.clipPath=`path(evenodd, "${path}")`;
   }
-  destroy(){this.active=false;window.removeEventListener('pagehide',this.pagehide);window.removeEventListener('pageshow',this.visibility);this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
+  destroy(){document.body.classList.remove('btc-game-popup-open');this.active=false;window.removeEventListener('pagehide',this.pagehide);window.removeEventListener('pageshow',this.visibility);this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
 }
 window.BTCCinema=new Cinema();
 window.btcPrepareRoomTransition=prepareRoomTransition;
