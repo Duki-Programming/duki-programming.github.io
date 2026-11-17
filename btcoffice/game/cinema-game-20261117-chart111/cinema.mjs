@@ -142,7 +142,8 @@ class Cinema {
     this.chart.setData(data.bars||[],reset||!before.length,incremental);
     if(structural&&this.state.view&&!this.viewDirty)this.applyView(this.state.view);
     if(this.host&&!this.state.view&&this.chart.bars.length>=20)this.markViewDirty();
-    if(this.state.instrument.venue==='yahoo')this.source.textContent='Yahoo Finance · 지연 시세'+(data.checked?' · '+new Date(data.checked).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}):' · 조회 중');
+    if(this.state.instrument.venue==='yahoo')this.source.textContent='Yahoo Finance';
+    this.source.title=window.btcStreetClock?.stamp(data.checked || (this.state.instrument.venue==='yahoo'?0:Date.now())) || '';
     requestAnimationFrame(()=>{this.suppressView=false;this.drawings.render();});
   }
   markViewDirty(){if(this.host)this.viewDirty=true;}
