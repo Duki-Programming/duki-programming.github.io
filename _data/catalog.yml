@@ -8,7 +8,7 @@ ko:
   creator: 개발·제작
   programs:
     - id: btcoffice
-      title: Bulls & Bears
+      title: 차트 클럽
       description: "수익으로 증명하는 사람들의 휴식처. 포지션 공유, 명예의 전당, 함께 보는 차트와 유튜브를 픽셀 라운지에서."
       platform: "브라우저 게임 · PC / 모바일"
       icon: /assets/programs/btcoffice/icon-office-worker-small.png
@@ -63,7 +63,7 @@ en:
   creator: Created by
   programs:
     - id: btcoffice
-      title: Bulls & Bears
+      title: Chart Club
       description: "A trader’s place to unwind. Share positions, explore public rankings, and enjoy charts and YouTube together."
       platform: "Browser game · Desktop / mobile"
       icon: /assets/programs/btcoffice/icon-office-worker-small.png
@@ -119,7 +119,7 @@ ja:
   creator: 開発・制作
   programs:
   - id: btcoffice
-    title: Bulls & Bears
+    title: Chart Club
     description: "利益で実力を示す人たちの憩いの場。ポジション共有、殿堂、チャートとYouTubeを楽しむピクセルラウンジ。"
     platform: "ブラウザゲーム · PC / モバイル"
     icon: /assets/programs/btcoffice/icon-office-worker-small.png

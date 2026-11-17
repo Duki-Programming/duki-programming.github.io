@@ -117,9 +117,9 @@ Doro 페이지는 갈무리·스타더스트 픽셀 라벨, 역할 선택 미리
 
 ### 웹 통계 표시
 
-BTC Office 소개 페이지도 앱 이름 줄의 오른쪽에 공통 방문자 수·누적 다운로드 표시를 사용합니다. 한국어·영어·일본어와 밝은/어두운 테마에서 같은 공개 통계 API를 읽습니다.
+Chart Club 소개 페이지도 앱 이름 줄의 오른쪽에 공통 방문자 수·누적 다운로드 표시를 사용합니다. 한국어·영어·일본어와 밝은/어두운 테마에서 같은 공개 통계 API를 읽습니다.
 
-카탈로그의 `icon`은 아이폰·Apple Watch 알리미에서도 자동으로 읽으므로 PNG 등 네이티브 이미지 형식을 사용합니다. ChatVille은 최씨의 `Trader_South_0.png`, BTC Office는 회사원_small의 `CH01_South_Standing_Base.png` 원본을 픽셀 보간 없이 256px PNG로 내보내 카탈로그·페이지 favicon·알리미에 함께 사용합니다. 새 앱도 카탈로그에 PNG 아이콘 경로를 등록하면 알리미를 다시 빌드하지 않고 다음 통계 갱신 때 반영됩니다.
+카탈로그의 `icon`은 아이폰·Apple Watch 알리미에서도 자동으로 읽으므로 PNG 등 네이티브 이미지 형식을 사용합니다. ChatVille은 최씨의 `Trader_South_0.png`, Chart Club는 회사원_small의 `CH01_South_Standing_Base.png` 원본을 픽셀 보간 없이 256px PNG로 내보내 카탈로그·페이지 favicon·알리미에 함께 사용합니다. 새 앱도 카탈로그에 PNG 아이콘 경로를 등록하면 알리미를 다시 빌드하지 않고 다음 통계 갱신 때 반영됩니다.
 
 카탈로그 카드에는 누적 다운로드를, 모든 `product` 레이아웃의 큰 앱 이름 줄 오른쪽 끝에는 방문자 수·누적 다운로드를 작게 표시합니다. 좁은 화면에서는 오른쪽 정렬을 유지하며 자연스럽게 줄을 바꿉니다. 공통 레이아웃의 통계 템플릿과 `assets/js/program-stats.js`가 프로그램 ID에 맞게 자동 연결하므로 새 프로그램별 표시 코드를 작성하지 않습니다. 공통 스타일은 `assets/css/program-stats.css`입니다.
 
@@ -169,7 +169,7 @@ node --test tests/*.test.mjs
 워치 화면은 백스페이스·스페이스·엔터 순서이며, 백스페이스와 스페이스의 길게 누르기 반복 동작을 세 언어로 안내합니다. 화면 이미지를 갱신할 때에는 `_includes/talkey-page.html`의 이미지 버전 값도 변경해 이전 캡처가 캐시에 남지 않도록 합니다.
 
 
-### BTC Office
+### Chart Club
 
 - 소개: `https://duki-programming.github.io/btcoffice/` (한국어), `/btcoffice/en/`, `/btcoffice/ja/`.
 - 게임 실행: `https://duki-programming.github.io/btcoffice/game/`. `btcoffice/game/`의 Godot Web 산출물은 front matter 없이 그대로 게시합니다. 재빌드할 때는 BTC 프로젝트의 `tools/export_web.py`와 `tools/package_pages.py`를 사용합니다.
@@ -183,7 +183,7 @@ All six product introductions, the catalog, and the privacy pages share the
 sun/moon switch in the upper-right header. `appearance-controls.html` renders
 localized controls; `theme-bootstrap.html` restores `duki-site-theme` before
 styles paint, and `site-theme.js` persists the choice across pages and tabs.
-Blocked browser storage still allows switching within the page. BTC Office
+Blocked browser storage still allows switching within the page. Chart Club
 keeps its cream/mint light default; other pages retain their dark default until
 a choice is saved. `assets/css/site-theme.css` contains theme surfaces and text
 colors; screenshots, character artwork, and device previews keep their colors.

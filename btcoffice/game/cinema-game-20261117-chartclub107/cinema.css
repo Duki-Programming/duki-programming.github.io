@@ -2,19 +2,6 @@
 .cinema-permission-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cinema-dialog .cinema-permission-toggle{flex:none;min-width:86px;border:2px solid #61758a;border-radius:7px;box-shadow:0 3px 0 #080e16;transition:background .1s,transform .1s}
 .cinema-dialog .cinema-permission-toggle[aria-pressed=true]{background:#e8a750;border-color:#efbd74;color:#171a20;box-shadow:inset 0 2px 4px #80531c80;transform:translateY(2px)}
-.cinema-host-controls{position:fixed;z-index:22;display:flex;flex-direction:column;align-items:center;gap:12px;pointer-events:auto;font-family:inherit}
-.cinema-host-controls[hidden],.cinema-host-controls button[hidden]{display:none!important}
-.cinema-host-controls button{cursor:pointer;color:#181411;font:800 14px/1.3 sans-serif;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.cinema-raise-hand{width:100%;max-width:100px;background:none;border:0;padding:0;filter:drop-shadow(0 4px 0 #0009);transition:transform .12s}
-.cinema-raise-hand svg{display:block;width:100%;overflow:visible}
-.cinema-raise-hand path{fill:#ffac43;stroke:#171411;stroke-width:4.5;stroke-linejoin:round}
-.cinema-raise-hand text{font:bold 19px sans-serif;fill:#171411;text-anchor:middle}
-.cinema-raise-hand[aria-pressed=true] path{fill:#ff6950}
-.cinema-raise-hand:active{transform:translateY(3px);filter:none}
-.cinema-raise-hand:focus-visible{outline:3px solid #fff2aa;outline-offset:4px;border-radius:18px}
-.cinema-host-controls .cinema-appoint{width:100%;min-height:46px;padding:10px 3px;background:#ffac43;border:3px solid #171411;border-radius:9px;box-shadow:0 3px 0 #0009;font-size:clamp(10px,1.2vw,14px)}
-.cinema-appoint:active{background:#ffd06e;transform:translateY(2px);box-shadow:none}
-.cinema-host-controls .cinema-appoint{word-break:keep-all}
 .cinema-dialog.cinema-host-dialog{box-sizing:border-box;width:min(390px,calc(100vw - 24px));max-width:calc(100vw - 24px)}
 .cinema-host-dialog .cinema-host-request-list{width:100%}
 .cinema-host-request-list{display:flex;flex-direction:column;gap:10px;max-height:50vh;overflow:auto;margin:20px 0;width:min(330px,100%)}
