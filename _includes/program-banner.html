@@ -23,9 +23,12 @@
       <span class="program-cube-lift">
         <span class="program-cube">
           {% assign cube_faces = 'front,right,back,left,top,bottom' | split: ',' %}
+          {% assign cube_icon_set = site.data.program_cube_icons[banner_program.id] %}
           {% for face in cube_faces %}
+          {% assign face_icon = banner_program.icon %}
+          {% if cube_icon_set %}{% assign face_icon = cube_icon_set[face] %}{% endif %}
           <span class="program-cube__face program-cube__face--{{ face }}">
-            {% if banner_program.icon %}<img src="{{ banner_program.icon | relative_url }}" alt="" width="40" height="40" loading="lazy">{% else %}{{ banner_program.title | slice: 0 | escape }}{% endif %}
+            {% if face_icon %}<img src="{{ face_icon | relative_url }}" alt="" width="40" height="40" loading="lazy">{% elsif cube_icon_set == nil %}{{ banner_program.title | slice: 0 | escape }}{% endif %}
           </span>
           {% endfor %}
         </span>

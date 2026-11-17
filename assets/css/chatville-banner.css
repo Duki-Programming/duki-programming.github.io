@@ -8,6 +8,7 @@
 .program-link--chatville .program-foil--texture { opacity:.55; }
 .program-link--chatville .program-foil--glare { opacity:.6; background:linear-gradient(112deg,transparent 15%,#f3e7b518 38%,#e8ffd43b 45%,#e2d4ff1a 52%,transparent 72%); background-size:240% 100%; animation:cv-banner-sheen 8s ease-in-out 2; }
 .program-link--chatville .program-cube { animation-play-state:running; animation-duration:22s; }
+.program-link--chatville .program-cube__face img { width:90%; height:90%; image-rendering:pixelated; }
 .program-link--chatville .program-link__text>strong { color:var(--p-ink); text-shadow:0 0 16px color-mix(in srgb,var(--p-edge) 27%,transparent),2px 2px var(--p-mid); }
 .program-link--chatville .program-link__text>.program-spotlight { align-self:flex-start; padding:3px 8px; margin-bottom:4px; border:1px solid color-mix(in srgb,var(--p-edge) 40%,transparent); border-radius:3px; color:var(--p-ink); background:color-mix(in srgb,var(--p-edge) 5%,transparent); font-size:10px; letter-spacing:.05em; }
 .program-link--chatville>.program-twinkles { position:absolute; inset:0; z-index:3; pointer-events:none; }
