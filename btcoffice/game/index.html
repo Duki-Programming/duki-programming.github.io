@@ -186,17 +186,19 @@ body {
 
 </script>
 <script src="./config.js"></script>
-<link rel="stylesheet" href="./cinema-game-20261117-chartclub107/cinema.css">
-<script src="./cinema-game-20261117-chartclub107/lightweight-charts.js"></script>
-<script type="module" src="./cinema-game-20261117-chartclub107/cinema.mjs"></script>
+<link rel="stylesheet" href="./cinema-game-20261117-lounge108/cinema.css">
+<script src="./cinema-game-20261117-lounge108/lightweight-charts.js"></script>
+<script type="module" src="./cinema-game-20261117-lounge108/cinema.mjs"></script>
 <link rel="manifest" href="./manifest.webmanifest">
-<link rel="apple-touch-icon" href="./app-game-20261117-chartclub107/icon-180.png">
+<link rel="apple-touch-icon" href="./app-game-20261117-lounge108/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <script>
 (() => {
   let promptEvent, registration, dialog;
-  const standalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const standalone = () => !!window.ChartClubNative || matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const android = /Android/.test(navigator.userAgent);
+  const label = ios ? '아이폰에 설치' : android ? '안드로이드에 설치' : '앱 설치';
   addEventListener('beforeinstallprompt', event => { event.preventDefault(); promptEvent = event; });
   addEventListener('appinstalled', () => { promptEvent = null; dialog?.close(); });
   function instructions() {
@@ -205,9 +207,9 @@ body {
       dialog.id = 'btc-install-help';
       dialog.setAttribute('aria-labelledby', 'btc-install-title');
       dialog.style.cssText = 'box-sizing:border-box;max-width:calc(100vw - 32px);width:360px;padding:24px;color:#edf3f8;background:#18251f;border:1px solid #b7c9ba;border-radius:16px;font:16px/1.65 system-ui,sans-serif;box-shadow:0 16px 64px #0008';
-      const title = document.createElement('h2'); title.id = 'btc-install-title'; title.textContent = '홈 화면에 설치'; title.style.cssText = 'margin:0 0 12px;font-size:20px';
+      const title = document.createElement('h2'); title.id = 'btc-install-title'; title.textContent = label; title.style.cssText = 'margin:0 0 12px;font-size:20px';
       const steps = document.createElement('p');
-      steps.textContent = ios ? 'Safari에서 공유 버튼을 누르고 “홈 화면에 추가”를 선택하세요. “웹 앱으로 열기”가 보이면 켠 뒤 추가하면 됩니다.' : '브라우저 메뉴에서 “앱 설치” 또는 “홈 화면에 추가”를 선택하세요.';
+      steps.textContent = ios ? 'Safari에서 공유 버튼을 누르고 “홈 화면에 추가”를 선택하세요. “웹 앱으로 열기”가 보이면 켠 뒤 추가하면 됩니다.' : android ? 'Chrome에서 메뉴(⋮)를 누르고 “앱 설치” 또는 “홈 화면에 추가”를 선택하세요.' : '브라우저 주소창의 설치 아이콘이나 메뉴의 “앱 설치”를 선택하세요.';
       const note = document.createElement('p'); note.textContent = '설치 후 홈 화면 아이콘으로 실행할 수 있어요. 실시간 시세와 채팅에는 인터넷 연결이 필요합니다.'; note.style.color = '#c7d2df';
       const close = document.createElement('button'); close.textContent = '확인'; close.style.cssText = 'width:100%;min-height:44px;border:1px solid #c8ad68;border-radius:8px;background:#e8bb4c;color:#20291f;font:inherit;font-weight:600';
       close.addEventListener('click', () => dialog.close());
@@ -217,6 +219,7 @@ body {
     if (!dialog.open) dialog.showModal();
   }
   window.btcInstall = Object.freeze({
+    label: () => label,
     available: () => !standalone() && isSecureContext,
     async show() {
       if (standalone()) return;
@@ -226,6 +229,11 @@ body {
       } else instructions();
     },
     ready() {
+      const url = new URL(location.href);
+      if (url.searchParams.get('install') === '1' && !standalone()) {
+        url.searchParams.delete('install'); history.replaceState(null, '', url);
+        instructions();
+      }
       if (registration || !('serviceWorker' in navigator) || !isSecureContext) return;
       // The engine has finished its first download before we fill the app cache.
       registration = navigator.serviceWorker.register('./sw.js', {scope:'./', updateViaCache:'none'}).catch(error => {
@@ -247,14 +255,14 @@ body {
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261117-chartclub107.png" alt="">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261117-lounge108.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="./game-20261117-chartclub107.js"></script>
+		<script src="./game-20261117-lounge108.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261117-chartclub107","experimentalVK":false,"fileSizes":{"game-20261117-chartclub107.pck":40034920,"game-20261117-chartclub107.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261117-lounge108","experimentalVK":false,"fileSizes":{"game-20261117-lounge108.pck":40039144,"game-20261117-lounge108.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

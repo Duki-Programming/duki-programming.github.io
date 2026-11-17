@@ -1,0 +1,45 @@
+ko:
+  title: 차트 클럽 앱 설치
+  intro: 휴대폰에서도 차트 클럽을 편하게 열어보세요.
+  back: 차트 클럽으로
+  android: Android
+  android_body: Android 8 이상에서 APK를 내려받아 설치하세요. 다운로드한 브라우저의 앱 설치 허용을 켜고, Android System WebView를 최신 버전으로 업데이트해 주세요.
+  android_button: Android APK 다운로드
+  ios: iPhone · iPad
+  ios_body: Safari에서 게임을 연 뒤 공유 메뉴의 ‘홈 화면에 추가’를 누르면 앱처럼 사용할 수 있어요.
+  ios_button: 홈 화면에 추가하기
+  dev: 등록된 iPhone용 개발 버전
+  dev_body: 이 IPA는 개발자 계정에 미리 등록된 기기에서만 설치할 수 있습니다. Mac의 Xcode 또는 Apple Configurator로 설치하고, iPhone의 개발자 모드를 켜 주세요. Safari에서 파일을 누르는 것만으로 설치되지는 않습니다. 일반 사용자용 TestFlight · App Store 버전은 아직 배포하지 않았습니다.
+  dev_button: 개발용 IPA 다운로드
+  network: 첫 실행에는 게임 파일을 내려받으므로 인터넷 연결이 필요합니다. 설치만으로 첫 로딩이 빨라지는 것은 아니며, 이후 실행에서는 저장된 캐시를 활용합니다.
+  releases: GitHub 릴리스 · 버전 1.0.8
+en:
+  title: Install Chart Club
+  intro: Open Chart Club from your phone's Home Screen.
+  back: Back to Chart Club
+  android: Android
+  android_body: Download the APK on Android 8 or newer. Allow app installation from the browser you used, and keep Android System WebView up to date.
+  android_button: Download Android APK
+  ios: iPhone · iPad
+  ios_body: Open the game in Safari, then choose Add to Home Screen from the Share menu.
+  ios_button: Add to Home Screen
+  dev: Development build for registered iPhones
+  dev_body: This IPA only installs on devices already registered with the developer account. Use Xcode or Apple Configurator on a Mac and enable Developer Mode on the iPhone. Tapping the downloaded file in Safari does not install it. A public TestFlight or App Store version is not available yet.
+  dev_button: Download development IPA
+  network: The first launch downloads game files and needs an internet connection. Installing the app alone does not speed up the first load; later launches can reuse cached files.
+  releases: GitHub release · Version 1.0.8
+ja:
+  title: Chart Clubをインストール
+  intro: スマートフォンのホーム画面からChart Clubを開けます。
+  back: Chart Clubに戻る
+  android: Android
+  android_body: Android 8以降でAPKをダウンロードしてください。使用したブラウザからのアプリのインストールを許可し、Android System WebViewを最新版に更新してください。
+  android_button: Android APKをダウンロード
+  ios: iPhone · iPad
+  ios_body: Safariでゲームを開き、共有メニューから「ホーム画面に追加」を選んでください。
+  ios_button: ホーム画面に追加
+  dev: 登録済みiPhone向けの開発版
+  dev_body: このIPAは開発者アカウントに事前登録された端末にのみインストールできます。MacのXcodeまたはApple Configuratorを使い、iPhoneのデベロッパモードを有効にしてください。Safariでファイルをタップするだけではインストールできません。一般向けTestFlight・App Store版はまだ公開していません。
+  dev_button: 開発用IPAをダウンロード
+  network: 初回起動時はゲームファイルをダウンロードするため、インターネット接続が必要です。インストールだけで初回の読み込みが速くなるわけではありませんが、次回以降はキャッシュを利用できます。
+  releases: GitHubリリース · バージョン1.0.8
