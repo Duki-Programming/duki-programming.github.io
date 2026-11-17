@@ -44,14 +44,14 @@
     "floor_images": [
       {
         "id": "trading",
-        "file": "office-20261116.webp",
+        "file": "office-chart-club-20261117.png",
         "label": "트레이딩룸",
         "alt": "캐릭터의 포지션과 중앙 바닥 전광판이 있는 현재 1층 트레이딩룸",
         "caption": "1F 트레이딩룸 · 실제 게임 화면, 소개용 예시 포지션"
       },
       {
         "id": "busy",
-        "file": "busy-office-20261116.webp",
+        "file": "busy-office-chart-club-20261117.png",
         "label": "오피스",
         "alt": "밤에도 불이 켜진 책상들과 움직이는 캐릭터가 있는 오피스",
         "caption": "왼쪽 오피스 · 잠깐 들러 쉬어갈 수 있는 공간"
@@ -216,14 +216,14 @@
     "floor_images": [
       {
         "id": "trading",
-        "file": "office-20261116.webp",
+        "file": "office-chart-club-20261117.png",
         "label": "Trading floor",
         "alt": "Current trading floor with character positions and a central ranking display",
         "caption": "1F trading floor · Actual game UI with example positions"
       },
       {
         "id": "busy",
-        "file": "busy-office-20261116.webp",
+        "file": "busy-office-chart-club-20261117.png",
         "label": "Office",
         "alt": "A late-night office with lit desks and pixel characters",
         "caption": "The office next door · A place to take a break"
@@ -388,14 +388,14 @@
     "floor_images": [
       {
         "id": "trading",
-        "file": "office-20261116.webp",
+        "file": "office-chart-club-20261117.png",
         "label": "トレーディングルーム",
         "alt": "ポジション表示と中央ランキング画面がある現在の1階",
         "caption": "1F · 実際のゲームUIと紹介用のサンプルポジション"
       },
       {
         "id": "busy",
-        "file": "busy-office-20261116.webp",
+        "file": "busy-office-chart-club-20261117.png",
         "label": "オフィス",
         "alt": "夜でも明かりの灯るデスクとピクセルキャラクター",
         "caption": "隣のオフィス · ひと息つける場所"
