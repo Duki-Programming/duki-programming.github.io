@@ -4,3 +4,9 @@ chatville:
   back: /assets/programs/chatville/icon-trader-house.png
   left: /assets/programs/chatville/icon-doyun-house.png
   top: /assets/programs/chatville/icon-minjae-house.png
+btcoffice:
+  front: /assets/programs/btcoffice/cube-office-worker-small.png
+  right: /assets/programs/btcoffice/cube-unemployed-small.png
+  back: /assets/programs/btcoffice/cube-vacationer-small.png
+  left: /assets/programs/btcoffice/cube-wizard-small.png
+  top: /assets/programs/btcoffice/cube-joseon-soldier-small.png
