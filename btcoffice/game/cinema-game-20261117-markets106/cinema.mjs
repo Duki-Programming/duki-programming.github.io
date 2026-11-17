@@ -26,10 +26,9 @@ class Cinema {
     this.interval.onchange=()=>this.send({type:'configure',instrument:this.state.instrument,interval:this.interval.value});
     this.permissions=new DrawingPermissions(this);
     this.hostRequests=new HostRequests(this);
-    this.policy=element('button','함께 그리기',{hidden:true});this.policy.onclick=()=>this.permissions.open();
     this.deleteButton=element('button','지우기',{title:'선택한 내 도형 지우기',disabled:true});
     this.clearButton=element('button','전체 지우기',{title:'현재 차트의 도형 전체 지우기 · 방장 전용',hidden:true});
-    this.role=element('span','연결 중…',{className:'cinema-role'});header.append(this.symbol,this.searchButton,this.interval,this.policy,this.deleteButton,this.clearButton,this.role);
+    this.role=element('span','연결 중…',{className:'cinema-role'});header.append(this.symbol,this.searchButton,this.interval,this.deleteButton,this.clearButton,this.role);
     const body=element('div',null,{className:'cinema-body'}),toolbar=element('nav',null,{className:'cinema-tools'});toolbar.setAttribute('aria-label','차트 그리기 도구');
     this.plot=element('div',null,{className:'cinema-plot'});this.container=element('div',null,{className:'cinema-chart'});this.plot.append(this.container);body.append(toolbar,this.plot);
     const footer=element('div',null,{className:'cinema-footer'});this.hint=element('span','',{className:'cinema-hint'});this.source=element('span','Binance · 데이터 연결 중',{className:'cinema-source'});footer.append(this.hint,this.source);
@@ -68,7 +67,7 @@ class Cinema {
     this.socket=new WebSocket(this.origin.replace(/^http/,'ws')+'/api/cinema');
     const socket=this.socket;
     this.socket.onmessage=e=>{if(e.data==='pong')return;try{this.receive(JSON.parse(e.data));}catch(error){console.error('Cinema packet',error);this.notice('차트를 표시하지 못했습니다. 다시 연결합니다.');}};
-    this.socket.onclose=event=>{if(!this.active||this.socket!==socket)return;this.resumeSeat=this.me?.seat??this.resumeSeat;this.state=null;this.policy.hidden=true;this.permissions.update();this.hostRequests.update();this.configureControls();this.drawings.history.reset();this.drawings.permission();this.feed?.pause(true);this.emit();
+    this.socket.onclose=event=>{if(!this.active||this.socket!==socket)return;this.resumeSeat=this.me?.seat??this.resumeSeat;this.state=null;this.permissions.update();this.hostRequests.update();this.configureControls();this.drawings.history.reset();this.drawings.permission();this.feed?.pause(true);this.emit();
       if([1008,4001,4401,4403].includes(event.code)){this.notice('로그인이 변경되거나 연결이 종료되었습니다. 다시 입장해 주세요.');return;}
       if(this.backgrounded||document.hidden)return;
       this.notice('연결이 끊어져 다시 연결합니다.');this.reconnect=setTimeout(()=>this.connect(),Math.min(15000,1000*2**this.retries++));};
@@ -100,10 +99,10 @@ class Cinema {
   }
   applyRoom(data){
     const changed=this.state?.context!==data.context,wasHost=this.host;this.state=data;
-    this.root.classList.toggle('guest',!this.host);this.searchButton.disabled=this.interval.disabled=this.policy.disabled=!this.host;
+    this.root.classList.toggle('guest',!this.host);this.searchButton.disabled=this.interval.disabled=!this.host;
     this.interval.value=data.interval;this.interval.querySelector('option[value="4h"]').disabled=data.instrument.venue==='yahoo';
     this.symbol.textContent=data.instrument.symbol+(data.instrument.venue==='futures'?'.P':'');this.symbol.title=data.instrument.label;
-    this.policy.hidden=!this.host;this.permissions.update();this.hostRequests.update();
+    this.permissions.update();this.hostRequests.update();
     const host=data.participants.find(p=>p.id===data.host);this.role.textContent=`${this.host?'★ 내가 방장':'방장 '+(host?.nickname||'없음')} · ${data.participants.length}명`;
     if(changed){
       this.pens.reset();
@@ -178,19 +177,28 @@ class Cinema {
     };input.oninput=()=>{clearTimeout(this.searchTimer);this.searchTimer=setTimeout(lookup,350);};dialog.append(input,results,actions);dialog.showModal();input.focus();lookup();
   }
   nominate(){this.permissions.open();}
+  requestHost(){this.hostRequests.request();}
+  reviewHostRequests(){this.hostRequests.open();}
   geometry(json){if(!this.active||!this.root)return;if(json===this.lastGeometry)return;this.lastGeometry=json;const g=typeof json==='string'?JSON.parse(json):json,canvas=document.getElementById('canvas'),r=canvas.getBoundingClientRect(),sx=r.width/g.viewport[0],sy=r.height/g.viewport[1];
     this.gameTyping=g.typing===true;
     const [x,y,w,h]=g.rect;Object.assign(this.root.style,{left:r.left+x*sx+'px',top:r.top+y*sy+'px',width:w*sx+'px',height:h*sy+'px'});const hiddenChanged=this.root.hidden!==!!g.hidden;this.root.hidden=!!g.hidden;
-    this.hostRequests.geometry(g,r,sx,sy);
     // Godot draws its menus into one canvas. Cut holes in the DOM chart so movable chat,
     // market windows and touch controls always remain above it without moving the map.
     const width=w*sx,height=h*sy;let path=`M0 0H${width}V${height}H0Z`;
     const holes=(g.holes||[]).map(rect=>[Math.max(0,(rect[0]-x)*sx),Math.max(0,(rect[1]-y)*sy),Math.min(width,(rect[0]+rect[2]-x)*sx),Math.min(height,(rect[1]+rect[3]-y)*sy)]).filter(r=>r[2]>r[0]&&r[3]>r[1]);
+    // Reveal only the palm silhouette, so its transparent corners keep the chart.
+    // A menu crossing it uses the rectangle union to avoid an even-odd overlap.
+    const hand=(g.hand||[]).map(([px,py])=>[(px-x)*sx,(py-y)*sy]);
+    if(hand.length){
+      const bounds=[Math.min(...hand.map(p=>p[0])),Math.min(...hand.map(p=>p[1])),Math.max(...hand.map(p=>p[0])),Math.max(...hand.map(p=>p[1]))];
+      if(holes.some(r=>r[0]<bounds[2]&&r[2]>bounds[0]&&r[1]<bounds[3]&&r[3]>bounds[1]))holes.push(bounds);
+      else path+='M'+hand.map(p=>p.join(' ')).join('L')+'Z';
+    }
     if(hiddenChanged)this.youtube.visibility();
     for(const [ax,ay,bx,by] of unionRectangles(holes))path+=`M${ax} ${ay}V${by}H${bx}V${ay}Z`;
     this.root.style.clipPath=`path(evenodd, "${path}")`;
   }
-  destroy(){this.active=false;this.hostRequests?.destroy();window.removeEventListener('pagehide',this.pagehide);window.removeEventListener('pageshow',this.visibility);this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
+  destroy(){this.active=false;window.removeEventListener('pagehide',this.pagehide);window.removeEventListener('pageshow',this.visibility);this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
 }
 window.BTCCinema=new Cinema();
 window.btcPrepareRoomTransition=prepareRoomTransition;
