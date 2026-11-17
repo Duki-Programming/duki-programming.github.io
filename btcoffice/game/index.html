@@ -94,7 +94,7 @@ body {
 <meta name="apple-mobile-web-app-capable" content="yes">
 
 <meta name="theme-color" content="#101914">
-	<meta name="btc-build-id" content="20261116-0c4d507214">
+	<meta name="btc-build-id" content="20261116-95c7839cf2">
 <title>Bulls &amp; Bears</title>
 <meta name="apple-mobile-web-app-title" content="Bulls &amp; Bears">
 <script>
@@ -187,9 +187,9 @@ body {
 
 </script>
 <script src="./config.js"></script>
-<link rel="stylesheet" href="./cinema-game-20261116-0c4d507214/cinema.css">
-<script src="./cinema-game-20261116-0c4d507214/lightweight-charts.js"></script>
-<script type="module" src="./cinema-game-20261116-0c4d507214/cinema.mjs"></script>
+<link rel="stylesheet" href="./cinema-game-20261117-hud105/cinema.css">
+<script src="./cinema-game-20261117-hud105/lightweight-charts.js"></script>
+<script type="module" src="./cinema-game-20261117-hud105/cinema.mjs"></script>
 </head>
 	<body>
 		<canvas id="canvas">
@@ -201,14 +201,14 @@ body {
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261116-0c4d507214.png" alt="">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="./game-20261117-hud105.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="./game-20261116-0c4d507214.js"></script>
+		<script src="./game-20261117-hud105.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261116-0c4d507214","experimentalVK":false,"fileSizes":{"game-20261116-0c4d507214.pck":40026008,"game-20261116-0c4d507214.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261117-hud105","experimentalVK":false,"fileSizes":{"game-20261117-hud105.pck":40031960,"game-20261117-hud105.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -434,7 +434,7 @@ const engine = new Engine(GODOT_CONFIG);
 // The persistent canvas needs focus cleanup in every room, including rooms
 // without the cinema's DOM keyboard router. A missing OS keyup must not move it.
 (() => {
-  const keys=new Map(Object.entries({KeyW:'w',KeyA:'a',KeyS:'s',KeyD:'d',ArrowUp:'ArrowUp',ArrowDown:'ArrowDown',ArrowLeft:'ArrowLeft',ArrowRight:'ArrowRight',ShiftLeft:'Shift',ShiftRight:'Shift',KeyE:'e',KeyP:'p',KeyR:'r',F3:'F3'}));
+  const keys=new Map(Object.entries({KeyW:'w',KeyA:'a',KeyS:'s',KeyD:'d',ArrowUp:'ArrowUp',ArrowDown:'ArrowDown',ArrowLeft:'ArrowLeft',ArrowRight:'ArrowRight',ShiftLeft:'Shift',ShiftRight:'Shift',KeyE:'e',KeyP:'p',KeyR:'r'}));
   const held=new Set();
   const bridge={callback:null,focused:!document.hidden&&document.hasFocus()};
   const editing=target=>target?.isContentEditable||/^(INPUT|TEXTAREA)$/.test(target?.tagName||'');
@@ -444,8 +444,18 @@ const engine = new Engine(GODOT_CONFIG);
     for(const [code,key] of keys)canvas?.dispatchEvent(new KeyboardEvent('keyup',{code,key,bubbles:true,cancelable:true}));
   }
   function focus(value){bridge.focused=value;release();bridge.callback?.(value);}
+  // Godot prevents the default for canvas key events. Stop browser shortcuts
+  // before they reach that listener, without cancelling the browser's action.
+  const browserKey=event=>event.ctrlKey||event.metaKey||event.altKey||/^(Control|Meta|Alt)(Left|Right)$/.test(event.code)||['F1','F3','F5','F6','F7','F10','F11','F12'].includes(event.code);
+  for(const type of ['keydown','keyup'])window.addEventListener(type,event=>{
+    if(event.target!==document.getElementById('canvas')||!browserKey(event))return;
+    if(type==='keydown'){
+      release();window.BTCCinema?.keyboard?.release();bridge.callback?.(bridge.focused);
+    }
+    event.stopImmediatePropagation();
+  },true);
   document.addEventListener('keydown',event=>{
-    if(!keys.has(event.code)||editing(event.target))return;
+    if(browserKey(event)||!keys.has(event.code)||editing(event.target))return;
     if(!bridge.focused||document.hidden||event.repeat&&!held.has(event.code)){
       event.preventDefault();event.stopImmediatePropagation();return;
     }

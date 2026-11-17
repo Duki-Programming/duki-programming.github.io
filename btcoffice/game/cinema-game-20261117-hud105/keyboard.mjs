@@ -1,6 +1,6 @@
 // Godot listens on its canvas, while the cinema uses sibling DOM controls.
 // Only a text editing caret owns game keys; chart tools and video controls do not.
-const GAME_KEYS=new Set(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ShiftRight','KeyE','KeyP','KeyR','F3']);
+const GAME_KEYS=new Set(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ShiftRight','KeyE','KeyP','KeyR']);
 const MOVEMENT_KEYS=new Set(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','ShiftLeft','ShiftRight']);
 let activeKeyboard=null;
 // Every room transition returns key-up delivery to the persistent game canvas.
