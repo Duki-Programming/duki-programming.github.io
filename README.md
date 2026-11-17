@@ -119,7 +119,7 @@ Doro 페이지는 갈무리·스타더스트 픽셀 라벨, 역할 선택 미리
 
 Chart Club 소개 페이지도 앱 이름 줄의 오른쪽에 공통 방문자 수·누적 다운로드 표시를 사용합니다. 한국어·영어·일본어와 밝은/어두운 테마에서 같은 공개 통계 API를 읽습니다.
 
-카탈로그의 `icon`은 아이폰·Apple Watch 알리미에서도 자동으로 읽으므로 PNG 등 네이티브 이미지 형식을 사용합니다. ChatVille은 최씨의 `Trader_South_0.png`, Chart Club는 회사원_small의 `CH01_South_Standing_Base.png` 원본을 픽셀 보간 없이 256px PNG로 내보내 카탈로그·페이지 favicon·알리미에 함께 사용합니다. 새 앱도 카탈로그에 PNG 아이콘 경로를 등록하면 알리미를 다시 빌드하지 않고 다음 통계 갱신 때 반영됩니다.
+카탈로그의 `icon`은 아이폰·Apple Watch 알리미에서도 자동으로 읽으므로 PNG 등 네이티브 이미지 형식을 사용합니다. ChatVille은 오마카세 집의 `Omakase_Exterior_256.png` 256px 원본, Chart Club는 회사원_small의 `CH01_South_Standing_Base.png`를 픽셀 보간 없이 256px PNG로 내보내 카탈로그·페이지 favicon·알리미에 함께 사용합니다. 새 앱도 카탈로그에 PNG 아이콘 경로를 등록하면 알리미를 다시 빌드하지 않고 다음 통계 갱신 때 반영됩니다.
 
 카탈로그 카드에는 누적 다운로드를, 모든 `product` 레이아웃의 큰 앱 이름 줄 오른쪽 끝에는 방문자 수·누적 다운로드를 작게 표시합니다. 좁은 화면에서는 오른쪽 정렬을 유지하며 자연스럽게 줄을 바꿉니다. 공통 레이아웃의 통계 템플릿과 `assets/js/program-stats.js`가 프로그램 ID에 맞게 자동 연결하므로 새 프로그램별 표시 코드를 작성하지 않습니다. 공통 스타일은 `assets/css/program-stats.css`입니다.
 

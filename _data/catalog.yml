@@ -19,7 +19,7 @@ ko:
       title: "ChatVille"
       description: "일곱 주민이 일하고 쉬며 오늘을 기억하는 AI 픽셀 마을. 카페와 강변을 걷고, 이웃에게 말을 걸어보세요."
       platform: "PC 게임 · 개발 중"
-      icon: "/assets/programs/chatville/icon-choi.png"
+      icon: "/assets/programs/chatville/icon-omakase.png"
       url: "/chatville/"
       featured: true
 
@@ -74,7 +74,7 @@ en:
       title: "ChatVille"
       description: "An AI pixel village where seven neighbors work, rest, and remember. Explore the café and riverside, and say hello."
       platform: "PC game · In development"
-      icon: "/assets/programs/chatville/icon-choi.png"
+      icon: "/assets/programs/chatville/icon-omakase.png"
       url: "/chatville/en/"
       featured: true
 
@@ -130,7 +130,7 @@ ja:
     title: "ChatVille"
     description: "7人の住民が働き、休み、今日を覚えていくAIピクセルの村。カフェや川辺を歩き、話しかけてみましょう。"
     platform: "PCゲーム · 開発中"
-    icon: "/assets/programs/chatville/icon-choi.png"
+    icon: "/assets/programs/chatville/icon-omakase.png"
     url: "/chatville/ja/"
     featured: true
 
