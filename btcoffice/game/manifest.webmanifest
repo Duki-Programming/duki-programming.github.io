@@ -10,13 +10,13 @@
   "theme_color": "#101b17",
   "icons": [
     {
-      "src": "./app-game-20261117-quotes109/icon-192.png",
+      "src": "./app-game-20261117-markets110/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./app-game-20261117-quotes109/icon-512.png",
+      "src": "./app-game-20261117-markets110/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
