@@ -1,4 +1,5 @@
-import {TOOLS,POINTS,DEFAULT_STYLE,geometry,logicalToTime,timeToLogical,pitchforkStyle} from './drawing-geometry.mjs';
+import {TOOLS,POINTS,ONE_POINT,DEFAULT_STYLE,geometry,logicalToTime,timeToLogical,pitchforkStyle} from './drawing-geometry.mjs';
+import {ToolMenu,LINE_TOOLS} from './tool-menu.mjs';
 import {DrawingHistory} from './drawing-history.mjs';
 const NS='http://www.w3.org/2000/svg';
 const TOUCH_SLOP=8; // CSS pixels, independent of device pixel ratio and chart zoom.
@@ -14,8 +15,8 @@ export class Drawings {
     this.selectionDelete.innerHTML='<svg width="17" height="18" viewBox="0 0 20 22" aria-hidden="true"><path d="M3 6h14M7 6V3h6v3M5 6l1 14h8l1-14M8 9v8m4-8v8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     this.selectionDelete.onclick=()=>{const d=this.items.get(this.selected);if(d)this.remove(d);};this.selectionActions.append(this.selectionEdit,this.selectionDelete);plot.append(this.selectionActions);
     this.buttons=new Map();
-    const icons={select:'↖',trend:'╱',ray:'↗',channel:'⫽',pitchfork:'⑂',fibonacci:'☷',brush:'✎'};
-    for(const [tool,title] of Object.entries(TOOLS)){const button=element('button',icons[tool],{title,'ariaLabel':title});button.dataset.tool=tool;button.onclick=()=>this.setTool(tool);toolbar.append(button);this.buttons.set(tool,button);}
+    const icons={select:'↖',fibonacci:'☷',brush:'✎'};
+    for(const [tool,title] of Object.entries(TOOLS)){if(LINE_TOOLS.includes(tool)){if(!this.menu)this.menu=new ToolMenu(this,toolbar,room.favorites);continue;}const button=element('button',icons[tool],{title,'ariaLabel':title});button.dataset.tool=tool;button.onclick=()=>this.setTool(tool);toolbar.append(button);this.buttons.set(tool,button);}
     this.history=new DrawingHistory({send:data=>room.send(data),owns:d=>this.owns(d),allowed:()=>this.allowed,canDelete:d=>this.selectable(d),notice:text=>room.notice(text),changed:()=>this.historyButtons()});
     this.undoButton=element('button','↶',{title:'내 그리기 실행 취소 · Ctrl+Z / ⌘Z',ariaLabel:'내 그리기 실행 취소'});this.undoButton.onclick=()=>this.undo();toolbar.append(this.undoButton);
     this.redoButton=element('button','↷',{title:'내 그리기 다시 실행 · Ctrl+Shift+Z / ⌘⇧Z',ariaLabel:'내 그리기 다시 실행'});this.redoButton.onclick=()=>this.undo(true);toolbar.append(this.redoButton);
@@ -27,11 +28,12 @@ export class Drawings {
     };
     this.svg.addEventListener('pointerdown',e=>this.down(e));this.svg.addEventListener('pointermove',e=>this.move(e));this.svg.addEventListener('pointerup',e=>this.up(e));
     this.svg.addEventListener('pointercancel',e=>this.cancelPointer(e));
+    this.svg.addEventListener('pointerleave',()=>{if(!this.anchors.length&&!this.drag&&POINTS[this.tool]===1&&this.preview){this.preview=null;this.render();}});
     this.svg.addEventListener('lostpointercapture',e=>this.cancelPointer(e));
     this.svg.addEventListener('dblclick',e=>{if(this.tool!=='select')return;const d=this.items.get(e.target.closest('[data-drawing]')?.dataset.drawing||this.selected);if(d){e.preventDefault();e.stopPropagation();this.cancel();this.settings(d);}});
     this.key=e=>{if(!this.room.active||this.room.root.hidden||this.room.gameTyping||this.room.state?.media?.tab!=='chart'||e.isComposing||e.target.closest?.('input,select,textarea,dialog,[contenteditable="true"]')||document.querySelector('dialog[open]'))return;
       if((e.ctrlKey||e.metaKey)&&!e.altKey&&e.key.toLowerCase()==='z'){e.preventDefault();e.stopPropagation();if(!e.repeat)this.undo(e.shiftKey);return;}
-      if(e.key==='Escape'){this.cancel();this.setTool('select');this.selected=null;this.render();}
+      if(e.key==='Escape'){this.menu?.close();this.cancel();this.setTool('select');this.selected=null;this.render();}
       if(['Delete','Backspace'].includes(e.key)&&this.selected){e.preventDefault();const d=this.items.get(this.selected);if(d)this.remove(d);}
     };document.addEventListener('keydown',this.key,true);
     this.setTool('select');this.historyButtons();
@@ -42,11 +44,11 @@ export class Drawings {
   selectable(d){return !!d&&!!this.room.state&&(this.room.host||this.owns(d));}
   editable(d){return !!d&&this.allowed&&(this.room.host||this.owns(d));}
   setTool(tool){if(tool!=='select'&&!this.allowed){this.room.notice('방장이 그리기 권한을 허용해야 합니다.');return;}this.cancel();this.tool=tool;
-    this.svg.classList.toggle('drawing-active',tool!=='select');for(const [name,b] of this.buttons)b.classList.toggle('active',name===tool);
+    this.svg.classList.toggle('drawing-active',tool!=='select');for(const [name,b] of this.buttons)b.classList.toggle('active',name===tool);this.menu?.sync();
     this.room.hint.textContent=tool==='select'?'도형 더블클릭 · 설정  /  모서리 점 · 이동':tool==='brush'?'드래그해서 그리기 · Esc 취소':`${TOOLS[tool]} · ${POINTS[tool]}점 · 탭: 점 찍기 / 드래그: 위치 확인`;
     this.room.pens?.toolChanged();
   }
-  permission(){for(const [key,b] of this.buttons)b.disabled=key!=='select'&&!this.allowed;this.clearButton.hidden=this.clearButton.disabled=!this.room.host;if(!this.selectable(this.items.get(this.selected))){this.selected=null;this.closeDialog();this.cancel();}if(!this.allowed){this.setTool('select');this.closeDialog();}this.historyButtons();this.render();}
+  permission(){for(const [key,b] of this.buttons)b.disabled=key!=='select'&&!this.allowed;this.menu?.sync();this.clearButton.hidden=this.clearButton.disabled=!this.room.host;if(!this.selectable(this.items.get(this.selected))){this.selected=null;this.closeDialog();this.cancel();}if(!this.allowed){this.setTool('select');this.closeDialog();}this.historyButtons();this.render();}
   historyButtons(){if(this.undoButton)this.undoButton.disabled=!this.history.canUndo;if(this.redoButton)this.redoButton.disabled=!this.history.canRedo;}
   undo(redo=false){this.cancel();this.history.travel(redo);}
   replace(items){this.items=new Map(items.map(d=>[d.id,d]));this.history.reset();this.selected=null;this.cancel();this.render();}
@@ -62,7 +64,7 @@ export class Drawings {
     this.primitive={paneViews:()=>views};series.attachPrimitive(this.primitive);
   }
   unbindSeries(){if(this.boundSeries&&this.primitive)try{this.boundSeries.detachPrimitive(this.primitive);}catch{/* The previous chart may already be disposed. */}this.boundSeries=null;this.primitive=null;}
-  step(){return ({'1m':60,'5m':300,'15m':900,'30m':1800,'1h':3600,'4h':14400,'1d':86400,'1w':604800})[this.room.state?.interval]||900;}
+  step(){return ({'1m':60,'5m':300,'15m':900,'30m':1800,'1h':3600,'2h':7200,'4h':14400,'1d':86400,'1w':604800})[this.room.state?.interval]||900;}
   point(e){const r=this.svg.getBoundingClientRect(),chart=this.room.chart;if(!chart?.candles||!chart.bars.length)return null;
     const x=e.clientX-r.left,y=e.clientY-r.top;if(x<0||x>this.width||y<0||y>this.height)return null;
     const logical=chart.chart.timeScale().coordinateToLogical(x),price=chart.candles.coordinateToPrice(y),time=logicalToTime(logical,chart.bars,this.step());
@@ -102,14 +104,15 @@ export class Drawings {
   move(e){if(this.pointerId!==undefined&&e.pointerId!==this.pointerId)return;
     if(this.touch&&Math.hypot(e.clientX-this.touch.x,e.clientY-this.touch.y)>TOUCH_SLOP)this.touch.moved=true;
     const p=this.point(e);if(!p)return;
-    if(this.touch){e.preventDefault();e.stopPropagation();this.aimAt(p);return;}
-    if(this.drag?.brush){if(this.anchors.length<200)this.anchors.push(p);this.preview={...this.style,kind:'brush',points:[...this.anchors]};this.render();return;}
+    if(this.touch){e.preventDefault();e.stopPropagation();this.aim=p;if(this.anchors.length)this.preview={...this.style,kind:this.tool,points:[...this.anchors,p]};this.requestRender();return;}
+    if(this.drag?.brush){const last=this.project(this.anchors.at(-1)),now=this.project(p);if(this.anchors.length<200&&(!last||!now||Math.hypot(now.x-last.x,now.y-last.y)>=3))this.anchors.push(p);this.preview={...this.style,kind:'brush',points:[...this.anchors]};this.requestRender();return;}
     if(this.drag){const d=structuredClone(this.drag.original),delta={time:p.time-this.drag.point.time,price:p.price-this.drag.point.price};
       this.drag.moved=Math.abs(delta.time)>.1||Math.abs(delta.price)>.000001;
       if(this.drag.handle!==null)d.points[this.drag.handle]=p;else d.points=d.points.map(a=>({time:a.time+delta.time,price:a.price+delta.price}));
-      this.preview=d;this.render();return;
+      this.preview=d;this.requestRender();return;
     }
-    if(this.anchors.length){this.preview={...this.style,kind:this.tool,points:[...this.anchors,p]};this.render();}
+    if(this.anchors.length){this.preview={...this.style,kind:this.tool,points:[...this.anchors,p]};this.requestRender();}
+    else if(POINTS[this.tool]===1){this.preview={...this.style,kind:this.tool,points:[p]};this.requestRender();}
   }
   up(e){if(e.pointerId!==this.pointerId)return;
     if(this.touch){
@@ -128,34 +131,49 @@ export class Drawings {
     if(this.touch){this.touch=null;this.releasePointer();this.render();}else this.cancel();
   }
   cancel(){this.touch=null;this.aim=null;this.releasePointer();this.anchors=[];this.preview=null;this.drag=null;this.render();}
+  // Pointer moves only redraw the live layer (preview + aim), once per frame.
+  // Committed drawings are rebuilt only when they or the viewport change.
+  requestRender(){if(this.frame)return;this.frame=requestAnimationFrame(()=>{this.frame=0;this.render();});}
   render(){
     const selected=this.items.get(this.selected);this.deleteButton.disabled=!this.selectable(selected);this.editButton.disabled=!this.editable(selected);
     if(this.room.state?.media?.tab==='youtube'||document.hidden)return;
     const chart=this.room.chart;if(!chart?.chart||!chart.candles)return;
     const pane=chart.chart.panes()[0];this.width=Math.max(0,this.plot.clientWidth-chart.chart.priceScale('right').width());this.height=pane.getHeight();
-    const scale=chart.chart.priceScale('right'),signature=JSON.stringify([this.width,this.height,this.selected,this.preview,this.aim,this.allowed,this.room.host,[...this.items.values()].map(d=>[d.id,d.revision]),chart.firstTime,chart.chart.timeScale().getVisibleLogicalRange(),scale.getVisibleRange(),scale.options().mode,scale.options().invertScale]);
-    if(signature===this.renderSignature)return;this.renderSignature=signature;
-    this.svg.style.width=this.width+'px';this.svg.style.height=this.height+'px';this.svg.setAttribute('viewBox',`0 0 ${this.width} ${this.height}`);this.svg.replaceChildren();
-    this.selectionActions.hidden=true;
-    const items=[...this.items.values()].filter(d=>!this.preview?.id||d.id!==this.preview.id);if(this.preview)items.push(this.preview);
-    for(const d of items){const selectable=!!d.id&&this.selectable(d),g=svg('g',{'data-drawing':d.id||'',stroke:d.color,'stroke-width':d.width,fill:'none','stroke-linecap':'round'}),shape=geometry(d,p=>this.project(p),this.width,this.height);
-      const dash=d.dash==='dashed'?'8 6':d.dash==='dotted'?'2 5':'';
-      for(const fill of shape.fills)g.append(svg('polygon',{points:fill.points.map(p=>`${p.x},${p.y}`).join(' '),fill:fill.color,'fill-opacity':fill.opacity,stroke:'none','pointer-events':selectable?'visiblePainted':'none'}));
-      for(const line of shape.lines){const [a,b]=line.points,attrs={x1:a.x,y1:a.y,x2:b.x,y2:b.y};
-        if(selectable)g.append(svg('line',{...attrs,stroke:'transparent','stroke-width':12,'pointer-events':'stroke'}));
-        g.append(svg('line',{...attrs,stroke:line.color||d.color,'stroke-dasharray':line.muted?'3 5':dash,opacity:line.muted?.5:1,'pointer-events':'none'}));
-      }
-      for(const label of shape.labels){const text=svg('text',{x:label.x,y:label.y,fill:label.color||d.color,stroke:'none','font-size':12,'text-anchor':label.align||'start','pointer-events':'none'});text.textContent=label.text;g.append(text);}
-      if(this.selected===d.id&&this.editable(d) || !d.id)shape.points.forEach((p,i)=>{if(d.kind==='brush'&&i!==0&&i!==shape.points.length-1)return;g.append(svg('circle',{cx:p.x,cy:p.y,r:5,fill:'#10171f',stroke:d.color,'stroke-width':2,'data-handle':i,'pointer-events':d.id?'all':'none'}));});
-      this.svg.append(g);
-      if(selectable&&this.selected===d.id&&shape.points.length){const xs=shape.points.map(p=>p.x),ys=shape.points.map(p=>p.y),right=Math.max(...xs),top=Math.min(...ys);
-        if(right>=0&&Math.min(...xs)<=this.width&&Math.max(...ys)>=0&&top<=this.height){this.selectionActions.hidden=false;this.selectionDelete.hidden=false;this.selectionEdit.hidden=!this.editable(d);Object.assign(this.selectionActions.style,{left:Math.max(4,Math.min(this.width-82,right+10))+'px',top:Math.max(4,Math.min(this.height-36,top))+'px'});}
-      }
+    const scale=chart.chart.priceScale('right'),signature=JSON.stringify([this.width,this.height,this.selected,this.preview?.id||null,this.allowed,this.room.host,[...this.items.values()].map(d=>[d.id,d.revision]),chart.firstTime,chart.chart.timeScale().getVisibleLogicalRange(),scale.getVisibleRange(),scale.options().mode,scale.options().invertScale]);
+    if(signature!==this.renderSignature){
+      this.renderSignature=signature;this.liveSignature=null;
+      this.svg.style.width=this.width+'px';this.svg.style.height=this.height+'px';this.svg.setAttribute('viewBox',`0 0 ${this.width} ${this.height}`);
+      this.itemsLayer=svg('g');this.liveLayer=svg('g');this.svg.replaceChildren(this.itemsLayer,this.liveLayer);
+      this.selectionActions.hidden=true;
+      for(const d of this.items.values())if(!this.preview?.id||d.id!==this.preview.id)this.drawShape(d,this.itemsLayer);
     }
+    const live=JSON.stringify([this.preview,this.aim]);if(live===this.liveSignature)return;this.liveSignature=live;
+    this.liveLayer.replaceChildren();if(this.preview)this.drawShape(this.preview,this.liveLayer);
     if(this.aim){const p=this.project(this.aim);if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y)){
       const cross=svg('g',{class:'cinema-touch-aim',stroke:this.style.color,'stroke-width':1,fill:'none','pointer-events':'none'});
-      cross.append(svg('path',{d:`M0 ${p.y}H${this.width}M${p.x} 0V${this.height}`,'stroke-dasharray':'4 4',opacity:.7}),svg('circle',{cx:p.x,cy:p.y,r:8,'stroke-width':2}));this.svg.append(cross);
+      cross.append(svg('path',{d:`M0 ${p.y}H${this.width}M${p.x} 0V${this.height}`,'stroke-dasharray':'4 4',opacity:.7}),svg('circle',{cx:p.x,cy:p.y,r:8,'stroke-width':2}));this.liveLayer.append(cross);
     }}
+  }
+  drawShape(d,parent){
+    const selectable=!!d.id&&this.selectable(d),g=svg('g',{'data-drawing':d.id||'',stroke:d.color,'stroke-width':d.width,fill:'none','stroke-linecap':'round'}),shape=geometry(d,p=>this.project(p),this.width,this.height);
+    const dash=d.dash==='dashed'?'8 6':d.dash==='dotted'?'2 5':'';
+    for(const fill of shape.fills)g.append(svg('polygon',{points:fill.points.map(p=>`${p.x},${p.y}`).join(' '),fill:fill.color,'fill-opacity':fill.opacity,stroke:'none','pointer-events':selectable?'visiblePainted':'none'}));
+    if(d.kind==='brush'&&shape.lines.length){
+      // One polyline instead of hundreds of segments keeps freehand strokes smooth.
+      const pts=[shape.lines[0].points[0],...shape.lines.map(l=>l.points[1])].map(p=>`${p.x},${p.y}`).join(' ');
+      if(selectable)g.append(svg('polyline',{points:pts,stroke:'transparent','stroke-width':12,'pointer-events':'stroke'}));
+      g.append(svg('polyline',{points:pts,'stroke-dasharray':dash,'stroke-linejoin':'round','pointer-events':'none'}));
+    }
+    else for(const line of shape.lines){const [a,b]=line.points,attrs={x1:a.x,y1:a.y,x2:b.x,y2:b.y};
+      if(selectable)g.append(svg('line',{...attrs,stroke:'transparent','stroke-width':12,'pointer-events':'stroke'}));
+      g.append(svg('line',{...attrs,stroke:line.color||d.color,'stroke-dasharray':line.muted?'3 5':dash,opacity:line.muted?.5:1,'pointer-events':'none'}));
+    }
+    for(const label of shape.labels){const text=svg('text',{x:label.x,y:label.y,fill:label.color||d.color,stroke:'none','font-size':12,'text-anchor':label.align||'start','pointer-events':'none'});text.textContent=label.text;g.append(text);}
+    if(this.selected===d.id&&this.editable(d) || !d.id)shape.points.forEach((p,i)=>{if(d.kind==='brush'&&i!==0&&i!==shape.points.length-1)return;g.append(svg('circle',{cx:p.x,cy:p.y,r:5,fill:'#10171f',stroke:d.color,'stroke-width':2,'data-handle':i,'pointer-events':d.id?'all':'none'}));});
+    parent.append(g);
+    if(selectable&&this.selected===d.id&&shape.points.length){const xs=shape.points.map(p=>p.x),ys=shape.points.map(p=>p.y),right=Math.max(...xs),top=Math.min(...ys);
+      if(right>=0&&Math.min(...xs)<=this.width&&Math.max(...ys)>=0&&top<=this.height){this.selectionActions.hidden=false;this.selectionDelete.hidden=false;this.selectionEdit.hidden=!this.editable(d);Object.assign(this.selectionActions.style,{left:Math.max(4,Math.min(this.width-82,right+10))+'px',top:Math.max(4,Math.min(this.height-36,top))+'px'});}
+    }
   }
   closeDialog(){this.dialog?.remove();this.dialog=null;this.room.capture(false);}
   pitchforkSettings(form,d,canEdit){
@@ -194,7 +212,7 @@ export class Drawings {
     field('color',d.kind==='pitchfork'?'미디언 색상':'색상',element('input',null,{type:'color',value:d.color}));
     const width=field('width','두께',element('select'));for(let i=1;i<=6;i++)width.add(new Option(i+' px',i));width.value=d.width;
     const dash=field('dash','선 스타일',element('select'));for(const [id,name] of [['solid','실선'],['dashed','파선'],['dotted','점선']])dash.add(new Option(name,id));dash.value=d.dash;
-    for(const [name,label] of [['extend_left',d.kind==='pitchfork'?'확장선':'시작점 반대 방향으로 연장'],['extend_right','끝점 방향으로 연장'],['locked','위치 잠금']]){if(d.kind==='fibonacci'&&name!=='locked'||d.kind==='pitchfork'&&name==='extend_right')continue;field(name,label,element('input',null,{type:'checkbox',checked:d[name]}));}
+    for(const [name,label] of [['extend_left',d.kind==='pitchfork'?'확장선':'시작점 반대 방향으로 연장'],['extend_right','끝점 방향으로 연장'],['locked','위치 잠금']]){if(d.kind==='fibonacci'&&name!=='locked'||d.kind==='pitchfork'&&name==='extend_right'||(d.kind==='extended'||ONE_POINT.includes(d.kind))&&name!=='locked')continue;field(name,label,element('input',null,{type:'checkbox',checked:d[name]}));}
     if(d.kind==='fibonacci')field('levels','비율 (0~1, 쉼표로 구분)',element('input',null,{type:'text',value:d.levels.join(', '),maxLength:160}));
     const readPitchfork=d.kind==='pitchfork'?this.pitchforkSettings(form,d,canEdit):null;
     const controls=element('div',null,{className:'dialog-actions'}),remove=element('button','삭제',{type:'button'}),cancel=element('button','닫기',{type:'button'}),save=element('button','저장',{type:'submit'});
@@ -207,5 +225,5 @@ export class Drawings {
       this.history.submit('drawing_update',{id:d.id,revision:d.revision,drawing:{...d,color:fields.color.value,width:+fields.width.value,dash:fields.dash.value,extend_left:fields.extend_left?.checked||false,extend_right:d.kind==='pitchfork'||fields.extend_right?.checked||false,locked:fields.locked.checked,levels,...(pitchfork?{pitchfork}:{})}},d);this.closeDialog();};
     dialog.addEventListener('cancel',()=>this.closeDialog());dialog.append(form);document.body.append(dialog);this.dialog=dialog;this.room.capture(true);dialog.showModal();
   }
-  destroy(){this.cancel();this.closeDialog();this.unbindSeries();this.history.reset();this.items.clear();this.selected=null;document.removeEventListener('keydown',this.key,true);this.selectionActions.remove();this.svg.remove();}
+  destroy(){cancelAnimationFrame(this.frame);this.frame=0;this.menu?.destroy();this.cancel();this.closeDialog();this.unbindSeries();this.history.reset();this.items.clear();this.selected=null;document.removeEventListener('keydown',this.key,true);this.selectionActions.remove();this.svg.remove();}
 }

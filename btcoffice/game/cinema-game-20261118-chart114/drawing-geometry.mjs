@@ -1,6 +1,8 @@
 // Price/time anchors are independent of browser size and chart zoom.
-export const TOOLS = { select:'선택 / 이동', trend:'추세선', ray:'레이', channel:'평행 채널', pitchfork:'피치포크', fibonacci:'피보나치 되돌림', brush:'자유 그리기' };
-export const POINTS = {trend:2,ray:2,channel:3,pitchfork:3,fibonacci:2};
+export const TOOLS = { select:'선택 / 이동', trend:'추세선', ray:'레이', extended:'연장선', hline:'수평선', hray:'수평 레이', vline:'수직선', crossline:'크로스라인', channel:'평행 채널', pitchfork:'피치포크', fibonacci:'피보나치 되돌림', brush:'자유 그리기' };
+export const POINTS = {trend:2,ray:2,extended:2,hline:1,hray:1,vline:1,crossline:1,channel:3,pitchfork:3,fibonacci:2};
+// Single-anchor lines span the viewport; their extend flags do not apply.
+export const ONE_POINT = ['hline','hray','vline','crossline'];
 export const DEFAULT_STYLE = {color:'#e9c46a',width:2,dash:'solid',extend_left:false,extend_right:false,levels:[0,.236,.382,.5,.618,.786,1],locked:false};
 export const PITCHFORK_LEVELS = [[.25,'#957039'],[.382,'#527954'],[.5,'#009688'],[.618,'#009688'],[.75,'#167b80'],[1,'#2962ff'],[1.5,'#793b88'],[1.75,'#a33658'],[2,'#955558']];
 export function pitchforkStyle(d) {
@@ -71,9 +73,17 @@ export function geometry(d,project,width,height) {
   if(p.some(v=>!v||!Number.isFinite(v.x)||!Number.isFinite(v.y)))return {lines,labels,fills,points:[]};
   const line=(a,b,left=d.extend_left,right=d.extend_right,muted=false)=>{const clipped=clipLine(a,b,width,height,left,right);if(clipped)lines.push({points:clipped,muted});return clipped;};
   if(d.kind==='brush'){for(let i=1;i<p.length;i++)line(p[i-1],p[i],false,false);}
+  else if(ONE_POINT.includes(d.kind)&&p.length) {
+    const a=p[0];
+    if(d.kind!=='vline'){line(a,{x:a.x+1,y:a.y},d.kind!=='hray',true);
+      const price=d.points[0].price,text=price.toLocaleString('en-US',{maximumFractionDigits:Math.abs(price)<1?6:Math.abs(price)<10?4:2});
+      if(d.kind!=='crossline'&&a.y>=0&&a.y<=height)labels.push({x:width-4,y:a.y>14?a.y-5:a.y+14,text,align:'end'});}
+    if(d.kind==='vline'||d.kind==='crossline')line(a,{x:a.x,y:a.y+1},true,true);
+  }
   else if(p.length>=2) {
     const [a,b,c]=p;
     if(d.kind==='trend'||d.kind==='ray')line(a,b,d.extend_left,d.kind==='ray'||d.extend_right);
+    if(d.kind==='extended')line(a,b,true,true);
     if(d.kind==='fibonacci') {
       // Existing drawings may have the old extend_right default. Retracements
       // are bounded by their two time anchors, including their colored bands.

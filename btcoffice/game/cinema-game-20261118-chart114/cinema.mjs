@@ -1,7 +1,7 @@
 import {MarketChart} from './market-peek/chart.mjs';
 import {DEFAULTS} from './market-peek/core.mjs';
 import {Drawings} from './drawings.mjs';
-import {unionRectangles} from './drawing-geometry.mjs';
+import {CinemaCompositor} from './compositor.mjs';
 import {CryptoFeed,mergeCandles} from './crypto-feed.mjs';
 import {sharedView,localRange} from './view-state.mjs';
 import {Pens} from './pens.mjs';
@@ -22,17 +22,19 @@ class Cinema {
     for(const [tab,title] of [['chart','차트'],['youtube','유튜브']]){const button=element('button',title,{type:'button'});button.dataset.tab=tab;button.onclick=()=>this.mediaCommand('tab',{tab});tabs.append(button);this.tabButtons.set(tab,button);}this.root.append(tabs);
     const header=element('div',null,{className:'cinema-header'});this.symbol=element('strong','BTCUSDT.P',{className:'cinema-symbol'});
     this.searchButton=element('button','⌕ 종목 검색',{title:'코인 · 미국 · 한국 · 중국 · 일본 주식'});this.searchButton.onclick=()=>this.search();
-    this.interval=element('select',null,{ariaLabel:'차트 주기'});for(const [value,label] of [['1m','1분'],['5m','5분'],['15m','15분'],['30m','30분'],['1h','1시간'],['4h','4시간'],['1d','일봉'],['1w','주봉']])this.interval.add(new Option(label,value));
+    this.interval=element('select',null,{ariaLabel:'차트 주기'});for(const [value,label] of [['1m','1분'],['5m','5분'],['15m','15분'],['30m','30분'],['1h','1시간'],['2h','2시간'],['4h','4시간'],['1d','일봉'],['1w','주봉']])this.interval.add(new Option(label,value));
     this.interval.onchange=()=>this.send({type:'configure',instrument:this.state.instrument,interval:this.interval.value});
     this.permissions=new DrawingPermissions(this);
     this.hostRequests=new HostRequests(this);
     this.deleteButton=element('button','지우기',{title:'선택한 내 도형 지우기',disabled:true});
     this.clearButton=element('button','전체 지우기',{title:'현재 차트의 도형 전체 지우기 · 방장 전용',hidden:true});
-    this.role=element('span','연결 중…',{className:'cinema-role'});header.append(this.symbol,this.searchButton,this.interval,this.deleteButton,this.clearButton,this.role);
+    this.role=element('span','연결 중…',{className:'cinema-role'});this.favorites=element('div',null,{className:'cinema-favorites',ariaLabel:'즐겨찾기 도구'});
+    header.append(this.symbol,this.searchButton,this.interval,this.deleteButton,this.clearButton,this.favorites,this.role);
     const body=element('div',null,{className:'cinema-body'}),toolbar=element('nav',null,{className:'cinema-tools'});toolbar.setAttribute('aria-label','차트 그리기 도구');
     this.plot=element('div',null,{className:'cinema-plot'});this.container=element('div',null,{className:'cinema-chart'});this.plot.append(this.container);body.append(toolbar,this.plot);
     const footer=element('div',null,{className:'cinema-footer'});this.hint=element('span','',{className:'cinema-hint'});this.source=element('span','Binance · 데이터 연결 중',{className:'cinema-source'});footer.append(this.hint,this.source);
     this.chartParts=[header,body,footer];this.toast=element('div',null,{className:'cinema-toast'});this.root.append(header,body,footer,this.toast);document.body.append(this.root);
+    this.compositor=new CinemaCompositor(document.getElementById('canvas'));
     this.youtube=new YoutubeScreen(this);
     this.chart=new MarketChart(this.container,()=>{});this.container.removeEventListener('dblclick',this.chart.doubleClick,true);
     this.drawings=new Drawings(this,this.plot,toolbar);
@@ -100,7 +102,7 @@ class Cinema {
   applyRoom(data){
     const changed=this.state?.context!==data.context,wasHost=this.host;this.state=data;
     this.root.classList.toggle('guest',!this.host);this.searchButton.disabled=this.interval.disabled=!this.host;
-    this.interval.value=data.interval;this.interval.querySelector('option[value="4h"]').disabled=data.instrument.venue==='yahoo';
+    this.interval.value=data.interval;for(const value of ['2h','4h'])this.interval.querySelector(`option[value="${value}"]`).disabled=data.instrument.venue==='yahoo';
     this.symbol.textContent=data.instrument.symbol+(data.instrument.venue==='futures'?'.P':'');this.symbol.title=data.instrument.label;
     this.permissions.update();this.hostRequests.update();
     const host=data.participants.find(p=>p.id===data.host);this.role.textContent=`${this.host?'★ 내가 방장':'방장 '+(host?.nickname||'없음')} · ${data.participants.length}명`;
@@ -154,7 +156,7 @@ class Cinema {
   }
   applyView(view){
     if(!this.chart?.bars.length||!view)return;this.suppressView=true;this.state.view=view;
-    const step=({'1m':60,'5m':300,'15m':900,'30m':1800,'1h':3600,'4h':14400,'1d':86400,'1w':604800})[this.state.interval];
+    const step=({'1m':60,'5m':300,'15m':900,'30m':1800,'1h':3600,'2h':7200,'4h':14400,'1d':86400,'1w':604800})[this.state.interval];
     this.chart.chart.timeScale().setVisibleLogicalRange(localRange(view,this.chart.bars,step));const scale=this.chart.chart.priceScale('right');scale.applyOptions({mode:view.mode,invertScale:view.invert,autoScale:view.auto===true});if(!view.auto&&view.price)scale.setVisibleRange(view.price);
     this.lastView=JSON.stringify(view);this.drawings.render();requestAnimationFrame(()=>{this.suppressView=false;});
   }
@@ -183,23 +185,10 @@ class Cinema {
   geometry(json){if(!this.active||!this.root)return;if(json===this.lastGeometry)return;this.lastGeometry=json;const g=typeof json==='string'?JSON.parse(json):json,canvas=document.getElementById('canvas'),r=canvas.getBoundingClientRect(),sx=r.width/g.viewport[0],sy=r.height/g.viewport[1];
     this.gameTyping=g.typing===true;
     const [x,y,w,h]=g.rect;Object.assign(this.root.style,{left:r.left+x*sx+'px',top:r.top+y*sy+'px',width:w*sx+'px',height:h*sy+'px'});const hiddenChanged=this.root.hidden!==!!g.hidden;this.root.hidden=!!g.hidden;
-    // Godot draws its menus into one canvas. Cut holes in the DOM chart so movable chat,
-    // market windows and touch controls always remain above it without moving the map.
-    const width=w*sx,height=h*sy;let path=`M0 0H${width}V${height}H0Z`;
-    const holes=(g.holes||[]).map(rect=>[Math.max(0,(rect[0]-x)*sx),Math.max(0,(rect[1]-y)*sy),Math.min(width,(rect[0]+rect[2]-x)*sx),Math.min(height,(rect[1]+rect[3]-y)*sy)]).filter(r=>r[2]>r[0]&&r[3]>r[1]);
-    // Reveal only the palm silhouette, so its transparent corners keep the chart.
-    // A menu crossing it uses the rectangle union to avoid an even-odd overlap.
-    const hand=(g.hand||[]).map(([px,py])=>[(px-x)*sx,(py-y)*sy]);
-    if(hand.length){
-      const bounds=[Math.min(...hand.map(p=>p[0])),Math.min(...hand.map(p=>p[1])),Math.max(...hand.map(p=>p[0])),Math.max(...hand.map(p=>p[1]))];
-      if(holes.some(r=>r[0]<bounds[2]&&r[2]>bounds[0]&&r[1]<bounds[3]&&r[3]>bounds[1]))holes.push(bounds);
-      else path+='M'+hand.map(p=>p.join(' ')).join('L')+'Z';
-    }
     if(hiddenChanged){this.youtube.visibility();document.body.classList.toggle('btc-game-popup-open',!!g.hidden);if(g.hidden){this.closeDialog();this.drawings.closeDialog();}}
-    for(const [ax,ay,bx,by] of unionRectangles(holes))path+=`M${ax} ${ay}V${by}H${bx}V${ay}Z`;
-    this.root.style.clipPath=`path(evenodd, "${path}")`;
+    this.compositor.geometry(g,r);
   }
-  destroy(){document.body.classList.remove('btc-game-popup-open');this.active=false;window.removeEventListener('pagehide',this.pagehide);window.removeEventListener('pageshow',this.visibility);this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
+  destroy(){this.compositor?.destroy();this.compositor=null;document.body.classList.remove('btc-game-popup-open');this.active=false;window.removeEventListener('pagehide',this.pagehide);window.removeEventListener('pageshow',this.visibility);this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}
 }
 window.BTCCinema=new Cinema();
 window.btcPrepareRoomTransition=prepareRoomTransition;
