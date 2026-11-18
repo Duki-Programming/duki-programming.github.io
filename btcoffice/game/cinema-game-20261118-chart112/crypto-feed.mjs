@@ -11,7 +11,7 @@ export class CryptoFeed {
   constructor(instrument,interval,onBars,onStatus){
     this.instrument=instrument;this.interval=interval;this.onBars=onBars;this.onStatus=onStatus;this.key=instrument.venue+':'+instrument.symbol+':'+interval;
     this.bars=cache.get(this.key)||[];this.stopped=false;this.suspended=false;this.generation=0;this.failures=0;
-    this.step=({'1m':60,'5m':300,'15m':900,'30m':1800,'1h':3600,'4h':14400,'1d':86400,'1w':604800})[interval]||900;
+    this.step=({'1m':60,'5m':300,'15m':900,'30m':1800,'1h':3600,'2h':7200,'4h':14400,'1d':86400,'1w':604800})[interval]||900;
   }
   start(){
     if(this.stopped||this.suspended)return;if(this.bars.length)this.onBars(this.bars,true);

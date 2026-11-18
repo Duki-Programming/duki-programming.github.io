@@ -26,7 +26,7 @@ export class GameKeyboard {
     this.focus=()=>{this.refresh();clearTimeout(this.focusTimer);this.focusTimer=setTimeout(()=>this.refresh(),0);};
     this.blur=()=>{this.release();this.focus();clearTimeout(this.frameTimer);this.frameTimer=setTimeout(()=>this.returnFromPlayer(),0);};
     this.visibility=()=>{if(document.hidden)this.release();};
-    document.addEventListener('keydown',this.key);document.addEventListener('keyup',this.key);
+    document.addEventListener('keydown',this.key,true);document.addEventListener('keyup',this.key,true);
     document.addEventListener('focusin',this.focus);document.addEventListener('focusout',this.focus);
     window.addEventListener('blur',this.blur);window.addEventListener('focus',this.focus);
     document.addEventListener('visibilitychange',this.visibility);
@@ -73,7 +73,7 @@ export class GameKeyboard {
   destroy(){
     this.release();clearTimeout(this.focusTimer);clearTimeout(this.frameTimer);
     if(activeKeyboard===this)activeKeyboard=null;
-    document.removeEventListener('keydown',this.key);document.removeEventListener('keyup',this.key);
+    document.removeEventListener('keydown',this.key,true);document.removeEventListener('keyup',this.key,true);
     document.removeEventListener('focusin',this.focus);document.removeEventListener('focusout',this.focus);
     window.removeEventListener('blur',this.blur);window.removeEventListener('focus',this.focus);
     document.removeEventListener('visibilitychange',this.visibility);
