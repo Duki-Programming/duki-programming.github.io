@@ -8,6 +8,9 @@ ko:
   ios: iPhone · iPad
   ios_body: Safari에서 게임을 연 뒤 공유 메뉴의 ‘홈 화면에 추가’를 누르면 앱처럼 사용할 수 있어요.
   ios_button: 홈 화면에 추가하기
+  windows: Windows
+  windows_body: Windows 10 · 11용 앱입니다. 압축을 푼 뒤 ChartClub.exe를 실행하세요. 서명되지 않은 앱이라 처음 실행할 때 ‘Windows의 PC 보호’ 창이 뜨면 ‘추가 정보’ → ‘실행’을 누르면 됩니다.
+  windows_button: Windows 앱 다운로드
   dev: 등록된 iPhone용 개발 버전
   dev_body: 이 IPA는 개발자 계정에 미리 등록된 기기에서만 설치할 수 있습니다. Mac의 Xcode 또는 Apple Configurator로 설치하고, iPhone의 개발자 모드를 켜 주세요. Safari에서 파일을 누르는 것만으로 설치되지는 않습니다. 일반 사용자용 TestFlight · App Store 버전은 아직 배포하지 않았습니다.
   dev_button: 개발용 IPA 다운로드
@@ -23,6 +26,9 @@ en:
   ios: iPhone · iPad
   ios_body: Open the game in Safari, then choose Add to Home Screen from the Share menu.
   ios_button: Add to Home Screen
+  windows: Windows
+  windows_body: For Windows 10 and 11. Unzip the download and run ChartClub.exe. The app is not code signed, so if “Windows protected your PC” appears on first launch, choose More info, then Run anyway.
+  windows_button: Download Windows app
   dev: Development build for registered iPhones
   dev_body: This IPA only installs on devices already registered with the developer account. Use Xcode or Apple Configurator on a Mac and enable Developer Mode on the iPhone. Tapping the downloaded file in Safari does not install it. A public TestFlight or App Store version is not available yet.
   dev_button: Download development IPA
@@ -38,6 +44,9 @@ ja:
   ios: iPhone · iPad
   ios_body: Safariでゲームを開き、共有メニューから「ホーム画面に追加」を選んでください。
   ios_button: ホーム画面に追加
+  windows: Windows
+  windows_body: Windows 10 · 11向けのアプリです。ZIPを展開してChartClub.exeを実行してください。署名されていないため、初回起動時に「WindowsによってPCが保護されました」と表示された場合は「詳細情報」→「実行」を選んでください。
+  windows_button: Windowsアプリをダウンロード
   dev: 登録済みiPhone向けの開発版
   dev_body: このIPAは開発者アカウントに事前登録された端末にのみインストールできます。MacのXcodeまたはApple Configuratorを使い、iPhoneのデベロッパモードを有効にしてください。Safariでファイルをタップするだけではインストールできません。一般向けTestFlight・App Store版はまだ公開していません。
   dev_button: 開発用IPAをダウンロード
