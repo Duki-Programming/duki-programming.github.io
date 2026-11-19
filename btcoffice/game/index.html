@@ -186,11 +186,11 @@ body {
 
 </script>
 <script src="./config.js"></script>
-<link rel="stylesheet" href="./cinema-game-20261120-chart115/cinema.css">
-<script src="./cinema-game-20261120-chart115/lightweight-charts.js"></script>
-<script type="module" src="./cinema-game-20261120-chart115/cinema.mjs"></script>
+<link rel="stylesheet" href="./cinema-game-20261120-chart115b/cinema.css">
+<script src="./cinema-game-20261120-chart115b/lightweight-charts.js"></script>
+<script type="module" src="./cinema-game-20261120-chart115b/cinema.mjs"></script>
 <link rel="manifest" href="./manifest.webmanifest">
-<link rel="apple-touch-icon" href="./app-game-20261120-chart115/icon-180.png">
+<link rel="apple-touch-icon" href="./app-game-20261120-chart115b/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <script>
 (() => {
@@ -250,11 +250,11 @@ body {
 <meta property="og:title" content="차트 클럽 · Chart Club">
 <meta property="og:description" content="수익으로 증명하는 사람들의 휴식처. 포지션을 공유하고 차트를 함께 그리며 다른 트레이더들과 만나요.">
 <meta property="og:url" content="https://duki-programming.github.io/btcoffice/game/">
-<meta property="og:image" content="https://duki-programming.github.io/btcoffice/game/app-game-20261120-chart115/preview.png">
+<meta property="og:image" content="https://duki-programming.github.io/btcoffice/game/app-game-20261120-chart115b/preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://duki-programming.github.io/btcoffice/game/app-game-20261120-chart115/preview.png">
+<meta name="twitter:image" content="https://duki-programming.github.io/btcoffice/game/app-game-20261120-chart115b/preview.png">
 <style>
 #status { background: transparent; overflow: hidden; z-index: 2; }
 #status-progress { display: none !important; }
@@ -262,15 +262,17 @@ body {
 #ride { position: fixed; inset: 0; z-index: 1; background: #0a1020; overflow: hidden; image-rendering: pixelated; transition: opacity .25s ease-out; }
 #ride.gone { opacity: 0; pointer-events: none; }
 #ride-city, #ride-road { position: absolute; left: 0; right: 0; background-repeat: repeat-x; will-change: background-position; }
-#ride-city { bottom: 24vh; height: 56vh; background-image: url(app-game-20261120-chart115/loading-city.png); background-size: auto 100%; background-position: 0 100%; }
-#ride-road { bottom: 0; height: 24vh; background-image: url(app-game-20261120-chart115/loading-road.png); background-size: auto 100%; }
+#ride-city { bottom: 24vh; height: 56vh; background-image: url(app-game-20261120-chart115b/loading-city.png); background-size: auto 100%; background-position: 0 100%; }
+#ride-road { bottom: 0; height: 24vh; background-image: url(app-game-20261120-chart115b/loading-road.png); background-size: auto 100%; }
 #ride-taxi { position: absolute; bottom: 7vh; left: 0; height: 15vh; will-change: transform; transform-origin: 0 100%; }
 #ride-taxi canvas { position: relative; height: 100%; display: block; animation: ride-bump .35s steps(2) infinite; }
 #ride-trail { position: absolute; right: 92%; top: 22%; width: 34vw; height: 56%; opacity: 0; transition: opacity .12s;
 	background: repeating-linear-gradient(180deg, transparent 0 18%, rgba(246, 213, 138, .85) 18% 24%, transparent 24% 40%);
 	-webkit-mask-image: linear-gradient(90deg, transparent, #000); mask-image: linear-gradient(90deg, transparent, #000); }
-#ride.whoosh #ride-trail { opacity: 1; }
-@font-face { font-family: RidePixel; src: url(app-game-20261120-chart115/loading-font.ttf) format("truetype"); font-display: block; }
+/* The streaks flare with the dash and fade by its end, even if the page's script is busy. */
+#ride.whoosh #ride-trail { animation: ride-trail 1s ease-in forwards; }
+@keyframes ride-trail { 0% { opacity: 0; } 15% { opacity: 1; } 70% { opacity: .8; } 100% { opacity: 0; } }
+@font-face { font-family: RidePixel; src: url(app-game-20261120-chart115b/loading-font.ttf) format("truetype"); font-display: block; }
 #ride-text { position: absolute; left: 0; right: 0; top: 5vh; text-align: center; color: #f6d58a; font: clamp(18px, 2.6vw, 30px)/1.5 RidePixel, system-ui, sans-serif; text-shadow: 0 2px 0 #000; -webkit-font-smoothing: none; }
 /* The percentage: a big gold pixel number with a dark rim, a deeper drop
    and a soft glow; on phones it grows only moderately. */
@@ -296,14 +298,14 @@ body {
 <div id="ride"><div id="ride-city"></div><div id="ride-road"></div>
 <div id="ride-taxi"><div id="ride-trail"></div><canvas id="ride-car" width="228" height="100"></canvas></div>
 <div id="ride-text"><span id="ride-line">차트 클럽으로 가는 중...</span><small id="ride-percent"></small></div></div>
-			<img id="status-splash" class="show-image--false fullsize--true use-filter--true" src="./game-20261120-chart115.png" alt="">
+			<img id="status-splash" class="show-image--false fullsize--true use-filter--true" src="./game-20261120-chart115b.png" alt="">
 			<progress id="status-progress"></progress>
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="./game-20261120-chart115.js"></script>
+		<script src="./game-20261120-chart115b.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261120-chart115","experimentalVK":false,"fileSizes":{"game-20261120-chart115.pck":40785184,"game-20261120-chart115.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"game-20261120-chart115b","experimentalVK":false,"fileSizes":{"game-20261120-chart115b.pck":40786400,"game-20261120-chart115b.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -589,9 +591,9 @@ window.btcTimeZoneCountries={"Africa/Abidjan":"CI","Africa/Accra":"GH","Africa/A
 </script>
 <script>
 // The car drives in with the download and holds the middle of the screen while
-// the street scrolls past. At 100% the street stops and the car waits; once
-// the engine is up it shoots off to the right within a second, and the ride
-// fades straight into the title screen.
+// the street scrolls past, reaching seven tenths of the way across by 99%.
+// There the street stops and the car shoots off to the right within a second;
+// once the engine is up the ride fades straight into the title screen.
 (function () {
 	const bar = document.getElementById('status-progress'), ride = document.getElementById('ride');
 	const taxi = document.getElementById('ride-taxi'), city = document.getElementById('ride-city'), road = document.getElementById('ride-road');
@@ -602,12 +604,12 @@ window.btcTimeZoneCountries={"Africa/Abidjan":"CI","Africa/Accra":"GH","Africa/A
 	// Tile widths come from the pictures' proportions at their drawn height.
 	const ratios = { city: 0, road: 0 };
 	const measure = (name, url) => { const image = new Image(); image.onload = () => { ratios[name] = image.width / image.height; }; image.src = url; };
-	measure('city', 'app-game-20261120-chart115/loading-city.png'); measure('road', 'app-game-20261120-chart115/loading-road.png');
+	measure('city', 'app-game-20261120-chart115b/loading-city.png'); measure('road', 'app-game-20261120-chart115b/loading-road.png');
 	// A different ride each visit: the cab, or a tinted car in two layers.
 	const rides = [['taxi'], ['taxi'], ['sedan', 'c8ccd4', '8a2a2a', '2c4a86', '3f6b4d', 'a8632c'], ['luxury', '16181f', 'd9dce2', '1d2a4d', '5a1620'],
 		['coupe', 'e02622', 'f7c928', 'ff7a1a', '2f6fe0', '7ad63c'], ['wedge', 'e02622', 'f7c928', '9a34c8', 'f2f2f4', '18c7c2']];
 	const choice = rides[Math.floor(Math.random() * rides.length)], pen = document.getElementById('ride-car').getContext('2d');
-	const picture = name => new Promise(done => { const image = new Image(); image.onload = () => done(image); image.src = 'app-game-20261120-chart115/loading-' + name + '.png'; });
+	const picture = name => new Promise(done => { const image = new Image(); image.onload = () => done(image); image.src = 'app-game-20261120-chart115b/loading-' + name + '.png'; });
 	if (choice.length === 1) picture('taxi').then(image => pen.drawImage(image, 0, 0));
 	else Promise.all([picture(choice[0] + '-paint'), picture(choice[0] + '-trim')]).then(([paint, trim]) => {
 		pen.drawImage(paint, 0, 0);
@@ -619,7 +621,7 @@ window.btcTimeZoneCountries={"Africa/Abidjan":"CI","Africa/Accra":"GH","Africa/A
 		pen.globalCompositeOperation = 'source-over';
 		pen.drawImage(trim, 0, 0);
 	});
-	let shown = 0, x = null, last = 0, street = 1, cityX = 0, roadX = 0, phase = 'drive', from = 0, began = 0;
+	let shown = 0, x = null, last = 0, street = 1, cityX = 0, roadX = 0, phase = 'drive', began = 0;
 	const WHOOSH = 1.0;
 	function scroll(element, offset, ratio) {
 		const tile = element.offsetHeight * ratio;
@@ -632,37 +634,37 @@ window.btcTimeZoneCountries={"Africa/Abidjan":"CI","Africa/Accra":"GH","Africa/A
 		const part = loading && bar.max > 0 && bar.hasAttribute('max') ? Math.min(1, bar.value / bar.max) : (loading ? shown : 1);
 		shown = Math.max(shown, part);
 		const width = taxi.offsetWidth, vh = window.innerHeight / 100;
-		const start = -width * 0.3, middle = (window.innerWidth - width) / 2;
+		// Until 99% the car drives up to seven tenths of the way across; at 99% it
+		// shoots off to the right in one go, without waiting for the last percent.
+		const start = -width * 0.3, far = window.innerWidth * 0.7 - width / 2;
 		if (x === null) x = start;
-		let stretch = 1;
-		if (phase !== 'exit') {
-			// Ease towards the place the progress has earned, never backwards.
-			const target = start + (middle - start) * shown;
+		if (phase === 'drive') {
+			const target = start + (far - start) * Math.min(1, shown / 0.99);
 			x += (target - x) * Math.min(1, dt * 4);
-			if (phase === 'drive' && shown >= 1 && Math.abs(target - x) < width * 0.05) {
-				// Downloaded: the street stops and the car waits for the engine.
-				phase = 'arrived';
-				street = 0;
-				line.textContent = '도착! 문을 여는 중...';
-			}
-			if (phase === 'arrived' && !loading) {
+			if (shown >= 0.99) {
+				// The engine's start-up freezes the page's script for a few seconds,
+				// so the dash is a CSS transition the compositor finishes on its own.
 				phase = 'exit';
-				from = x;
 				began = now;
+				street = 0;
 				ride.classList.add('whoosh');
+				line.textContent = '도착! 문을 여는 중...';
+				taxi.style.transform = 'translateX(' + Math.round(x) + 'px) scaleX(1)';
+				void taxi.offsetWidth;
+				taxi.style.transition = 'transform ' + WHOOSH + 's cubic-bezier(.6, 0, .9, .35)';
+				taxi.style.transform = 'translateX(' + Math.round(window.innerWidth + width * 0.5) + 'px) scaleX(1.18)';
 			}
-		} else {
-			// The game is up: the car shoots off to the right within a second.
-			const t = Math.min(1, (now - began) / 1000 / WHOOSH);
-			x = from + (window.innerWidth + width * 0.5 - from) * Math.pow(t, 2.4);
-			stretch = 1 + 0.18 * t;
-			if (t >= 1) {
-				ride.classList.add('gone');
-				setTimeout(() => ride.remove(), 300);
-				return;
-			}
+		} else if (phase === 'exit' && now - began >= WHOOSH * 1000) {
+			phase = 'away';
+			ride.classList.remove('whoosh');
 		}
-		taxi.style.transform = 'translateX(' + Math.round(x) + 'px) scaleX(' + stretch.toFixed(3) + ')';
+		// Once the car is gone and the engine is up, fade into the title screen.
+		if (phase === 'away' && !loading) {
+			ride.classList.add('gone');
+			setTimeout(() => ride.remove(), 300);
+			return;
+		}
+		if (phase === 'drive') taxi.style.transform = 'translateX(' + Math.round(x) + 'px) scaleX(1)';
 		if (!still) {
 			cityX += 10 * vh * dt * street;
 			roadX += 80 * vh * dt * street;
