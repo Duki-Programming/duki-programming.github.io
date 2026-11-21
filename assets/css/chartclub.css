@@ -31,3 +31,20 @@ html[data-product=chartclub]{--surface:var(--bb-panel);--panel:var(--bb-panel);-
 .bb-footer .trading-room-link { display:inline-block; padding-block:10px; margin-top:8px; font-size:12px; color:var(--bb-gold); text-decoration:underline; text-underline-offset:4px; }
 
 .bb-install{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:12px 22px;border:1px solid #9abb90;border-radius:6px;background:#243c2b;color:#effcde;text-align:center;font-size:14px;font-weight:700;white-space:nowrap}.bb-install:hover{background:#3b6349}.bb-install:focus-visible{outline:2px solid #d5e7c8;outline-offset:4px}@media(max-width:480px){.bb-install{width:100%;min-height:48px}.bb-actions .bb-explore{padding-block:4px}}
+/* Lounge entry and app download wear the game's own entry buttons: a chunky
+   pixel slab with a dark rim, a lit top-left edge and a visible side below
+   that sinks when pressed (as 입장하기 / 앱 설치 on the game's first screen). */
+.bb-actions .bb-play,.bb-actions .bb-install{position:relative;isolation:isolate;border:3px solid #2a170b;border-bottom-width:9px;border-radius:6px;background:#6b4426;color:#ffdfb8;font-family:BBPixel,Galmuri9,sans-serif;font-weight:400;letter-spacing:.04em;box-shadow:inset 3px 3px 0 #ffd9a055,inset -2px -2px 0 #00000033,0 3px 0 #3a2210;transition:background .12s,transform .06s,border-bottom-width .06s}
+.bb-actions .bb-play::before{display:none}
+.bb-actions .bb-play:hover{background:#8a5a32;border-color:#2a170b;box-shadow:inset 3px 3px 0 #ffd9a077,inset -2px -2px 0 #00000033,0 3px 0 #3a2210}
+.bb-actions .bb-play:active,.bb-actions .bb-install:active{transform:translateY(6px);border-bottom-width:3px;box-shadow:inset 3px 4px 0 #00000055,0 0 0 transparent}
+.bb-actions .bb-play-label::before,.bb-actions .bb-play-label::after{width:6px;height:6px;border:0;background:#ffd9a0;transform:none;box-shadow:none}
+.bb-actions .bb-install{min-height:64px;padding:14px 28px;background:#24384a;border-color:#0b141d;color:#edc79d;font-size:15px;box-shadow:inset 3px 3px 0 #9fc2dc44,inset -2px -2px 0 #00000033,0 3px 0 #081018}
+.bb-actions .bb-install:hover{background:#2f4a60;box-shadow:inset 3px 3px 0 #9fc2dc66,inset -2px -2px 0 #00000033,0 3px 0 #081018}
+.bb-actions .bb-play:focus-visible{outline:2px solid #ffd9a0;outline-offset:4px}
+.bb-actions .bb-install:focus-visible{outline:2px solid #9fc2dc;outline-offset:4px}
+/* Visitors and plays read at a glance. */
+html[data-product=chartclub] .product-stat dt{font-size:13px;gap:6px}
+html[data-product=chartclub] .product-stat dt svg{width:16px;height:16px}
+html[data-product=chartclub] .product-stat dd{font-size:20px}
+@media(max-width:640px){html[data-product=chartclub] .product-stat dt{font-size:12px}html[data-product=chartclub] .product-stat dd{font-size:18px}}
