@@ -51,10 +51,10 @@ body.btc-game-popup-open .price-scale-menu{display:none!important}
 #btc-cinema .cinema-favorites button.active{border-color:#e9c46a;background:#3a3b30;color:#ffe099}
 #btc-cinema .cinema-favorites svg{width:24px;height:24px}
 @media(max-width:700px){#btc-cinema .cinema-favorites{margin-left:2px}#btc-cinema .cinema-favorites button{width:28px;min-height:26px}#btc-cinema .cinema-favorites svg{width:21px;height:21px}#btc-cinema .cinema-tool-group svg{width:20px;height:20px}}
-/* The game's hand cursor everywhere in the cinema panel and its dialogs, blinking over anything clickable (html.btc-cursor-rays toggles every 0.5 s). The chart plot keeps its own crosshair. */
-#btc-cinema,#btc-cinema *,.cinema-dialog,.cinema-dialog *,.price-scale-menu,.price-scale-menu *{cursor:url(cursor-hand-rest.png) 10 8,default}
+/* The game's green hand everywhere (orange and blinking over clickable things) in the cinema panel and its dialogs, blinking over anything clickable (html.btc-cursor-rays toggles every 0.5 s). The chart plot keeps its own crosshair. */
+#btc-cinema,#btc-cinema *,.cinema-dialog,.cinema-dialog *,.price-scale-menu,.price-scale-menu *{cursor:url(cursor-default.png) 10 8,default}
 #btc-cinema :is(button,select,label,a,summary,[role=button],input[type=checkbox],input[type=color]),.cinema-dialog :is(button,select,label,a,summary,[role=button],input[type=checkbox],input[type=color]),.price-scale-menu :is(button,[role=button]){cursor:url(cursor-hand-rest.png) 10 8,pointer}
 html.btc-cursor-rays #btc-cinema :is(button,select,label,a,summary,[role=button],input[type=checkbox],input[type=color]),html.btc-cursor-rays .cinema-dialog :is(button,select,label,a,summary,[role=button],input[type=checkbox],input[type=color]),html.btc-cursor-rays .price-scale-menu :is(button,[role=button]){cursor:url(cursor-hand.png) 10 8,pointer}
-#btc-cinema :is(button,select,input):disabled,.cinema-dialog :is(button,select,input):disabled{cursor:url(cursor-hand-rest.png) 10 8,default}
+#btc-cinema :is(button,select,input):disabled,.cinema-dialog :is(button,select,input):disabled{cursor:url(cursor-default.png) 10 8,default}
 #btc-cinema :is(textarea,input:not([type=checkbox]):not([type=color])),.cinema-dialog :is(textarea,input:not([type=checkbox]):not([type=color])){cursor:text}
 #btc-cinema .cinema-plot,#btc-cinema .cinema-plot *{cursor:auto}
