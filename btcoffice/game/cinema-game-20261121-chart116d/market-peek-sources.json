@@ -1,0 +1,28 @@
+{
+  "source": "BTC_ticker_tray / Market Peek",
+  "library": "lightweight-charts 5.2.1",
+  "files": {
+    "core.mjs": "02cf3bfbfa31d89f60731965f727af575c09747a429dbcb307d564c678c3760c",
+    "indicators.mjs": "4ca73bd099aad25284fb89dff18a84d42b187e854e06eef1d4ca3045debd1528",
+    "indicator-appearance.mjs": "f280f320559b90725c84651fb0491ad1cb544373d08cf315c79178d23f30614b",
+    "window/geometry.mjs": "88793649bed180ea9eeec40c7755adaf8e46c7788e70aeabf69865b44c976d93",
+    "i18n.mjs": "e415ec318f23853856dc680aa66bc1df117bad5d9837ed757dc85b61d8a21dab",
+    "locales/en.mjs": "a361b58ffa6fb9fc38ce08ef61b0b6664464dd361c246cc5233e27781b4d7ede",
+    "markets/exchanges.mjs": "3d886b9a7e9a79a5bcb86f716a593f8369c6ca5bde43e71cc6cac291976abe09",
+    "chart.mjs": "2f7080a14e9981a8c90566204988124ee9f19072f5ca72bd6951aae7fdd5e4e0",
+    "chart/indicator-values.mjs": "f6e6341187a46dcc7f790cc56582f3e7112e8de7d2393f8cab21d0aa202b545a",
+    "chart/indicator-band.mjs": "9fec4d3f05fde3a549a3387bb3049f4bab17b0928852924425e3ba7f76da4be7",
+    "chart/indicator-controls.mjs": "15b2d833e87095cf84f00a0b2f8f3aea4f6404b5eed60f6afcf975964a297116",
+    "chart/scale-controls.mjs": "67c164656ce11dc9c9f60b334bd8eb11b89ad2f2351daeb90f48b525047ffadb",
+    "chart/scale-math.mjs": "9b553193f9e943c3b589f6db72895ca09ee8ac2a9c2cf1fb081c35297c68a9e3",
+    "trading/chart-lines.mjs": "37a1e8db0bb8ffb8b9b463f5d3e481ae8b76ca48217696ba68f048808c155ba5",
+    "trading/model.mjs": "0148f321c03b4183d923cc2fd05cd64633a88a24bd483fb79aed5f9c1557ec3c",
+    "trading/position-return.mjs": "85cac2fb00de38020103adc74e486fef798ebfa4b6017efbaa8988740b99e5c6",
+    "trading/order-side.mjs": "f2077ff8e9e49a06a0def4888caa4208081ae7062e6a71d0e1680f65d59a69f9",
+    "trading/symbols.mjs": "e3e96a0331e4ef579dc6c4f1cd15ca497e46c2bb859e60c6075b3be4b7cdddb6",
+    "trading/unit-control.mjs": "937a15e3587db4912a443933d4ef053492286d5dca418efa4228f7e142042e3a",
+    "trading/line-labels.mjs": "98474b5bf3cf36d65b05da82f5fe4f47a6156b9ef83b604e76bef1dcb4355f7e",
+    "trading/position-size.mjs": "48e5fe4deb5e8814368e5b8f24e55ef271ef62c7edebcc2512228d2eea916323",
+    "markets/streams.mjs": "3a73b91b5e0d036d32bdf1eaef2083f72337b7b1293f7c89146e0c7f7cb256bd"
+  }
+}
