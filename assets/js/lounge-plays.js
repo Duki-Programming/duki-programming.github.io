@@ -1,7 +1,9 @@
 (() => {
-  let url;
+  // Plays are counted by the Duki notifier: each IP once, forever.
+  let url, recordUrl;
   try {
-    url = new URL('/api/public/plays', document.currentScript.dataset.api);
+    url = new URL('/v1/public/plays?program=btcoffice', document.currentScript.dataset.api);
+    recordUrl = new URL('/v1/plays', document.currentScript.dataset.api);
     if (url.protocol !== 'https:') return;
   } catch { return; }
   const numbers = [...document.querySelectorAll('[data-program-stats="btcoffice"] [data-program-stat="plays"]')];
@@ -25,8 +27,8 @@
     if (!entry || event.defaultPrevented || event.button !== 0 || entrySent) return;
     // Navigation stays immediate. The server also deduplicates direct game entry.
     entrySent = true;
-    fetch(url.href, { method:'POST', credentials:'omit', mode:'cors', keepalive:true,
-      headers:{ 'Content-Type':'application/json', 'X-BTC-Client':'godot' }, body:'{}'
+    fetch(recordUrl.href, { method:'POST', credentials:'omit', mode:'cors', keepalive:true,
+      headers:{ 'Content-Type':'application/json' }, body:JSON.stringify({ program:'btcoffice' })
     }).then(async response => { if (!response.ok) throw Error(); render(await response.json()); })
       .catch(() => { entrySent = false; });
   });
