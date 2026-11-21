@@ -83,36 +83,36 @@ html[data-theme="light"] .cv-update-label.cv-planned { color:#916c2e; }
 html[data-theme="light"] .cv-stars i { background:#a28b48; }
 
 /* BTC Office keeps its original cream/mint light palette; dark adds forest tones. */
-html[data-product="btcoffice"][data-theme="dark"] {
+html[data-product="chartclub"][data-theme="dark"] {
   --office-paper:#111c19; --office-ink:#e7eddf; --office-muted:#b0bca9; --office-line:#35453a;
   --bg:var(--office-paper); --page-bg:var(--office-paper); --panel:#1b2a22; --surface:#1b2a22;
   --text:var(--office-ink); --ink:var(--office-ink); --muted:var(--office-muted); --line:var(--office-line); --accent:#c0d79d;
   background:var(--office-paper); color:var(--office-ink);
 }
-html[data-product="btcoffice"][data-theme="dark"] :is(.office-eyebrow,.office-availability,.office-facts span,.office-frame figcaption,.office-break p,.office-start-options p,.office-route,.office-controls dd,.office-account-note p,.office-outro p:last-child,.office-footer p,.office-footer .business-footer) { color:#b0bca9; }
-html[data-product="btcoffice"][data-theme="dark"] .office-note { color:#aab8a1!important; }
-html[data-product="btcoffice"][data-theme="dark"] .office-skip { background:#25372a; }
-html[data-product="btcoffice"][data-theme="dark"] :is(.office-nav a:hover,.office-explore:hover) { color:#e6c88e; }
-html[data-product="btcoffice"][data-theme="dark"] .office-frame { background:#1b2a22; border-color:#4a604a; box-shadow:0 5px 0 #0a120d; }
-html[data-product="btcoffice"][data-theme="dark"] .office-windowbar { color:#b1c5a8; background:#223127; border-color:#3a4c3b; }
-html[data-product="btcoffice"][data-theme="dark"] .office-break { background:#1c2c22; }
-html[data-product="btcoffice"][data-theme="dark"] .office-tabs button { background:#1a2a21; color:#b5c3aa; border-color:#465b41; }
-html[data-product="btcoffice"][data-theme="dark"] .office-tabs button[aria-pressed="true"] { background:#394e30; color:#e3efca; border-color:#88a369; }
-html[data-product="btcoffice"][data-theme="dark"] .office-hall { background:#25271d; border-color:#514d32; }
-html[data-product="btcoffice"][data-theme="dark"] .office-hall .office-eyebrow { color:#d6bd82; }
-html[data-product="btcoffice"][data-theme="dark"] .office-hall .office-frame { border-color:#7a6b43; box-shadow:0 5px 0 #15180f; }
-html[data-product="btcoffice"][data-theme="dark"] .office-hall .office-tabs button { background:#302f20; color:#c8c3a3; border-color:#61583c; }
-html[data-product="btcoffice"][data-theme="dark"] .office-hall .office-tabs button[aria-pressed="true"] { background:#796639; color:#fff0c8; border-color:#b99e60; }
-html[data-product="btcoffice"][data-theme="dark"] .office-ranks>div { border-color:#514d32; }
-html[data-product="btcoffice"][data-theme="dark"] .office-ranks>div>span { color:#cbb47c; }
-html[data-product="btcoffice"][data-theme="dark"] .office-ranks p { color:#b7b49b; }
-html[data-product="btcoffice"][data-theme="dark"] .office-start-options article { background:#1e2c23; border-color:#3c503b; }
-html[data-product="btcoffice"][data-theme="dark"] .office-start-options article:last-child { background:#26382a; }
-html[data-product="btcoffice"][data-theme="dark"] kbd { background:#213125; border-color:#526448; color:#d0ddbf; }
-html[data-product="btcoffice"][data-theme="dark"] .office-outro { background:#243529; border-color:#465a3e; }
-html[data-product="btcoffice"][data-theme="dark"] .office-topbar .product-language { background:#1b2a22; border-color:#3a4c3b; }
-html[data-product="btcoffice"][data-theme="dark"] .office-topbar .product-language a { background:#213125; color:#b1c2a8; border-color:#43563e; }
-html[data-product="btcoffice"][data-theme="dark"] .office-topbar .product-language a[aria-current] { background:#3b4e30; color:#e3efc9; border-color:#7b9463; }
-html[data-product="btcoffice"][data-theme="dark"] .office-hero-art { animation-name:office-promo-night; }
+html[data-product="chartclub"][data-theme="dark"] :is(.office-eyebrow,.office-availability,.office-facts span,.office-frame figcaption,.office-break p,.office-start-options p,.office-route,.office-controls dd,.office-account-note p,.office-outro p:last-child,.office-footer p,.office-footer .business-footer) { color:#b0bca9; }
+html[data-product="chartclub"][data-theme="dark"] .office-note { color:#aab8a1!important; }
+html[data-product="chartclub"][data-theme="dark"] .office-skip { background:#25372a; }
+html[data-product="chartclub"][data-theme="dark"] :is(.office-nav a:hover,.office-explore:hover) { color:#e6c88e; }
+html[data-product="chartclub"][data-theme="dark"] .office-frame { background:#1b2a22; border-color:#4a604a; box-shadow:0 5px 0 #0a120d; }
+html[data-product="chartclub"][data-theme="dark"] .office-windowbar { color:#b1c5a8; background:#223127; border-color:#3a4c3b; }
+html[data-product="chartclub"][data-theme="dark"] .office-break { background:#1c2c22; }
+html[data-product="chartclub"][data-theme="dark"] .office-tabs button { background:#1a2a21; color:#b5c3aa; border-color:#465b41; }
+html[data-product="chartclub"][data-theme="dark"] .office-tabs button[aria-pressed="true"] { background:#394e30; color:#e3efca; border-color:#88a369; }
+html[data-product="chartclub"][data-theme="dark"] .office-hall { background:#25271d; border-color:#514d32; }
+html[data-product="chartclub"][data-theme="dark"] .office-hall .office-eyebrow { color:#d6bd82; }
+html[data-product="chartclub"][data-theme="dark"] .office-hall .office-frame { border-color:#7a6b43; box-shadow:0 5px 0 #15180f; }
+html[data-product="chartclub"][data-theme="dark"] .office-hall .office-tabs button { background:#302f20; color:#c8c3a3; border-color:#61583c; }
+html[data-product="chartclub"][data-theme="dark"] .office-hall .office-tabs button[aria-pressed="true"] { background:#796639; color:#fff0c8; border-color:#b99e60; }
+html[data-product="chartclub"][data-theme="dark"] .office-ranks>div { border-color:#514d32; }
+html[data-product="chartclub"][data-theme="dark"] .office-ranks>div>span { color:#cbb47c; }
+html[data-product="chartclub"][data-theme="dark"] .office-ranks p { color:#b7b49b; }
+html[data-product="chartclub"][data-theme="dark"] .office-start-options article { background:#1e2c23; border-color:#3c503b; }
+html[data-product="chartclub"][data-theme="dark"] .office-start-options article:last-child { background:#26382a; }
+html[data-product="chartclub"][data-theme="dark"] kbd { background:#213125; border-color:#526448; color:#d0ddbf; }
+html[data-product="chartclub"][data-theme="dark"] .office-outro { background:#243529; border-color:#465a3e; }
+html[data-product="chartclub"][data-theme="dark"] .office-topbar .product-language { background:#1b2a22; border-color:#3a4c3b; }
+html[data-product="chartclub"][data-theme="dark"] .office-topbar .product-language a { background:#213125; color:#b1c2a8; border-color:#43563e; }
+html[data-product="chartclub"][data-theme="dark"] .office-topbar .product-language a[aria-current] { background:#3b4e30; color:#e3efc9; border-color:#7b9463; }
+html[data-product="chartclub"][data-theme="dark"] .office-hero-art { animation-name:office-promo-night; }
 @keyframes office-promo-night { 0%,100% { border-color:#6b8e6f; box-shadow:8px 12px 0 #263c2d; } 33% { border-color:#8b7aab; box-shadow:8px 12px 0 #342b43; } 66% { border-color:#a48a5a; box-shadow:8px 12px 0 #3b3423; } }
-@media (prefers-reduced-motion:reduce) { html[data-product="btcoffice"][data-theme="dark"] .office-hero-art { animation:none; } }
+@media (prefers-reduced-motion:reduce) { html[data-product="chartclub"][data-theme="dark"] .office-hero-art { animation:none; } }

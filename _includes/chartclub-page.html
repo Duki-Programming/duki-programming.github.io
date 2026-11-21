@@ -1,5 +1,5 @@
-{% assign copy = site.data.btcoffice_copy[page.lang] %}
-{% assign art = '/assets/programs/btcoffice/' %}
+{% assign copy = site.data.chartclub_copy[page.lang] %}
+{% assign art = '/assets/programs/chartclub/' %}
 <a class="bb-skip" href="#main">{{ copy.skip }}</a>
 <header class="bb-topbar bb-wrap">
   <a class="bb-home" href="{{ site.data.ui[page.lang].home_url | relative_url }}">← DUKI LAB</a>
@@ -14,7 +14,7 @@
       <h1 id="bb-title">Chart Club<span lang="ko">차트 클럽</span></h1>
       <p class="bb-tagline">{{ copy.headline }}</p><p class="bb-intro">{{ copy.intro }}</p>
       {% include program-stats.html %}
-      <div class="bb-actions"><a class="bb-play" data-lounge-entry href="{{ '/btcoffice/game/' | relative_url }}"><span class="bb-play-label">{{ copy.play }}</span></a><a class="bb-install" data-app-install href="{{ '/btcoffice/app/' | relative_url }}{% if page.lang != 'ko' %}{{ page.lang }}/{% endif %}">{% if page.lang == 'ko' %}앱 다운로드{% elsif page.lang == 'ja' %}アプリをダウンロード{% else %}Download app{% endif %}</a><a class="bb-explore" href="#spaces">{{ copy.explore }} <span aria-hidden="true">↓</span></a></div>
+      <div class="bb-actions"><a class="bb-play" data-lounge-entry href="{{ '/chartclub/game/' | relative_url }}"><span class="bb-play-label">{{ copy.play }}</span></a><a class="bb-install" data-app-install href="{{ '/chartclub/app/' | relative_url }}{% if page.lang != 'ko' %}{{ page.lang }}/{% endif %}">{% if page.lang == 'ko' %}앱 다운로드{% elsif page.lang == 'ja' %}アプリをダウンロード{% else %}Download app{% endif %}</a><a class="bb-explore" href="#spaces">{{ copy.explore }} <span aria-hidden="true">↓</span></a></div>
       <p class="bb-availability">{{ copy.availability }}</p>
     </div>
     <button class="bb-motion" type="button" data-pause-label="{{ copy.pause }}" data-resume-label="{{ copy.resume }}" aria-label="{{ copy.pause }}" aria-pressed="false" hidden><span aria-hidden="true">Ⅱ</span></button>
@@ -24,20 +24,20 @@
   <section id="spaces" class="bb-introduction bb-wrap"><p class="bb-eyebrow">INSIDE THE LOUNGE</p><h2>{{ copy.spaces_title }}</h2><p>{{ copy.spaces_body }}</p></section>
   <section id="trading-floor" class="bb-feature bb-wrap" aria-labelledby="bb-floor-title">
     <div class="bb-section-copy"><div><p class="bb-eyebrow">01 / TRADING FLOOR</p><h2 id="bb-floor-title">{{ copy.floor_title | newline_to_br }}</h2></div><div><p>{{ copy.floor_body }}</p><ul class="bb-points">{% for point in copy.floor_points %}<li>{{ point }}</li>{% endfor %}</ul></div></div>
-    {% include btcoffice-gallery.html images=copy.floor_images %}
+    {% include chartclub-gallery.html images=copy.floor_images %}
   </section>
   <section id="hall-of-fame" class="bb-feature bb-wrap" aria-labelledby="bb-hall-title">
     <div class="bb-section-copy"><div><p class="bb-eyebrow">02 / HALL OF FAME</p><h2 id="bb-hall-title">{{ copy.hall_title | newline_to_br }}</h2></div><div><p>{{ copy.hall_body }}</p><ul class="bb-points">{% for point in copy.hall_points %}<li>{{ point }}</li>{% endfor %}</ul></div></div>
-    {% include btcoffice-gallery.html images=copy.hall_images %}
+    {% include chartclub-gallery.html images=copy.hall_images %}
     <p class="bb-note">{{ copy.data_note }}</p>
   </section>
   <section id="chart-lounge" class="bb-feature bb-wrap" aria-labelledby="bb-lounge-title">
     <div class="bb-section-copy"><div><p class="bb-eyebrow">03 / CHART CINEMA</p><h2 id="bb-lounge-title">{{ copy.lounge_title | newline_to_br }}</h2></div><div><p>{{ copy.lounge_body }}</p><ul class="bb-points">{% for point in copy.lounge_points %}<li>{{ point }}</li>{% endfor %}</ul></div></div>
-    {% include btcoffice-gallery.html images=copy.lounge_images %}
+    {% include chartclub-gallery.html images=copy.lounge_images %}
   </section>
   <section id="your-character" class="bb-feature bb-wrap bb-character" aria-labelledby="bb-character-title">
     <div class="bb-section-copy"><div><p class="bb-eyebrow">04 / MAKE IT YOURS</p><h2 id="bb-character-title">{{ copy.character_title | newline_to_br }}</h2></div><p>{{ copy.character_body }}</p></div>
-    {% include btcoffice-gallery.html images=copy.character_images %}
+    {% include chartclub-gallery.html images=copy.character_images %}
   </section>
   <section class="bb-start bb-wrap" aria-labelledby="bb-start-title"><p class="bb-eyebrow">YOUR FIRST VISIT</p><h2 id="bb-start-title">{{ copy.start_title }}</h2>
     <div class="bb-steps">{% for step in copy.steps %}<article><span>0{{ forloop.index }}</span><h3>{{ step.title }}</h3><p>{{ step.body }}</p></article>{% endfor %}</div>
@@ -47,6 +47,6 @@
 </main>
 <footer class="bb-footer bb-wrap"><div><strong class="bb-footer-brand">Chart Club</strong><p>{{ copy.footer }}</p><small>{{ copy.updated }}</small><div>{% include trading-room-link.html %}</div></div><div><div class="business-footer">{% include business-footer.html %}</div></div></footer>
 <dialog class="bb-lightbox" aria-label="{{ copy.gallery }}"><button type="button" class="bb-lightbox-close" aria-label="{{ copy.close }}">{{ copy.close }} ×</button><img alt=""><p></p></dialog>
-<script src="{{ '/assets/js/btcoffice.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+<script src="{{ '/assets/js/chartclub.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 
 <script defer src="{{ '/assets/js/lounge-plays.js' | relative_url }}?v={{ site.time | date: '%s' }}" data-api="{{ site.notifier_api_url | escape }}"></script>

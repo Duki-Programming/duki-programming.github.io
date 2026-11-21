@@ -9,10 +9,10 @@ ko:
   programs:
     - id: btcoffice
       title: 차트 클럽
-      description: "수익으로 증명하는 사람들의 휴식처. 포지션 공유, 명예의 전당, 함께 보는 차트와 유튜브를 픽셀 라운지에서."
+      description: "수익으로 증명하는 사람들의 휴식처. 고수들의 차트 클럽."
       platform: "브라우저 게임 · PC / 모바일"
-      icon: /assets/programs/btcoffice/icon-office-worker-small.png
-      url: /btcoffice/
+      icon: /assets/programs/chartclub/icon-office-worker-small.png
+      url: /chartclub/
       featured: true
       spotlight: "↗ PLAY NOW · 라운지에 입장하기"
     - id: "chatville"
@@ -64,10 +64,10 @@ en:
   programs:
     - id: btcoffice
       title: Chart Club
-      description: "A trader’s place to unwind. Share positions, explore public rankings, and enjoy charts and YouTube together."
+      description: "A place to unwind for those who let their returns speak. The chart club for seasoned traders."
       platform: "Browser game · Desktop / mobile"
-      icon: /assets/programs/btcoffice/icon-office-worker-small.png
-      url: /btcoffice/en/
+      icon: /assets/programs/chartclub/icon-office-worker-small.png
+      url: /chartclub/en/
       featured: true
       spotlight: "↗ PLAY NOW · Enter the lounge"
     - id: "chatville"
@@ -120,10 +120,10 @@ ja:
   programs:
   - id: btcoffice
     title: Chart Club
-    description: "利益で実力を示す人たちの憩いの場。ポジション共有、殿堂、チャートとYouTubeを楽しむピクセルラウンジ。"
+    description: "利益で実力を示す人たちの憩いの場。腕利きトレーダーたちのチャートクラブ。"
     platform: "ブラウザゲーム · PC / モバイル"
-    icon: /assets/programs/btcoffice/icon-office-worker-small.png
-    url: /btcoffice/ja/
+    icon: /assets/programs/chartclub/icon-office-worker-small.png
+    url: /chartclub/ja/
     featured: true
     spotlight: "↗ PLAY NOW · ラウンジへ"
   - id: "chatville"
