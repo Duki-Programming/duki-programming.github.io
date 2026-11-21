@@ -1,5 +1,5 @@
 ko:
-  title: 차트 클럽 앱 설치
+  title: Chart Club 다운로드 페이지
   intro: 휴대폰에서도 차트 클럽을 편하게 열어보세요.
   back: 차트 클럽으로
   android: Android
@@ -17,7 +17,7 @@ ko:
   network: 첫 실행에는 게임 파일을 내려받으므로 인터넷 연결이 필요합니다. 설치만으로 첫 로딩이 빨라지는 것은 아니며, 이후 실행에서는 저장된 캐시를 활용합니다.
   releases: GitHub 릴리스 · 버전 1.0.8
 en:
-  title: Install Chart Club
+  title: Chart Club Downloads
   intro: Open Chart Club from your phone's Home Screen.
   back: Back to Chart Club
   android: Android
@@ -35,7 +35,7 @@ en:
   network: The first launch downloads game files and needs an internet connection. Installing the app alone does not speed up the first load; later launches can reuse cached files.
   releases: GitHub release · Version 1.0.8
 ja:
-  title: Chart Clubをインストール
+  title: Chart Club ダウンロード
   intro: スマートフォンのホーム画面からChart Clubを開けます。
   back: Chart Clubに戻る
   android: Android
