@@ -6,6 +6,8 @@ import {CryptoFeed,mergeCandles} from './crypto-feed.mjs';
 import {sharedView,localRange} from './view-state.mjs';
 import {Pens} from './pens.mjs';
 import {YoutubeScreen} from './youtube.mjs';
+// Clickable cinema controls blink like the game's hand cursor: rays on for 0.5 s, off for 0.5 s.
+if(!window.__btcCursorBlink)window.__btcCursorBlink=setInterval(()=>document.documentElement.classList.toggle('btc-cursor-rays'),500);
 import {GameKeyboard,prepareRoomTransition} from './keyboard.mjs';
 import {DrawingPermissions} from './drawing-permissions.mjs';
 import {HostRequests} from './host-requests.mjs';
@@ -29,7 +31,10 @@ class Cinema {
     this.deleteButton=element('button','지우기',{title:'선택한 내 도형 지우기',disabled:true});
     this.clearButton=element('button','전체 지우기',{title:'현재 차트의 도형 전체 지우기 · 방장 전용',hidden:true});
     this.role=element('span','연결 중…',{className:'cinema-role'});this.favorites=element('div',null,{className:'cinema-favorites',ariaLabel:'즐겨찾기 도구'});
-    header.append(this.symbol,this.searchButton,this.interval,this.deleteButton,this.clearButton,this.favorites,this.role);
+    // Only the operator sees this: take the host role at any time, then hand it on as host.
+    this.takeHostButton=element('button','방장 가져오기',{type:'button',title:'운영자: 방장을 가져옵니다'});this.takeHostButton.hidden=true;
+    this.takeHostButton.onclick=()=>{if(this.admin&&!this.host)this.send({type:'host_take',request_id:crypto.randomUUID()});};
+    header.append(this.symbol,this.searchButton,this.interval,this.deleteButton,this.clearButton,this.favorites,this.role,this.takeHostButton);
     const body=element('div',null,{className:'cinema-body'}),toolbar=element('nav',null,{className:'cinema-tools'});toolbar.setAttribute('aria-label','차트 그리기 도구');
     this.plot=element('div',null,{className:'cinema-plot'});this.container=element('div',null,{className:'cinema-chart'});this.plot.append(this.container);body.append(toolbar,this.plot);
     const footer=element('div',null,{className:'cinema-footer'});this.hint=element('span','',{className:'cinema-hint'});this.source=element('span','Binance · 데이터 연결 중',{className:'cinema-source'});footer.append(this.hint,this.source);
@@ -83,7 +88,7 @@ class Cinema {
     if(data.type==='media'){if(this.state){this.state.media=data.media;this.applyMedia();}return;}
     if(data.type==='youtube_results'){this.youtube.receive(data);return;}
     if(data.type==='welcome'||data.type==='resume'){
-      this.retries=0;this.id=data.id;this.serverOffset=data.server_time-Date.now();this.applyRoom(data);this.drawings.replace(data.drawings);if(this.state.instrument.venue==='yahoo')this.bars(data,true);
+      this.retries=0;this.id=data.id;if(data.type==='welcome')this.admin=data.admin===true;this.serverOffset=data.server_time-Date.now();this.applyRoom(data);this.drawings.replace(data.drawings);if(this.state.instrument.venue==='yahoo')this.bars(data,true);
       if(this.options.avatar?.character)this.send({type:'avatar',avatar:this.options.avatar});
       if(this.resumeSeat!=null){const seat=this.resumeSeat;this.resumeSeat=null;if(this.me?.seat==null&&!data.participants.some(p=>p.seat===seat))this.send({type:'seat',seat});}
       this.visibility();return;
@@ -106,6 +111,7 @@ class Cinema {
     this.symbol.textContent=data.instrument.symbol+(data.instrument.venue==='futures'?'.P':'');this.symbol.title=data.instrument.label;
     this.permissions.update();this.hostRequests.update();
     const host=data.participants.find(p=>p.id===data.host);this.role.textContent=`${this.host?'★ 내가 방장':'방장 '+(host?.nickname||'없음')} · ${data.participants.length}명`;
+    if(this.takeHostButton)this.takeHostButton.hidden=!this.admin||this.host;
     if(changed){
       this.pens.reset();
       this.feed?.destroy();this.feed=null;this.viewDirty=false;this.lastView='';this.source.textContent='데이터 연결 중';const instrument={...data.instrument,id:data.instrument.venue+':'+data.instrument.symbol,name:data.instrument.label,short:data.instrument.symbol};
