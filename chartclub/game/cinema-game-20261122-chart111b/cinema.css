@@ -58,3 +58,9 @@ html.btc-cursor-rays #btc-cinema :is(button,select,label,a,summary,[role=button]
 #btc-cinema :is(button,select,input):disabled,.cinema-dialog :is(button,select,input):disabled{cursor:url(cursor-default.png) 10 8,default}
 #btc-cinema :is(textarea,input:not([type=checkbox]):not([type=color])),.cinema-dialog :is(textarea,input:not([type=checkbox]):not([type=color])){cursor:text}
 #btc-cinema .cinema-plot,#btc-cinema .cinema-plot *{cursor:auto}
+
+/* Disabled controls let the click through to the room, which tells a visitor to sign in. */
+#btc-cinema button:disabled,#btc-cinema select:disabled,#btc-cinema input:disabled{pointer-events:none}
+
+/* The notice at the top reads at a glance. */
+#btc-cinema .cinema-toast{font-size:17px;padding:10px 18px}

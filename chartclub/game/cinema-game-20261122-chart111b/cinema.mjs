@@ -20,6 +20,12 @@ class Cinema {
     if(this.active)return;this.active=true;this.options=typeof options==='string'?JSON.parse(options):options;this.origin=this.options.api_origin||window.BTC_OFFICE_CONFIG?.api_origin;
     if(!this.origin)return;this.state=null;this.id='';this.lastView='';this.lastGeometry='';this.backgrounded=false;this.resumeSeat=null;
     this.root=element('section',null,{id:'btc-cinema'});this.root.setAttribute('aria-label','공유 차트 시네마');
+    // A visitor (not signed in) pressing a control they cannot use is told why.
+    this.root.addEventListener('pointerdown',event=>{
+      if(this.options.member!==false)return;
+      const locked=[...this.root.querySelectorAll('button:disabled,select:disabled,input:disabled')].some(control=>{const r=control.getBoundingClientRect();return r.width&&event.clientX>=r.left&&event.clientX<=r.right&&event.clientY>=r.top&&event.clientY<=r.bottom;});
+      if(locked)this.loginNotice();
+    },true);
     const tabs=element('nav',null,{className:'cinema-tabs',ariaLabel:'공용 화면'});this.tabButtons=new Map();
     for(const [tab,title] of [['chart','차트'],['youtube','유튜브']]){const button=element('button',title,{type:'button'});button.dataset.tab=tab;button.onclick=()=>this.mediaCommand('tab',{tab});tabs.append(button);this.tabButtons.set(tab,button);}this.root.append(tabs);
     const header=element('div',null,{className:'cinema-header'});this.symbol=element('strong','BTCUSDT.P',{className:'cinema-symbol'});
@@ -168,6 +174,8 @@ class Cinema {
   }
   command(json){this.send(JSON.parse(json));}
   send(data){if(this.socket?.readyState!==WebSocket.OPEN)return false;this.socket.send(JSON.stringify({context:this.state?.context,...data}));return true;}
+  /** A visitor pressing something for members gets the notice at the top. */
+  loginNotice(){this.notice('로그인 후 이용 가능한 기능입니다.');}
   emit(){if(this.callback)this.callback(JSON.stringify({id:this.id,host:this.host,state:this.state,captured:this.captured}));}
   capture(){this.keyboard?.refresh();}
   notice(message){if(!this.toast)return;this.toast.textContent=message;clearTimeout(this.toastTimer);this.toastTimer=setTimeout(()=>{if(this.toast)this.toast.textContent='';},5000);}
