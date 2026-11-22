@@ -1,5 +1,5 @@
 {% if site.notifier_api_url and site.notifier_api_url != '' %}
-<dl class="product-stats" data-program-stats="{{ page.stats_program | default: page.product | escape }}" aria-label="{{ site.data.ui[page.lang].stats }}">
+<dl class="product-stats" data-program-stats="{{ page.product | escape }}" aria-label="{{ site.data.ui[page.lang].stats }}">
   <div class="product-stat"><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 4a3 3 0 0 1 0 6M18 13a5 5 0 0 1 3 5v2"/></svg>{{ site.data.ui[page.lang].visitors }}</dt><dd data-program-stat="visitors">—</dd></div>
   {% if page.product == "chartclub" %}
   <div class="product-stat" title="{{ site.data.ui[page.lang].unique_plays }}"><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 4 12 8-12 8V4Z"/></svg>{{ site.data.ui[page.lang].plays }}</dt><dd data-program-stat="plays">—</dd></div>

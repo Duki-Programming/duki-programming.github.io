@@ -4,7 +4,7 @@ chatville:
   back: /assets/programs/chatville/icon-trader-house.png
   left: /assets/programs/chatville/icon-doyun-house.png
   top: /assets/programs/chatville/icon-minjae-house.png
-btcoffice:
+chartclub:
   front: /assets/programs/chartclub/cube-office-worker-small.png
   right: /assets/programs/chartclub/cube-unemployed-small.png
   back: /assets/programs/chartclub/cube-vacationer-small.png

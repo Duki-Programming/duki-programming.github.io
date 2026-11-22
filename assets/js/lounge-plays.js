@@ -2,11 +2,11 @@
   // Plays are counted by the Duki notifier: each IP once, forever.
   let url, recordUrl;
   try {
-    url = new URL('/v1/public/plays?program=btcoffice', document.currentScript.dataset.api);
+    url = new URL('/v1/public/plays?program=chartclub', document.currentScript.dataset.api);
     recordUrl = new URL('/v1/plays', document.currentScript.dataset.api);
     if (url.protocol !== 'https:') return;
   } catch { return; }
-  const numbers = [...document.querySelectorAll('[data-program-stats="btcoffice"] [data-program-stat="plays"]')];
+  const numbers = [...document.querySelectorAll('[data-program-stats="chartclub"] [data-program-stat="plays"]')];
   const format = new Intl.NumberFormat(document.documentElement.lang || 'ko');
   const render = data => {
     if (!data?.ok || !Number.isSafeInteger(data.plays) || data.plays < 0) return;
@@ -28,7 +28,7 @@
     // Navigation stays immediate. The server also deduplicates direct game entry.
     entrySent = true;
     fetch(recordUrl.href, { method:'POST', credentials:'omit', mode:'cors', keepalive:true,
-      headers:{ 'Content-Type':'application/json' }, body:JSON.stringify({ program:'btcoffice' })
+      headers:{ 'Content-Type':'application/json' }, body:JSON.stringify({ program:'chartclub' })
     }).then(async response => { if (!response.ok) throw Error(); render(await response.json()); })
       .catch(() => { entrySent = false; });
   });

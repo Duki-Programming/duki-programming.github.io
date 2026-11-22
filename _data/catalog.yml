@@ -7,7 +7,7 @@ ko:
   navigation: 언어 선택
   creator: 개발·제작
   programs:
-    - id: btcoffice
+    - id: chartclub
       title: 차트 클럽
       description: "수익으로 증명하는 사람들의 휴식처. 고수들의 차트 클럽."
       platform: "브라우저 게임 · PC / 모바일"
@@ -62,7 +62,7 @@ en:
   navigation: Choose a language
   creator: Created by
   programs:
-    - id: btcoffice
+    - id: chartclub
       title: Chart Club
       description: "A place to unwind for those who let their returns speak. The chart club for seasoned traders."
       platform: "Browser game · Desktop / mobile"
@@ -118,7 +118,7 @@ ja:
   navigation: 言語を選択
   creator: 開発・制作
   programs:
-  - id: btcoffice
+  - id: chartclub
     title: Chart Club
     description: "利益で実力を示す人たちの憩いの場。腕利きトレーダーたちのチャートクラブ。"
     platform: "ブラウザゲーム · PC / モバイル"

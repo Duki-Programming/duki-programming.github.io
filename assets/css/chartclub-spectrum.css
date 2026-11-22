@@ -1,23 +1,23 @@
 /* BTC Office shares the shuffled palettes and foils while retaining its market board. */
-.catalog-programs .program-link--btcoffice {
+.catalog-programs .program-link--chartclub {
   min-height:226px;
   border:2px solid transparent;
   background:linear-gradient(135deg,var(--p-start),var(--p-mid) 55%,var(--p-end)) padding-box,linear-gradient(120deg,var(--p-edge),var(--s2),var(--s3),var(--s4),var(--p-edge)) border-box;
   box-shadow:0 0 28px color-mix(in srgb,var(--p-edge) 15%,transparent),inset 0 0 35px color-mix(in srgb,var(--p-edge) 4%,transparent);
 }
-.program-link--btcoffice .program-link__text>strong { color:var(--p-ink); text-shadow:2px 2px var(--p-mid); }
-.program-link--btcoffice .program-link__text>.program-spotlight { align-self:flex-start; padding:4px 9px; margin-bottom:5px; border:1px solid color-mix(in srgb,var(--p-edge) 50%,transparent); border-radius:2px; color:var(--p-ink); background:color-mix(in srgb,var(--p-edge) 8%,var(--p-mid)); font-size:10px; letter-spacing:.07em; }
-.program-link--btcoffice .program-cube { animation-play-state:running; animation-duration:26s; }
-.program-link--btcoffice .program-cube__face img { width:90%; height:90%; image-rendering:pixelated; }
+.program-link--chartclub .program-link__text>strong { color:var(--p-ink); text-shadow:2px 2px var(--p-mid); }
+.program-link--chartclub .program-link__text>.program-spotlight { align-self:flex-start; padding:4px 9px; margin-bottom:5px; border:1px solid color-mix(in srgb,var(--p-edge) 50%,transparent); border-radius:2px; color:var(--p-ink); background:color-mix(in srgb,var(--p-edge) 8%,var(--p-mid)); font-size:10px; letter-spacing:.07em; }
+.program-link--chartclub .program-cube { animation-play-state:running; animation-duration:26s; }
+.program-link--chartclub .program-cube__face img { width:90%; height:90%; image-rendering:pixelated; }
 @media (min-width:521px) {
-  .program-link--btcoffice .program-cube-stage { --cube-size:64px; --cube-half:32px; width:92px; height:92px; }
+  .program-link--chartclub .program-cube-stage { --cube-size:64px; --cube-half:32px; width:92px; height:92px; }
 }
 @media (max-width:520px) {
-  .catalog-programs .program-link--btcoffice .program-cube-stage { --cube-size:56px; --cube-half:28px; }
+  .catalog-programs .program-link--chartclub .program-cube-stage { --cube-size:56px; --cube-half:28px; }
 }
-.program-link--btcoffice>.office-banner-market { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; color:var(--p-edge); }
+.program-link--chartclub>.office-banner-market { position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; color:var(--p-edge); }
 .office-banner-market:before { content:''; position:absolute; inset:0; background:linear-gradient(color-mix(in srgb,var(--p-edge) 6%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--p-edge) 6%,transparent) 1px,transparent 1px); background-size:28px 28px; }
 .office-banner-market svg { position:absolute; width:45%; min-width:260px; height:80%; right:4%; bottom:-6%; opacity:.22; filter:drop-shadow(0 0 9px currentColor); }
 .office-banner-market:after { content:''; position:absolute; width:2px; inset-block:0; background:linear-gradient(transparent,color-mix(in srgb,var(--p-edge) 67%,transparent),transparent); box-shadow:0 0 25px 8px color-mix(in srgb,var(--p-edge) 9%,transparent); animation:office-market-scan 7s linear infinite; }
 @keyframes office-market-scan { from { left:-5%; } to { left:105%; } }
-@media (prefers-reduced-motion:reduce) { .program-link--btcoffice .program-cube,.office-banner-market:after { animation:none; } }
+@media (prefers-reduced-motion:reduce) { .program-link--chartclub .program-cube,.office-banner-market:after { animation:none; } }
