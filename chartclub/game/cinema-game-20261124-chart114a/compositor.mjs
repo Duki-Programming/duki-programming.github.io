@@ -8,7 +8,10 @@ export class CinemaCompositor {
     Object.assign(canvas.style,{zIndex:'41',pointerEvents:'none',backgroundColor:'transparent'});
     if(getComputedStyle(canvas).position==='static')canvas.style.position='relative';
     this.surface=document.createElement('div');this.surface.id='btc-cinema-game-input';
-    Object.assign(this.surface.style,{position:'fixed',zIndex:'42',touchAction:'none',background:'transparent'});
+    Object.assign(this.surface.style,{position:'fixed',zIndex:'42',touchAction:'none',webkitTouchCallout:'none',background:'transparent'});
+    // Native fields need the original tap to open a phone's keyboard.
+    this.nativeFieldLayer=document.documentElement.style.getPropertyValue('--btc-native-field-layer');
+    document.documentElement.style.setProperty('--btc-native-field-layer','43');
     this.surface.setAttribute('aria-hidden','true');document.body.append(this.surface);
     this.forward=e=>{
       e.stopPropagation();
@@ -46,5 +49,9 @@ export class CinemaCompositor {
     this.surface.style.clipPath=`path(evenodd, "${path}")`;
   }
 
-  destroy(){this.surface.remove();Object.assign(this.canvas.style,this.saved);}
+  destroy(){
+    this.surface.remove();Object.assign(this.canvas.style,this.saved);
+    if(this.nativeFieldLayer)document.documentElement.style.setProperty('--btc-native-field-layer',this.nativeFieldLayer);
+    else document.documentElement.style.removeProperty('--btc-native-field-layer');
+  }
 }

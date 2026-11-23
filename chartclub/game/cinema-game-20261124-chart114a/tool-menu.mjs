@@ -4,6 +4,7 @@ export const LINE_GROUPS=[['라인',['trend','ray','extended','hline','hray','vl
 export const LINE_TOOLS=LINE_GROUPS.flatMap(([,tools])=>tools);
 const dot=(x,y)=>`<circle cx="${x}" cy="${y}" r="2.2"/>`;
 const ICONS={
+  select:`<path d="M3 14h7m8 0h7M14 3v7m0 8v7"/>`,
   trend:`<path d="M7.5 20.5l13-13"/>${dot(6,22)}${dot(22,6)}`,
   ray:`<path d="M7.5 20.5L25 3"/>${dot(6,22)}${dot(14,14)}`,
   extended:`<path d="M3 25L25 3"/>${dot(10,18)}${dot(18,10)}`,

@@ -1,5 +1,5 @@
 // Price/time anchors are independent of browser size and chart zoom.
-export const TOOLS = { select:'선택 / 이동', trend:'추세선', ray:'레이', extended:'연장선', hline:'수평선', hray:'수평 레이', vline:'수직선', crossline:'크로스라인', channel:'평행 채널', pitchfork:'피치포크', fibonacci:'피보나치 되돌림', brush:'자유 그리기' };
+export const TOOLS = { select:'커서 · 선택 / 이동', trend:'추세선', ray:'레이', extended:'연장선', hline:'수평선', hray:'수평 레이', vline:'수직선', crossline:'크로스라인', channel:'평행 채널', pitchfork:'피치포크', fibonacci:'피보나치 되돌림', brush:'자유 그리기' };
 export const POINTS = {trend:2,ray:2,extended:2,hline:1,hray:1,vline:1,crossline:1,channel:3,pitchfork:3,fibonacci:2};
 // Single-anchor lines span the viewport; their extend flags do not apply.
 export const ONE_POINT = ['hline','hray','vline','crossline'];

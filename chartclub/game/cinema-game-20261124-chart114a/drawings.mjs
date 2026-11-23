@@ -1,5 +1,5 @@
 import {TOOLS,POINTS,ONE_POINT,DEFAULT_STYLE,geometry,logicalToTime,timeToLogical,pitchforkStyle} from './drawing-geometry.mjs';
-import {ToolMenu,LINE_TOOLS} from './tool-menu.mjs';
+import {ToolMenu,LINE_TOOLS,toolIcon} from './tool-menu.mjs';
 import {DrawingHistory} from './drawing-history.mjs';
 const NS='http://www.w3.org/2000/svg';
 const TOUCH_SLOP=8; // CSS pixels, independent of device pixel ratio and chart zoom.
@@ -15,8 +15,13 @@ export class Drawings {
     this.selectionDelete.innerHTML='<svg width="17" height="18" viewBox="0 0 20 22" aria-hidden="true"><path d="M3 6h14M7 6V3h6v3M5 6l1 14h8l1-14M8 9v8m4-8v8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     this.selectionDelete.onclick=()=>{const d=this.items.get(this.selected);if(d)this.remove(d);};this.selectionActions.append(this.selectionEdit,this.selectionDelete);plot.append(this.selectionActions);
     this.buttons=new Map();
-    const icons={select:'↖',fibonacci:'☷',brush:'✎'};
-    for(const [tool,title] of Object.entries(TOOLS)){if(LINE_TOOLS.includes(tool)){if(!this.menu)this.menu=new ToolMenu(this,toolbar,room.favorites);continue;}const button=element('button',icons[tool],{title,'ariaLabel':title});button.dataset.tool=tool;button.onclick=()=>this.setTool(tool);toolbar.append(button);this.buttons.set(tool,button);}
+    const icons={fibonacci:'☷',brush:'✎'};
+    for(const [tool,title] of Object.entries(TOOLS)){
+      if(LINE_TOOLS.includes(tool)){if(!this.menu)this.menu=new ToolMenu(this,toolbar,room.favorites);continue;}
+      const button=element('button',icons[tool],{type:'button',title,ariaLabel:title});
+      if(tool==='select')button.innerHTML=toolIcon(tool);
+      button.dataset.tool=tool;button.onclick=()=>this.setTool(tool);toolbar.append(button);this.buttons.set(tool,button);
+    }
     this.history=new DrawingHistory({send:data=>room.send(data),owns:d=>this.owns(d),allowed:()=>this.allowed,canDelete:d=>this.selectable(d),notice:text=>room.notice(text),changed:()=>this.historyButtons()});
     this.undoButton=element('button','↶',{title:'내 그리기 실행 취소 · Ctrl+Z / ⌘Z',ariaLabel:'내 그리기 실행 취소'});this.undoButton.onclick=()=>this.undo();toolbar.append(this.undoButton);
     this.redoButton=element('button','↷',{title:'내 그리기 다시 실행 · Ctrl+Shift+Z / ⌘⇧Z',ariaLabel:'내 그리기 다시 실행'});this.redoButton.onclick=()=>this.undo(true);toolbar.append(this.redoButton);
@@ -30,10 +35,18 @@ export class Drawings {
     this.svg.addEventListener('pointercancel',e=>this.cancelPointer(e));
     this.svg.addEventListener('pointerleave',()=>{if(!this.anchors.length&&!this.drag&&POINTS[this.tool]===1&&this.preview){this.preview=null;this.render();}});
     this.svg.addEventListener('lostpointercapture',e=>this.cancelPointer(e));
+    this.backgroundDown=e=>{
+      if(this.tool!=='select'||e.button!==0||e.isPrimary===false||e.target.closest('[data-drawing],.cinema-selection-actions'))return;
+      this.lastTap=null;
+      if(this.selected===null)return;
+      this.selected=null;this.render();
+      // Leave the press available to the chart so dragging can start here.
+    };
+    plot.addEventListener('pointerdown',this.backgroundDown,true);
     this.svg.addEventListener('dblclick',e=>{if(this.tool!=='select')return;const d=this.items.get(e.target.closest('[data-drawing]')?.dataset.drawing||this.selected);if(d){e.preventDefault();e.stopPropagation();this.cancel();this.settings(d);}});
     this.key=e=>{if(!this.room.active||this.room.root.hidden||this.room.gameTyping||this.room.state?.media?.tab!=='chart'||e.isComposing||e.target.closest?.('input,select,textarea,dialog,[contenteditable="true"]')||document.querySelector('dialog[open]'))return;
       if((e.ctrlKey||e.metaKey)&&!e.altKey&&e.key.toLowerCase()==='z'){e.preventDefault();e.stopPropagation();if(!e.repeat)this.undo(e.shiftKey);return;}
-      if(e.key==='Escape'){this.menu?.close();this.cancel();this.setTool('select');this.selected=null;this.render();}
+      if(e.key==='Escape')this.setTool('select');
       if(['Delete','Backspace'].includes(e.key)&&this.selected){e.preventDefault();const d=this.items.get(this.selected);if(d)this.remove(d);}
     };document.addEventListener('keydown',this.key,true);
     this.setTool('select');this.historyButtons();
@@ -43,12 +56,15 @@ export class Drawings {
   owns(d){return !!d&&(d.owner===this.room.id || !!this.room.me?.user_id&&d.owner===this.room.me.user_id);}
   selectable(d){return !!d&&!!this.room.state&&(this.room.host||this.owns(d));}
   editable(d){return !!d&&this.allowed&&(this.room.host||this.owns(d));}
-  setTool(tool){if(tool!=='select'&&!this.allowed){this.room.notice('방장이 그리기 권한을 허용해야 합니다.');return;}this.cancel();this.tool=tool;
-    this.svg.classList.toggle('drawing-active',tool!=='select');for(const [name,b] of this.buttons)b.classList.toggle('active',name===tool);this.menu?.sync();
+  setTool(tool){if(tool!=='select'&&!this.allowed){this.room.notice('방장이 그리기 권한을 허용해야 합니다.');return;}
+    this.selected=null;this.lastTap=null;this.cancel();this.tool=tool;
+    this.svg.classList.toggle('drawing-active',tool!=='select');
+    for(const [name,b] of this.buttons){b.classList.toggle('active',name===tool);b.setAttribute('aria-pressed',String(name===tool));}
+    if(tool==='select')this.menu?.close();this.menu?.sync();
     this.room.hint.textContent=tool==='select'?'도형 더블클릭 · 설정  /  모서리 점 · 이동':tool==='brush'?'드래그해서 그리기 · Esc 취소':`${TOOLS[tool]} · ${POINTS[tool]}점 · 탭: 점 찍기 / 드래그: 위치 확인`;
     this.room.pens?.toolChanged();
   }
-  permission(){for(const [key,b] of this.buttons)b.disabled=key!=='select'&&!this.allowed;this.menu?.sync();this.clearButton.hidden=this.clearButton.disabled=!this.room.host;if(!this.selectable(this.items.get(this.selected))){this.selected=null;this.closeDialog();this.cancel();}if(!this.allowed){this.setTool('select');this.closeDialog();}this.historyButtons();this.render();}
+  permission(){for(const [key,b] of this.buttons)b.disabled=key!=='select'&&!this.allowed;this.menu?.sync();this.clearButton.hidden=this.clearButton.disabled=!this.room.host;if(!this.selectable(this.items.get(this.selected))){this.selected=null;this.closeDialog();this.cancel();}if(!this.allowed){if(this.tool!=='select')this.setTool('select');this.closeDialog();}this.historyButtons();this.render();}
   historyButtons(){if(this.undoButton)this.undoButton.disabled=!this.history.canUndo;if(this.redoButton)this.redoButton.disabled=!this.history.canRedo;}
   undo(redo=false){this.cancel();this.history.travel(redo);}
   replace(items){this.items=new Map(items.map(d=>[d.id,d]));this.history.reset();this.selected=null;this.cancel();this.render();}
@@ -225,5 +241,5 @@ export class Drawings {
       this.history.submit('drawing_update',{id:d.id,revision:d.revision,drawing:{...d,color:fields.color.value,width:+fields.width.value,dash:fields.dash.value,extend_left:fields.extend_left?.checked||false,extend_right:d.kind==='pitchfork'||fields.extend_right?.checked||false,locked:fields.locked.checked,levels,...(pitchfork?{pitchfork}:{})}},d);this.closeDialog();};
     dialog.addEventListener('cancel',()=>this.closeDialog());dialog.append(form);document.body.append(dialog);this.dialog=dialog;this.room.capture(true);dialog.showModal();
   }
-  destroy(){cancelAnimationFrame(this.frame);this.frame=0;this.menu?.destroy();this.cancel();this.closeDialog();this.unbindSeries();this.history.reset();this.items.clear();this.selected=null;document.removeEventListener('keydown',this.key,true);this.selectionActions.remove();this.svg.remove();}
+  destroy(){cancelAnimationFrame(this.frame);this.frame=0;this.menu?.destroy();this.cancel();this.closeDialog();this.unbindSeries();this.history.reset();this.items.clear();this.selected=null;this.plot.removeEventListener('pointerdown',this.backgroundDown,true);document.removeEventListener('keydown',this.key,true);this.selectionActions.remove();this.svg.remove();}
 }
