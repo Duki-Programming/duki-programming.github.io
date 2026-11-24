@@ -22,6 +22,28 @@ export function loadFavorites(storage=globalThis.localStorage){
   try{const list=JSON.parse(storage?.getItem(KEY)||'[]');return Array.isArray(list)?[...new Set(list)].filter(t=>LINE_TOOLS.includes(t)):[];}catch{return [];}
 }
 function saveFavorites(list,storage=globalThis.localStorage){try{storage?.setItem(KEY,JSON.stringify(list));}catch{/* Private mode: favorites last for this visit. */}}
+
+// Activate on touch release even when the browser uses the first tap for hover.
+function bindMenuTaps(menu){
+  let start=null;
+  const withinTap=point=>start?.identifier===point.identifier&&Math.hypot(point.clientX-start.clientX,point.clientY-start.clientY)<=8;
+  menu.addEventListener('touchstart',event=>{
+    start=event.touches.length===1?event.changedTouches[0]:null;
+  },{passive:true});
+  menu.addEventListener('touchmove',event=>{
+    if(!withinTap(event.changedTouches[0]))start=null;
+  },{passive:true});
+  menu.addEventListener('touchcancel',()=>{start=null;});
+  menu.addEventListener('touchend',event=>{
+    const point=event.changedTouches[0],button=event.target.closest('button');
+    const tap=withinTap(point)&&event.touches.length===0;
+    start=null;
+    if(!button||!event.cancelable)return;
+    event.preventDefault(); // Suppress the compatibility click, including after a swipe.
+    if(tap&&!button.disabled&&button.contains(document.elementFromPoint(point.clientX,point.clientY)))button.click();
+  },{passive:false});
+}
+
 export class ToolMenu {
   constructor(drawings,toolbar,bar){
     this.drawings=drawings;this.bar=bar;this.favorites=loadFavorites();this.last='trend';this.items=new Map();
@@ -38,6 +60,7 @@ export class ToolMenu {
         row.append(pick,star);this.menu.append(row);this.items.set(tool,{row,pick,star});
       }
     }
+    bindMenuTaps(this.menu);
     drawings.room.root.append(this.menu);
     this.outside=e=>{if(!this.menu.hidden&&!this.menu.contains(e.target)&&!this.button.contains(e.target))this.close();};
     document.addEventListener('pointerdown',this.outside,true);

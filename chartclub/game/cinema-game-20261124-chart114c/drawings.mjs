@@ -56,7 +56,7 @@ export class Drawings {
   owns(d){return !!d&&(d.owner===this.room.id || !!this.room.me?.user_id&&d.owner===this.room.me.user_id);}
   selectable(d){return !!d&&!!this.room.state&&(this.room.host||this.owns(d));}
   editable(d){return !!d&&this.allowed&&(this.room.host||this.owns(d));}
-  setTool(tool){if(tool!=='select'&&!this.allowed){this.room.notice('방장이 그리기 권한을 허용해야 합니다.');return;}
+  setTool(tool){if(tool!=='select'&&!this.allowed){this.room.notice('현재 그리기 도구를 사용할 수 없습니다.');return;}
     this.selected=null;this.lastTap=null;this.cancel();this.tool=tool;
     this.svg.classList.toggle('drawing-active',tool!=='select');
     for(const [name,b] of this.buttons){b.classList.toggle('active',name===tool);b.setAttribute('aria-pressed',String(name===tool));}
