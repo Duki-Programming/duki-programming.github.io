@@ -64,3 +64,9 @@ html.btc-cursor-rays #btc-cinema :is(button,select,label,a,summary,[role=button]
 
 /* The notice at the top reads at a glance. */
 #btc-cinema .cinema-toast{font-size:17px;padding:10px 18px}
+#btc-cinema .cinema-tools [data-tool=select]{display:grid;place-items:center}
+#btc-cinema .cinema-tools [data-tool=select] svg{width:22px;height:22px}
+#btc-cinema .cinema-tabs .cinema-take-host{align-self:center;margin-left:auto;margin-right:4px;padding:3px 7px;min-height:26px;border:1px solid #415565;border-radius:4px;font-size:12px;white-space:nowrap}
+#btc-cinema .cinema-youtube-docked{position:absolute;z-index:12;right:8px;bottom:29px;width:clamp(202px,30%,400px);height:clamp(202px,35%,225px);padding:0;background:#080e16;border:1px solid #596c7b}
+#btc-cinema .cinema-youtube-docked > :not(.yt-stage){display:none}
+#btc-cinema .cinema-youtube-docked .yt-stage{height:100%;min-height:0}

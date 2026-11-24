@@ -49,7 +49,9 @@ export class GameKeyboard {
     finally{this.forwarding=false;}
   }
   route(e){
-    if(this.forwarding||!this.room.active||!GAME_KEYS.has(e.code))return;
+    if(this.forwarding||!this.room.active)return;
+    if(e.key==='Enter'&&(e.code==='Enter'||e.code==='NumpadEnter')){this.routeChat(e);return;}
+    if(!GAME_KEYS.has(e.code))return;
     const down=e.type==='keydown',canvas=document.getElementById('canvas');
     const data={code:e.code,key:e.key,repeat:e.repeat,shiftKey:e.shiftKey,ctrlKey:e.ctrlKey,altKey:e.altKey,metaKey:e.metaKey};
     if(!down&&this.held.has(e.code)){
@@ -60,6 +62,19 @@ export class GameKeyboard {
     if(e.isComposing||e.ctrlKey||e.metaKey||e.altKey||this.room.gameTyping||document.querySelector('dialog[open]')||hasTextCaret(e.target)||hasTextCaret(document.activeElement))return;
     if(down)this.held.set(e.code,data);
     if(e.target!==canvas){this.dispatch(e.type,data);e.preventDefault();}
+  }
+  routeChat(e){
+    if(e.isComposing||e.keyCode===229||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||hasTextCaret(e.target)||hasTextCaret(document.activeElement))return;
+    const canvas=document.getElementById('canvas');
+    if(this.room.root.hidden||document.querySelector('dialog[open],.cinema-tool-menu:not([hidden]),.price-scale-menu')){
+      if(e.target===canvas&&!this.room.root.hidden){e.preventDefault();e.stopPropagation();}
+      return;
+    }
+    if(!canvas||e.target===canvas)return;
+    e.preventDefault();e.stopPropagation();
+    if(e.type!=='keydown'||e.repeat)return;
+    canvas.focus({preventScroll:true});
+    this.dispatch('keydown',{code:e.code,key:e.key});
   }
   release(){for(const data of this.held.values())this.dispatch('keyup',{...data,repeat:false});this.held.clear();}
   returnFromPlayer(){

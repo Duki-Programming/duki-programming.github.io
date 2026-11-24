@@ -5,7 +5,7 @@ export class DrawingPermissions {
   open(){
     if(!this.room.host)return;
     const {dialog,actions}=this.room.dialogBox('함께 그리기');
-    this.dialog=dialog;this.selected=new Set(this.room.state.drawers||[]);this.requestId=null;this.signature='';
+    this.dialog=dialog;this.selected=new Set(this.room.state.drawers||[]);this.known=new Set(this.room.state.participants.map(p=>p.id));this.requestId=null;this.signature='';
     this.description=el('p');this.list=el('div',null,{className:'cinema-permissions-list'});
     this.status=el('p','',{role:'status'});this.confirm=el('button','확인',{type:'button'});
     this.confirm.onclick=()=>this.save();actions.firstChild.textContent='취소';actions.prepend(this.confirm);
@@ -16,14 +16,16 @@ export class DrawingPermissions {
     if(!this.room.host){this.room.closeDialog();return;}
     const people=this.room.state.participants;
     this.selected=new Set([...this.selected].filter(id=>people.some(p=>p.id===id)));
+    for(const id of this.room.state.drawers)if(!this.known.has(id))this.selected.add(id);
+    this.known=new Set(people.map(p=>p.id));
     this.confirm.disabled=!!this.requestId;
-    this.description.textContent='오른쪽 버튼을 눌러 그리기를 허용하고 확인해 주세요. 차트 이동·확대/축소는 방장만 할 수 있습니다.';
+    this.description.textContent='로그인한 참여자는 입장하면 바로 그릴 수 있습니다. 차트 이동·확대/축소는 방장이 합니다.';
     const signature=JSON.stringify([people.map(p=>[p.id,p.nickname]),[...this.selected],this.requestId]);
     if(signature===this.signature)return;this.signature=signature;this.list.replaceChildren();
     for(const person of people){
       const host=person.id===this.room.state.host,checked=host||this.selected.has(person.id);
       const row=el('div',null,{className:'cinema-permission-row'}),name=el('span',person.nickname+(host?' · 방장':''),{className:'cinema-permission-name'});
-      const toggle=el('button',(checked?'✓ ':'□ ')+(host?'방장':'그리기'),{type:'button',disabled:!!this.requestId||host,className:'cinema-permission-toggle'});
+      const toggle=el('button',(checked?'✓ ':'□ ')+(host?'방장':'그리기'),{type:'button',disabled:!!this.requestId||host||!person.user_id,className:'cinema-permission-toggle'});
       toggle.dataset.member=person.id;toggle.setAttribute('aria-label',person.nickname+' 그리기 허용');toggle.setAttribute('aria-pressed',String(checked));
       toggle.onclick=()=>{if(checked)this.selected.delete(person.id);else this.selected.add(person.id);this.update();};
       row.append(name,toggle);this.list.append(row);

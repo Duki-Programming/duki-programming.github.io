@@ -38,9 +38,10 @@ class Cinema {
     this.clearButton=element('button','전체 지우기',{title:'현재 차트의 도형 전체 지우기 · 방장 전용',hidden:true});
     this.role=element('span','연결 중…',{className:'cinema-role'});this.favorites=element('div',null,{className:'cinema-favorites',ariaLabel:'즐겨찾기 도구'});
     // Only the operator sees this: take the host role at any time, then hand it on as host.
-    this.takeHostButton=element('button','방장 가져오기',{type:'button',title:'운영자: 방장을 가져옵니다'});this.takeHostButton.hidden=true;
+    this.takeHostButton=element('button','방장 가져오기',{type:'button',className:'cinema-take-host',title:'운영자: 방장을 가져옵니다'});this.takeHostButton.hidden=true;
     this.takeHostButton.onclick=()=>{if(this.admin&&!this.host)this.send({type:'host_take',request_id:crypto.randomUUID()});};
-    header.append(this.symbol,this.searchButton,this.interval,this.deleteButton,this.clearButton,this.favorites,this.role,this.takeHostButton);
+    tabs.append(this.takeHostButton);
+    header.append(this.symbol,this.searchButton,this.interval,this.deleteButton,this.clearButton,this.favorites,this.role);
     const body=element('div',null,{className:'cinema-body'}),toolbar=element('nav',null,{className:'cinema-tools'});toolbar.setAttribute('aria-label','차트 그리기 도구');
     this.plot=element('div',null,{className:'cinema-plot'});this.container=element('div',null,{className:'cinema-chart'});this.plot.append(this.container);body.append(toolbar,this.plot);
     const footer=element('div',null,{className:'cinema-footer'});this.hint=element('span','',{className:'cinema-hint'});this.source=element('span','Binance · 데이터 연결 중',{className:'cinema-source'});footer.append(this.hint,this.source);
@@ -94,7 +95,7 @@ class Cinema {
     if(data.type==='media'){if(this.state){this.state.media=data.media;this.applyMedia();}return;}
     if(data.type==='youtube_results'){this.youtube.receive(data);return;}
     if(data.type==='welcome'||data.type==='resume'){
-      this.retries=0;this.id=data.id;if(data.type==='welcome')this.admin=data.admin===true;this.serverOffset=data.server_time-Date.now();this.applyRoom(data);this.drawings.replace(data.drawings);if(this.state.instrument.venue==='yahoo')this.bars(data,true);
+      this.retries=0;this.id=data.id;if(data.type==='welcome')this.admin=data.admin===true;this.serverOffset=data.server_time-Date.now();this.pens.reset();this.applyRoom(data);this.drawings.replace(data.drawings);if(this.state.instrument.venue==='yahoo')this.bars(data,true);
       if(this.options.avatar?.character)this.send({type:'avatar',avatar:this.options.avatar});
       if(this.resumeSeat!=null){const seat=this.resumeSeat;this.resumeSeat=null;if(this.me?.seat==null&&!data.participants.some(p=>p.seat===seat))this.send({type:'seat',seat});}
       this.visibility();return;
@@ -138,7 +139,9 @@ class Cinema {
   }
   configureControls(){
     if(!this.chart?.chart)return;
-    this.chart.chart.applyOptions({handleScroll:this.host,handleScale:this.host,kineticScroll:{mouse:false,touch:false},layout:{panes:{enableResize:false}}});
+    // A narrow viewer must fit the host's full logical window, including blank margins.
+    this.chart.chart.applyOptions({handleScroll:this.host,handleScale:this.host,kineticScroll:{mouse:false,touch:false},
+      timeScale:{minBarSpacing:this.host ? 0.5 : 0.001,lockVisibleTimeRangeOnResize:!this.host},layout:{panes:{enableResize:false}}});
     this.chart.scaleControls.unbind();if(this.host)this.chart.scaleControls.bind();
   }
   applyMedia(){
@@ -146,7 +149,7 @@ class Cinema {
     for(const part of this.chartParts)part.hidden=!chart;
     for(const [name,button] of this.tabButtons){button.disabled=!this.host;button.classList.toggle('active',name===media.tab);button.setAttribute('aria-pressed',String(name===media.tab));}
     this.root.classList.toggle('youtube-active',!chart);this.feed?.pause(this.backgrounded||document.hidden||!chart);
-    if(!chart){this.pens.leave();this.drawings.cancel();}this.youtube.apply(media);
+    if(!chart){this.pens.reset();this.drawings.cancel();}this.youtube.apply(media);
     if(chart)requestAnimationFrame(()=>this.drawings.render());
   }
   mediaCommand(command,extra={}){if(!this.host||!this.state?.media)return;const media=this.state.media;this.send({type:'media_command',command,...extra,generation:media.generation,version:media.version,playback_id:media.playback_id,request_id:crypto.randomUUID()});}
@@ -167,7 +170,10 @@ class Cinema {
     const serial=JSON.stringify(view);if(serial===this.lastView)return;this.lastView=serial;this.state.view=view;this.send({type:'view',view});
   }
   applyView(view){
-    if(!this.chart?.bars.length||!view)return;this.suppressView=true;this.state.view=view;
+    if(!this.state||!view)return;
+    this.state.view=view;
+    if(!this.chart?.bars.length)return;
+    this.suppressView=true;
     const step=({'1m':60,'5m':300,'15m':900,'30m':1800,'1h':3600,'2h':7200,'4h':14400,'1d':86400,'1w':604800})[this.state.interval];
     this.chart.chart.timeScale().setVisibleLogicalRange(localRange(view,this.chart.bars,step));const scale=this.chart.chart.priceScale('right');scale.applyOptions({mode:view.mode,invertScale:view.invert,autoScale:view.auto===true});if(!view.auto&&view.price)scale.setVisibleRange(view.price);
     this.lastView=JSON.stringify(view);this.drawings.render();requestAnimationFrame(()=>{this.suppressView=false;});
@@ -199,7 +205,7 @@ class Cinema {
   geometry(json){if(!this.active||!this.root)return;if(json===this.lastGeometry)return;this.lastGeometry=json;const g=typeof json==='string'?JSON.parse(json):json,canvas=document.getElementById('canvas'),r=canvas.getBoundingClientRect(),sx=r.width/g.viewport[0],sy=r.height/g.viewport[1];
     this.gameTyping=g.typing===true;
     const [x,y,w,h]=g.rect;Object.assign(this.root.style,{left:r.left+x*sx+'px',top:r.top+y*sy+'px',width:w*sx+'px',height:h*sy+'px'});const hiddenChanged=this.root.hidden!==!!g.hidden;this.root.hidden=!!g.hidden;
-    if(hiddenChanged){this.youtube.visibility();document.body.classList.toggle('btc-game-popup-open',!!g.hidden);if(g.hidden){this.closeDialog();this.drawings.closeDialog();}}
+    if(hiddenChanged){this.youtube.visibility();document.body.classList.toggle('btc-game-popup-open',!!g.hidden);if(g.hidden){this.pens.leave();this.closeDialog();this.drawings.closeDialog();}}
     this.compositor.geometry(g,r);
   }
   destroy(){this.compositor?.destroy();this.compositor=null;document.body.classList.remove('btc-game-popup-open');this.active=false;window.removeEventListener('pagehide',this.pagehide);window.removeEventListener('pageshow',this.visibility);this.keyboard?.destroy();this.keyboard=null;this.youtube?.destroy();this.feed?.destroy();this.feed=null;clearTimeout(this.reconnect);clearTimeout(this.toastTimer);clearInterval(this.viewTimer);clearInterval(this.heartbeat);document.removeEventListener('visibilitychange',this.visibility);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','click','dblclick'])document.removeEventListener(type,this.viewInput,true);this.socket?.close(1000,'left cinema');this.closeDialog();this.pens?.destroy();this.drawings?.destroy();this.resize?.disconnect();this.chart?.destroy();this.chart=null;this.root?.remove();this.root=null;this.state=null;this.id='';this.inputFocused=false;this.captured=false;this.emit();}

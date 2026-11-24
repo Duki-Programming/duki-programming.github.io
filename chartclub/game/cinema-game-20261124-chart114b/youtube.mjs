@@ -40,29 +40,39 @@ export class YoutubeScreen {
     this.searchStatus=el('p','',{className:'yt-search-status',role:'status'});this.results=el('div',null,{className:'yt-results'});this.finder.append(this.searchStatus,this.results);this.stage.append(this.finder);
     this.watch=el('div',null,{className:'yt-watch'});this.playerBox=el('div',null,{className:'yt-player-box'});this.watch.append(this.playerBox);this.stage.append(this.watch);
     const note=el('p','광고·네트워크 환경에 따라 재생에 시차가 생길 수 있습니다. 개인 플레이어 조작은 다른 사람에게 전달되지 않습니다.',{className:'yt-sync-note'});this.root.append(note);
-    room.root.append(this.root);this.observer=new ResizeObserver(()=>this.fit());this.observer.observe(this.stage);
+    room.root.append(this.root);
+    this.observer=new ResizeObserver(()=>{
+      const fitted=this.fits;this.fit();
+      if(fitted===false&&this.visible){this.sync(true);this.startSync();}
+    });this.observer.observe(this.stage);
   }
-  get visible(){return this.media?.tab==='youtube'&&!this.browsing&&this.joined&&!document.hidden&&!window.btcAudio?.hidden&&!this.room.root.hidden&&!!this.media.video_id&&this.fits!==false;}
+  get visible(){return !this.root.hidden&&!this.watch.hidden&&!document.hidden&&!window.btcAudio?.hidden&&!this.room.root.hidden&&this.fits!==false;}
   apply(media){
-    const changed=this.media?.generation!==media.generation||this.media?.playback_id!==media.playback_id;
-    const advanced=changed||this.media?.version!==media.version;
+    const before=this.media,wasVisible=this.visible;
+    const changed=before?.generation!==media.generation||before?.playback_id!==media.playback_id;
+    const advanced=changed||before?.version!==media.version;
+    const tabOnly=!changed&&before.tab!==media.tab&&before.status===media.status;
     this.media=media;
     if(changed){this.error='';this.manualPaused=false;this.blocked=false;if(media.video_id)this.browsing=false;}
-    if(!media.video_id)this.disposePlayer();this.update();if(advanced)this.sync(true);
+    if(!media.video_id)this.disposePlayer();this.update();
+    if(advanced&&(!tabOnly||!wasVisible))this.sync(true);
   }
   update(){
     if(this.destroyed)return;const host=this.room.host,video=!!this.media?.video_id;
-    this.root.hidden=this.media?.tab!=='youtube';this.link.disabled=this.load.disabled=!host;for(const button of this.results.querySelectorAll('button'))button.disabled=!host;
+    const docked=this.media?.tab==='chart'&&video&&this.joined;
+    this.root.hidden=this.media?.tab!=='youtube'&&!docked;
+    this.root.classList.toggle('cinema-youtube-docked',docked);
+    this.link.disabled=this.load.disabled=!host;for(const button of this.results.querySelectorAll('button'))button.disabled=!host;
     this.query.disabled=this.searchButton.disabled=!host;
     if(!this.requestId&&!this.results.children.length)this.searchStatus.textContent=!host?'방장이 영상을 선택하면 함께 볼 수 있습니다.':!this.room.me?.user_id?'로그인한 방장은 검색할 수 있습니다. 링크 붙여넣기도 사용할 수 있습니다.':!this.room.state.youtube_search_enabled?'영상 검색을 준비 중입니다. 위에 유튜브 링크를 붙여넣어 주세요.':'';
     this.shared.hidden=!video||!host;for(const b of this.sharedButtons)b.disabled=!host;this.seek.disabled=this.seekButton.disabled=!host;
     this.personal.hidden=!video;this.findButton.hidden=!host||this.browsing;this.backButton.hidden=!this.browsing;this.joinButton.hidden=this.joined&&!this.blocked&&!this.manualPaused&&!this.error;
     this.leaveButton.hidden=!this.joined;this.muteButton.textContent=this.muted?'내 음소거 해제':'내 음소거';
-    this.finder.hidden=video&&!this.browsing;this.watch.hidden=!video||this.browsing||!this.joined;
+    this.finder.hidden=docked||video&&!this.browsing;this.watch.hidden=!video||this.browsing&&!docked||!this.joined;
     this.message.textContent=this.error||(!this.joined&&video?'시청을 종료했습니다. 함께 보기를 누르면 현재 위치로 돌아갑니다.':this.blocked?'자동재생이 차단되었습니다. 함께 보기 버튼을 눌러 주세요.':this.manualPaused?'개인 재생을 멈췄습니다. 함께 보기로 다시 맞출 수 있습니다.':video?(this.media.status==='playing'?'함께 재생 중':'공용 영상 일시정지'):'');
     this.message.hidden=!this.message.textContent;
+    this.fit();
     if(this.visible){this.ensurePlayer();this.startSync();}else{this.pausePersonal();this.stopSync();}
-    requestAnimationFrame(()=>this.fit());
   }
   previewLink(){if(!this.room.host)return;const id=parseVideoLink(this.link.value);if(!id){this.room.notice('youtube.com/watch 또는 youtu.be 영상 링크를 입력하세요.');return;}
     this.requestId=null;this.browsing=true;this.results.replaceChildren();this.searchStatus.textContent='영상을 확인한 뒤 함께 재생을 눌러 주세요.';this.result({id,title:'선택한 YouTube 영상',channel:'youtube.com · '+id});this.update();
@@ -121,8 +131,10 @@ export class YoutubeScreen {
   fit(){
     if(this.destroyed||this.root.hidden||this.watch.hidden)return;const r=this.watch.getBoundingClientRect();
     // Chat and game menus overlay this viewport; they never resize or reposition it.
-    this.fits=r.width>=200&&r.height>=200;this.playerBox.hidden=!this.fits;
-    if(!this.fits){this.pausePersonal();this.message.textContent='화면을 넓히면 영상을 볼 수 있습니다.';this.message.hidden=false;return;}
+    const docked=this.root.classList.contains('cinema-youtube-docked');
+    const roomRect=this.room.root.getBoundingClientRect();
+    this.fits=r.width>=200&&r.height>=200&&(!docked||r.top>=roomRect.top&&r.left>=roomRect.left);this.playerBox.hidden=!this.fits;
+    if(!this.fits){this.pausePersonal();this.stopSync();this.message.textContent='화면을 넓히면 영상을 볼 수 있습니다.';this.message.hidden=false;return;}
     Object.assign(this.playerBox.style,{left:'0px',top:'0px',width:r.width+'px',height:r.height+'px'});
     if(this.visible&&!this.player&&!this.creating&&!this.error)queueMicrotask(()=>this.ensurePlayer());
   }

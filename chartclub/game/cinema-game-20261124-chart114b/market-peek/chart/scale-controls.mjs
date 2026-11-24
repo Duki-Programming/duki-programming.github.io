@@ -1,11 +1,15 @@
 import { priceBarRatio, lockedScaleRange, scaleTransform, zoomScaleRange } from './scale-math.mjs';
 
 const item = (tag, cls, text) => { const element = document.createElement(tag); element.className = cls; if (text != null) element.textContent = text; return element; };
+const AXIS_HOLD_MS = 500, AXIS_HOLD_SLOP = 8;
 
 export class PriceScaleControls {
   constructor(owner) {
     this.owner = owner; this.container = owner.container; this.contexts = new Map(); this.states = new Map(); this.buttons = new Map();
+    this.cancelHold = () => { clearTimeout(this.holdTimer); this.axisHold = null; };
     this.move = event => {
+      const hold = this.axisHold;
+      if (hold?.pointer === event.pointerId && Math.hypot(event.clientX - hold.x, event.clientY - hold.y) > AXIS_HOLD_SLOP) this.cancelHold();
       const pane = this.hit(event);
       this.hovered = pane?.id || null;
       if (pane) this.lastPane = pane.id;
@@ -13,8 +17,16 @@ export class PriceScaleControls {
       if (this.dragging) this.schedule(true);
     };
     this.leave = () => { this.hovered = null; for (const group of this.buttons.values()) group.classList.remove('axis-hovered'); };
-    this.down = event => { const pane = this.hit(event); if (event.button === 0 && pane?.axis && this.state(pane.id).locked && !event.target.closest('button')) this.dragging = pane.id; };
-    this.up = () => { this.schedule(Boolean(this.dragging)); this.dragging = null; };
+    this.down = event => {
+      this.cancelHold();
+      const pane = this.hit(event);
+      if (event.button !== 0 || !pane?.axis || event.target.closest('button')) return;
+      if (this.state(pane.id).locked) this.dragging = pane.id;
+      if (event.pointerType !== 'touch' || !event.isPrimary) return;
+      const hold = this.axisHold = {pointer:event.pointerId, x:event.clientX, y:event.clientY};
+      this.holdTimer = setTimeout(() => { this.cancelHold(); this.openMenu(pane.id, hold.x, hold.y); }, AXIS_HOLD_MS);
+    };
+    this.up = () => { this.cancelHold(); this.schedule(Boolean(this.dragging)); this.dragging = null; };
     this.wheel = event => {
       const pane = this.hit(event);
       if (!pane?.axis || !event.deltaY || event.target.closest('button')) return;
@@ -34,6 +46,7 @@ export class PriceScaleControls {
     this.contextMenu = event => {
       const pane = this.hit(event);
       if (!pane?.axis) return;
+      this.cancelHold();
       event.preventDefault(); event.stopPropagation(); this.openMenu(pane.id, event.clientX, event.clientY);
     };
     this.outside = event => { if (this.menu && !this.menu.contains(event.target)) this.closeMenu(); };
@@ -51,6 +64,7 @@ export class PriceScaleControls {
     this.container.addEventListener('scroll', this.dismiss);
     this.container.addEventListener('dblclick', this.up);
     document.addEventListener('pointerup', this.up);
+    document.addEventListener('pointercancel', this.up);
     document.addEventListener('pointerdown', this.outside, true);
     document.addEventListener('keydown', this.key, true);
     window.addEventListener('resize', this.dismiss);
@@ -74,7 +88,7 @@ export class PriceScaleControls {
     }
   }
   unbind() {
-    this.closeMenu(); cancelAnimationFrame(this.frame);
+    this.cancelHold(); this.closeMenu(); cancelAnimationFrame(this.frame);
     if (this.bound) {
       for (const id of this.boundIds) this.sync(id);
       this.bound.timeScale().unsubscribeVisibleLogicalRangeChange(this.timeChange);
@@ -204,6 +218,6 @@ export class PriceScaleControls {
   destroy() {
     this.container.removeEventListener('wheel', this.wheel, true);
     this.unbind(); this.container.removeEventListener('pointermove', this.move); this.container.removeEventListener('pointerleave', this.leave); this.container.removeEventListener('pointerdown', this.down, true); this.container.removeEventListener('contextmenu', this.contextMenu); this.container.removeEventListener('scroll', this.dismiss); this.container.removeEventListener('dblclick', this.up);
-    document.removeEventListener('pointerup', this.up); document.removeEventListener('pointerdown', this.outside, true); document.removeEventListener('keydown', this.key, true); window.removeEventListener('resize', this.dismiss);
+    document.removeEventListener('pointerup', this.up); document.removeEventListener('pointercancel', this.up); document.removeEventListener('pointerdown', this.outside, true); document.removeEventListener('keydown', this.key, true); window.removeEventListener('resize', this.dismiss);
   }
 }
